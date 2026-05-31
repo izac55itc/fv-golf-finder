@@ -1,0 +1,317 @@
+/* ============================================================
+   FV Golf Finder – Global Styles
+   Golf-green theme with CSS custom properties
+   ============================================================ */
+
+:root {
+  --green-darkest: #1a2e1a;
+  --green-dark: #1a4a1a;
+  --green-mid: #2d7a2d;
+  --green-dim: #2d5a2d;
+  --green-label: #4a6a4a;
+  --green-badge: #3a6a3a;
+  --green-border: #d1e0d1;
+  --green-row-hover: #f5fbf5;
+  --green-row-border: #edf5ed;
+  --green-badge-bg: #e8f0e8;
+  --bg-app: #f0f4f0;
+  --bg-white: #ffffff;
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.05);
+  --radius-card: 0.75rem;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--bg-app);
+  color: var(--green-darkest);
+  min-height: 100vh;
+}
+
+/* ── App Shell ──────────────────────────────────────────────── */
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.app-header {
+  background: linear-gradient(135deg, #1a4a1a 0%, #2d7a2d 100%);
+  color: #ffffff;
+  border-radius: var(--radius-card);
+  padding: 1.25rem 2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.header-subtitle {
+  opacity: 0.8;
+  font-size: 0.875rem;
+  margin-top: 0.2rem;
+}
+
+.header-meta {
+  margin-left: auto;
+  font-size: 0.8rem;
+  opacity: 0.75;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Planner Card ───────────────────────────────────────────── */
+.planner-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1.5rem;
+}
+
+.planner-card h2 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+
+.planner-fields {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+/* ── Field ──────────────────────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+  min-width: 180px;
+}
+
+.field label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--green-label);
+  letter-spacing: 0.06em;
+}
+
+.field input {
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--green-border);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--green-darkest);
+  background: var(--bg-white);
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(45, 122, 45, 0.12);
+}
+
+/* ── Table Wrapper ──────────────────────────────────────────── */
+.table-wrap {
+  background: var(--bg-white);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ── Results Meta Bar ───────────────────────────────────────── */
+.results-meta {
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  color: var(--green-label);
+  border-bottom: 1px solid var(--green-row-border);
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: row;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+/* ── Verdict Dots ───────────────────────────────────────────── */
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-go    { background: #22c55e; }
+.dot-tight { background: #f59e0b; }
+.dot-skip  { background: #ef4444; }
+
+/* ── Table ──────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background: var(--green-dark);
+  color: #ffffff;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background 0.12s;
+}
+
+thead th:hover {
+  background: var(--green-dim);
+}
+
+thead th.sort-active {
+  background: var(--green-mid);
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--green-row-border);
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: var(--green-row-hover);
+}
+
+tbody td {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+
+/* ── Cell Variants ──────────────────────────────────────────── */
+.course-name {
+  font-weight: 600;
+  color: var(--green-darkest);
+}
+
+.course-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--green-badge-bg);
+  color: var(--green-badge);
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.greenfee {
+  font-weight: 600;
+}
+
+.drive,
+.est-round {
+  color: var(--green-label);
+}
+
+.tee-in-urgent {
+  color: #c05000;
+  font-weight: 600;
+}
+
+.holes-ok    { color: #166534; font-weight: 700; }
+.holes-short { color: #dc2626; font-weight: 700; }
+
+.done-by-warn {
+  color: #92400e;
+}
+
+/* ── Verdict Badge ──────────────────────────────────────────── */
+.verdict-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.65rem;
+  white-space: nowrap;
+}
+
+.verdict-go    { background: #dcfce7; color: #166534; }
+.verdict-tight { background: #fef3c7; color: #92400e; }
+.verdict-skip  { background: #fee2e2; color: #991b1b; }
+
+/* ── Empty State ────────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  font-style: italic;
+  color: var(--green-label);
+  padding: 3rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .app-header {
+    flex-wrap: wrap;
+  }
+
+  .header-meta {
+    display: none;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 700px;
+  }
+}
