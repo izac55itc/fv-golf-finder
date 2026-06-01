@@ -53,8 +53,14 @@ async function scrapeFacility(facilityId, dateStr) {
 
   try {
     const url = `https://www.golfnow.com/tee-times/facility/${facilityId}/search?date=${dateStr}&holes=18&players=1&time=all`
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 45_000 })
-    await page.waitForTimeout(2_000)
+    console.log(`[${facilityId}] Loading...`)
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
+    console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
+    await page.waitForTimeout(3_000)
+    console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
+  } catch (err) {
+    console.error(`[${facilityId}] Error: ${err.message}`)
+    throw err
   } finally {
     await ctx.close()
   }
