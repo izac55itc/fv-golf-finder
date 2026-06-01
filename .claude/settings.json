@@ -7,7 +7,14 @@
       "WebFetch(domain:apiv2.golfnowone.com)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(npm *)",
+      "Bash(wc *)",
+      "Bash(ls *)",
+      "Bash(cd *)",
+      "PowerShell(*)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }
