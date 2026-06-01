@@ -19,6 +19,7 @@ const SCRAPE_WAIT_MS = 5 * 60 * 1000
 // ── Helpers ───────────────────────────────────────────────────────────────
 
 function pad(n) { return String(n).padStart(2, '0') }
+function toDateInput(d) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` }
 function toTimeInput(d) { return `${pad(d.getHours())}:${pad(d.getMinutes())}` }
 
 function fromTimeInput(str, ref) {
@@ -52,6 +53,7 @@ export default function App() {
   const [locLoading, setLocLoading] = useState(true)
 
   // Session planner
+  const [sessionDate,   setSessionDate]   = useState(() => toDateInput(new Date()))
   const [fromTimeStr,   setFromTimeStr]   = useState(() => toTimeInput(roundUpQuarter(new Date())))
   const [doneByTimeStr, setDoneByTimeStr] = useState(() => toTimeInput(getSunsetTime(new Date())))
 
@@ -154,8 +156,8 @@ export default function App() {
     return () => clearTimeout(id)
   }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
 
-  // ── Derive Date objects from time inputs (always relative to today/dataDate)
-  const baseDate = dataDate ? new Date(dataDate + 'T00:00:00') : new Date()
+  // ── Derive Date objects from time inputs (use selected session date)
+  const baseDate = new Date(sessionDate + 'T00:00:00')
 
   const availableFrom = useMemo(() => fromTimeInput(fromTimeStr, baseDate),   [fromTimeStr, dataDate])
   const mustBeDoneBy  = useMemo(() => fromTimeInput(doneByTimeStr, baseDate), [doneByTimeStr, dataDate])
@@ -229,6 +231,17 @@ export default function App() {
               <div className="loc-display">
                 {locLoading ? '📍 Detecting…' : `📍 ${location.name}${location.source === 'denied' ? ' (GPS denied)' : ''}`}
               </div>
+            </div>
+
+            <div className="field">
+              <label htmlFor="session-date">Date</label>
+              <input
+                id="session-date"
+                type="date"
+                value={sessionDate}
+                onChange={e => setSessionDate(e.target.value)}
+                min={toDateInput(new Date())}
+              />
             </div>
 
             <div className="field">
