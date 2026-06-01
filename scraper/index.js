@@ -2,7 +2,9 @@
 
 const fs   = require('fs')
 const path = require('path')
-const { scrapeAll, closeBrowser } = require('./golfnow')
+const golfnow = require('./golfnow')
+const chronogolf = require('./chronogolf')
+const wcgolfgroup = require('./wcgolfgroup')
 
 async function main() {
   const dateStr = new Date().toISOString().split('T')[0]
@@ -11,10 +13,24 @@ async function main() {
   let teetimes = []
 
   try {
-    const scraped = await scrapeAll(dateStr)
-    teetimes = flatten(scraped, dateStr)
+    console.log('Scraping GolfNow...')
+    const gnScraped = await golfnow.scrapeAll(dateStr)
+    console.log('✓ GolfNow done\n')
+
+    console.log('Scraping ChronoGolf...')
+    const cgScraped = await chronogolf.scrapeAll(dateStr)
+    console.log('✓ ChronoGolf done\n')
+
+    console.log('Scraping WCGolfGroup...')
+    const wcgScraped = await wcgolfgroup.scrapeAll(dateStr)
+    console.log('✓ WCGolfGroup done\n')
+
+    // Merge all results
+    teetimes = flatten(gnScraped, dateStr, 'golfnow')
+    teetimes.push(...flatten(cgScraped, dateStr, 'chronogolf'))
+    teetimes.push(...flatten(wcgScraped, dateStr, 'wcgolfgroup'))
   } finally {
-    await closeBrowser()
+    await golfnow.closeBrowser()
   }
 
   const output = {
@@ -29,7 +45,7 @@ async function main() {
   console.log(`\nWrote ${teetimes.length} tee times → ${outPath}`)
 }
 
-function flatten(scraped, dateStr) {
+function flatten(scraped, dateStr, source) {
   const out = []
   let seq = 1
 
@@ -38,12 +54,12 @@ function flatten(scraped, dateStr) {
       const isoTime = parseTime(raw.time, dateStr)
       if (!isoTime) continue
       out.push({
-        id:        `gn-${courseId}-${seq++}`,
+        id:        `${source.charAt(0)}-${courseId}-${seq++}`,
         courseId,
         time:      isoTime,
         greenfee:  raw.greenfee,
         spaces:    raw.spaces,
-        source:    'golfnow',
+        source,
       })
     }
   }
