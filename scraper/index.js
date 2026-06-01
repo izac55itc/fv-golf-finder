@@ -66,11 +66,16 @@ async function main() {
 function flatten(scraped, dateStr, source) {
   const out = []
   let seq = 1
+  let parseFailures = 0
 
   for (const [courseId, rawList] of scraped) {
     for (const raw of rawList) {
       const isoTime = parseTime(raw.time, dateStr)
-      if (!isoTime) continue
+      if (!isoTime) {
+        if (parseFailures === 0) console.log(`[${source}/${courseId}] Example unparsed time: ${raw.time}`)
+        parseFailures++
+        continue
+      }
       out.push({
         id:        `${source.charAt(0)}-${courseId}-${seq++}`,
         courseId,
@@ -82,6 +87,7 @@ function flatten(scraped, dateStr, source) {
     }
   }
 
+  if (parseFailures > 0) console.log(`[${source}] ${parseFailures} times failed to parse`)
   return out
 }
 
