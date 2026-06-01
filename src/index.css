@@ -363,6 +363,22 @@ tbody td {
   cursor: default;
 }
 
+.scrape-btn {
+  background: #f0f7f0;
+  border-color: var(--green-mid);
+  color: var(--green-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.scrape-btn:hover:not(:disabled) {
+  background: var(--green-badge-bg);
+}
+
+.scrape-no-token {
+  font-size: 0.75rem;
+  color: #92400e;
+}
+
 /* ── Location display ───────────────────────────────────────── */
 .field-location { flex: 1.5; }
 

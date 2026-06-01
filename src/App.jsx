@@ -9,6 +9,13 @@ import TeeTimeTable from './components/TeeTimeTable.jsx'
 // Raw GitHub URL for the data branch — updated hourly by the scrape.yml Action
 const DATA_URL = 'https://raw.githubusercontent.com/izac55itc/fv-golf-finder/data/teetimes.json'
 
+// GitHub API — trigger the scrape.yml workflow on demand
+const GH_TOKEN   = import.meta.env.VITE_GITHUB_TOKEN
+const GH_DISPATCH = 'https://api.github.com/repos/izac55itc/fv-golf-finder/actions/workflows/scrape.yml/dispatches'
+
+// How long to wait after triggering before auto-refreshing data (ms)
+const SCRAPE_WAIT_MS = 5 * 60 * 1000
+
 // ── Helpers ───────────────────────────────────────────────────────────────
 
 function pad(n) { return String(n).padStart(2, '0') }
@@ -54,6 +61,10 @@ export default function App() {
   const [generatedAt,  setGeneratedAt]  = useState(null)   // ISO timestamp
   const [teeFetching,  setTeeFetching]  = useState(true)
   const [teeError,     setTeeError]     = useState(null)
+
+  // Manual scraper trigger
+  const [scrapeStatus,  setScrapeStatus]  = useState(null)  // null | 'triggering' | 'waiting' | 'error'
+  const [scrapeSecondsLeft, setScrapeSecondsLeft] = useState(0)
 
   // Drive times (Mapbox or Haversine)
   const [driveTimes,   setDriveTimes]   = useState(null)
@@ -103,6 +114,46 @@ export default function App() {
 
   useEffect(() => { fetchTeetimes() }, [fetchTeetimes])
 
+  // Trigger the GitHub Actions scrape.yml workflow on demand
+  const triggerScraper = useCallback(async () => {
+    if (!GH_TOKEN) {
+      setScrapeStatus('error')
+      return
+    }
+    setScrapeStatus('triggering')
+    try {
+      const res = await fetch(GH_DISPATCH, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GH_TOKEN}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ref: 'main' }),
+      })
+      if (res.status === 204) {
+        setScrapeStatus('waiting')
+        setScrapeSecondsLeft(Math.round(SCRAPE_WAIT_MS / 1000))
+      } else {
+        setScrapeStatus('error')
+      }
+    } catch {
+      setScrapeStatus('error')
+    }
+  }, [])
+
+  // Count down after triggering, then auto-refresh
+  useEffect(() => {
+    if (scrapeStatus !== 'waiting') return
+    if (scrapeSecondsLeft <= 0) {
+      setScrapeStatus(null)
+      fetchTeetimes()
+      return
+    }
+    const id = setTimeout(() => setScrapeSecondsLeft(s => s - 1), 1000)
+    return () => clearTimeout(id)
+  }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
+
   // ── Derive Date objects from time inputs (always relative to today/dataDate)
   const baseDate = dataDate ? new Date(dataDate + 'T00:00:00') : new Date()
 
@@ -140,14 +191,35 @@ export default function App() {
             <h2>Plan Your Session</h2>
             <div className="data-freshness">
               {generatedAt && <span>Updated {timeAgo(generatedAt)}</span>}
+
+              {/* Refresh: re-fetch whatever is already in the data branch */}
               <button
                 className="refresh-btn"
                 onClick={fetchTeetimes}
-                disabled={teeFetching}
+                disabled={teeFetching || scrapeStatus === 'waiting'}
                 title="Re-fetch latest tee times from GitHub"
               >
                 {teeFetching ? '⟳ Loading…' : '⟳ Refresh'}
               </button>
+
+              {/* Trigger: fire the GitHub Actions scraper right now */}
+              {GH_TOKEN && (
+                <button
+                  className="refresh-btn scrape-btn"
+                  onClick={triggerScraper}
+                  disabled={scrapeStatus === 'triggering' || scrapeStatus === 'waiting'}
+                  title="Run the GitHub Actions scraper now (takes ~5 min)"
+                >
+                  {scrapeStatus === 'triggering' && '⏳ Triggering…'}
+                  {scrapeStatus === 'waiting'    && `⏳ Scraping… ${Math.floor(scrapeSecondsLeft / 60)}:${String(scrapeSecondsLeft % 60).padStart(2,'0')}`}
+                  {scrapeStatus === 'error'      && '⚠ Run failed'}
+                  {!scrapeStatus                 && '▶ Run Scraper'}
+                </button>
+              )}
+
+              {scrapeStatus === 'error' && !GH_TOKEN && (
+                <span className="scrape-no-token">VITE_GITHUB_TOKEN not set</span>
+              )}
             </div>
           </div>
 
