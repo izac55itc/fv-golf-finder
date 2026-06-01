@@ -39,14 +39,19 @@ async function main() {
     console.log()
 
     // Collect results from all that succeeded
-    for (const result of results) {
+    console.log(`\nCollecting results from ${results.length} scrapers...`)
+    for (let i = 0; i < results.length; i++) {
+      const result = results[i]
       if (result.status === 'fulfilled') {
         const { scraped, source } = result.value
-        teetimes.push(...flatten(scraped, dateStr, source))
+        const flattened = flatten(scraped, dateStr, source)
+        console.log(`[${source}] Flattened ${flattened.length} tee times`)
+        teetimes.push(...flattened)
       } else {
-        console.error(`✗ ${result.reason?.message || 'Unknown error'}`)
+        console.error(`[Scraper ${i}] Failed: ${result.reason?.message || 'Unknown error'}`)
       }
     }
+    console.log(`\nTotal collected: ${teetimes.length} tee times\n`)
   } finally {
     await golfnow.closeBrowser()
   }
