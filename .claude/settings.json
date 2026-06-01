@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.chronogolf.com)",
+      "WebFetch(domain:chrono.golf)",
+      "WebFetch(domain:www.redwoods-golf.com)",
+      "WebFetch(domain:apiv2.golfnowone.com)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ]
+  }
+}

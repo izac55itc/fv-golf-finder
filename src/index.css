@@ -289,12 +289,104 @@ tbody td {
 .verdict-tight { background: #fef3c7; color: #92400e; }
 .verdict-skip  { background: #fee2e2; color: #991b1b; }
 
-/* ── Empty State ────────────────────────────────────────────── */
+/* ── Empty / Loading States ─────────────────────────────────── */
 .empty-state {
   text-align: center;
   font-style: italic;
   color: var(--green-label);
   padding: 3rem;
+}
+
+.meta-loading {
+  font-size: 0.82rem;
+  color: var(--green-label);
+  font-style: italic;
+}
+
+/* Skeleton shimmer rows */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+.skeleton-row td { padding: 0.75rem 0.85rem; }
+
+.skeleton-cell {
+  display: block;
+  height: 0.85rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e8f0e8 25%, #d4e8d4 50%, #e8f0e8 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+/* ── Planner top row (title + refresh) ─────────────────────── */
+.planner-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.planner-top-row h2 { margin-bottom: 0; }
+
+.data-freshness {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--green-label);
+}
+
+.refresh-btn {
+  padding: 0.3rem 0.7rem;
+  border: 1.5px solid var(--green-border);
+  border-radius: 0.4rem;
+  background: white;
+  color: var(--green-dark);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: var(--green-badge-bg);
+  border-color: var(--green-mid);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* ── Location display ───────────────────────────────────────── */
+.field-location { flex: 1.5; }
+
+.loc-display {
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--green-border);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--green-darkest);
+  background: #f5f9f5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Error banner ───────────────────────────────────────────── */
+.error-banner {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: var(--radius-card);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #664d03;
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */

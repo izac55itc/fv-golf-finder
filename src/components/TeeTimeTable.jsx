@@ -1,12 +1,7 @@
 import { useState, useMemo } from 'react'
 
-// ── Helpers ────────────────────────────────────────────────────
 function fmtTime(date) {
-  return date.toLocaleTimeString('en-CA', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
-  })
+  return date.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
 }
 
 function fmtDur(min) {
@@ -19,121 +14,102 @@ function fmtDur(min) {
 
 const VERDICT_ORDER = { go: 0, tight: 1, skip: 2 }
 
-// ── Column definitions ─────────────────────────────────────────
 const COLUMNS = [
-  { key: 'course',     label: 'Course'     },
-  { key: 'teetime',    label: 'Tee Time'   },
-  { key: 'greenfee',   label: 'Green Fee'  },
-  { key: 'drive',      label: 'Drive'      },
-  { key: 'teeIn',      label: 'Tee In'     },
-  { key: 'estRound',   label: 'Est. Round' },
-  { key: 'holesDusk',  label: 'Holes/Dusk' },
-  { key: 'doneBy',     label: 'Done By'    },
-  { key: 'verdict',    label: 'Verdict'    },
+  { key: 'course',     label: 'Course'          },
+  { key: 'teetime',   label: 'Tee Time'         },
+  { key: 'greenfee',  label: 'Green Fee'        },
+  { key: 'drive',     label: 'Drive'            },
+  { key: 'leaveIn',   label: 'Leave In'         },
+  { key: 'estRound',  label: 'Est. Round'       },
+  { key: 'holesDusk', label: 'Holes Before Dusk'},
+  { key: 'doneBy',    label: 'Done By'          },
+  { key: 'verdict',   label: 'Verdict'          },
 ]
 
-// ── Component ──────────────────────────────────────────────────
-export default function TeeTimeTable({ rows }) {
+// Skeleton row shown while loading
+function SkeletonRow() {
+  return (
+    <tr className="skeleton-row">
+      {COLUMNS.map((col) => (
+        <td key={col.key}><span className="skeleton-cell" /></td>
+      ))}
+    </tr>
+  )
+}
+
+export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
   const [sort, setSort] = useState({ key: 'verdict', dir: 'asc' })
 
   function handleSort(key) {
     setSort((prev) =>
       prev.key === key
         ? { key, dir: prev.dir === 'asc' ? 'desc' : 'asc' }
-        : { key, dir: 'asc' }
+        : { key, dir: 'asc' },
     )
   }
 
   const sortedRows = useMemo(() => {
     const copy = [...rows]
-
     copy.sort((a, b) => {
-      let aVal, bVal
-
+      let av, bv
       switch (sort.key) {
-        case 'course':
-          aVal = a.course.name.toLowerCase()
-          bVal = b.course.name.toLowerCase()
-          break
-        case 'teetime':
-          aVal = a.teetime.time.getTime()
-          bVal = b.teetime.time.getTime()
-          break
-        case 'greenfee':
-          aVal = a.teetime.greenfee
-          bVal = b.teetime.greenfee
-          break
-        case 'drive':
-          aVal = a.driveMinutes
-          bVal = b.driveMinutes
-          break
-        case 'teeIn':
-          aVal = a.teeInMinutes
-          bVal = b.teeInMinutes
-          break
-        case 'estRound':
-          aVal = a.roundMinutes
-          bVal = b.roundMinutes
-          break
-        case 'holesDusk':
-          aVal = a.holesBeforeDusk
-          bVal = b.holesBeforeDusk
-          break
-        case 'doneBy':
-          aVal = a.doneBy.getTime()
-          bVal = b.doneBy.getTime()
-          break
+        case 'course':    av = a.course.name.toLowerCase(); bv = b.course.name.toLowerCase(); break
+        case 'teetime':   av = a.teetime.time.getTime();    bv = b.teetime.time.getTime();    break
+        case 'greenfee':  av = a.teetime.greenfee;          bv = b.teetime.greenfee;          break
+        case 'drive':     av = a.driveMinutes;              bv = b.driveMinutes;              break
+        case 'leaveIn':   av = a.leaveInMinutes;            bv = b.leaveInMinutes;            break
+        case 'estRound':  av = a.roundMinutes;              bv = b.roundMinutes;              break
+        case 'holesDusk': av = a.holesBeforeDusk;           bv = b.holesBeforeDusk;           break
+        case 'doneBy':    av = a.doneBy.getTime();          bv = b.doneBy.getTime();          break
         case 'verdict':
-        default:
-          aVal = VERDICT_ORDER[a.verdict] ?? 99
-          bVal = VERDICT_ORDER[b.verdict] ?? 99
-          break
+        default:          av = VERDICT_ORDER[a.verdict] ?? 99; bv = VERDICT_ORDER[b.verdict] ?? 99
       }
-
-      if (aVal < bVal) return -1
-      if (aVal > bVal) return 1
+      if (av < bv) return -1
+      if (av > bv) return 1
       return 0
     })
-
     if (sort.dir === 'desc') copy.reverse()
     return copy
   }, [rows, sort])
 
-  const goCount     = rows.filter((r) => r.verdict === 'go').length
-  const tightCount  = rows.filter((r) => r.verdict === 'tight').length
-  const skipCount   = rows.filter((r) => r.verdict === 'skip').length
+  const goCount    = rows.filter((r) => r.verdict === 'go').length
+  const tightCount = rows.filter((r) => r.verdict === 'tight').length
+  const skipCount  = rows.filter((r) => r.verdict === 'skip').length
 
-  function sortArrow(key) {
+  function arrow(key) {
     if (sort.key !== key) return ' ↕'
     return sort.dir === 'asc' ? ' ↑' : ' ↓'
   }
 
-  function badgeLabel(course) {
+  function badge(course) {
     if (course.type === 'par3') return 'Par 3'
     return `${course.holes}-hole`
   }
 
+  // Empty / loading states
+  const showSkeleton = loading
+  const showEmpty = !loading && rows.length === 0
+
   return (
     <div className="table-wrap">
       <div className="results-meta">
-        <span className="meta-item">
-          <span className="dot dot-go" />
-          {goCount} Go
-        </span>
-        <span className="meta-item">
-          <span className="dot dot-tight" />
-          {tightCount} Tight
-        </span>
-        <span className="meta-item">
-          <span className="dot dot-skip" />
-          {skipCount} Skip
-        </span>
-        <span>{rows.length} tee times total</span>
+        {loading ? (
+          <span className="meta-loading">
+            {!driveTimesReady ? '🗺 Calculating drive times…' : '⏳ Loading tee times…'}
+          </span>
+        ) : (
+          <>
+            <span className="meta-item"><span className="dot dot-go" />{goCount} Go</span>
+            <span className="meta-item"><span className="dot dot-tight" />{tightCount} Tight</span>
+            <span className="meta-item"><span className="dot dot-skip" />{skipCount} Skip</span>
+            <span>{rows.length} tee times</span>
+          </>
+        )}
       </div>
 
-      {rows.length === 0 ? (
+      {showEmpty ? (
         <div className="empty-state">
-          No tee times match your session criteria.
+          No tee times available. The server may still be scraping — try refreshing in a moment.
         </div>
       ) : (
         <table>
@@ -144,67 +120,40 @@ export default function TeeTimeTable({ rows }) {
                   key={col.key}
                   onClick={() => handleSort(col.key)}
                   className={sort.key === col.key ? 'sort-active' : ''}
+                  title={col.key === 'leaveIn' ? 'Time until you need to leave (tee time − drive time)' : undefined}
                 >
-                  {col.label}
-                  {sortArrow(col.key)}
+                  {col.label}{arrow(col.key)}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {sortedRows.map((row) => {
-              const { teetime, course, driveMinutes, teeInMinutes,
-                      roundMinutes, doneBy, holesBeforeDusk, verdict } = row
+            {showSkeleton
+              ? Array.from({ length: 8 }, (_, i) => <SkeletonRow key={i} />)
+              : sortedRows.map((row) => {
+                  const { teetime, course, driveMinutes, leaveInMinutes,
+                          roundMinutes, doneBy, holesBeforeDusk, verdict } = row
 
-              const holesClass =
-                holesBeforeDusk >= course.holes ? 'holes-ok' : 'holes-short'
+                  const holesClass = holesBeforeDusk >= course.holes ? 'holes-ok' : 'holes-short'
+                  const leaveUrgent = leaveInMinutes <= 30
 
-              return (
-                <tr key={teetime.id}>
-                  {/* Course */}
-                  <td>
-                    <span className="course-name">{course.name}</span>
-                    <span className="course-badge">{badgeLabel(course)}</span>
-                  </td>
-
-                  {/* Tee Time */}
-                  <td>{fmtTime(teetime.time)}</td>
-
-                  {/* Green Fee */}
-                  <td className="greenfee">${teetime.greenfee}</td>
-
-                  {/* Drive */}
-                  <td className="drive">{driveMinutes}m</td>
-
-                  {/* Tee In */}
-                  <td className={teeInMinutes <= 30 ? 'tee-in-urgent' : ''}>
-                    {fmtDur(teeInMinutes)}
-                  </td>
-
-                  {/* Est. Round */}
-                  <td className="est-round">{fmtDur(roundMinutes)}</td>
-
-                  {/* Holes / Dusk */}
-                  <td>
-                    <span className={holesClass}>
-                      {holesBeforeDusk}/{course.holes}
-                    </span>
-                  </td>
-
-                  {/* Done By */}
-                  <td className={verdict !== 'go' ? 'done-by-warn' : ''}>
-                    {fmtTime(doneBy)}
-                  </td>
-
-                  {/* Verdict */}
-                  <td>
-                    <span className={`verdict-badge verdict-${verdict}`}>
-                      {verdict.toUpperCase()}
-                    </span>
-                  </td>
-                </tr>
-              )
-            })}
+                  return (
+                    <tr key={teetime.id}>
+                      <td>
+                        <span className="course-name">{course.name}</span>
+                        <span className="course-badge">{badge(course)}</span>
+                      </td>
+                      <td>{fmtTime(teetime.time)}</td>
+                      <td className="greenfee">${teetime.greenfee}</td>
+                      <td className="drive">{driveMinutes}m</td>
+                      <td className={leaveUrgent ? 'tee-in-urgent' : ''}>{fmtDur(leaveInMinutes)}</td>
+                      <td className="est-round">{fmtDur(roundMinutes)}</td>
+                      <td><span className={holesClass}>{holesBeforeDusk}/{course.holes}</span></td>
+                      <td className={verdict !== 'go' ? 'done-by-warn' : ''}>{fmtTime(doneBy)}</td>
+                      <td><span className={`verdict-badge verdict-${verdict}`}>{verdict.toUpperCase()}</span></td>
+                    </tr>
+                  )
+                })}
           </tbody>
         </table>
       )}
