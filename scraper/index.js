@@ -13,22 +13,40 @@ async function main() {
   let teetimes = []
 
   try {
-    console.log('Scraping GolfNow...')
-    const gnScraped = await golfnow.scrapeAll(dateStr)
-    console.log('✓ GolfNow done\n')
+    // Run all three scrapers in parallel, even if one fails
+    console.log('Scraping all platforms in parallel...\n')
+    const results = await Promise.allSettled([
+      (async () => {
+        console.log('▶ GolfNow')
+        const scraped = await golfnow.scrapeAll(dateStr)
+        console.log('✓ GolfNow done')
+        return { scraped, source: 'golfnow' }
+      })(),
+      (async () => {
+        console.log('▶ ChronoGolf')
+        const scraped = await chronogolf.scrapeAll(dateStr)
+        console.log('✓ ChronoGolf done')
+        return { scraped, source: 'chronogolf' }
+      })(),
+      (async () => {
+        console.log('▶ WCGolfGroup')
+        const scraped = await wcgolfgroup.scrapeAll(dateStr)
+        console.log('✓ WCGolfGroup done')
+        return { scraped, source: 'wcgolfgroup' }
+      })(),
+    ])
 
-    console.log('Scraping ChronoGolf...')
-    const cgScraped = await chronogolf.scrapeAll(dateStr)
-    console.log('✓ ChronoGolf done\n')
+    console.log()
 
-    console.log('Scraping WCGolfGroup...')
-    const wcgScraped = await wcgolfgroup.scrapeAll(dateStr)
-    console.log('✓ WCGolfGroup done\n')
-
-    // Merge all results
-    teetimes = flatten(gnScraped, dateStr, 'golfnow')
-    teetimes.push(...flatten(cgScraped, dateStr, 'chronogolf'))
-    teetimes.push(...flatten(wcgScraped, dateStr, 'wcgolfgroup'))
+    // Collect results from all that succeeded
+    for (const result of results) {
+      if (result.status === 'fulfilled') {
+        const { scraped, source } = result.value
+        teetimes.push(...flatten(scraped, dateStr, source))
+      } else {
+        console.error(`✗ ${result.reason?.message || 'Unknown error'}`)
+      }
+    }
   } finally {
     await golfnow.closeBrowser()
   }
