@@ -98,6 +98,7 @@ function flatten(scraped, dateStr, source) {
 
 function parseTime(raw, dateStr) {
   if (!raw) return null
+  console.log(`[parseTime] Input: "${raw}" (type: ${typeof raw})`)
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return raw
 
   // "7:30 AM" / "7:30 PM"
