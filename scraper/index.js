@@ -18,6 +18,8 @@ async function main() {
     // Extract just Newlands data
     const newlands = scraped.get('newlands-cc') || []
     console.log(`Found ${newlands.length} raw tee times from Newlands CC`)
+    console.log(`Raw newlands data for inspection:`)
+    console.log(JSON.stringify(newlands.slice(0, 3), null, 2))
 
     // Parse and flatten
     for (let seq = 1; seq <= newlands.length; seq++) {
@@ -44,6 +46,7 @@ async function main() {
     generatedAt: new Date().toISOString(),
     date: dateStr,
     count: teetimes.length,
+    rawDebug: newlands.slice(0, 5),  // Keep first 5 raw items for inspection
     teetimes,
   }
 
