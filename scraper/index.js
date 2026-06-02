@@ -79,7 +79,7 @@ function parseTime(raw, dateStr) {
 setTimeout(() => {
   console.error('Hard timeout: force killing process')
   process.kill(process.pid, 'SIGKILL')
-}, 480_000)
+}, 840_000)
 
 main()
   .then(() => { process.exit(0) })
