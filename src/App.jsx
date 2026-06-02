@@ -8,7 +8,7 @@ import TeeTimeTable from './components/TeeTimeTable.jsx'
 import FilterPanel from './components/FilterPanel.jsx'
 
 // Raw GitHub URL for the data branch — updated hourly by the scrape.yml Action
-const DATA_URL = 'https://raw.githubusercontent.com/izac55itc/fv-golf-finder/data/teetimes.json'
+const DATA_URL = 'https://raw.githubusercontent.com/izac55itc/fv-golf-finder/main/scraper/teetimes.json'
 
 // GitHub API — trigger the scrape.yml workflow on demand
 const GH_TOKEN   = import.meta.env.VITE_GITHUB_TOKEN
