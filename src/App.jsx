@@ -109,14 +109,10 @@ export default function App() {
   // Drive times
   const [driveTimes, setDriveTimes] = useState(null)
 
-  // ── GPS location on mount
+// ── Default to Walnut Grove, no GPS on load
   useEffect(() => {
-    setLocLoading(true)
-    getCurrentLocation().then(loc => {
-      setLocation(loc)
-      setLocInput(loc.name)
-      setLocLoading(false)
-    })
+    setLocInput(WALNUT_GROVE.name)
+    setLocLoading(false)
   }, [])
 
   // ── Drive times — refetch when location changes
