@@ -47,4 +47,4 @@ jobs:
           # Only commit if something changed
           git diff --cached --quiet \
             || git commit -m "scrape: $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git push origin data
+          git push --force origin data
