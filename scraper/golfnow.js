@@ -5,13 +5,10 @@ const { chromium } = require('playwright')
 const FACILITIES = {
   'newlands-cc':            3525,
   'newlands-executive':     11039,
-  'belmont':                358,
   'westfield':              6629,
   'eighteen-pastures':      3530,
   'golden-eagle-north':     3515,
   'golden-eagle-south':     15899,
-  'swaneset-links':         301,
-  'swaneset-resort':        19887,
 }
 
 let _browser = null
