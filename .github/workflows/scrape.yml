@@ -36,15 +36,10 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Save output before any branch switch
           cp scraper/teetimes.json /tmp/teetimes.json
-          # Switch to data branch (create orphan if first run)
-          git fetch origin data 2>/dev/null \
-            && git checkout -B data origin/data \
-            || { git checkout --orphan data && git rm -rf . --quiet 2>/dev/null; true; }
+          git checkout --orphan data-new
+          git rm -rf . --quiet 2>/dev/null || true
           cp /tmp/teetimes.json teetimes.json
           git add teetimes.json
-          # Only commit if something changed
-          git diff --cached --quiet \
-            || git commit -m "scrape: $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git push --force origin data
+          git commit -m "scrape: $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push --force origin data-new:data
