@@ -2,7 +2,8 @@ import { getSunsetTime } from './sunset.js'
 
 export function fuelCostDollars(driveMinutes) {
   const km = (driveMinutes / 60) * 50
-  const litres = (km / 100) * 8
+  const roundTripKm = km * 2
+  const litres = (roundTripKm / 100) * 8
   return litres * 2
 }
 
