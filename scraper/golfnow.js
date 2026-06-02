@@ -62,8 +62,6 @@ async function scrapeFacility(facilityId, dateStr) {
       (async () => {
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
         console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
-
-        // Scroll to trigger lazy-loaded tee time sections (afternoon, twilight, etc.)
         await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
         await page.waitForTimeout(2_000)
         await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
@@ -108,7 +106,6 @@ function extractTeeTimes(json) {
   tryArray(json?.searchResults)
   if (Array.isArray(json)) tryArray(json)
 
-  // Also try nested structures
   if (json?.data && typeof json.data === 'object') {
     tryArray(json.data.results)
     tryArray(json.data.SearchResults)
@@ -127,8 +124,10 @@ function normalise(raw) {
     timeStr = time.formatted
   }
 
+  // Log raw time value for debugging
   if (!_normaliseLogged && raw) {
     console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
+    console.log(`[normalise] Raw time value: ${JSON.stringify(time)}, type: ${typeof time}`)
     _normaliseLogged = true
   }
 
