@@ -33,17 +33,9 @@ jobs:
         timeout-minutes: 5
         run: timeout --signal=KILL 120 node index.js || true
       - name: Publish to data branch
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          cp scraper/teetimes.json /tmp/teetimes.json
-          rm scraper/teetimes.json
-          git fetch origin data 2>/dev/null || true
-          git worktree add /tmp/data-branch data 2>/dev/null \
-            || git worktree add /tmp/data-branch --orphan data
-          cp /tmp/teetimes.json /tmp/data-branch/teetimes.json
-          cd /tmp/data-branch
-          git add teetimes.json
-          git diff --cached --quiet \
-            || git commit -m "scrape: $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git push --force origin data
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: data
+          publish_dir: ./scraper
+          keep_files: false
