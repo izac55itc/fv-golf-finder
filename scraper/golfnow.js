@@ -95,6 +95,8 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
+  console.log(`[normalise] raw.time type=${typeof time}, value=${JSON.stringify(time)}`)
+
   // Convert time to string if it's an object
   let timeStr = String(time)
   if (typeof time === 'object') {
