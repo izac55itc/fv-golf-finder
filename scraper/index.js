@@ -31,7 +31,8 @@ async function main() {
       }
     }
   } finally {
-    await golfnow.closeBrowser()
+    // Don't wait for browser cleanup — it hangs. Let the process exit immediately.
+    golfnow.closeBrowser().catch(() => {})
   }
 
   const output = {
