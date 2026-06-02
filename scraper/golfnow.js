@@ -95,16 +95,10 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
-  console.log(`[normalise] raw.time type=${typeof time}, value=${JSON.stringify(time)}`)
-
-  // Convert time to string if it's an object
+  // GolfNow returns time as object with { formatted: "HH:MM", ... }
   let timeStr = String(time)
-  if (typeof time === 'object') {
-    const h = time.hours ?? time.hour ?? time.h
-    const m = time.minutes ?? time.minute ?? time.m ?? 0
-    if (h !== undefined) {
-      timeStr = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
-    }
+  if (typeof time === 'object' && time.formatted) {
+    timeStr = time.formatted
   }
 
   return {
@@ -114,25 +108,17 @@ function normalise(raw) {
   }
 }
 
-// Scrape all known facilities in small parallel batches
+// Scrape just Newlands CC for the POC
 async function scrapeAll(dateStr) {
   const results = new Map()
-  const entries = Object.entries(FACILITIES)
-  const BATCH = 3
 
-  for (let i = 0; i < entries.length; i += BATCH) {
-    await Promise.all(
-      entries.slice(i, i + BATCH).map(async ([courseId, facilityId]) => {
-        try {
-          const tts = await scrapeFacility(facilityId, dateStr)
-          results.set(courseId, tts)
-          console.log(`  ${courseId}: ${tts.length} tee times`)
-        } catch (err) {
-          console.error(`  ${courseId} failed: ${err.message}`)
-          results.set(courseId, [])
-        }
-      })
-    )
+  try {
+    const tts = await scrapeFacility(FACILITIES['newlands-cc'], dateStr)
+    results.set('newlands-cc', tts)
+    console.log(`  newlands-cc: ${tts.length} tee times`)
+  } catch (err) {
+    console.error(`  newlands-cc failed: ${err.message}`)
+    results.set('newlands-cc', [])
   }
 
   return results

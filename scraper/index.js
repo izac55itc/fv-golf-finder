@@ -9,6 +9,7 @@ async function main() {
   console.log(`\nFV Golf Finder scraper — ${dateStr}\n`)
 
   let teetimes = []
+  let newlands = []
 
   try {
     // Scrape just Newlands CC for the POC
@@ -16,7 +17,7 @@ async function main() {
     const scraped = await golfnow.scrapeAll(dateStr)
 
     // Extract just Newlands data
-    const newlands = scraped.get('newlands-cc') || []
+    newlands = scraped.get('newlands-cc') || []
     console.log(`Found ${newlands.length} raw tee times from Newlands CC`)
     console.log(`Raw newlands data for inspection:`)
     console.log(JSON.stringify(newlands.slice(0, 3), null, 2))
