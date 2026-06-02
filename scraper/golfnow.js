@@ -95,6 +95,11 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
+  // Log the actual structure so we can see what we're dealing with
+  if (typeof time === 'object') {
+    console.log(`[normalise] Time is object: ${JSON.stringify(time)}`)
+  }
+
   return {
     time:     String(time),
     greenfee: Number(raw.price ?? raw.greenFee ?? raw.green_fee ?? raw.rate ?? raw.lowestPrice ?? 0),
