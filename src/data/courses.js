@@ -10,7 +10,7 @@ export const COURSES = [
   { id: 'willowbrook',         name: 'Willowbrook Golf Course',         holes: 9,  type: 'regulation', par: 35, lat: 49.0956, lng: -122.6523, avgHoleMinutes: 13, baseGreenfee: 22,  golfnowId: null  },
   { id: 'hole-15',             name: 'Hole 15 Golf',                    holes: 9,  type: 'par3',       par: 27, lat: 49.1523, lng: -122.6234, avgHoleMinutes: 9,  baseGreenfee: 25,  golfnowId: null  },
   { id: 'ryan-holley',         name: 'Ryan Holley Golf',                holes: 9,  type: 'regulation', par: 34, lat: 49.1890, lng: -122.5123, avgHoleMinutes: 13, baseGreenfee: 25,  golfnowId: null  },
-  { id: 'eighteen-pastures',   name: 'Eighteen Pastures Golf Course',   holes: 18, type: 'regulation', par: 72, lat: 49.1234, lng: -122.4567, avgHoleMinutes: 14, baseGreenfee: 45,  golfnowId: 3530  },
+  { id: 'eighteen-pastures', name: 'Eighteen Pastures Golf Course',     holes: 18, type: 'regulation', par: 72, lat: 49.1891, lng: -122.3387, avgHoleMinutes: 14, baseGreenfee: 45, golfnowId: 3530 },
 
   // ── Surrey ───────────────────────────────────────────────────────────
   { id: 'westfield',           name: 'Westfield Country Club',          holes: 9,  type: 'executive',  par: 31, lat: 49.1342, lng: -122.7523, avgHoleMinutes: 11, baseGreenfee: 30,  golfnowId: 6629  },
