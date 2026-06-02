@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react'
 import { fuelCostDollars } from '../utils/ranker.js'
-import { COURSES } from '../data/courses.js'
 
 function fmtTime(date) {
   return date.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
@@ -25,18 +24,18 @@ function getBookingUrl(course, teeTime) {
 const VERDICT_ORDER = { go: 0, tight: 1, skip: 2 }
 
 const COLUMNS = [
-  { key: 'course',     label: 'Course'           },
-  { key: 'teetime',    label: 'Tee Time'          },
-  { key: 'greenfee',   label: 'Green Fee'         },
-  { key: 'totalCost',  label: 'Total Cost'        },
-  { key: 'drive',      label: 'Drive'             },
-  { key: 'leaveIn',    label: 'Leave In'          },
-  { key: 'estRound',   label: 'Est. Round'        },
-  { key: 'holesDusk',  label: 'Holes Before Dusk' },
-  { key: 'spots',      label: 'Spots'             },
-  { key: 'doneBy',     label: 'Done By'           },
-  { key: 'verdict',    label: 'Verdict'           },
-  { key: 'book',       label: 'Book'              },
+  { key: 'course',    label: 'Course'           },
+  { key: 'teetime',   label: 'Tee Time'         },
+  { key: 'greenfee',  label: 'Green Fee'        },
+  { key: 'totalCost', label: 'Total Cost'       },
+  { key: 'drive',     label: 'Drive'            },
+  { key: 'leaveIn',   label: 'Leave In'         },
+  { key: 'estRound',  label: 'Est. Round'       },
+  { key: 'holesDusk', label: 'Holes Before Dusk'},
+  { key: 'spots',     label: 'Spots'            },
+  { key: 'doneBy',    label: 'Done By'          },
+  { key: 'verdict',   label: 'Verdict'          },
+  { key: 'book',      label: 'Book'             },
 ]
 
 function SkeletonRow() {
@@ -53,7 +52,7 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
   const [sort, setSort] = useState({ key: 'totalCost', dir: 'asc' })
 
   function handleSort(key) {
-    if (key === 'book') return // not sortable
+    if (key === 'book') return
     setSort((prev) =>
       prev.key === key
         ? { key, dir: prev.dir === 'asc' ? 'desc' : 'asc' }
@@ -174,7 +173,11 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
                         </span>
                       </td>
                       <td className={verdict !== 'go' ? 'done-by-warn' : ''}>{fmtTime(doneBy)}</td>
-                      <td><span className={`verdict-badge verdict-${verdict}`}>{verdict.toUpperCase()}</span></td>
+                      <td>
+                        <span className={`verdict-badge verdict-${verdict}`}>
+                          {verdict.toUpperCase()}
+                        </span>
+                      </td>
                       <td>
                         
                           href={bookingUrl}
