@@ -63,7 +63,7 @@ async function scrapeFacility(facilityId, dateStr) {
       (async () => {
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
         console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
-        await page.waitForTimeout(3_000)
+        await page.waitForTimeout(8_000)
       })(),
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error(`Timed out after ${TIMEOUT_MS / 1000}s`)), TIMEOUT_MS)
