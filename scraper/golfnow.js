@@ -62,6 +62,11 @@ async function scrapeFacility(facilityId, dateStr) {
       (async () => {
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
         console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
+
+        // Scroll to trigger lazy-loaded tee time sections (afternoon, twilight, etc.)
+        await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
+        await page.waitForTimeout(2_000)
+        await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
         await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
         await page.waitForTimeout(2_000)
       })(),
