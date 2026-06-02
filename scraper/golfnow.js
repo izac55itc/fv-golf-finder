@@ -68,6 +68,8 @@ async function scrapeFacility(facilityId, dateStr) {
   return captured
 }
 
+let _normaliseLogged = false
+
 // Walk common GolfNow response shapes looking for tee time objects
 function extractTeeTimes(json) {
   const candidates = []
@@ -101,10 +103,23 @@ function normalise(raw) {
     timeStr = time.formatted
   }
 
+  // Log raw object keys on first tee time to see what properties are available
+  if (!_normaliseLogged && raw) {
+    console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
+    _normaliseLogged = true
+  }
+
+  // Parse formattedPrice like "$99" → 99
+  let greenfee = 0
+  if (raw.formattedPrice) {
+    const match = raw.formattedPrice.match(/\d+/)
+    greenfee = match ? Number(match[0]) : 0
+  }
+
   return {
     time:     timeStr,
-    greenfee: Number(raw.price ?? raw.greenFee ?? raw.green_fee ?? raw.rate ?? raw.lowestPrice ?? 0),
-    spaces:   Number(raw.spots ?? raw.openSpots ?? raw.available ?? raw.maxPlayers ?? 4),
+    greenfee,
+    spaces:   Number(raw.available ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4),
   }
 }
 

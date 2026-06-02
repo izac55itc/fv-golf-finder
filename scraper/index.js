@@ -27,7 +27,10 @@ async function main() {
       const raw = newlands[seq - 1]
       const isoTime = parseTime(raw.time, dateStr)
       if (!isoTime) {
-        console.log(`  Skipped: unparsed time "${raw.time}"`)
+        continue
+      }
+      // Skip tee times with no available spaces
+      if (raw.spaces <= 0) {
         continue
       }
       teetimes.push({
