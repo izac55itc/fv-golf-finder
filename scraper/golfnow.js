@@ -122,12 +122,11 @@ function normalise(raw) {
   let timeStr
 
   if (typeof time === 'object') {
-    if (time.date) {
-      // Full ISO timestamp with timezone — most accurate, use directly
-      timeStr = time.date
-    } else if (time.formatted && time.formattedTimeMeridian) {
-      // "9:38 AM" style
+    if (time.formatted && time.formattedTimeMeridian) {
+      // Use formatted time + meridian — correct local Pacific time
       timeStr = `${time.formatted} ${time.formattedTimeMeridian}`
+    } else if (time.date) {
+      timeStr = time.date
     } else if (time.formatted) {
       timeStr = time.formatted
     } else {
