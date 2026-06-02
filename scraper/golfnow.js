@@ -46,7 +46,7 @@ async function scrapeFacility(facilityId, dateStr) {
     const url  = resp.url()
     const ct   = resp.headers()['content-type'] || ''
     if (!ct.includes('json')) return
-    if (!url.includes('golfnow') && !url.includes('gnsvc')) return
+    if (!url.includes('golfnow') && !url.includes('gnsvc') && !url.includes('teetime')) return
     try {
       const json = await resp.json()
       const hits = extractTeeTimes(json)
@@ -104,7 +104,15 @@ function extractTeeTimes(json) {
   tryArray(json?.data?.teetimes)
   tryArray(json?.data?.teeTimes)
   tryArray(json?.results)
+  tryArray(json?.SearchResults)
+  tryArray(json?.searchResults)
   if (Array.isArray(json)) tryArray(json)
+
+  // Also try nested structures
+  if (json?.data && typeof json.data === 'object') {
+    tryArray(json.data.results)
+    tryArray(json.data.SearchResults)
+  }
 
   return candidates
 }
