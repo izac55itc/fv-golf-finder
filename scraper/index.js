@@ -3,8 +3,6 @@
 const fs   = require('fs')
 const path = require('path')
 const golfnow = require('./golfnow')
-const chronogolf = require('./chronogolf')
-const wcgolfgroup = require('./wcgolfgroup')
 
 async function main() {
   const dateStr = new Date().toISOString().split('T')[0]
@@ -13,45 +11,31 @@ async function main() {
   let teetimes = []
 
   try {
-    // Run all three scrapers in parallel, even if one fails
-    console.log('Scraping all platforms in parallel...\n')
-    const results = await Promise.allSettled([
-      (async () => {
-        console.log('▶ GolfNow')
-        const scraped = await golfnow.scrapeAll(dateStr)
-        console.log('✓ GolfNow done')
-        return { scraped, source: 'golfnow' }
-      })(),
-      (async () => {
-        console.log('▶ ChronoGolf')
-        const scraped = await chronogolf.scrapeAll(dateStr)
-        console.log('✓ ChronoGolf done')
-        return { scraped, source: 'chronogolf' }
-      })(),
-      (async () => {
-        console.log('▶ WCGolfGroup')
-        const scraped = await wcgolfgroup.scrapeAll(dateStr)
-        console.log('✓ WCGolfGroup done')
-        return { scraped, source: 'wcgolfgroup' }
-      })(),
-    ])
+    // Scrape just Newlands CC for the POC
+    console.log('Scraping Newlands CC...')
+    const scraped = await golfnow.scrapeAll(dateStr)
 
-    console.log()
+    // Extract just Newlands data
+    const newlands = scraped.get('newlands-cc') || []
+    console.log(`Found ${newlands.length} raw tee times from Newlands CC`)
 
-    // Collect results from all that succeeded
-    console.log(`\nCollecting results from ${results.length} scrapers...`)
-    for (let i = 0; i < results.length; i++) {
-      const result = results[i]
-      if (result.status === 'fulfilled') {
-        const { scraped, source } = result.value
-        const flattened = flatten(scraped, dateStr, source)
-        console.log(`[${source}] Flattened ${flattened.length} tee times`)
-        teetimes.push(...flattened)
-      } else {
-        console.error(`[Scraper ${i}] Failed: ${result.reason?.message || 'Unknown error'}`)
+    // Parse and flatten
+    for (let seq = 1; seq <= newlands.length; seq++) {
+      const raw = newlands[seq - 1]
+      const isoTime = parseTime(raw.time, dateStr)
+      if (!isoTime) {
+        console.log(`  Skipped: unparsed time "${raw.time}"`)
+        continue
       }
+      teetimes.push({
+        id:       `newlands-${seq}`,
+        courseId: 'newlands-cc',
+        time:     isoTime,
+        greenfee: raw.greenfee,
+        spaces:   raw.spaces,
+        source:   'golfnow',
+      })
     }
-    console.log(`\nTotal collected: ${teetimes.length} tee times\n`)
   } finally {
     await golfnow.closeBrowser()
   }
@@ -65,40 +49,13 @@ async function main() {
 
   const outPath = path.join(__dirname, 'teetimes.json')
   fs.writeFileSync(outPath, JSON.stringify(output, null, 2))
-  console.log(`\nWrote ${teetimes.length} tee times → ${outPath}`)
-}
-
-function flatten(scraped, dateStr, source) {
-  const out = []
-  let seq = 1
-  let parseFailures = 0
-
-  for (const [courseId, rawList] of scraped) {
-    for (const raw of rawList) {
-      const isoTime = parseTime(raw.time, dateStr)
-      if (!isoTime) {
-        if (parseFailures === 0) console.log(`[${source}/${courseId}] Example unparsed time: ${raw.time}`)
-        parseFailures++
-        continue
-      }
-      out.push({
-        id:        `${source.charAt(0)}-${courseId}-${seq++}`,
-        courseId,
-        time:      isoTime,
-        greenfee:  raw.greenfee,
-        spaces:    raw.spaces,
-        source,
-      })
-    }
-  }
-
-  if (parseFailures > 0) console.log(`[${source}] ${parseFailures} times failed to parse`)
-  return out
+  console.log(`\n✓ Wrote ${teetimes.length} tee times → teetimes.json\n`)
 }
 
 function parseTime(raw, dateStr) {
   if (!raw) return null
-  console.log(`[parseTime] Input: "${raw}" (type: ${typeof raw})`)
+
+  // ISO format — pass through
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return raw
 
   // "7:30 AM" / "7:30 PM"
@@ -111,12 +68,12 @@ function parseTime(raw, dateStr) {
     return `${dateStr}T${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:00`
   }
 
-  // "07:30"
+  // "07:30" (24h)
   if (/^\d{1,2}:\d{2}$/.test(raw)) return `${dateStr}T${raw.padStart(5,'0')}:00`
 
-  // Unix timestamp
+  // Unix timestamp (ms or seconds)
   const n = Number(raw)
-  if (!isNaN(n)) return new Date(n > 1e10 ? n : n * 1000).toISOString()
+  if (!isNaN(n) && n > 0) return new Date(n > 1e10 ? n : n * 1000).toISOString()
 
   return null
 }
