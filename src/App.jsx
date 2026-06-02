@@ -6,6 +6,7 @@ import { getCurrentLocation, WALNUT_GROVE } from './utils/geo.js'
 import { getSunsetTime } from './utils/sunset.js'
 import TeeTimeTable from './components/TeeTimeTable.jsx'
 import FilterPanel from './components/FilterPanel.jsx'
+import CalendarView from './components/CalendarView.jsx'
 
 const DATA_URL = 'https://raw.githubusercontent.com/izac55itc/fv-golf-finder/main/scraper/teetimes.json'
 
@@ -19,8 +20,6 @@ const QUICK_TIMES = [
   { label: 'Afternoon', fromH: 12, toH: 17, fromStr: '12:00' },
   { label: 'Twilight',  fromH: 17, toH: 23, fromStr: '17:00' },
 ]
-
-// ── Helpers ───────────────────────────────────────────────────────────────
 
 function pad(n) { return String(n).padStart(2, '0') }
 function toDateInput(d) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` }
@@ -69,10 +68,7 @@ async function geocodeAddress(query) {
   return { lat: parseFloat(item.lat), lng: parseFloat(item.lon), name, source: 'manual' }
 }
 
-// ── Component ─────────────────────────────────────────────────────────────
-
 export default function App() {
-  // Location
   const [location,     setLocation]     = useState({ ...WALNUT_GROVE, source: 'default' })
   const [locLoading,   setLocLoading]   = useState(false)
   const [locInput,     setLocInput]     = useState(WALNUT_GROVE.name)
@@ -80,33 +76,36 @@ export default function App() {
   const [locError,     setLocError]     = useState(null)
   const locInputRef = useRef(null)
 
-  // Session planner
   const [sessionDate,   setSessionDate]   = useState(() => toDateInput(new Date()))
   const [fromTimeStr,   setFromTimeStr]   = useState(() => toTimeInput(roundUpQuarter(new Date())))
   const [doneByTimeStr, setDoneByTimeStr] = useState(() => toTimeInput(getSunsetTime(new Date())))
 
-  // Tee times
   const [teetimes,    setTeetimes]    = useState([])
   const [generatedAt, setGeneratedAt] = useState(null)
   const [teeFetching, setTeeFetching] = useState(true)
   const [teeError,    setTeeError]    = useState(null)
 
-  // Scraper trigger
   const [scrapeStatus,      setScrapeStatus]      = useState(null)
   const [scrapeSecondsLeft, setScrapeSecondsLeft] = useState(0)
 
-  // Filters
   const [timeRange,       setTimeRange]       = useState([6, 23])
   const [maxGreenfee,     setMaxGreenfee]     = useState(120)
   const [maxDriveMin,     setMaxDriveMin]     = useState(60)
   const [playerCount,     setPlayerCount]     = useState(1)
   const [selectedCourses, setSelectedCourses] = useState(null)
   const [showSkips,       setShowSkips]       = useState(false)
+  const [view,            setView]            = useState('calendar')
 
-  // Drive times
   const [driveTimes, setDriveTimes] = useState(null)
 
-  // ── Drive times — refetch when location changes
+  const availableDates = useMemo(() => (
+    [...Array(7)].map((_, i) => {
+      const d = new Date()
+      d.setDate(d.getDate() + i)
+      return toDateInput(d)
+    })
+  ), [])
+
   useEffect(() => {
     let alive = true
     setDriveTimes(null)
@@ -115,7 +114,6 @@ export default function App() {
     return () => { alive = false }
   }, [location.lat, location.lng])
 
-  // ── Manual location search
   const handleLocSearch = useCallback(async () => {
     if (!locInput.trim()) return
     setLocSearching(true)
@@ -145,7 +143,6 @@ export default function App() {
     })
   }, [])
 
-  // ── Date change — reset times appropriately
   const handleDateChange = (newDate) => {
     setSessionDate(newDate)
     const isToday = newDate === toDateInput(new Date())
@@ -158,7 +155,6 @@ export default function App() {
     }
   }
 
-  // ── Fetch tee times
   const fetchTeetimes = useCallback(() => {
     setTeeFetching(true)
     setTeeError(null)
@@ -181,7 +177,6 @@ export default function App() {
 
   useEffect(() => { fetchTeetimes() }, [fetchTeetimes])
 
-  // ── Trigger scraper
   const triggerScraper = useCallback(async () => {
     if (!GH_TOKEN) { setScrapeStatus('error'); return }
     setScrapeStatus('triggering')
@@ -206,7 +201,6 @@ export default function App() {
     }
   }, [])
 
-  // ── Countdown after scrape trigger
   useEffect(() => {
     if (scrapeStatus !== 'waiting') return
     if (scrapeSecondsLeft <= 0) {
@@ -218,24 +212,20 @@ export default function App() {
     return () => clearTimeout(id)
   }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
 
-  // ── Derive Date objects from session date + time inputs
   const baseDate      = useMemo(() => new Date(sessionDate + 'T00:00:00'), [sessionDate])
   const availableFrom = useMemo(() => fromTimeInput(fromTimeStr, baseDate),   [fromTimeStr, sessionDate])
   const mustBeDoneBy  = useMemo(() => fromTimeInput(doneByTimeStr, baseDate), [doneByTimeStr, sessionDate])
 
-  // ── Rank
   const ranked = useMemo(() => {
     if (!driveTimes || !teetimes.length) return []
     return rankTeetimes({ teetimes, courses: COURSES, driveTimes, availableFrom, mustBeDoneBy, sessionDate })
   }, [teetimes, driveTimes, availableFrom, mustBeDoneBy, sessionDate])
 
-  // ── Course options (only courses that have ranked results)
   const courseOptions = useMemo(() => {
     const ids = new Set(ranked.map(r => r.course.id))
     return COURSES.filter(c => ids.has(c.id))
   }, [ranked])
 
-  // ── Filter
   const filteredRanked = useMemo(() => {
     if (!ranked.length) return ranked
     const [fromH, toH] = timeRange
@@ -260,7 +250,6 @@ export default function App() {
       })
   }, [ranked, timeRange, maxGreenfee, maxDriveMin, playerCount, selectedCourses, showSkips])
 
-  // ── Filter handlers
   const handleApplyQuickTime = (qt) => {
     setFromTimeStr(qt.fromStr)
     setTimeRange([qt.fromH, qt.toH])
@@ -422,21 +411,42 @@ export default function App() {
         <div className="results-header">
           <div className="results-summary">
             <span className="verdict-dot go" /> {goCount} Go
-            <span className="verdict-dot tight" /> 0 Tight
-            <span className="verdict-dot skip" /> {skipCount} Skip
+            <span className="verdict-dot tight" style={{marginLeft:'0.5rem'}} /> 0 Tight
+            <span className="verdict-dot skip" style={{marginLeft:'0.5rem'}} /> {skipCount} Skip
             <span className="results-count">{filteredRanked.length} tee times</span>
           </div>
-          {skipCount > 0 && (
-            <button
-              className="refresh-btn"
-              onClick={() => setShowSkips(s => !s)}
-            >
+          {skipCount > 0 && view === 'table' && (
+            <button className="refresh-btn" onClick={() => setShowSkips(s => !s)}>
               {showSkips ? 'Hide Skips' : `Show ${skipCount} Skips`}
             </button>
           )}
+          <div className="view-toggle">
+            <button
+              className={`view-toggle-btn${view === 'calendar' ? ' active' : ''}`}
+              onClick={() => setView('calendar')}
+            >
+              Calendar
+            </button>
+            <button
+              className={`view-toggle-btn${view === 'table' ? ' active' : ''}`}
+              onClick={() => setView('table')}
+            >
+              Table
+            </button>
+          </div>
         </div>
 
-        <TeeTimeTable rows={filteredRanked} loading={loading} driveTimesReady={!!driveTimes} />
+        {view === 'calendar' ? (
+          <CalendarView
+            teetimes={teetimes}
+            driveTimes={driveTimes}
+            sessionDate={sessionDate}
+            onDateChange={handleDateChange}
+            availableDates={availableDates}
+          />
+        ) : (
+          <TeeTimeTable rows={filteredRanked} loading={loading} driveTimesReady={!!driveTimes} />
+        )}
       </main>
     </div>
   )
