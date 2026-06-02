@@ -6,22 +6,23 @@ export function fuelCostDollars(driveMinutes) {
   return litres * 2
 }
 
-export function rankTeetimes({ teetimes, courses, driveTimes, availableFrom, mustBeDoneBy }) {
+export function rankTeetimes({ teetimes, courses, driveTimes, availableFrom, mustBeDoneBy, sessionDate }) {
   const now = new Date()
-  const sunset = getSunsetTime(now)
+  const isToday = sessionDate === new Date().toISOString().split('T')[0]
+  const sunset = getSunsetTime(new Date(sessionDate + 'T12:00:00'))
   const verdictOrder = { go: 0, tight: 1, skip: 2 }
 
   // Deduplicate: for same courseId + time, keep lowest greenfee and sum spots
   const deduped = new Map()
   for (const tt of teetimes) {
+    // Only include tee times matching the selected session date
+    if (!tt.time.startsWith(sessionDate)) continue
     const key = `${tt.courseId}|${tt.time}`
     if (!deduped.has(key)) {
       deduped.set(key, { ...tt })
     } else {
       const existing = deduped.get(key)
-      // Keep lowest greenfee
       if (tt.greenfee < existing.greenfee) existing.greenfee = tt.greenfee
-      // Sum up spots
       existing.spaces = (existing.spaces || 1) + (tt.spaces || 1)
     }
   }
@@ -37,13 +38,17 @@ export function rankTeetimes({ teetimes, courses, driveTimes, availableFrom, mus
       const driveMinutes = driveTimes?.get(course.id) ?? 15
       const needToLeaveBy = new Date(teeTime.getTime() - driveMinutes * 60_000)
 
-      if (needToLeaveBy <= now) return null
+      // For today: skip tee times where it's too late to leave
+      if (isToday && needToLeaveBy <= now) return null
+
+      // Filter by user's available from time
       if (teeTime < availableFrom) return null
 
       const leaveInMinutes = Math.round((needToLeaveBy - now) / 60_000)
-      const teeInMinutes = Math.round((teeTime - now) / 60_000)
-      const roundMinutes = course.holes * course.avgHoleMinutes
-      const doneBy = new Date(teeTime.getTime() + roundMinutes * 60_000)
+      const teeInMinutes   = Math.round((teeTime - now) / 60_000)
+      const roundMinutes   = course.holes * course.avgHoleMinutes
+      const doneBy         = new Date(teeTime.getTime() + roundMinutes * 60_000)
+
       const minsUntilSunset = (sunset - teeTime) / 60_000
       const holesBeforeDusk = Math.min(
         course.holes,
