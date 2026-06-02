@@ -2,18 +2,18 @@ export const COURSES = [
   // ── Langley ──────────────────────────────────────────────────────────
   { id: 'fort-langley',        name: 'Fort Langley Golf Course',       holes: 9,  type: 'regulation', par: 35, lat: 49.1684, lng: -122.5750, avgHoleMinutes: 14, baseGreenfee: 28,  golfnowId: 3524  },
   { id: 'belmont',             name: 'Belmont Golf Course',             holes: 18, type: 'regulation', par: 71, lat: 49.1123, lng: -122.6234, avgHoleMinutes: 14, baseGreenfee: 45,  golfnowId: 358   },
-  { id: 'newlands-cc',         name: 'Newlands Golf & CC',              holes: 18, type: 'regulation', par: 71, lat: 49.0856, lng: -122.5847, avgHoleMinutes: 14, baseGreenfee: 75,  golfnowId: 3525  },
-  { id: 'newlands-executive',  name: 'Newlands Executive',              holes: 9,  type: 'executive',  par: 31, lat: 49.0856, lng: -122.5840, avgHoleMinutes: 12, baseGreenfee: 35,  golfnowId: 11039 },
+  { id: 'newlands-cc',         name: 'Newlands Golf & CC',              holes: 18, type: 'regulation', par: 71, lat: 49.0922, lng: -122.5889, avgHoleMinutes: 14, baseGreenfee: 75,  golfnowId: 3525  },
+  { id: 'newlands-executive',  name: 'Newlands Executive',              holes: 9,  type: 'executive',  par: 31, lat: 49.0922, lng: -122.5889, avgHoleMinutes: 12, baseGreenfee: 35,  golfnowId: 11039 },
   { id: 'langley-centre',      name: 'Langley Golf Centre',             holes: 9,  type: 'regulation', par: 35, lat: 49.1047, lng: -122.6563, avgHoleMinutes: 13, baseGreenfee: 28,  golfnowId: 6967  },
   { id: 'meridian-hills',      name: 'Meridian Hills Par 3',            holes: 9,  type: 'par3',       par: 27, lat: 49.0934, lng: -122.6012, avgHoleMinutes: 10, baseGreenfee: 18,  golfnowId: null  },
   { id: 'redwoods',            name: 'The Redwoods Golf Course',        holes: 18, type: 'regulation', par: 72, lat: 49.0234, lng: -122.5456, avgHoleMinutes: 14, baseGreenfee: 55,  golfnowId: null  },
   { id: 'willowbrook',         name: 'Willowbrook Golf Course',         holes: 9,  type: 'regulation', par: 35, lat: 49.0956, lng: -122.6523, avgHoleMinutes: 13, baseGreenfee: 22,  golfnowId: null  },
   { id: 'hole-15',             name: 'Hole 15 Golf',                    holes: 9,  type: 'par3',       par: 27, lat: 49.1523, lng: -122.6234, avgHoleMinutes: 9,  baseGreenfee: 25,  golfnowId: null  },
   { id: 'ryan-holley',         name: 'Ryan Holley Golf',                holes: 9,  type: 'regulation', par: 34, lat: 49.1890, lng: -122.5123, avgHoleMinutes: 13, baseGreenfee: 25,  golfnowId: null  },
-  { id: 'eighteen-pastures', name: 'Eighteen Pastures Golf Course',     holes: 18, type: 'regulation', par: 72, lat: 49.1891, lng: -122.3387, avgHoleMinutes: 14, baseGreenfee: 45, golfnowId: 3530 },
+  { id: 'eighteen-pastures',   name: 'Eighteen Pastures Golf Course',   holes: 18, type: 'regulation', par: 72, lat: 49.1891, lng: -122.3387, avgHoleMinutes: 14, baseGreenfee: 45,  golfnowId: 3530  },
 
   // ── Surrey ───────────────────────────────────────────────────────────
-  { id: 'westfield',           name: 'Westfield Country Club',          holes: 9,  type: 'executive',  par: 31, lat: 49.1342, lng: -122.7523, avgHoleMinutes: 11, baseGreenfee: 30,  golfnowId: 6629  },
+  { id: 'westfield',           name: 'Westfield Country Club',          holes: 9,  type: 'executive',  par: 31, lat: 49.1389, lng: -122.7544, avgHoleMinutes: 11, baseGreenfee: 30,  golfnowId: 6629  },
 
   // ── Pitt Meadows ─────────────────────────────────────────────────────
   { id: 'golden-eagle-north',  name: 'Golden Eagle Golf Club - North',  holes: 18, type: 'regulation', par: 72, lat: 49.2935, lng: -122.6168, avgHoleMinutes: 14, baseGreenfee: 65,  golfnowId: 3515  },
