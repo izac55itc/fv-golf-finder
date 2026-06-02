@@ -60,8 +60,14 @@ async function main() {
 function parseTime(raw, dateStr) {
   if (!raw) return null
 
-  // Already ISO format — pass through
-  if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return raw
+  const pad = x => String(x).padStart(2, '0')
+
+  // ISO format with timezone — convert to Pacific local time
+  if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
+    const d = new Date(raw)
+    const pacific = new Date(d.toLocaleString('en-US', { timeZone: 'America/Vancouver' }))
+    return `${dateStr}T${pad(pacific.getHours())}:${pad(pacific.getMinutes())}:00`
+  }
 
   // "7:30 AM" / "7:30 PM"
   const ampm = raw.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i)
@@ -70,7 +76,7 @@ function parseTime(raw, dateStr) {
     const m = parseInt(ampm[2], 10)
     if (ampm[3].toUpperCase() === 'PM' && h !== 12) h += 12
     if (ampm[3].toUpperCase() === 'AM' && h === 12) h = 0
-    return `${dateStr}T${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:00`
+    return `${dateStr}T${pad(h)}:${pad(m)}:00`
   }
 
   // "07:30" (24h)
@@ -83,9 +89,7 @@ function parseTime(raw, dateStr) {
   if (!isNaN(n) && n > 0) {
     const ms = n > 1e10 ? n : n * 1000
     const d = new Date(ms)
-    // Convert to Vancouver/Pacific time
     const pacific = new Date(d.toLocaleString('en-US', { timeZone: 'America/Vancouver' }))
-    const pad = x => String(x).padStart(2, '0')
     return `${dateStr}T${pad(pacific.getHours())}:${pad(pacific.getMinutes())}:00`
   }
 
