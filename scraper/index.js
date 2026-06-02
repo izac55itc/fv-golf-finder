@@ -46,7 +46,8 @@ async function main() {
   fs.writeFileSync(outPath, JSON.stringify(output, null, 2))
   console.log(`\n✓ Wrote ${teetimes.length} tee times → teetimes.json\n`)
 
-  process.exit(0)
+  // Force exit immediately — process.exit(0) is ignored in GitHub Actions
+  process.kill(process.pid, 'SIGTERM')
 }
 
 function parseTime(raw, dateStr) {
