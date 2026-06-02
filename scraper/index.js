@@ -9,38 +9,32 @@ async function main() {
   console.log(`\nFV Golf Finder scraper — ${dateStr}\n`)
 
   let teetimes = []
-  let newlands = []
 
   try {
-    // Scrape just Newlands CC for the POC
-    console.log('Scraping Newlands CC...')
+    console.log('Scraping all GolfNow facilities...')
     const scraped = await golfnow.scrapeAll(dateStr)
 
-    // Extract just Newlands data
-    newlands = scraped.get('newlands-cc') || []
-    console.log(`Found ${newlands.length} raw tee times from Newlands CC`)
-    console.log(`Raw newlands data for inspection:`)
-    console.log(JSON.stringify(newlands.slice(0, 3), null, 2))
-
-    // Parse and flatten
-    for (let seq = 1; seq <= newlands.length; seq++) {
-      const raw = newlands[seq - 1]
-      const isoTime = parseTime(raw.time, dateStr)
-      if (!isoTime) {
-        continue
+    // Process all courses
+    for (const [courseId, rawList] of scraped) {
+      let seq = 1
+      for (const raw of rawList) {
+        const isoTime = parseTime(raw.time, dateStr)
+        if (!isoTime) {
+          continue
+        }
+        // Skip tee times with no available spaces
+        if (raw.spaces <= 0) {
+          continue
+        }
+        teetimes.push({
+          id:       `gn-${courseId}-${seq++}`,
+          courseId,
+          time:     isoTime,
+          greenfee: raw.greenfee,
+          spaces:   raw.spaces,
+          source:   'golfnow',
+        })
       }
-      // Skip tee times with no available spaces
-      if (raw.spaces <= 0) {
-        continue
-      }
-      teetimes.push({
-        id:       `newlands-${seq}`,
-        courseId: 'newlands-cc',
-        time:     isoTime,
-        greenfee: raw.greenfee,
-        spaces:   raw.spaces,
-        source:   'golfnow',
-      })
     }
   } finally {
     await golfnow.closeBrowser()
@@ -50,7 +44,6 @@ async function main() {
     generatedAt: new Date().toISOString(),
     date: dateStr,
     count: teetimes.length,
-    rawDebug: newlands.slice(0, 5),  // Keep first 5 raw items for inspection
     teetimes,
   }
 

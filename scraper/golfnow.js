@@ -3,14 +3,15 @@
 const { chromium } = require('playwright')
 
 const FACILITIES = {
-  'fort-langley':   3524,
-  'belmont':        358,
-  'newlands-cc':    3525,
-  'langley-centre': 6967,
-  'swaneset-cc':    19887,
-  'pitt-meadows':   15280,
-  'meadow-gardens': 308,
-  'ledgeview':      6384,
+  'newlands-cc':            3525,
+  'newlands-executive':     11039,
+  'belmont':                358,
+  'westfield':              6629,
+  'eighteen-pastures':      3530,
+  'golden-eagle-north':     3515,
+  'golden-eagle-south':     15899,
+  'swaneset-links':         301,
+  'swaneset-resort':        19887,
 }
 
 let _browser = null
@@ -123,17 +124,25 @@ function normalise(raw) {
   }
 }
 
-// Scrape just Newlands CC for the POC
+// Scrape all facilities in small parallel batches
 async function scrapeAll(dateStr) {
   const results = new Map()
+  const entries = Object.entries(FACILITIES)
+  const BATCH = 3
 
-  try {
-    const tts = await scrapeFacility(FACILITIES['newlands-cc'], dateStr)
-    results.set('newlands-cc', tts)
-    console.log(`  newlands-cc: ${tts.length} tee times`)
-  } catch (err) {
-    console.error(`  newlands-cc failed: ${err.message}`)
-    results.set('newlands-cc', [])
+  for (let i = 0; i < entries.length; i += BATCH) {
+    await Promise.all(
+      entries.slice(i, i + BATCH).map(async ([courseId, facilityId]) => {
+        try {
+          const tts = await scrapeFacility(facilityId, dateStr)
+          results.set(courseId, tts)
+          console.log(`  ${courseId}: ${tts.length} tee times`)
+        } catch (err) {
+          console.error(`  ${courseId} failed: ${err.message}`)
+          results.set(courseId, [])
+        }
+      })
+    )
   }
 
   return results
