@@ -31,9 +31,8 @@ async function closeBrowser() {
   }
 }
 
-// Scrape one facility — intercept GolfNow's own XHR calls and capture tee time JSON
 async function scrapeFacility(facilityId, dateStr) {
-  const TIMEOUT_MS = 45_000 // 45 seconds max per course
+  const TIMEOUT_MS = 60_000
 
   const browser = await getBrowser()
   const ctx = await browser.newContext({
@@ -63,7 +62,8 @@ async function scrapeFacility(facilityId, dateStr) {
       (async () => {
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
         console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
-        await page.waitForTimeout(8_000)
+        await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
+        await page.waitForTimeout(2_000)
       })(),
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error(`Timed out after ${TIMEOUT_MS / 1000}s`)), TIMEOUT_MS)
@@ -73,7 +73,6 @@ async function scrapeFacility(facilityId, dateStr) {
     console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
   } catch (err) {
     console.error(`[${facilityId}] Error: ${err.message}`)
-    // Don't re-throw — let other courses continue
   } finally {
     try { await page.close() } catch { /* ignore */ }
     try { await ctx.close() } catch { /* ignore */ }
@@ -84,7 +83,6 @@ async function scrapeFacility(facilityId, dateStr) {
 
 let _normaliseLogged = false
 
-// Walk common GolfNow response shapes looking for tee time objects
 function extractTeeTimes(json) {
   const candidates = []
 
@@ -111,19 +109,16 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
-  // GolfNow returns time as object with { formatted: "HH:MM", ... }
   let timeStr = String(time)
   if (typeof time === 'object' && time.formatted) {
     timeStr = time.formatted
   }
 
-  // Log raw object keys on first tee time to see what properties are available
   if (!_normaliseLogged && raw) {
     console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
     _normaliseLogged = true
   }
 
-  // Parse formattedPrice like "$99" → 99
   let greenfee = 0
   if (raw.formattedPrice) {
     const match = raw.formattedPrice.match(/\d+/)
@@ -137,7 +132,6 @@ function normalise(raw) {
   }
 }
 
-// Scrape all facilities in small parallel batches
 async function scrapeAll(dateStr) {
   const results = new Map()
   const entries = Object.entries(FACILITIES)
