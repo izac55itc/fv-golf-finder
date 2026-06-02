@@ -33,7 +33,7 @@ jobs:
       - name: Run scraper
         working-directory: scraper
         timeout-minutes: 5
-        run: timeout 120 node index.js || true
+        run: timeout --signal=KILL 120 node index.js || true
       - name: Publish to data branch
         run: |
           git config user.name  "github-actions[bot]"
