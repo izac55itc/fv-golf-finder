@@ -78,7 +78,8 @@ async function scrapeFacility(facilityId, dateStr) {
     console.error(`[${facilityId}] Error: ${err.message}`)
     // Don't re-throw — let other courses continue
   } finally {
-    await ctx.close()
+    try { await page.close() } catch { /* ignore */ }
+    try { await ctx.close() } catch { /* ignore */ }
   }
 
   return captured
