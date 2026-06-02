@@ -62,13 +62,11 @@ function parseTime(raw, dateStr) {
 
   const pad = x => String(x).padStart(2, '0')
 
-// ISO format — GolfNow stores Pacific time labelled as UTC, so add 7 hours
+// ISO format — extract hours/minutes directly
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
     const match = raw.match(/T(\d{2}):(\d{2})/)
     if (match) {
-      let h = parseInt(match[1], 10) + 7
-      if (h >= 24) h -= 24
-      return `${dateStr}T${String(h).padStart(2,'0')}:${match[2]}:00`
+      return `${dateStr}T${match[1]}:${match[2]}:00`
     }
   }
 
