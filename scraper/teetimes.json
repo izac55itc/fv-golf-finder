@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T20:39:41.363Z",
+  "generatedAt": "2026-06-02T20:46:50.332Z",
   "dates": [
     "2026-06-02",
     "2026-06-03",
@@ -9,8 +9,16 @@
     "2026-06-07",
     "2026-06-08"
   ],
-  "count": 207,
+  "count": 220,
   "teetimes": [
+    {
+      "id": "gn-newlands-cc-2026-06-02-1",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T10:02:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
     {
       "id": "gn-westfield-2026-06-02-1",
       "courseId": "westfield",
@@ -164,54 +172,6 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-02-1",
-      "courseId": "newlands-cc",
-      "time": "2026-06-02T10:02:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-02-1",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-02T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-02-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-02T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-02-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-02T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-02-4",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-02T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-02-5",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-02T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-eighteen-pastures-2026-06-02-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-02T11:50:00",
@@ -276,6 +236,46 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-golden-eagle-south-2026-06-02-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-02T01:47:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-02-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-02T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-02-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-02T01:47:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-02-4",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-02T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-02-5",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-02T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-westfield-2026-06-03-1",
       "courseId": "westfield",
       "time": "2026-06-03T02:56:00",
@@ -286,13 +286,21 @@
     {
       "id": "gn-westfield-2026-06-03-2",
       "courseId": "westfield",
+      "time": "2026-06-03T01:52:00",
+      "greenfee": 23,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-03-3",
+      "courseId": "westfield",
       "time": "2026-06-03T02:56:00",
       "greenfee": 28,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-03-3",
+      "id": "gn-westfield-2026-06-03-4",
       "courseId": "westfield",
       "time": "2026-06-03T01:52:00",
       "greenfee": 23,
@@ -300,7 +308,7 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-03-4",
+      "id": "gn-westfield-2026-06-03-5",
       "courseId": "westfield",
       "time": "2026-06-03T02:24:00",
       "greenfee": 24,
@@ -308,7 +316,7 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-03-5",
+      "id": "gn-westfield-2026-06-03-6",
       "courseId": "westfield",
       "time": "2026-06-03T02:56:00",
       "greenfee": 28,
@@ -316,7 +324,7 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-03-6",
+      "id": "gn-westfield-2026-06-03-7",
       "courseId": "westfield",
       "time": "2026-06-03T01:52:00",
       "greenfee": 23,
@@ -324,10 +332,34 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-03-1",
-      "courseId": "newlands-cc",
-      "time": "2026-06-03T10:02:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-03-8",
+      "courseId": "westfield",
+      "time": "2026-06-03T02:24:00",
+      "greenfee": 24,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-03-9",
+      "courseId": "westfield",
+      "time": "2026-06-03T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-03-10",
+      "courseId": "westfield",
+      "time": "2026-06-03T12:56:00",
+      "greenfee": 30,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-03-11",
+      "courseId": "westfield",
+      "time": "2026-06-03T02:56:00",
+      "greenfee": 36,
       "spaces": 1,
       "source": "golfnow"
     },
@@ -396,6 +428,38 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-golden-eagle-south-2026-06-03-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-03T01:47:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-03-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-03T01:47:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-03-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-03T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-03-4",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-03T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-eighteen-pastures-2026-06-03-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-03T11:50:00",
@@ -460,54 +524,6 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-03-1",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-03T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-03-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-03T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-03-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-03T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-03-4",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-03T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-03-5",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-03T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-1",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T10:02:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-westfield-2026-06-04-1",
       "courseId": "westfield",
       "time": "2026-06-04T02:56:00",
@@ -526,13 +542,21 @@
     {
       "id": "gn-westfield-2026-06-04-3",
       "courseId": "westfield",
+      "time": "2026-06-04T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-04-4",
+      "courseId": "westfield",
       "time": "2026-06-04T01:52:00",
       "greenfee": 23,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-04-4",
+      "id": "gn-westfield-2026-06-04-5",
       "courseId": "westfield",
       "time": "2026-06-04T02:24:00",
       "greenfee": 24,
@@ -540,7 +564,7 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-04-5",
+      "id": "gn-westfield-2026-06-04-6",
       "courseId": "westfield",
       "time": "2026-06-04T02:56:00",
       "greenfee": 28,
@@ -548,7 +572,31 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-04-6",
+      "id": "gn-westfield-2026-06-04-7",
+      "courseId": "westfield",
+      "time": "2026-06-04T01:52:00",
+      "greenfee": 23,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-04-8",
+      "courseId": "westfield",
+      "time": "2026-06-04T02:24:00",
+      "greenfee": 24,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-04-9",
+      "courseId": "westfield",
+      "time": "2026-06-04T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-04-10",
       "courseId": "westfield",
       "time": "2026-06-04T12:56:00",
       "greenfee": 30,
@@ -556,42 +604,10 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-04-7",
-      "courseId": "westfield",
-      "time": "2026-06-04T02:56:00",
-      "greenfee": 36,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-04-8",
-      "courseId": "westfield",
-      "time": "2026-06-04T02:56:00",
-      "greenfee": 28,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-04-9",
-      "courseId": "westfield",
-      "time": "2026-06-04T01:52:00",
-      "greenfee": 23,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-04-10",
-      "courseId": "westfield",
-      "time": "2026-06-04T02:24:00",
-      "greenfee": 24,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-westfield-2026-06-04-11",
       "courseId": "westfield",
       "time": "2026-06-04T02:56:00",
-      "greenfee": 28,
+      "greenfee": 36,
       "spaces": 1,
       "source": "golfnow"
     },
@@ -660,6 +676,46 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-newlands-cc-2026-06-04-1",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T10:02:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-04-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-04T01:47:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-04-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-04T01:47:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-04-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-04T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-04-4",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-04T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-eighteen-pastures-2026-06-04-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-04T11:50:00",
@@ -724,42 +780,90 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-04-1",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-04T01:47:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-05-1",
+      "courseId": "westfield",
+      "time": "2026-06-05T02:56:00",
+      "greenfee": 28,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-04-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-04T12:53:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-05-2",
+      "courseId": "westfield",
+      "time": "2026-06-05T01:52:00",
+      "greenfee": 23,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-04-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-04T12:53:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-05-3",
+      "courseId": "westfield",
+      "time": "2026-06-05T02:56:00",
+      "greenfee": 28,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-04-4",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-04T01:47:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-05-4",
+      "courseId": "westfield",
+      "time": "2026-06-05T01:52:00",
+      "greenfee": 23,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-04-5",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-04T12:53:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-05-5",
+      "courseId": "westfield",
+      "time": "2026-06-05T02:24:00",
+      "greenfee": 24,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-05-6",
+      "courseId": "westfield",
+      "time": "2026-06-05T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-05-7",
+      "courseId": "westfield",
+      "time": "2026-06-05T01:52:00",
+      "greenfee": 23,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-05-8",
+      "courseId": "westfield",
+      "time": "2026-06-05T02:24:00",
+      "greenfee": 24,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-05-9",
+      "courseId": "westfield",
+      "time": "2026-06-05T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-05-10",
+      "courseId": "westfield",
+      "time": "2026-06-05T12:56:00",
+      "greenfee": 30,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-05-11",
+      "courseId": "westfield",
+      "time": "2026-06-05T02:56:00",
+      "greenfee": 36,
       "spaces": 1,
       "source": "golfnow"
     },
@@ -828,58 +932,42 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-1",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T10:02:00",
+      "id": "gn-golden-eagle-south-2026-06-05-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-05T01:47:00",
       "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-05-1",
-      "courseId": "westfield",
-      "time": "2026-06-05T02:56:00",
-      "greenfee": 28,
+      "id": "gn-golden-eagle-south-2026-06-05-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-05T12:53:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-05-2",
-      "courseId": "westfield",
-      "time": "2026-06-05T02:56:00",
-      "greenfee": 28,
+      "id": "gn-golden-eagle-south-2026-06-05-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-05T01:47:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-05-3",
-      "courseId": "westfield",
-      "time": "2026-06-05T01:52:00",
-      "greenfee": 23,
+      "id": "gn-golden-eagle-south-2026-06-05-4",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-05T12:53:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-05-4",
-      "courseId": "westfield",
-      "time": "2026-06-05T02:24:00",
-      "greenfee": 24,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-5",
-      "courseId": "westfield",
-      "time": "2026-06-05T02:56:00",
-      "greenfee": 28,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-6",
-      "courseId": "westfield",
-      "time": "2026-06-05T01:52:00",
-      "greenfee": 23,
+      "id": "gn-golden-eagle-south-2026-06-05-5",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-05T12:53:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
@@ -948,34 +1036,98 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-05-1",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-05T01:47:00",
+      "id": "gn-newlands-cc-2026-06-06-1",
+      "courseId": "newlands-cc",
+      "time": "2026-06-06T10:02:00",
       "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-05-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-05T01:47:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-06-1",
+      "courseId": "westfield",
+      "time": "2026-06-06T02:56:00",
+      "greenfee": 28,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-05-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-05T12:53:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-06-2",
+      "courseId": "westfield",
+      "time": "2026-06-06T01:52:00",
+      "greenfee": 23,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-05-4",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-05T12:53:00",
-      "greenfee": 49,
+      "id": "gn-westfield-2026-06-06-3",
+      "courseId": "westfield",
+      "time": "2026-06-06T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-4",
+      "courseId": "westfield",
+      "time": "2026-06-06T01:52:00",
+      "greenfee": 23,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-5",
+      "courseId": "westfield",
+      "time": "2026-06-06T02:24:00",
+      "greenfee": 24,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-6",
+      "courseId": "westfield",
+      "time": "2026-06-06T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-7",
+      "courseId": "westfield",
+      "time": "2026-06-06T01:52:00",
+      "greenfee": 23,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-8",
+      "courseId": "westfield",
+      "time": "2026-06-06T02:24:00",
+      "greenfee": 24,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-9",
+      "courseId": "westfield",
+      "time": "2026-06-06T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-10",
+      "courseId": "westfield",
+      "time": "2026-06-06T12:56:00",
+      "greenfee": 30,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-11",
+      "courseId": "westfield",
+      "time": "2026-06-06T02:56:00",
+      "greenfee": 36,
       "spaces": 1,
       "source": "golfnow"
     },
@@ -1044,54 +1196,6 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-06-1",
-      "courseId": "westfield",
-      "time": "2026-06-06T02:56:00",
-      "greenfee": 28,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-06-2",
-      "courseId": "westfield",
-      "time": "2026-06-06T02:56:00",
-      "greenfee": 28,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-06-3",
-      "courseId": "westfield",
-      "time": "2026-06-06T01:52:00",
-      "greenfee": 23,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-06-4",
-      "courseId": "westfield",
-      "time": "2026-06-06T02:24:00",
-      "greenfee": 24,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-06-5",
-      "courseId": "westfield",
-      "time": "2026-06-06T02:56:00",
-      "greenfee": 28,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-06-6",
-      "courseId": "westfield",
-      "time": "2026-06-06T01:52:00",
-      "greenfee": 23,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-golden-eagle-south-2026-06-06-1",
       "courseId": "golden-eagle-south",
       "time": "2026-06-06T01:47:00",
@@ -1102,7 +1206,7 @@
     {
       "id": "gn-golden-eagle-south-2026-06-06-2",
       "courseId": "golden-eagle-south",
-      "time": "2026-06-06T12:53:00",
+      "time": "2026-06-06T01:47:00",
       "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
@@ -1110,21 +1214,13 @@
     {
       "id": "gn-golden-eagle-south-2026-06-06-3",
       "courseId": "golden-eagle-south",
-      "time": "2026-06-06T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-06-4",
-      "courseId": "golden-eagle-south",
       "time": "2026-06-06T12:53:00",
       "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-06-5",
+      "id": "gn-golden-eagle-south-2026-06-06-4",
       "courseId": "golden-eagle-south",
       "time": "2026-06-06T12:53:00",
       "greenfee": 49,
@@ -1196,6 +1292,94 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-westfield-2026-06-07-1",
+      "courseId": "westfield",
+      "time": "2026-06-07T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-2",
+      "courseId": "westfield",
+      "time": "2026-06-07T01:52:00",
+      "greenfee": 23,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-3",
+      "courseId": "westfield",
+      "time": "2026-06-07T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-4",
+      "courseId": "westfield",
+      "time": "2026-06-07T01:52:00",
+      "greenfee": 23,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-5",
+      "courseId": "westfield",
+      "time": "2026-06-07T02:24:00",
+      "greenfee": 24,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-6",
+      "courseId": "westfield",
+      "time": "2026-06-07T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-7",
+      "courseId": "westfield",
+      "time": "2026-06-07T01:52:00",
+      "greenfee": 23,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-8",
+      "courseId": "westfield",
+      "time": "2026-06-07T02:24:00",
+      "greenfee": 24,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-9",
+      "courseId": "westfield",
+      "time": "2026-06-07T02:56:00",
+      "greenfee": 28,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-10",
+      "courseId": "westfield",
+      "time": "2026-06-07T12:56:00",
+      "greenfee": 30,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-11",
+      "courseId": "westfield",
+      "time": "2026-06-07T02:56:00",
+      "greenfee": 36,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-newlands-executive-2026-06-07-1",
       "courseId": "newlands-executive",
       "time": "2026-06-07T10:26:00",
@@ -1260,50 +1444,42 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-07-1",
-      "courseId": "westfield",
-      "time": "2026-06-07T02:56:00",
-      "greenfee": 28,
+      "id": "gn-golden-eagle-south-2026-06-07-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-07T01:47:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-07-2",
-      "courseId": "westfield",
-      "time": "2026-06-07T02:56:00",
-      "greenfee": 28,
+      "id": "gn-golden-eagle-south-2026-06-07-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-07T12:53:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-07-3",
-      "courseId": "westfield",
-      "time": "2026-06-07T01:52:00",
-      "greenfee": 23,
+      "id": "gn-golden-eagle-south-2026-06-07-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-07T01:47:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-07-4",
-      "courseId": "westfield",
-      "time": "2026-06-07T02:24:00",
-      "greenfee": 24,
+      "id": "gn-golden-eagle-south-2026-06-07-4",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-07T12:53:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-07-5",
-      "courseId": "westfield",
-      "time": "2026-06-07T02:56:00",
-      "greenfee": 28,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-07-6",
-      "courseId": "westfield",
-      "time": "2026-06-07T01:52:00",
-      "greenfee": 23,
+      "id": "gn-golden-eagle-south-2026-06-07-5",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-07T12:53:00",
+      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     },
@@ -1372,50 +1548,10 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-07-1",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-07T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-07-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-07T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-07-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-07T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-07-4",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-07T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-07-5",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-07T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-westfield-2026-06-08-1",
       "courseId": "westfield",
-      "time": "2026-06-08T01:52:00",
-      "greenfee": 23,
+      "time": "2026-06-08T02:56:00",
+      "greenfee": 28,
       "spaces": 1,
       "source": "golfnow"
     },
@@ -1454,48 +1590,8 @@
     {
       "id": "gn-westfield-2026-06-08-6",
       "courseId": "westfield",
-      "time": "2026-06-08T12:56:00",
-      "greenfee": 30,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-7",
-      "courseId": "westfield",
-      "time": "2026-06-08T02:56:00",
-      "greenfee": 36,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-8",
-      "courseId": "westfield",
-      "time": "2026-06-08T02:56:00",
-      "greenfee": 28,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-9",
-      "courseId": "westfield",
       "time": "2026-06-08T01:52:00",
       "greenfee": 23,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-10",
-      "courseId": "westfield",
-      "time": "2026-06-08T02:24:00",
-      "greenfee": 24,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-11",
-      "courseId": "westfield",
-      "time": "2026-06-08T02:56:00",
-      "greenfee": 28,
       "spaces": 1,
       "source": "golfnow"
     },
@@ -1572,6 +1668,46 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-golden-eagle-south-2026-06-08-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-08T01:47:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-08-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-08T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-08-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-08T01:47:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-08-4",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-08T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-08-5",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-08T12:53:00",
+      "greenfee": 49,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-eighteen-pastures-2026-06-08-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-08T11:50:00",
@@ -1632,38 +1768,6 @@
       "courseId": "eighteen-pastures",
       "time": "2026-06-08T12:30:00",
       "greenfee": 28,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-08-1",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-08T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-08-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-08T01:47:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-08-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-08T12:53:00",
-      "greenfee": 49,
-      "spaces": 1,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-08-4",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-08T12:53:00",
-      "greenfee": 49,
       "spaces": 1,
       "source": "golfnow"
     }
