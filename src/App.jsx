@@ -1,3 +1,4 @@
+import './App.css'
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { COURSES } from './data/courses.js'
 import { rankTeetimes, fuelCostDollars } from './utils/ranker.js'
