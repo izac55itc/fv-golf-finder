@@ -27,11 +27,17 @@ async function getBrowser() {
 }
 
 async function closeBrowser() {
-  if (_browser) { await _browser.close(); _browser = null }
+  if (_browser) {
+    try { await _browser.close() } catch { /* ignore */ }
+    try { _browser.process()?.kill('SIGKILL') } catch { /* ignore */ }
+    _browser = null
+  }
 }
 
 // Scrape one facility — intercept GolfNow's own XHR calls and capture tee time JSON
 async function scrapeFacility(facilityId, dateStr) {
+  const TIMEOUT_MS = 45_000 // 45 seconds max per course
+
   const browser = await getBrowser()
   const ctx = await browser.newContext({
     userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
@@ -55,13 +61,22 @@ async function scrapeFacility(facilityId, dateStr) {
   try {
     const url = `https://www.golfnow.com/tee-times/facility/${facilityId}/search?date=${dateStr}&holes=18&players=1&time=all`
     console.log(`[${facilityId}] Loading...`)
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
-    console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
-    await page.waitForTimeout(3_000)
+
+    await Promise.race([
+      (async () => {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
+        console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
+        await page.waitForTimeout(3_000)
+      })(),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`Timed out after ${TIMEOUT_MS / 1000}s`)), TIMEOUT_MS)
+      ),
+    ])
+
     console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
   } catch (err) {
     console.error(`[${facilityId}] Error: ${err.message}`)
-    throw err
+    // Don't re-throw — let other courses continue
   } finally {
     await ctx.close()
   }

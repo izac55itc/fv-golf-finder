@@ -1,5 +1,4 @@
 'use strict'
-
 const fs   = require('fs')
 const path = require('path')
 const golfnow = require('./golfnow')
@@ -19,13 +18,8 @@ async function main() {
       let seq = 1
       for (const raw of rawList) {
         const isoTime = parseTime(raw.time, dateStr)
-        if (!isoTime) {
-          continue
-        }
-        // Skip tee times with no available spaces
-        if (raw.spaces <= 0) {
-          continue
-        }
+        if (!isoTime) continue
+        if (raw.spaces <= 0) continue
         teetimes.push({
           id:       `gn-${courseId}-${seq++}`,
           courseId,
@@ -50,15 +44,13 @@ async function main() {
   const outPath = path.join(__dirname, 'teetimes.json')
   fs.writeFileSync(outPath, JSON.stringify(output, null, 2))
   console.log(`\n✓ Wrote ${teetimes.length} tee times → teetimes.json\n`)
+
+  process.exit(0)
 }
 
 function parseTime(raw, dateStr) {
   if (!raw) return null
-
-  // ISO format — pass through
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return raw
-
-  // "7:30 AM" / "7:30 PM"
   const ampm = raw.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i)
   if (ampm) {
     let h = parseInt(ampm[1], 10)
@@ -67,14 +59,9 @@ function parseTime(raw, dateStr) {
     if (ampm[3].toUpperCase() === 'AM' && h === 12) h = 0
     return `${dateStr}T${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:00`
   }
-
-  // "07:30" (24h)
   if (/^\d{1,2}:\d{2}$/.test(raw)) return `${dateStr}T${raw.padStart(5,'0')}:00`
-
-  // Unix timestamp (ms or seconds)
   const n = Number(raw)
   if (!isNaN(n) && n > 0) return new Date(n > 1e10 ? n : n * 1000).toISOString()
-
   return null
 }
 
