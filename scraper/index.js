@@ -3,50 +3,58 @@ const fs   = require('fs')
 const path = require('path')
 const golfnow = require('./golfnow')
 
-async function main() {
-  const dateStr = new Date().toISOString().split('T')[0]
-  console.log(`\nFV Golf Finder scraper — ${dateStr}\n`)
+const DAYS_AHEAD = 7
 
-  let teetimes = []
+async function main() {
+  const today = new Date()
+  console.log(`\nFV Golf Finder scraper — ${today.toISOString().split('T')[0]} (${DAYS_AHEAD} days)\n`)
+
+  // Build list of dates to scrape
+  const dates = []
+  for (let i = 0; i < DAYS_AHEAD; i++) {
+    const d = new Date(today)
+    d.setDate(d.getDate() + i)
+    dates.push(d.toISOString().split('T')[0])
+  }
+
+  const allTeetimes = []
 
   try {
-    console.log('Scraping all GolfNow facilities...')
-    const scraped = await golfnow.scrapeAll(dateStr)
-
-    // Process all courses
-    for (const [courseId, rawList] of scraped) {
-      let seq = 1
-      for (const raw of rawList) {
-        const isoTime = parseTime(raw.time, dateStr)
-        if (!isoTime) continue
-        if (raw.spaces <= 0) continue
-        teetimes.push({
-          id:       `gn-${courseId}-${seq++}`,
-          courseId,
-          time:     isoTime,
-          greenfee: raw.greenfee,
-          spaces:   raw.spaces,
-          source:   'golfnow',
-        })
+    for (const dateStr of dates) {
+      console.log(`\n── Scraping ${dateStr} ──`)
+      const scraped = await golfnow.scrapeAll(dateStr)
+      for (const [courseId, rawList] of scraped) {
+        let seq = 1
+        for (const raw of rawList) {
+          const isoTime = parseTime(raw.time, dateStr)
+          if (!isoTime) continue
+          if (raw.spaces <= 0) continue
+          allTeetimes.push({
+            id:       `gn-${courseId}-${dateStr}-${seq++}`,
+            courseId,
+            time:     isoTime,
+            greenfee: raw.greenfee,
+            spaces:   raw.spaces,
+            source:   'golfnow',
+          })
+        }
       }
     }
   } finally {
-    // Don't wait for browser cleanup — it hangs. Let the process exit immediately.
     golfnow.closeBrowser().catch(() => {})
   }
 
   const output = {
     generatedAt: new Date().toISOString(),
-    date: dateStr,
-    count: teetimes.length,
-    teetimes,
+    dates,
+    count: allTeetimes.length,
+    teetimes: allTeetimes,
   }
 
   const outPath = path.join(__dirname, 'teetimes.json')
   fs.writeFileSync(outPath, JSON.stringify(output, null, 2))
-  console.log(`\n✓ Wrote ${teetimes.length} tee times → teetimes.json\n`)
+  console.log(`\n✓ Wrote ${allTeetimes.length} tee times across ${dates.length} days → teetimes.json\n`)
 
-  // Force exit immediately — process.exit(0) is ignored in GitHub Actions
   process.kill(process.pid, 'SIGTERM')
 }
 
@@ -67,11 +75,11 @@ function parseTime(raw, dateStr) {
   return null
 }
 
-// Hard timeout: after 90 seconds, force kill the entire process with SIGKILL
+// Hard timeout: 8 minutes for 7 days of scraping
 setTimeout(() => {
   console.error('Hard timeout: force killing process')
   process.kill(process.pid, 'SIGKILL')
-}, 90_000)
+}, 480_000)
 
 main()
   .then(() => { process.exit(0) })
