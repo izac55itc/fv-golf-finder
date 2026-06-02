@@ -37,6 +37,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           cp scraper/teetimes.json /tmp/teetimes.json
+          git stash --include-untracked
           git checkout --orphan data-new
           git rm -rf . --quiet 2>/dev/null || true
           cp /tmp/teetimes.json teetimes.json
