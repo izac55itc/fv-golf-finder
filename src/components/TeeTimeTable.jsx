@@ -178,16 +178,7 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
                           {verdict.toUpperCase()}
                         </span>
                       </td>
-                      <td>
-                        
-                          href={bookingUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="book-btn"
-                        >
-                          Book
-                        </a>
-                      </td>
+<td><a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="book-btn">Book</a></td>
                     </tr>
                   )
                 })}
