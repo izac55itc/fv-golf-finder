@@ -95,13 +95,18 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
-  // Log the actual structure so we can see what we're dealing with
+  // Convert time to string if it's an object
+  let timeStr = String(time)
   if (typeof time === 'object') {
-    console.log(`[normalise] Time is object: ${JSON.stringify(time)}`)
+    const h = time.hours ?? time.hour ?? time.h
+    const m = time.minutes ?? time.minute ?? time.m ?? 0
+    if (h !== undefined) {
+      timeStr = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
+    }
   }
 
   return {
-    time:     String(time),
+    time:     timeStr,
     greenfee: Number(raw.price ?? raw.greenFee ?? raw.green_fee ?? raw.rate ?? raw.lowestPrice ?? 0),
     spaces:   Number(raw.spots ?? raw.openSpots ?? raw.available ?? raw.maxPlayers ?? 4),
   }
