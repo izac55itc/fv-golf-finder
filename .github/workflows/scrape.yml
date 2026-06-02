@@ -32,10 +32,11 @@ jobs:
         working-directory: scraper
         timeout-minutes: 5
         run: timeout --signal=KILL 120 node index.js || true
-      - name: Publish to data branch
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: data
-          publish_dir: ./scraper
-          keep_files: false
+      - name: Publish teetimes.json to main
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f scraper/teetimes.json
+          git diff --cached --quiet \
+            || git commit -m "scrape: $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push origin main
