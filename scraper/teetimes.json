@@ -1,0 +1,162 @@
+{
+  "generatedAt": "2026-06-02T04:22:13.457Z",
+  "date": "2026-06-02",
+  "count": 16,
+  "rawDebug": [
+    {
+      "time": "10:26",
+      "greenfee": 0,
+      "spaces": 0
+    },
+    {
+      "time": "11:30",
+      "greenfee": 0,
+      "spaces": 0
+    },
+    {
+      "time": "10:26",
+      "greenfee": 0,
+      "spaces": 0
+    },
+    {
+      "time": "11:30",
+      "greenfee": 0,
+      "spaces": 0
+    },
+    {
+      "time": "9:06",
+      "greenfee": 41,
+      "spaces": 1
+    }
+  ],
+  "teetimes": [
+    {
+      "id": "newlands-1",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T10:26:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-2",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T11:30:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-3",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T10:26:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-4",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T11:30:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-5",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T09:06:00",
+      "greenfee": 41,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-6",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T09:38:00",
+      "greenfee": 41,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-7",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T09:38:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-8",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T09:46:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-9",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T10:02:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-10",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T10:26:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-11",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T11:30:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-12",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T09:06:00",
+      "greenfee": 41,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-13",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T09:38:00",
+      "greenfee": 41,
+      "spaces": 1,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-14",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T09:38:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-15",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T09:46:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    },
+    {
+      "id": "newlands-16",
+      "courseId": "newlands-cc",
+      "time": "2026-06-02T10:02:00",
+      "greenfee": 0,
+      "spaces": 0,
+      "source": "golfnow"
+    }
+  ]
+}

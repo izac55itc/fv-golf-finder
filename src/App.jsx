@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import { COURSES } from './data/courses.js'
-import { rankTeetimes } from './utils/ranker.js'
+import { rankTeetimes, fuelCostDollars } from './utils/ranker.js'
 import { fetchAllDriveTimes } from './utils/distanceMatrix.js'
 import { getCurrentLocation, WALNUT_GROVE } from './utils/geo.js'
 import { getSunsetTime } from './utils/sunset.js'
 import TeeTimeTable from './components/TeeTimeTable.jsx'
+import FilterPanel from './components/FilterPanel.jsx'
 
 // Raw GitHub URL for the data branch — updated hourly by the scrape.yml Action
 const DATA_URL = 'https://raw.githubusercontent.com/izac55itc/fv-golf-finder/data/teetimes.json'
@@ -15,6 +16,12 @@ const GH_DISPATCH = 'https://api.github.com/repos/izac55itc/fv-golf-finder/actio
 
 // How long to wait after triggering before auto-refreshing data (ms)
 const SCRAPE_WAIT_MS = 5 * 60 * 1000
+
+const QUICK_TIMES = [
+  { label: 'Morning',   fromH: 6,  toH: 12, fromStr: '06:00', toStr: '12:00' },
+  { label: 'Afternoon', fromH: 12, toH: 17, fromStr: '12:00', toStr: '17:00' },
+  { label: 'Twilight',  fromH: 17, toH: 23, fromStr: '17:00', toStr: '23:00' },
+]
 
 // ── Helpers ───────────────────────────────────────────────────────────────
 
@@ -67,6 +74,13 @@ export default function App() {
   // Manual scraper trigger
   const [scrapeStatus,  setScrapeStatus]  = useState(null)  // null | 'triggering' | 'waiting' | 'error'
   const [scrapeSecondsLeft, setScrapeSecondsLeft] = useState(0)
+
+  // Filters
+  const [timeRange,      setTimeRange]      = useState([6, 23])      // [fromHour, toHour]
+  const [maxGreenfee,    setMaxGreenfee]    = useState(120)
+  const [maxDriveMin,    setMaxDriveMin]    = useState(60)
+  const [playerCount,    setPlayerCount]    = useState(1)
+  const [selectedCourses, setSelectedCourses] = useState(null)        // null = all; Set<courseId> when filtered
 
   // Drive times (Mapbox or Haversine)
   const [driveTimes,   setDriveTimes]   = useState(null)
@@ -168,6 +182,69 @@ export default function App() {
     return rankTeetimes({ teetimes, courses: COURSES, driveTimes, availableFrom, mustBeDoneBy })
   }, [teetimes, driveTimes, availableFrom, mustBeDoneBy])
 
+  // ── Filter
+  const courseOptions = useMemo(() => {
+    const ids = new Set(ranked.map(r => r.course.id))
+    return COURSES.filter(c => ids.has(c.id))
+  }, [ranked])
+
+  const filteredRanked = useMemo(() => {
+    if (!ranked.length) return ranked
+
+    const [fromH, toH] = timeRange
+    const fromMs = fromH * 3600_000
+    const toMs   = toH   * 3600_000
+
+    return ranked
+      .filter(row => {
+        // Time range
+        const teeH = row.teetime.time.getHours() * 3600_000 +
+                     row.teetime.time.getMinutes() * 60_000
+        if (teeH < fromMs || teeH > toMs) return false
+
+        // Green fee cap
+        if (row.teetime.greenfee > maxGreenfee) return false
+
+        // Drive time cap
+        if (row.driveMinutes > maxDriveMin) return false
+
+        // Player count
+        if ((row.teetime.spaces ?? 4) < playerCount) return false
+
+        // Course selector
+        if (selectedCourses !== null && !selectedCourses.has(row.course.id)) return false
+
+        return true
+      })
+      .sort((a, b) => {
+        const aCost = a.teetime.greenfee + fuelCostDollars(a.driveMinutes)
+        const bCost = b.teetime.greenfee + fuelCostDollars(b.driveMinutes)
+        return aCost - bCost
+      })
+  }, [ranked, timeRange, maxGreenfee, maxDriveMin, playerCount, selectedCourses])
+
+  // ── Filter handlers
+  const handleApplyQuickTime = (qt) => {
+    setFromTimeStr(qt.fromStr)
+    setDoneByTimeStr(qt.toStr)
+    setTimeRange([qt.fromH, qt.toH])
+  }
+
+  const handleToggleCourse = (id) => {
+    setSelectedCourses(prev => {
+      const base = prev === null
+        ? new Set(courseOptions.map(c => c.id))
+        : new Set(prev)
+      if (base.has(id)) base.delete(id)
+      else base.add(id)
+      return base.size === courseOptions.length ? null : base
+    })
+  }
+
+  const handleSelectAllCourses = () => {
+    setSelectedCourses(null)
+  }
+
   const goCount = ranked.filter(r => r.verdict === 'go').length
   const sunset  = getSunsetTime(new Date())
 
@@ -264,13 +341,30 @@ export default function App() {
               />
             </div>
           </div>
+          <hr className="filter-divider" />
+          <FilterPanel
+            quickTimes={QUICK_TIMES}
+            onQuickTime={handleApplyQuickTime}
+            timeRange={timeRange}
+            onTimeRange={setTimeRange}
+            maxGreenfee={maxGreenfee}
+            onMaxGreenfee={setMaxGreenfee}
+            maxDriveMin={maxDriveMin}
+            onMaxDriveMin={setMaxDriveMin}
+            playerCount={playerCount}
+            onPlayerCount={setPlayerCount}
+            courseOptions={courseOptions}
+            selectedCourses={selectedCourses}
+            onToggleCourse={handleToggleCourse}
+            onSelectAllCourses={handleSelectAllCourses}
+          />
         </div>
 
         {teeError && (
           <div className="error-banner">⚠️ {teeError}</div>
         )}
 
-        <TeeTimeTable rows={ranked} loading={loading} driveTimesReady={!!driveTimes} />
+        <TeeTimeTable rows={filteredRanked} loading={loading} driveTimesReady={!!driveTimes} />
       </main>
     </div>
   )

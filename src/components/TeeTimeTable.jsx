@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { fuelCostDollars } from '../utils/ranker.js'
 
 function fmtTime(date) {
   return date.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
@@ -18,10 +19,12 @@ const COLUMNS = [
   { key: 'course',     label: 'Course'          },
   { key: 'teetime',   label: 'Tee Time'         },
   { key: 'greenfee',  label: 'Green Fee'        },
+  { key: 'totalCost', label: 'Total Cost'       },
   { key: 'drive',     label: 'Drive'            },
   { key: 'leaveIn',   label: 'Leave In'         },
   { key: 'estRound',  label: 'Est. Round'       },
   { key: 'holesDusk', label: 'Holes Before Dusk'},
+  { key: 'spots',     label: 'Spots'            },
   { key: 'doneBy',    label: 'Done By'          },
   { key: 'verdict',   label: 'Verdict'          },
 ]
@@ -38,7 +41,7 @@ function SkeletonRow() {
 }
 
 export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
-  const [sort, setSort] = useState({ key: 'verdict', dir: 'asc' })
+  const [sort, setSort] = useState({ key: 'totalCost', dir: 'asc' })
 
   function handleSort(key) {
     setSort((prev) =>
@@ -56,10 +59,12 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
         case 'course':    av = a.course.name.toLowerCase(); bv = b.course.name.toLowerCase(); break
         case 'teetime':   av = a.teetime.time.getTime();    bv = b.teetime.time.getTime();    break
         case 'greenfee':  av = a.teetime.greenfee;          bv = b.teetime.greenfee;          break
+        case 'totalCost': av = a.teetime.greenfee + fuelCostDollars(a.driveMinutes); bv = b.teetime.greenfee + fuelCostDollars(b.driveMinutes); break
         case 'drive':     av = a.driveMinutes;              bv = b.driveMinutes;              break
         case 'leaveIn':   av = a.leaveInMinutes;            bv = b.leaveInMinutes;            break
         case 'estRound':  av = a.roundMinutes;              bv = b.roundMinutes;              break
         case 'holesDusk': av = a.holesBeforeDusk;           bv = b.holesBeforeDusk;           break
+        case 'spots':     av = a.teetime.spaces ?? 4;       bv = b.teetime.spaces ?? 4;       break
         case 'doneBy':    av = a.doneBy.getTime();          bv = b.doneBy.getTime();          break
         case 'verdict':
         default:          av = VERDICT_ORDER[a.verdict] ?? 99; bv = VERDICT_ORDER[b.verdict] ?? 99
@@ -145,10 +150,17 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
                       </td>
                       <td>{fmtTime(teetime.time)}</td>
                       <td className="greenfee">${teetime.greenfee}</td>
+                      <td className="total-cost">
+                        ${(teetime.greenfee + fuelCostDollars(driveMinutes)).toFixed(0)}
+                        <span className="fuel-note">+fuel</span>
+                      </td>
                       <td className="drive">{driveMinutes}m</td>
                       <td className={leaveUrgent ? 'tee-in-urgent' : ''}>{fmtDur(leaveInMinutes)}</td>
                       <td className="est-round">{fmtDur(roundMinutes)}</td>
                       <td><span className={holesClass}>{holesBeforeDusk}/{course.holes}</span></td>
+                      <td>
+                        <span className="spots-badge">{teetime.spaces ?? '?'} spot{(teetime.spaces ?? 1) !== 1 ? 's' : ''}</span>
+                      </td>
                       <td className={verdict !== 'go' ? 'done-by-warn' : ''}>{fmtTime(doneBy)}</td>
                       <td><span className={`verdict-badge verdict-${verdict}`}>{verdict.toUpperCase()}</span></td>
                     </tr>
