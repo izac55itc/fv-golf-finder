@@ -158,8 +158,7 @@ export default function App() {
   const fetchTeetimes = useCallback(() => {
     setTeeFetching(true)
     setTeeError(null)
-    const hour = Math.floor(Date.now() / 3_600_000)
-    fetch(`${DATA_URL}?h=${hour}`)
+    fetch(`${DATA_URL}?v=${Date.now()}`)
       .then(r => {
         if (r.status === 404) throw new Error('No data yet — scraper hasn\'t run. Trigger it manually in the Actions tab.')
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
