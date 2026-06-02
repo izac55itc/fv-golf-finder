@@ -78,4 +78,14 @@ function parseTime(raw, dateStr) {
   return null
 }
 
-main().catch(err => { console.error('Fatal:', err); process.exit(1) })
+// Hard timeout: force exit after 90 seconds to prevent hanging
+const hardTimeout = new Promise((_, reject) =>
+  setTimeout(() => reject(new Error('Hard timeout: forcing exit')), 90_000)
+)
+
+Promise.race([main(), hardTimeout])
+  .then(() => { process.exit(0) })
+  .catch(err => {
+    console.error('Fatal:', err.message)
+    process.exit(1)
+  })
