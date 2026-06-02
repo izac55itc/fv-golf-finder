@@ -62,12 +62,12 @@ function parseTime(raw, dateStr) {
 
   const pad = x => String(x).padStart(2, '0')
 
-  // ISO format with timezone — convert to Pacific local time
+// ISO format — extract hours/minutes directly, ignore timezone offset
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
-    const d = new Date(raw)
-    const pacific = new Date(d.toLocaleString('en-US', { timeZone: 'America/Vancouver' }))
-    return `${dateStr}T${pad(pacific.getHours())}:${pad(pacific.getMinutes())}:00`
-  }
+    const match = raw.match(/T(\d{2}):(\d{2})/)
+    if (match) {
+      return `${dateStr}T${match[1]}:${match[2]}:00`
+    }
 
   // "7:30 AM" / "7:30 PM"
   const ampm = raw.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i)
