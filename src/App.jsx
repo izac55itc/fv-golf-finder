@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { COURSES } from './data/courses.js'
 import { rankTeetimes, fuelCostDollars } from './utils/ranker.js'
 import { fetchAllDriveTimes } from './utils/distanceMatrix.js'
@@ -52,12 +52,36 @@ function timeAgo(isoStr) {
   return `${hrs}h ${mins % 60}m ago`
 }
 
+async function geocodeAddress(query) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=1&countrycodes=ca`
+  const res = await fetch(url, {
+    headers: {
+      'Accept-Language': 'en',
+      'User-Agent': 'FV-Golf-Finder/0.1 (personal project)',
+    },
+  })
+  if (!res.ok) throw new Error('Geocode failed')
+  const data = await res.json()
+  if (!data.length) throw new Error('Location not found')
+  const item = data[0]
+  const a = item.address || {}
+  const neighbourhood = a.neighbourhood || a.suburb || a.hamlet || a.quarter
+  const city = a.city || a.town || a.village || a.municipality || a.county
+  const parts = [neighbourhood, city].filter(Boolean)
+  const name = parts.length ? parts.join(', ') : item.display_name?.split(',')[0]
+  return { lat: parseFloat(item.lat), lng: parseFloat(item.lon), name, source: 'manual' }
+}
+
 // ── Component ─────────────────────────────────────────────────────────────
 
 export default function App() {
   // Location
-  const [location, setLocation]     = useState({ ...WALNUT_GROVE, source: 'default' })
-  const [locLoading, setLocLoading] = useState(true)
+  const [location, setLocation]       = useState({ ...WALNUT_GROVE, source: 'default' })
+  const [locLoading, setLocLoading]   = useState(true)
+  const [locInput, setLocInput]       = useState('')
+  const [locSearching, setLocSearching] = useState(false)
+  const [locError, setLocError]       = useState(null)
+  const locInputRef = useRef(null)
 
   // Session planner
   const [sessionDate,   setSessionDate]   = useState(() => toDateInput(new Date()))
@@ -66,30 +90,31 @@ export default function App() {
 
   // Tee times from data branch
   const [teetimes,     setTeetimes]     = useState([])
-  const [dataDate,     setDataDate]     = useState(null)   // date the scraper ran for
-  const [generatedAt,  setGeneratedAt]  = useState(null)   // ISO timestamp
+  const [dataDate,     setDataDate]     = useState(null)
+  const [generatedAt,  setGeneratedAt]  = useState(null)
   const [teeFetching,  setTeeFetching]  = useState(true)
   const [teeError,     setTeeError]     = useState(null)
 
   // Manual scraper trigger
-  const [scrapeStatus,  setScrapeStatus]  = useState(null)  // null | 'triggering' | 'waiting' | 'error'
+  const [scrapeStatus,  setScrapeStatus]  = useState(null)
   const [scrapeSecondsLeft, setScrapeSecondsLeft] = useState(0)
 
   // Filters
-  const [timeRange,      setTimeRange]      = useState([6, 23])      // [fromHour, toHour]
+  const [timeRange,      setTimeRange]      = useState([6, 23])
   const [maxGreenfee,    setMaxGreenfee]    = useState(120)
   const [maxDriveMin,    setMaxDriveMin]    = useState(60)
   const [playerCount,    setPlayerCount]    = useState(1)
-  const [selectedCourses, setSelectedCourses] = useState(null)        // null = all; Set<courseId> when filtered
+  const [selectedCourses, setSelectedCourses] = useState(null)
 
-  // Drive times (Mapbox or Haversine)
-  const [driveTimes,   setDriveTimes]   = useState(null)
+  // Drive times
+  const [driveTimes, setDriveTimes] = useState(null)
 
-  // ── GPS location
+  // ── GPS location on mount
   useEffect(() => {
     setLocLoading(true)
     getCurrentLocation().then(loc => {
       setLocation(loc)
+      setLocInput(loc.name)
       setLocLoading(false)
     })
   }, [])
@@ -103,12 +128,40 @@ export default function App() {
     return () => { alive = false }
   }, [location.lat, location.lng])
 
-  // ── Fetch tee times from data branch
+  // ── Manual location search
+  const handleLocSearch = useCallback(async () => {
+    if (!locInput.trim()) return
+    setLocSearching(true)
+    setLocError(null)
+    try {
+      const loc = await geocodeAddress(locInput.trim())
+      setLocation(loc)
+      setLocInput(loc.name)
+    } catch (err) {
+      setLocError('Location not found — try a different search')
+    } finally {
+      setLocSearching(false)
+    }
+  }, [locInput])
+
+  const handleLocKeyDown = (e) => {
+    if (e.key === 'Enter') handleLocSearch()
+  }
+
+  const handleLocGps = useCallback(() => {
+    setLocLoading(true)
+    setLocError(null)
+    getCurrentLocation().then(loc => {
+      setLocation(loc)
+      setLocInput(loc.name)
+      setLocLoading(false)
+    })
+  }, [])
+
+  // ── Fetch tee times
   const fetchTeetimes = useCallback(() => {
     setTeeFetching(true)
     setTeeError(null)
-
-    // Cache-bust with current hour so stale CDN copies are skipped
     const hour = Math.floor(Date.now() / 3_600_000)
     fetch(`${DATA_URL}?h=${hour}`)
       .then(r => {
@@ -130,12 +183,9 @@ export default function App() {
 
   useEffect(() => { fetchTeetimes() }, [fetchTeetimes])
 
-  // Trigger the GitHub Actions scrape.yml workflow on demand
+  // ── Trigger scraper
   const triggerScraper = useCallback(async () => {
-    if (!GH_TOKEN) {
-      setScrapeStatus('error')
-      return
-    }
+    if (!GH_TOKEN) { setScrapeStatus('error'); return }
     setScrapeStatus('triggering')
     try {
       const res = await fetch(GH_DISPATCH, {
@@ -158,7 +208,7 @@ export default function App() {
     }
   }, [])
 
-  // Count down after triggering, then auto-refresh
+  // ── Countdown after scrape trigger
   useEffect(() => {
     if (scrapeStatus !== 'waiting') return
     if (scrapeSecondsLeft <= 0) {
@@ -170,9 +220,8 @@ export default function App() {
     return () => clearTimeout(id)
   }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
 
-  // ── Derive Date objects from time inputs (use selected session date)
+  // ── Derive Date objects
   const baseDate = new Date(sessionDate + 'T00:00:00')
-
   const availableFrom = useMemo(() => fromTimeInput(fromTimeStr, baseDate),   [fromTimeStr, dataDate])
   const mustBeDoneBy  = useMemo(() => fromTimeInput(doneByTimeStr, baseDate), [doneByTimeStr, dataDate])
 
@@ -190,30 +239,18 @@ export default function App() {
 
   const filteredRanked = useMemo(() => {
     if (!ranked.length) return ranked
-
     const [fromH, toH] = timeRange
     const fromMs = fromH * 3600_000
     const toMs   = toH   * 3600_000
-
     return ranked
       .filter(row => {
-        // Time range
         const teeH = row.teetime.time.getHours() * 3600_000 +
                      row.teetime.time.getMinutes() * 60_000
         if (teeH < fromMs || teeH > toMs) return false
-
-        // Green fee cap
         if (row.teetime.greenfee > maxGreenfee) return false
-
-        // Drive time cap
         if (row.driveMinutes > maxDriveMin) return false
-
-        // Player count
         if ((row.teetime.spaces ?? 4) < playerCount) return false
-
-        // Course selector
         if (selectedCourses !== null && !selectedCourses.has(row.course.id)) return false
-
         return true
       })
       .sort((a, b) => {
@@ -241,13 +278,10 @@ export default function App() {
     })
   }
 
-  const handleSelectAllCourses = () => {
-    setSelectedCourses(null)
-  }
+  const handleSelectAllCourses = () => setSelectedCourses(null)
 
   const goCount = ranked.filter(r => r.verdict === 'go').length
   const sunset  = getSunsetTime(new Date())
-
   const loading = teeFetching || !driveTimes
 
   return (
@@ -270,8 +304,6 @@ export default function App() {
             <h2>Plan Your Session</h2>
             <div className="data-freshness">
               {generatedAt && <span>Updated {timeAgo(generatedAt)}</span>}
-
-              {/* Refresh: re-fetch whatever is already in the data branch */}
               <button
                 className="refresh-btn"
                 onClick={fetchTeetimes}
@@ -280,8 +312,6 @@ export default function App() {
               >
                 {teeFetching ? '⟳ Loading…' : '⟳ Refresh'}
               </button>
-
-              {/* Trigger: fire the GitHub Actions scraper right now */}
               {GH_TOKEN && (
                 <button
                   className="refresh-btn scrape-btn"
@@ -295,7 +325,6 @@ export default function App() {
                   {!scrapeStatus                 && '▶ Run Scraper'}
                 </button>
               )}
-
               {scrapeStatus === 'error' && !GH_TOKEN && (
                 <span className="scrape-no-token">VITE_GITHUB_TOKEN not set</span>
               )}
@@ -305,9 +334,35 @@ export default function App() {
           <div className="planner-fields">
             <div className="field field-location">
               <label>Location</label>
-              <div className="loc-display">
-                {locLoading ? '📍 Detecting…' : `📍 ${location.name}${location.source === 'denied' ? ' (GPS denied)' : ''}`}
+              <div className="loc-input-row">
+                <input
+                  ref={locInputRef}
+                  type="text"
+                  className="loc-input"
+                  value={locLoading ? 'Detecting…' : locInput}
+                  onChange={e => setLocInput(e.target.value)}
+                  onKeyDown={handleLocKeyDown}
+                  disabled={locLoading || locSearching}
+                  placeholder="Enter city or address"
+                />
+                <button
+                  className="loc-search-btn"
+                  onClick={handleLocSearch}
+                  disabled={locLoading || locSearching || !locInput.trim()}
+                  title="Search this location"
+                >
+                  {locSearching ? '…' : '🔍'}
+                </button>
+                <button
+                  className="loc-gps-btn"
+                  onClick={handleLocGps}
+                  disabled={locLoading || locSearching}
+                  title="Use my GPS location"
+                >
+                  📍
+                </button>
               </div>
+              {locError && <div className="loc-error">{locError}</div>}
             </div>
 
             <div className="field">
