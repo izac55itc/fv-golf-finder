@@ -30,8 +30,8 @@ jobs:
         run: npx playwright install chromium --with-deps
       - name: Run scraper
         working-directory: scraper
-        timeout-minutes: 10
-        run: timeout --signal=KILL 480 node index.js || true
+        timeout-minutes: 15
+        run: timeout --signal=KILL 840 node index.js || true
       - name: Publish teetimes.json to main
         run: |
           git config user.name  "github-actions[bot]"
