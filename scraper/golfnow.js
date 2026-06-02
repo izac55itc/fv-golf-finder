@@ -27,7 +27,11 @@ async function getBrowser() {
 }
 
 async function closeBrowser() {
-  if (_browser) { await _browser.close(); _browser = null }
+  if (_browser) {
+    try { await _browser.close() } catch { /* ignore */ }
+    try { _browser.process()?.kill('SIGKILL') } catch { /* ignore */ }
+    _browser = null
+  }
 }
 
 // Scrape one facility — intercept GolfNow's own XHR calls and capture tee time JSON
