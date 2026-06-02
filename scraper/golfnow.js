@@ -119,15 +119,27 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
-  let timeStr = String(time)
-  if (typeof time === 'object' && time.formatted) {
-    timeStr = time.formatted
+  let timeStr
+
+  if (typeof time === 'object') {
+    if (time.date) {
+      // Full ISO timestamp with timezone — most accurate, use directly
+      timeStr = time.date
+    } else if (time.formatted && time.formattedTimeMeridian) {
+      // "9:38 AM" style
+      timeStr = `${time.formatted} ${time.formattedTimeMeridian}`
+    } else if (time.formatted) {
+      timeStr = time.formatted
+    } else {
+      timeStr = String(time)
+    }
+  } else {
+    timeStr = String(time)
   }
 
-  // Log raw time value for debugging
   if (!_normaliseLogged && raw) {
     console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
-    console.log(`[normalise] Raw time value: ${JSON.stringify(time)}, type: ${typeof time}`)
+    console.log(`[normalise] Resolved timeStr: ${timeStr}`)
     _normaliseLogged = true
   }
 
