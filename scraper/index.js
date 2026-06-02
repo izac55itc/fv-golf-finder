@@ -9,7 +9,6 @@ async function main() {
   const today = new Date()
   console.log(`\nFV Golf Finder scraper — ${today.toISOString().split('T')[0]} (${DAYS_AHEAD} days)\n`)
 
-  // Build list of dates to scrape
   const dates = []
   for (let i = 0; i < DAYS_AHEAD; i++) {
     const d = new Date(today)
@@ -60,7 +59,11 @@ async function main() {
 
 function parseTime(raw, dateStr) {
   if (!raw) return null
+
+  // Already ISO format — pass through
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return raw
+
+  // "7:30 AM" / "7:30 PM"
   const ampm = raw.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i)
   if (ampm) {
     let h = parseInt(ampm[1], 10)
@@ -69,13 +72,27 @@ function parseTime(raw, dateStr) {
     if (ampm[3].toUpperCase() === 'AM' && h === 12) h = 0
     return `${dateStr}T${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:00`
   }
-  if (/^\d{1,2}:\d{2}$/.test(raw)) return `${dateStr}T${raw.padStart(5,'0')}:00`
+
+  // "07:30" (24h)
+  if (/^\d{1,2}:\d{2}$/.test(raw)) {
+    return `${dateStr}T${raw.padStart(5,'0')}:00`
+  }
+
+  // Unix timestamp (ms or seconds) — convert to Pacific time
   const n = Number(raw)
-  if (!isNaN(n) && n > 0) return new Date(n > 1e10 ? n : n * 1000).toISOString()
+  if (!isNaN(n) && n > 0) {
+    const ms = n > 1e10 ? n : n * 1000
+    const d = new Date(ms)
+    // Convert to Vancouver/Pacific time
+    const pacific = new Date(d.toLocaleString('en-US', { timeZone: 'America/Vancouver' }))
+    const pad = x => String(x).padStart(2, '0')
+    return `${dateStr}T${pad(pacific.getHours())}:${pad(pacific.getMinutes())}:00`
+  }
+
   return null
 }
 
-// Hard timeout: 8 minutes for 7 days of scraping
+// Hard timeout: 20 minutes for 7 days of scraping
 setTimeout(() => {
   console.error('Hard timeout: force killing process')
   process.kill(process.pid, 'SIGKILL')
