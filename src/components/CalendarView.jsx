@@ -56,7 +56,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         const qt = QUICK_TIMES.find(q => q.label === activeTime)
         if (qt && (h < qt.fromH || h >= qt.toH)) return false
       }
-      if ((tt.spaces ?? 4) < playerCount) return false
       return true
     })
   }, [teetimes, sessionDate, activeTime, playerCount])
