@@ -625,7 +625,11 @@ tbody td {
 }
 
 /* ── Weather Integration ──────────────────────────────────────────────  */
-.chip-weather { opacity: 0.85; font-weight: 400; }
+.chip-weather {
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+}
 .sheet-stat-full { grid-column: 1 / -1; }
 
 .calendar-view {
