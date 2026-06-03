@@ -35,11 +35,10 @@ const QUICK_TIMES = [
   { label: 'Twilight',  fromH: 17, toH: 23 },
 ]
 
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates }) {
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, playerCount, onPlayerCount, maxGreenfee, onMaxGreenfee, maxDriveMin, onMaxDriveMin }) {
   const [sortBy,      setSortBy]      = useState('cost')
   const [activeTime,  setActiveTime]  = useState(null)
   const [goOnly,      setGoOnly]      = useState(false)
-  const [playerCount, setPlayerCount] = useState(1)
   const [holeFilter,  setHoleFilter]  = useState(null)
   const [selected,    setSelected]    = useState(null)
 
@@ -57,9 +56,10 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         if (qt && (h < qt.fromH || h >= qt.toH)) return false
       }
       if ((tt.maxPlayers ?? 4) < playerCount) return false
+      if (tt.greenfee > maxGreenfee) return false
       return true
     })
-  }, [teetimes, sessionDate, activeTime, playerCount])
+  }, [teetimes, sessionDate, activeTime, playerCount, maxGreenfee])
 
   const grouped = useMemo(() => {
     const map = new Map()
@@ -68,6 +68,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       if (!course) continue
       if (holeFilter !== null && course.holes !== holeFilter) continue
       const driveMinutes = driveTimes?.get(course.id) ?? 15
+      if (driveMinutes > maxDriveMin) continue
       const teeTime = new Date(tt.time)
       const roundMinutes = course.holes * course.avgHoleMinutes
       const doneBy = new Date(teeTime.getTime() + roundMinutes * 60_000)
@@ -100,7 +101,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       entry.maxHoles = Math.max(entry.maxHoles, holesBeforeDusk)
     }
     return [...map.values()]
-  }, [filtered, driveTimes, sessionDate, goOnly, holeFilter, now])
+  }, [filtered, driveTimes, sessionDate, goOnly, holeFilter, now, maxDriveMin])
 
   const sorted = useMemo(() => {
     return [...grouped].sort((a, b) => {
@@ -170,7 +171,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
               <button
                 key={n}
                 className={`cal-sort-btn${playerCount === n ? ' active' : ''}`}
-                onClick={() => setPlayerCount(n)}
+                onClick={() => onPlayerCount(n)}
               >
                 {n}
               </button>
