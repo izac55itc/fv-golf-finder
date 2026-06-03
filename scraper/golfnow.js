@@ -113,20 +113,37 @@ async function scrapeFacility(facilityId, dateStr) {
       ),
     ])
 
-    // Merge DOM data into captured tee times
+    // Merge DOM data into captured XHR tee times
     captured.forEach(tt => {
       const timeKey = tt.time.replace(/\s+/g, '')
       // Apply player range from DOM
       tt.maxPlayers = domData.ranges[timeKey] ?? tt.maxPlayers ?? 4
-
       // Apply price from DOM if XHR didn't return one
       if (tt.greenfee === 0 && domData.prices[timeKey] !== undefined) {
         let val = domData.prices[timeKey]
-        // GolfNow sometimes renders cents as whole number e.g. 3900 = $39.00
-        // If value > 500 it's likely in cents — divide by 100
         if (val > 500) val = val / 100
         tt.greenfee = Math.round(val)
       }
+    })
+
+    // Add tee times found only in DOM (not captured via XHR)
+    const capturedKeys = new Set(captured.map(tt => tt.time.replace(/\s+/g, '')))
+    Object.entries(domData.prices).forEach(([timeKey, rawPrice]) => {
+      if (capturedKeys.has(timeKey)) return // already have this one from XHR
+      let price = rawPrice
+      if (price > 500) price = price / 100
+      price = Math.round(price)
+      if (price <= 0) return
+      const spaces = domData.ranges[timeKey] ?? 4
+      // Convert "10:26AM" → "10:26 AM"
+      const timeStr = timeKey.replace(/([AP]M)/i, ' $1')
+      captured.push({
+        time:       timeStr,
+        greenfee:   price,
+        spaces,
+        available:  undefined,
+        maxPlayers: spaces,
+      })
     })
 
     console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
