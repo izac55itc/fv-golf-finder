@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T23:17:17.571Z",
+  "generatedAt": "2026-06-03T23:20:28.780Z",
   "dates": [
     "2026-06-03",
     "2026-06-04",
@@ -9,13 +9,13 @@
     "2026-06-08",
     "2026-06-09"
   ],
-  "count": 606,
+  "count": 607,
   "teetimes": [
     {
       "id": "gn-newlands-executive-2026-06-03-1",
       "courseId": "newlands-executive",
       "time": "2026-06-03T18:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -24,7 +24,7 @@
       "id": "gn-newlands-executive-2026-06-03-2",
       "courseId": "newlands-executive",
       "time": "2026-06-03T18:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -33,7 +33,7 @@
       "id": "gn-newlands-executive-2026-06-03-3",
       "courseId": "newlands-executive",
       "time": "2026-06-03T18:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -42,7 +42,7 @@
       "id": "gn-newlands-executive-2026-06-03-4",
       "courseId": "newlands-executive",
       "time": "2026-06-03T18:34:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -51,7 +51,7 @@
       "id": "gn-newlands-executive-2026-06-03-5",
       "courseId": "newlands-executive",
       "time": "2026-06-03T18:42:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -60,7 +60,7 @@
       "id": "gn-newlands-executive-2026-06-03-6",
       "courseId": "newlands-executive",
       "time": "2026-06-03T18:50:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -69,7 +69,7 @@
       "id": "gn-newlands-executive-2026-06-03-7",
       "courseId": "newlands-executive",
       "time": "2026-06-03T18:58:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -78,7 +78,7 @@
       "id": "gn-newlands-executive-2026-06-03-8",
       "courseId": "newlands-executive",
       "time": "2026-06-03T19:06:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -87,7 +87,7 @@
       "id": "gn-newlands-executive-2026-06-03-9",
       "courseId": "newlands-executive",
       "time": "2026-06-03T19:14:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -96,7 +96,7 @@
       "id": "gn-newlands-executive-2026-06-03-10",
       "courseId": "newlands-executive",
       "time": "2026-06-03T19:22:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -105,7 +105,7 @@
       "id": "gn-newlands-executive-2026-06-03-11",
       "courseId": "newlands-executive",
       "time": "2026-06-03T19:30:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -114,7 +114,7 @@
       "id": "gn-newlands-executive-2026-06-03-12",
       "courseId": "newlands-executive",
       "time": "2026-06-03T19:38:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -123,7 +123,7 @@
       "id": "gn-newlands-executive-2026-06-03-13",
       "courseId": "newlands-executive",
       "time": "2026-06-03T19:46:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -132,7 +132,7 @@
       "id": "gn-newlands-executive-2026-06-03-14",
       "courseId": "newlands-executive",
       "time": "2026-06-03T19:54:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -141,7 +141,7 @@
       "id": "gn-newlands-executive-2026-06-03-15",
       "courseId": "newlands-executive",
       "time": "2026-06-03T20:02:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -150,7 +150,7 @@
       "id": "gn-newlands-executive-2026-06-03-16",
       "courseId": "newlands-executive",
       "time": "2026-06-03T20:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -159,7 +159,7 @@
       "id": "gn-newlands-executive-2026-06-03-17",
       "courseId": "newlands-executive",
       "time": "2026-06-03T20:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -168,7 +168,7 @@
       "id": "gn-newlands-executive-2026-06-03-18",
       "courseId": "newlands-executive",
       "time": "2026-06-03T20:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -204,7 +204,7 @@
       "id": "gn-westfield-2026-06-03-1",
       "courseId": "westfield",
       "time": "2026-06-03T16:16:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -213,7 +213,7 @@
       "id": "gn-westfield-2026-06-03-2",
       "courseId": "westfield",
       "time": "2026-06-03T16:24:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -222,7 +222,7 @@
       "id": "gn-westfield-2026-06-03-3",
       "courseId": "westfield",
       "time": "2026-06-03T16:32:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -231,7 +231,7 @@
       "id": "gn-westfield-2026-06-03-4",
       "courseId": "westfield",
       "time": "2026-06-03T16:40:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -240,7 +240,7 @@
       "id": "gn-westfield-2026-06-03-5",
       "courseId": "westfield",
       "time": "2026-06-03T16:48:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -249,7 +249,7 @@
       "id": "gn-westfield-2026-06-03-6",
       "courseId": "westfield",
       "time": "2026-06-03T16:56:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -258,7 +258,7 @@
       "id": "gn-westfield-2026-06-03-7",
       "courseId": "westfield",
       "time": "2026-06-03T17:04:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -267,7 +267,7 @@
       "id": "gn-westfield-2026-06-03-8",
       "courseId": "westfield",
       "time": "2026-06-03T17:12:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -276,7 +276,7 @@
       "id": "gn-westfield-2026-06-03-9",
       "courseId": "westfield",
       "time": "2026-06-03T17:20:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -285,7 +285,7 @@
       "id": "gn-westfield-2026-06-03-10",
       "courseId": "westfield",
       "time": "2026-06-03T17:28:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -309,7 +309,7 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-03-15",
+      "id": "gn-westfield-2026-06-03-13",
       "courseId": "westfield",
       "time": "2026-06-03T12:56:00",
       "greenfee": 27,
@@ -318,28 +318,10 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-03-21",
-      "courseId": "westfield",
-      "time": "2026-06-03T13:00:00",
-      "greenfee": 30,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-03-22",
-      "courseId": "westfield",
-      "time": "2026-06-03T15:00:00",
-      "greenfee": 36,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-newlands-cc-2026-06-03-1",
       "courseId": "newlands-cc",
       "time": "2026-06-03T16:50:00",
-      "greenfee": 6232,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -348,7 +330,7 @@
       "id": "gn-newlands-cc-2026-06-03-2",
       "courseId": "newlands-cc",
       "time": "2026-06-03T16:58:00",
-      "greenfee": 6232,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -357,7 +339,7 @@
       "id": "gn-newlands-cc-2026-06-03-3",
       "courseId": "newlands-cc",
       "time": "2026-06-03T17:14:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -366,7 +348,7 @@
       "id": "gn-newlands-cc-2026-06-03-4",
       "courseId": "newlands-cc",
       "time": "2026-06-03T17:22:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -375,7 +357,7 @@
       "id": "gn-newlands-cc-2026-06-03-5",
       "courseId": "newlands-cc",
       "time": "2026-06-03T17:38:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -384,7 +366,7 @@
       "id": "gn-newlands-cc-2026-06-03-6",
       "courseId": "newlands-cc",
       "time": "2026-06-03T17:46:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -393,7 +375,7 @@
       "id": "gn-newlands-cc-2026-06-03-7",
       "courseId": "newlands-cc",
       "time": "2026-06-03T17:54:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -402,7 +384,7 @@
       "id": "gn-newlands-cc-2026-06-03-8",
       "courseId": "newlands-cc",
       "time": "2026-06-03T18:02:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -411,7 +393,7 @@
       "id": "gn-newlands-cc-2026-06-03-9",
       "courseId": "newlands-cc",
       "time": "2026-06-03T18:10:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -420,7 +402,7 @@
       "id": "gn-newlands-cc-2026-06-03-10",
       "courseId": "newlands-cc",
       "time": "2026-06-03T18:18:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -429,7 +411,7 @@
       "id": "gn-newlands-cc-2026-06-03-11",
       "courseId": "newlands-cc",
       "time": "2026-06-03T18:26:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -438,7 +420,7 @@
       "id": "gn-newlands-cc-2026-06-03-12",
       "courseId": "newlands-cc",
       "time": "2026-06-03T18:34:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -447,7 +429,7 @@
       "id": "gn-newlands-cc-2026-06-03-13",
       "courseId": "newlands-cc",
       "time": "2026-06-03T18:42:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -456,7 +438,7 @@
       "id": "gn-newlands-cc-2026-06-03-14",
       "courseId": "newlands-cc",
       "time": "2026-06-03T18:50:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -465,7 +447,7 @@
       "id": "gn-newlands-cc-2026-06-03-15",
       "courseId": "newlands-cc",
       "time": "2026-06-03T18:58:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -474,7 +456,7 @@
       "id": "gn-newlands-cc-2026-06-03-16",
       "courseId": "newlands-cc",
       "time": "2026-06-03T19:06:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -483,7 +465,7 @@
       "id": "gn-newlands-cc-2026-06-03-17",
       "courseId": "newlands-cc",
       "time": "2026-06-03T19:14:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -492,7 +474,7 @@
       "id": "gn-newlands-cc-2026-06-03-18",
       "courseId": "newlands-cc",
       "time": "2026-06-03T19:22:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -501,7 +483,7 @@
       "id": "gn-newlands-cc-2026-06-03-19",
       "courseId": "newlands-cc",
       "time": "2026-06-03T19:30:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -510,7 +492,7 @@
       "id": "gn-newlands-cc-2026-06-03-20",
       "courseId": "newlands-cc",
       "time": "2026-06-03T19:38:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -519,7 +501,7 @@
       "id": "gn-newlands-cc-2026-06-03-21",
       "courseId": "newlands-cc",
       "time": "2026-06-03T19:46:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -528,7 +510,7 @@
       "id": "gn-newlands-cc-2026-06-03-22",
       "courseId": "newlands-cc",
       "time": "2026-06-03T19:54:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -537,7 +519,7 @@
       "id": "gn-newlands-cc-2026-06-03-23",
       "courseId": "newlands-cc",
       "time": "2026-06-03T20:02:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -546,7 +528,7 @@
       "id": "gn-newlands-cc-2026-06-03-24",
       "courseId": "newlands-cc",
       "time": "2026-06-03T20:10:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -555,7 +537,7 @@
       "id": "gn-newlands-cc-2026-06-03-25",
       "courseId": "newlands-cc",
       "time": "2026-06-03T20:18:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -564,7 +546,7 @@
       "id": "gn-newlands-cc-2026-06-03-26",
       "courseId": "newlands-cc",
       "time": "2026-06-03T20:26:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -579,19 +561,10 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-03-29",
-      "courseId": "newlands-cc",
-      "time": "2026-06-03T11:30:00",
-      "greenfee": 62,
-      "spaces": 3,
-      "maxPlayers": 3,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-golden-eagle-south-2026-06-03-1",
       "courseId": "golden-eagle-south",
       "time": "2026-06-03T17:14:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -600,7 +573,7 @@
       "id": "gn-golden-eagle-south-2026-06-03-2",
       "courseId": "golden-eagle-south",
       "time": "2026-06-03T17:23:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -609,7 +582,7 @@
       "id": "gn-golden-eagle-south-2026-06-03-3",
       "courseId": "golden-eagle-south",
       "time": "2026-06-03T17:41:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -618,7 +591,7 @@
       "id": "gn-eighteen-pastures-2026-06-03-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-03T16:20:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -627,7 +600,7 @@
       "id": "gn-eighteen-pastures-2026-06-03-2",
       "courseId": "eighteen-pastures",
       "time": "2026-06-03T16:30:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -636,7 +609,7 @@
       "id": "gn-eighteen-pastures-2026-06-03-3",
       "courseId": "eighteen-pastures",
       "time": "2026-06-03T16:40:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -645,7 +618,7 @@
       "id": "gn-eighteen-pastures-2026-06-03-4",
       "courseId": "eighteen-pastures",
       "time": "2026-06-03T16:50:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -654,7 +627,7 @@
       "id": "gn-eighteen-pastures-2026-06-03-5",
       "courseId": "eighteen-pastures",
       "time": "2026-06-03T17:00:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -681,7 +654,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-1",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T16:30:00",
-      "greenfee": 5500,
+      "greenfee": 55,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -690,7 +663,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-2",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T16:50:00",
-      "greenfee": 5500,
+      "greenfee": 55,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -699,7 +672,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-3",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T17:00:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -708,7 +681,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-4",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T17:10:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -717,7 +690,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-5",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T17:20:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -726,7 +699,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-6",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T17:30:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -735,7 +708,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-7",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T17:40:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -744,7 +717,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-8",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T17:50:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -753,7 +726,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-9",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T18:00:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -762,7 +735,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-10",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T18:10:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -771,7 +744,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-11",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T18:20:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -780,7 +753,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-12",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T18:30:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -789,7 +762,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-13",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T18:40:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -798,241 +771,7 @@
       "id": "gn-golden-eagle-north-2026-06-03-14",
       "courseId": "golden-eagle-north",
       "time": "2026-06-03T18:50:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-1",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T16:50:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-2",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T16:58:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-3",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T17:14:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-4",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T17:22:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-5",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T17:38:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-6",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T17:46:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-7",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T17:54:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-8",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T18:02:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-9",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T18:10:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-10",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T18:18:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-11",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T18:26:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-12",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T18:34:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-13",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T18:42:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-14",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T18:50:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-15",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T18:58:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-16",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T19:06:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-17",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T19:14:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-18",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T19:22:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-19",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T19:30:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-20",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T19:38:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-21",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T19:46:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-22",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T19:54:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-23",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T20:02:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-24",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T20:10:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-25",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T20:18:00",
-      "greenfee": 0,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-04-26",
-      "courseId": "newlands-cc",
-      "time": "2026-06-04T20:26:00",
-      "greenfee": 0,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1041,7 +780,7 @@
       "id": "gn-westfield-2026-06-04-1",
       "courseId": "westfield",
       "time": "2026-06-04T16:16:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1050,7 +789,7 @@
       "id": "gn-westfield-2026-06-04-2",
       "courseId": "westfield",
       "time": "2026-06-04T16:24:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1059,7 +798,7 @@
       "id": "gn-westfield-2026-06-04-3",
       "courseId": "westfield",
       "time": "2026-06-04T16:32:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1068,7 +807,7 @@
       "id": "gn-westfield-2026-06-04-4",
       "courseId": "westfield",
       "time": "2026-06-04T16:40:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1077,7 +816,7 @@
       "id": "gn-westfield-2026-06-04-5",
       "courseId": "westfield",
       "time": "2026-06-04T16:48:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1086,7 +825,7 @@
       "id": "gn-westfield-2026-06-04-6",
       "courseId": "westfield",
       "time": "2026-06-04T16:56:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1095,7 +834,7 @@
       "id": "gn-westfield-2026-06-04-7",
       "courseId": "westfield",
       "time": "2026-06-04T17:04:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1104,7 +843,7 @@
       "id": "gn-westfield-2026-06-04-8",
       "courseId": "westfield",
       "time": "2026-06-04T17:12:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1113,7 +852,7 @@
       "id": "gn-westfield-2026-06-04-9",
       "courseId": "westfield",
       "time": "2026-06-04T17:20:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1122,7 +861,7 @@
       "id": "gn-westfield-2026-06-04-10",
       "courseId": "westfield",
       "time": "2026-06-04T17:28:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1176,7 +915,7 @@
       "id": "gn-newlands-executive-2026-06-04-1",
       "courseId": "newlands-executive",
       "time": "2026-06-04T18:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1185,7 +924,7 @@
       "id": "gn-newlands-executive-2026-06-04-2",
       "courseId": "newlands-executive",
       "time": "2026-06-04T18:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1194,7 +933,7 @@
       "id": "gn-newlands-executive-2026-06-04-3",
       "courseId": "newlands-executive",
       "time": "2026-06-04T18:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1203,7 +942,7 @@
       "id": "gn-newlands-executive-2026-06-04-4",
       "courseId": "newlands-executive",
       "time": "2026-06-04T18:34:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1212,7 +951,7 @@
       "id": "gn-newlands-executive-2026-06-04-5",
       "courseId": "newlands-executive",
       "time": "2026-06-04T18:42:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1221,7 +960,7 @@
       "id": "gn-newlands-executive-2026-06-04-6",
       "courseId": "newlands-executive",
       "time": "2026-06-04T18:50:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1230,7 +969,7 @@
       "id": "gn-newlands-executive-2026-06-04-7",
       "courseId": "newlands-executive",
       "time": "2026-06-04T18:58:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1239,7 +978,7 @@
       "id": "gn-newlands-executive-2026-06-04-8",
       "courseId": "newlands-executive",
       "time": "2026-06-04T19:06:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1248,7 +987,7 @@
       "id": "gn-newlands-executive-2026-06-04-9",
       "courseId": "newlands-executive",
       "time": "2026-06-04T19:14:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1257,7 +996,7 @@
       "id": "gn-newlands-executive-2026-06-04-10",
       "courseId": "newlands-executive",
       "time": "2026-06-04T19:22:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1266,7 +1005,7 @@
       "id": "gn-newlands-executive-2026-06-04-11",
       "courseId": "newlands-executive",
       "time": "2026-06-04T19:30:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1275,7 +1014,7 @@
       "id": "gn-newlands-executive-2026-06-04-12",
       "courseId": "newlands-executive",
       "time": "2026-06-04T19:38:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1284,7 +1023,7 @@
       "id": "gn-newlands-executive-2026-06-04-13",
       "courseId": "newlands-executive",
       "time": "2026-06-04T19:46:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1293,7 +1032,7 @@
       "id": "gn-newlands-executive-2026-06-04-14",
       "courseId": "newlands-executive",
       "time": "2026-06-04T19:54:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1302,7 +1041,7 @@
       "id": "gn-newlands-executive-2026-06-04-15",
       "courseId": "newlands-executive",
       "time": "2026-06-04T20:02:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1311,7 +1050,7 @@
       "id": "gn-newlands-executive-2026-06-04-16",
       "courseId": "newlands-executive",
       "time": "2026-06-04T20:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1320,7 +1059,7 @@
       "id": "gn-newlands-executive-2026-06-04-17",
       "courseId": "newlands-executive",
       "time": "2026-06-04T20:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1329,7 +1068,7 @@
       "id": "gn-newlands-executive-2026-06-04-18",
       "courseId": "newlands-executive",
       "time": "2026-06-04T20:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1362,136 +1101,262 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-1",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T16:30:00",
-      "greenfee": 5500,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-04-2",
-      "courseId": "golden-eagle-north",
+      "id": "gn-newlands-cc-2026-06-04-1",
+      "courseId": "newlands-cc",
       "time": "2026-06-04T16:50:00",
-      "greenfee": 5500,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-3",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T17:00:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-2",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T16:58:00",
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-4",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T17:10:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-3",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T17:14:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-5",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T17:20:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-4",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T17:22:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-6",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T17:30:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-5",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T17:38:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-7",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T17:40:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-6",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T17:46:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-8",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T17:50:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-7",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T17:54:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-9",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T18:00:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-8",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T18:02:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-10",
-      "courseId": "golden-eagle-north",
+      "id": "gn-newlands-cc-2026-06-04-9",
+      "courseId": "newlands-cc",
       "time": "2026-06-04T18:10:00",
-      "greenfee": 4000,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-11",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T18:20:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-10",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T18:18:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-12",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T18:30:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-11",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T18:26:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-13",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-04T18:40:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-04-12",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T18:34:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-04-14",
-      "courseId": "golden-eagle-north",
+      "id": "gn-newlands-cc-2026-06-04-13",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T18:42:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-14",
+      "courseId": "newlands-cc",
       "time": "2026-06-04T18:50:00",
-      "greenfee": 4000,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-15",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T18:58:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-16",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T19:06:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-17",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T19:14:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-18",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T19:22:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-19",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T19:30:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-20",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T19:38:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-21",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T19:46:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-22",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T19:54:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-23",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T20:02:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-24",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T20:10:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-25",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T20:18:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-26",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T20:26:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-27",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T10:02:00",
+      "greenfee": 44,
+      "spaces": 2,
+      "maxPlayers": 2,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-04-29",
+      "courseId": "newlands-cc",
+      "time": "2026-06-04T11:30:00",
+      "greenfee": 62,
+      "spaces": 3,
+      "maxPlayers": 3,
       "source": "golfnow"
     },
     {
       "id": "gn-golden-eagle-south-2026-06-04-1",
       "courseId": "golden-eagle-south",
       "time": "2026-06-04T17:14:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1500,7 +1365,7 @@
       "id": "gn-golden-eagle-south-2026-06-04-2",
       "courseId": "golden-eagle-south",
       "time": "2026-06-04T17:23:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1509,7 +1374,7 @@
       "id": "gn-golden-eagle-south-2026-06-04-3",
       "courseId": "golden-eagle-south",
       "time": "2026-06-04T17:41:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1518,7 +1383,7 @@
       "id": "gn-eighteen-pastures-2026-06-04-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-04T16:20:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1527,7 +1392,7 @@
       "id": "gn-eighteen-pastures-2026-06-04-2",
       "courseId": "eighteen-pastures",
       "time": "2026-06-04T16:30:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1536,7 +1401,7 @@
       "id": "gn-eighteen-pastures-2026-06-04-3",
       "courseId": "eighteen-pastures",
       "time": "2026-06-04T16:40:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1545,7 +1410,7 @@
       "id": "gn-eighteen-pastures-2026-06-04-4",
       "courseId": "eighteen-pastures",
       "time": "2026-06-04T16:50:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1554,7 +1419,7 @@
       "id": "gn-eighteen-pastures-2026-06-04-5",
       "courseId": "eighteen-pastures",
       "time": "2026-06-04T17:00:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1578,253 +1443,271 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-1",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T16:50:00",
-      "greenfee": 6232,
+      "id": "gn-golden-eagle-north-2026-06-04-1",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T16:30:00",
+      "greenfee": 55,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-2",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T16:58:00",
-      "greenfee": 6232,
+      "id": "gn-golden-eagle-north-2026-06-04-2",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T16:50:00",
+      "greenfee": 55,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-3",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T17:14:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-3",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T17:00:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-4",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T17:22:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-4",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T17:10:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-5",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T17:38:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-5",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T17:20:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-6",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T17:46:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-6",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T17:30:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-7",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T17:54:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-7",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T17:40:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-8",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T18:02:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-8",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T17:50:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-9",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T18:10:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-9",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T18:00:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-10",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T18:18:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-10",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T18:10:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-11",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T18:26:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-11",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T18:20:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-12",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T18:34:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-12",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T18:30:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-13",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T18:42:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-13",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T18:40:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-14",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T18:50:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-04-14",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-04T18:50:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-15",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T18:58:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-1",
+      "courseId": "westfield",
+      "time": "2026-06-05T16:16:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-16",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T19:06:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-2",
+      "courseId": "westfield",
+      "time": "2026-06-05T16:24:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-17",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T19:14:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-3",
+      "courseId": "westfield",
+      "time": "2026-06-05T16:32:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-18",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T19:22:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-4",
+      "courseId": "westfield",
+      "time": "2026-06-05T16:40:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-19",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T19:30:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-5",
+      "courseId": "westfield",
+      "time": "2026-06-05T16:48:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-20",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T19:38:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-6",
+      "courseId": "westfield",
+      "time": "2026-06-05T16:56:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-21",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T19:46:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-7",
+      "courseId": "westfield",
+      "time": "2026-06-05T17:04:00",
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-22",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T19:54:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-8",
+      "courseId": "westfield",
+      "time": "2026-06-05T17:12:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-23",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T20:02:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-9",
+      "courseId": "westfield",
+      "time": "2026-06-05T17:20:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-24",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T20:10:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-10",
+      "courseId": "westfield",
+      "time": "2026-06-05T17:28:00",
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-25",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T20:18:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-11",
+      "courseId": "westfield",
+      "time": "2026-06-05T14:24:00",
+      "greenfee": 23,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-26",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T20:26:00",
-      "greenfee": 5280,
+      "id": "gn-westfield-2026-06-05-12",
+      "courseId": "westfield",
+      "time": "2026-06-05T14:56:00",
+      "greenfee": 28,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-05-27",
-      "courseId": "newlands-cc",
-      "time": "2026-06-05T10:02:00",
-      "greenfee": 44,
-      "spaces": 2,
-      "maxPlayers": 2,
+      "id": "gn-westfield-2026-06-05-15",
+      "courseId": "westfield",
+      "time": "2026-06-05T12:56:00",
+      "greenfee": 27,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-05-21",
+      "courseId": "westfield",
+      "time": "2026-06-05T13:00:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-05-22",
+      "courseId": "westfield",
+      "time": "2026-06-05T15:00:00",
+      "greenfee": 36,
+      "spaces": 4,
+      "maxPlayers": 4,
       "source": "golfnow"
     },
     {
       "id": "gn-newlands-executive-2026-06-05-1",
       "courseId": "newlands-executive",
       "time": "2026-06-05T18:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1833,7 +1716,7 @@
       "id": "gn-newlands-executive-2026-06-05-2",
       "courseId": "newlands-executive",
       "time": "2026-06-05T18:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1842,7 +1725,7 @@
       "id": "gn-newlands-executive-2026-06-05-3",
       "courseId": "newlands-executive",
       "time": "2026-06-05T18:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1851,7 +1734,7 @@
       "id": "gn-newlands-executive-2026-06-05-4",
       "courseId": "newlands-executive",
       "time": "2026-06-05T18:34:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1860,7 +1743,7 @@
       "id": "gn-newlands-executive-2026-06-05-5",
       "courseId": "newlands-executive",
       "time": "2026-06-05T18:42:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1869,7 +1752,7 @@
       "id": "gn-newlands-executive-2026-06-05-6",
       "courseId": "newlands-executive",
       "time": "2026-06-05T18:50:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1878,7 +1761,7 @@
       "id": "gn-newlands-executive-2026-06-05-7",
       "courseId": "newlands-executive",
       "time": "2026-06-05T18:58:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1887,7 +1770,7 @@
       "id": "gn-newlands-executive-2026-06-05-8",
       "courseId": "newlands-executive",
       "time": "2026-06-05T19:06:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1896,7 +1779,7 @@
       "id": "gn-newlands-executive-2026-06-05-9",
       "courseId": "newlands-executive",
       "time": "2026-06-05T19:14:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1905,7 +1788,7 @@
       "id": "gn-newlands-executive-2026-06-05-10",
       "courseId": "newlands-executive",
       "time": "2026-06-05T19:22:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1914,7 +1797,7 @@
       "id": "gn-newlands-executive-2026-06-05-11",
       "courseId": "newlands-executive",
       "time": "2026-06-05T19:30:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1923,7 +1806,7 @@
       "id": "gn-newlands-executive-2026-06-05-12",
       "courseId": "newlands-executive",
       "time": "2026-06-05T19:38:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1932,7 +1815,7 @@
       "id": "gn-newlands-executive-2026-06-05-13",
       "courseId": "newlands-executive",
       "time": "2026-06-05T19:46:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1941,7 +1824,7 @@
       "id": "gn-newlands-executive-2026-06-05-14",
       "courseId": "newlands-executive",
       "time": "2026-06-05T19:54:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1950,7 +1833,7 @@
       "id": "gn-newlands-executive-2026-06-05-15",
       "courseId": "newlands-executive",
       "time": "2026-06-05T20:02:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1959,7 +1842,7 @@
       "id": "gn-newlands-executive-2026-06-05-16",
       "courseId": "newlands-executive",
       "time": "2026-06-05T20:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1968,7 +1851,7 @@
       "id": "gn-newlands-executive-2026-06-05-17",
       "courseId": "newlands-executive",
       "time": "2026-06-05T20:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -1977,7 +1860,7 @@
       "id": "gn-newlands-executive-2026-06-05-18",
       "courseId": "newlands-executive",
       "time": "2026-06-05T20:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2010,253 +1893,253 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-05-1",
-      "courseId": "westfield",
-      "time": "2026-06-05T16:16:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-2",
-      "courseId": "westfield",
-      "time": "2026-06-05T16:24:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-3",
-      "courseId": "westfield",
-      "time": "2026-06-05T16:32:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-4",
-      "courseId": "westfield",
-      "time": "2026-06-05T16:40:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-5",
-      "courseId": "westfield",
-      "time": "2026-06-05T16:48:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-6",
-      "courseId": "westfield",
-      "time": "2026-06-05T16:56:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-7",
-      "courseId": "westfield",
-      "time": "2026-06-05T17:04:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-8",
-      "courseId": "westfield",
-      "time": "2026-06-05T17:12:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-9",
-      "courseId": "westfield",
-      "time": "2026-06-05T17:20:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-10",
-      "courseId": "westfield",
-      "time": "2026-06-05T17:28:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-11",
-      "courseId": "westfield",
-      "time": "2026-06-05T14:24:00",
-      "greenfee": 23,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-12",
-      "courseId": "westfield",
-      "time": "2026-06-05T14:56:00",
-      "greenfee": 28,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-05-13",
-      "courseId": "westfield",
-      "time": "2026-06-05T12:56:00",
-      "greenfee": 27,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-05-1",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T16:30:00",
-      "greenfee": 5500,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-05-2",
-      "courseId": "golden-eagle-north",
+      "id": "gn-newlands-cc-2026-06-05-1",
+      "courseId": "newlands-cc",
       "time": "2026-06-05T16:50:00",
-      "greenfee": 5500,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-3",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T17:00:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-2",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T16:58:00",
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-4",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T17:10:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-3",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T17:14:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-5",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T17:20:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-4",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T17:22:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-6",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T17:30:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-5",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T17:38:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-7",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T17:40:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-6",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T17:46:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-8",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T17:50:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-7",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T17:54:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-9",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T18:00:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-8",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T18:02:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-10",
-      "courseId": "golden-eagle-north",
+      "id": "gn-newlands-cc-2026-06-05-9",
+      "courseId": "newlands-cc",
       "time": "2026-06-05T18:10:00",
-      "greenfee": 4000,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-11",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T18:20:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-10",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T18:18:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-12",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T18:30:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-11",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T18:26:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-13",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-05T18:40:00",
-      "greenfee": 4000,
+      "id": "gn-newlands-cc-2026-06-05-12",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T18:34:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-north-2026-06-05-14",
-      "courseId": "golden-eagle-north",
+      "id": "gn-newlands-cc-2026-06-05-13",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T18:42:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-14",
+      "courseId": "newlands-cc",
       "time": "2026-06-05T18:50:00",
-      "greenfee": 4000,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-15",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T18:58:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-16",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T19:06:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-17",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T19:14:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-18",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T19:22:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-19",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T19:30:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-20",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T19:38:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-21",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T19:46:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-22",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T19:54:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-23",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T20:02:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-24",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T20:10:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-25",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T20:18:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-26",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T20:26:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-05-27",
+      "courseId": "newlands-cc",
+      "time": "2026-06-05T10:02:00",
+      "greenfee": 44,
+      "spaces": 2,
+      "maxPlayers": 2,
       "source": "golfnow"
     },
     {
       "id": "gn-eighteen-pastures-2026-06-05-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-05T16:20:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2265,7 +2148,7 @@
       "id": "gn-eighteen-pastures-2026-06-05-2",
       "courseId": "eighteen-pastures",
       "time": "2026-06-05T16:30:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2274,7 +2157,7 @@
       "id": "gn-eighteen-pastures-2026-06-05-3",
       "courseId": "eighteen-pastures",
       "time": "2026-06-05T16:40:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2283,7 +2166,7 @@
       "id": "gn-eighteen-pastures-2026-06-05-4",
       "courseId": "eighteen-pastures",
       "time": "2026-06-05T16:50:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2292,7 +2175,7 @@
       "id": "gn-eighteen-pastures-2026-06-05-5",
       "courseId": "eighteen-pastures",
       "time": "2026-06-05T17:00:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2319,7 +2202,7 @@
       "id": "gn-golden-eagle-south-2026-06-05-1",
       "courseId": "golden-eagle-south",
       "time": "2026-06-05T17:14:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2328,7 +2211,7 @@
       "id": "gn-golden-eagle-south-2026-06-05-2",
       "courseId": "golden-eagle-south",
       "time": "2026-06-05T17:23:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2337,7 +2220,133 @@
       "id": "gn-golden-eagle-south-2026-06-05-3",
       "courseId": "golden-eagle-south",
       "time": "2026-06-05T17:41:00",
-      "greenfee": 3000,
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-1",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T16:30:00",
+      "greenfee": 55,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-2",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T16:50:00",
+      "greenfee": 55,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-3",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T17:00:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-4",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T17:10:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-5",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T17:20:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-6",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T17:30:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-7",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T17:40:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-8",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T17:50:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-9",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T18:00:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-10",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T18:10:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-11",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T18:20:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-12",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T18:30:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-13",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T18:40:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-05-14",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-05T18:50:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2346,7 +2355,7 @@
       "id": "gn-westfield-2026-06-06-1",
       "courseId": "westfield",
       "time": "2026-06-06T16:16:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2355,7 +2364,7 @@
       "id": "gn-westfield-2026-06-06-2",
       "courseId": "westfield",
       "time": "2026-06-06T16:24:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2364,7 +2373,7 @@
       "id": "gn-westfield-2026-06-06-3",
       "courseId": "westfield",
       "time": "2026-06-06T16:32:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2373,7 +2382,7 @@
       "id": "gn-westfield-2026-06-06-4",
       "courseId": "westfield",
       "time": "2026-06-06T16:40:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2382,7 +2391,7 @@
       "id": "gn-westfield-2026-06-06-5",
       "courseId": "westfield",
       "time": "2026-06-06T16:48:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2391,7 +2400,7 @@
       "id": "gn-westfield-2026-06-06-6",
       "courseId": "westfield",
       "time": "2026-06-06T16:56:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2400,7 +2409,7 @@
       "id": "gn-westfield-2026-06-06-7",
       "courseId": "westfield",
       "time": "2026-06-06T17:04:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2409,7 +2418,7 @@
       "id": "gn-westfield-2026-06-06-8",
       "courseId": "westfield",
       "time": "2026-06-06T17:12:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2418,7 +2427,7 @@
       "id": "gn-westfield-2026-06-06-9",
       "courseId": "westfield",
       "time": "2026-06-06T17:20:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2427,7 +2436,7 @@
       "id": "gn-westfield-2026-06-06-10",
       "courseId": "westfield",
       "time": "2026-06-06T17:28:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2451,7 +2460,7 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-06-13",
+      "id": "gn-westfield-2026-06-06-15",
       "courseId": "westfield",
       "time": "2026-06-06T12:56:00",
       "greenfee": 27,
@@ -2460,10 +2469,28 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-westfield-2026-06-06-21",
+      "courseId": "westfield",
+      "time": "2026-06-06T13:00:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-06-22",
+      "courseId": "westfield",
+      "time": "2026-06-06T15:00:00",
+      "greenfee": 36,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-newlands-executive-2026-06-06-1",
       "courseId": "newlands-executive",
       "time": "2026-06-06T18:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2472,7 +2499,7 @@
       "id": "gn-newlands-executive-2026-06-06-2",
       "courseId": "newlands-executive",
       "time": "2026-06-06T18:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2481,7 +2508,7 @@
       "id": "gn-newlands-executive-2026-06-06-3",
       "courseId": "newlands-executive",
       "time": "2026-06-06T18:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2490,7 +2517,7 @@
       "id": "gn-newlands-executive-2026-06-06-4",
       "courseId": "newlands-executive",
       "time": "2026-06-06T18:34:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2499,7 +2526,7 @@
       "id": "gn-newlands-executive-2026-06-06-5",
       "courseId": "newlands-executive",
       "time": "2026-06-06T18:42:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2508,7 +2535,7 @@
       "id": "gn-newlands-executive-2026-06-06-6",
       "courseId": "newlands-executive",
       "time": "2026-06-06T18:50:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2517,7 +2544,7 @@
       "id": "gn-newlands-executive-2026-06-06-7",
       "courseId": "newlands-executive",
       "time": "2026-06-06T18:58:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2526,7 +2553,7 @@
       "id": "gn-newlands-executive-2026-06-06-8",
       "courseId": "newlands-executive",
       "time": "2026-06-06T19:06:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2535,7 +2562,7 @@
       "id": "gn-newlands-executive-2026-06-06-9",
       "courseId": "newlands-executive",
       "time": "2026-06-06T19:14:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2544,7 +2571,7 @@
       "id": "gn-newlands-executive-2026-06-06-10",
       "courseId": "newlands-executive",
       "time": "2026-06-06T19:22:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2553,7 +2580,7 @@
       "id": "gn-newlands-executive-2026-06-06-11",
       "courseId": "newlands-executive",
       "time": "2026-06-06T19:30:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2562,7 +2589,7 @@
       "id": "gn-newlands-executive-2026-06-06-12",
       "courseId": "newlands-executive",
       "time": "2026-06-06T19:38:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2571,7 +2598,7 @@
       "id": "gn-newlands-executive-2026-06-06-13",
       "courseId": "newlands-executive",
       "time": "2026-06-06T19:46:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2580,7 +2607,7 @@
       "id": "gn-newlands-executive-2026-06-06-14",
       "courseId": "newlands-executive",
       "time": "2026-06-06T19:54:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2589,7 +2616,7 @@
       "id": "gn-newlands-executive-2026-06-06-15",
       "courseId": "newlands-executive",
       "time": "2026-06-06T20:02:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2598,7 +2625,7 @@
       "id": "gn-newlands-executive-2026-06-06-16",
       "courseId": "newlands-executive",
       "time": "2026-06-06T20:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2607,7 +2634,7 @@
       "id": "gn-newlands-executive-2026-06-06-17",
       "courseId": "newlands-executive",
       "time": "2026-06-06T20:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2616,7 +2643,7 @@
       "id": "gn-newlands-executive-2026-06-06-18",
       "courseId": "newlands-executive",
       "time": "2026-06-06T20:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2652,7 +2679,7 @@
       "id": "gn-newlands-cc-2026-06-06-1",
       "courseId": "newlands-cc",
       "time": "2026-06-06T16:50:00",
-      "greenfee": 6232,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2661,7 +2688,7 @@
       "id": "gn-newlands-cc-2026-06-06-2",
       "courseId": "newlands-cc",
       "time": "2026-06-06T16:58:00",
-      "greenfee": 6232,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2670,7 +2697,7 @@
       "id": "gn-newlands-cc-2026-06-06-3",
       "courseId": "newlands-cc",
       "time": "2026-06-06T17:14:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2679,7 +2706,7 @@
       "id": "gn-newlands-cc-2026-06-06-4",
       "courseId": "newlands-cc",
       "time": "2026-06-06T17:22:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2688,7 +2715,7 @@
       "id": "gn-newlands-cc-2026-06-06-5",
       "courseId": "newlands-cc",
       "time": "2026-06-06T17:38:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2697,7 +2724,7 @@
       "id": "gn-newlands-cc-2026-06-06-6",
       "courseId": "newlands-cc",
       "time": "2026-06-06T17:46:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2706,7 +2733,7 @@
       "id": "gn-newlands-cc-2026-06-06-7",
       "courseId": "newlands-cc",
       "time": "2026-06-06T17:54:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2715,7 +2742,7 @@
       "id": "gn-newlands-cc-2026-06-06-8",
       "courseId": "newlands-cc",
       "time": "2026-06-06T18:02:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2724,7 +2751,7 @@
       "id": "gn-newlands-cc-2026-06-06-9",
       "courseId": "newlands-cc",
       "time": "2026-06-06T18:10:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2733,7 +2760,7 @@
       "id": "gn-newlands-cc-2026-06-06-10",
       "courseId": "newlands-cc",
       "time": "2026-06-06T18:18:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2742,7 +2769,7 @@
       "id": "gn-newlands-cc-2026-06-06-11",
       "courseId": "newlands-cc",
       "time": "2026-06-06T18:26:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2751,7 +2778,7 @@
       "id": "gn-newlands-cc-2026-06-06-12",
       "courseId": "newlands-cc",
       "time": "2026-06-06T18:34:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2760,7 +2787,7 @@
       "id": "gn-newlands-cc-2026-06-06-13",
       "courseId": "newlands-cc",
       "time": "2026-06-06T18:42:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2769,7 +2796,7 @@
       "id": "gn-newlands-cc-2026-06-06-14",
       "courseId": "newlands-cc",
       "time": "2026-06-06T18:50:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2778,7 +2805,7 @@
       "id": "gn-newlands-cc-2026-06-06-15",
       "courseId": "newlands-cc",
       "time": "2026-06-06T18:58:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2787,7 +2814,7 @@
       "id": "gn-newlands-cc-2026-06-06-16",
       "courseId": "newlands-cc",
       "time": "2026-06-06T19:06:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2796,7 +2823,7 @@
       "id": "gn-newlands-cc-2026-06-06-17",
       "courseId": "newlands-cc",
       "time": "2026-06-06T19:14:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2805,7 +2832,7 @@
       "id": "gn-newlands-cc-2026-06-06-18",
       "courseId": "newlands-cc",
       "time": "2026-06-06T19:22:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2814,7 +2841,7 @@
       "id": "gn-newlands-cc-2026-06-06-19",
       "courseId": "newlands-cc",
       "time": "2026-06-06T19:30:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2823,7 +2850,7 @@
       "id": "gn-newlands-cc-2026-06-06-20",
       "courseId": "newlands-cc",
       "time": "2026-06-06T19:38:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2832,7 +2859,7 @@
       "id": "gn-newlands-cc-2026-06-06-21",
       "courseId": "newlands-cc",
       "time": "2026-06-06T19:46:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2841,7 +2868,7 @@
       "id": "gn-newlands-cc-2026-06-06-22",
       "courseId": "newlands-cc",
       "time": "2026-06-06T19:54:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2850,7 +2877,7 @@
       "id": "gn-newlands-cc-2026-06-06-23",
       "courseId": "newlands-cc",
       "time": "2026-06-06T20:02:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2859,7 +2886,7 @@
       "id": "gn-newlands-cc-2026-06-06-24",
       "courseId": "newlands-cc",
       "time": "2026-06-06T20:10:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2868,7 +2895,7 @@
       "id": "gn-newlands-cc-2026-06-06-25",
       "courseId": "newlands-cc",
       "time": "2026-06-06T20:18:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2877,7 +2904,7 @@
       "id": "gn-newlands-cc-2026-06-06-26",
       "courseId": "newlands-cc",
       "time": "2026-06-06T20:26:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2892,10 +2919,19 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-newlands-cc-2026-06-06-29",
+      "courseId": "newlands-cc",
+      "time": "2026-06-06T11:30:00",
+      "greenfee": 62,
+      "spaces": 3,
+      "maxPlayers": 3,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-golden-eagle-south-2026-06-06-1",
       "courseId": "golden-eagle-south",
       "time": "2026-06-06T17:14:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2904,7 +2940,7 @@
       "id": "gn-golden-eagle-south-2026-06-06-2",
       "courseId": "golden-eagle-south",
       "time": "2026-06-06T17:23:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -2913,133 +2949,7 @@
       "id": "gn-golden-eagle-south-2026-06-06-3",
       "courseId": "golden-eagle-south",
       "time": "2026-06-06T17:41:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-1",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T16:30:00",
-      "greenfee": 5500,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-2",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T16:50:00",
-      "greenfee": 5500,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-3",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T17:00:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-4",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T17:10:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-5",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T17:20:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-6",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T17:30:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-7",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T17:40:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-8",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T17:50:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-9",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T18:00:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-10",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T18:10:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-11",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T18:20:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-12",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T18:30:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-13",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T18:40:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-06-14",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-06T18:50:00",
-      "greenfee": 4000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3048,7 +2958,7 @@
       "id": "gn-eighteen-pastures-2026-06-06-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-06T16:20:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3057,7 +2967,7 @@
       "id": "gn-eighteen-pastures-2026-06-06-2",
       "courseId": "eighteen-pastures",
       "time": "2026-06-06T16:30:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3066,7 +2976,7 @@
       "id": "gn-eighteen-pastures-2026-06-06-3",
       "courseId": "eighteen-pastures",
       "time": "2026-06-06T16:40:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3075,7 +2985,7 @@
       "id": "gn-eighteen-pastures-2026-06-06-4",
       "courseId": "eighteen-pastures",
       "time": "2026-06-06T16:50:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3084,7 +2994,7 @@
       "id": "gn-eighteen-pastures-2026-06-06-5",
       "courseId": "eighteen-pastures",
       "time": "2026-06-06T17:00:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3108,262 +3018,136 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-1",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T16:50:00",
-      "greenfee": 6232,
+      "id": "gn-golden-eagle-north-2026-06-06-1",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T16:30:00",
+      "greenfee": 55,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-2",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T16:58:00",
-      "greenfee": 6232,
+      "id": "gn-golden-eagle-north-2026-06-06-2",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T16:50:00",
+      "greenfee": 55,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-3",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T17:14:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-3",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T17:00:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-4",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T17:22:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-4",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T17:10:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-5",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T17:38:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-5",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T17:20:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-6",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T17:46:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-6",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T17:30:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-7",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T17:54:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-7",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T17:40:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-8",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T18:02:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-8",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T17:50:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-9",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T18:10:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-9",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T18:00:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-10",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T18:18:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-10",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T18:10:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-11",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T18:26:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-11",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T18:20:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-12",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T18:34:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-12",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T18:30:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-13",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T18:42:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-13",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T18:40:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-07-14",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T18:50:00",
-      "greenfee": 5280,
+      "id": "gn-golden-eagle-north-2026-06-06-14",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-06T18:50:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-15",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T18:58:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-16",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T19:06:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-17",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T19:14:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-18",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T19:22:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-19",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T19:30:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-20",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T19:38:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-21",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T19:46:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-22",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T19:54:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-23",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T20:02:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-24",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T20:10:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-25",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T20:18:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-26",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T20:26:00",
-      "greenfee": 5280,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-27",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T10:02:00",
-      "greenfee": 44,
-      "spaces": 2,
-      "maxPlayers": 2,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-newlands-cc-2026-06-07-29",
-      "courseId": "newlands-cc",
-      "time": "2026-06-07T11:30:00",
-      "greenfee": 62,
-      "spaces": 3,
-      "maxPlayers": 3,
       "source": "golfnow"
     },
     {
       "id": "gn-newlands-executive-2026-06-07-1",
       "courseId": "newlands-executive",
       "time": "2026-06-07T18:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3372,7 +3156,7 @@
       "id": "gn-newlands-executive-2026-06-07-2",
       "courseId": "newlands-executive",
       "time": "2026-06-07T18:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3381,7 +3165,7 @@
       "id": "gn-newlands-executive-2026-06-07-3",
       "courseId": "newlands-executive",
       "time": "2026-06-07T18:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3390,7 +3174,7 @@
       "id": "gn-newlands-executive-2026-06-07-4",
       "courseId": "newlands-executive",
       "time": "2026-06-07T18:34:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3399,7 +3183,7 @@
       "id": "gn-newlands-executive-2026-06-07-5",
       "courseId": "newlands-executive",
       "time": "2026-06-07T18:42:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3408,7 +3192,7 @@
       "id": "gn-newlands-executive-2026-06-07-6",
       "courseId": "newlands-executive",
       "time": "2026-06-07T18:50:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3417,7 +3201,7 @@
       "id": "gn-newlands-executive-2026-06-07-7",
       "courseId": "newlands-executive",
       "time": "2026-06-07T18:58:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3426,7 +3210,7 @@
       "id": "gn-newlands-executive-2026-06-07-8",
       "courseId": "newlands-executive",
       "time": "2026-06-07T19:06:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3435,7 +3219,7 @@
       "id": "gn-newlands-executive-2026-06-07-9",
       "courseId": "newlands-executive",
       "time": "2026-06-07T19:14:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3444,7 +3228,7 @@
       "id": "gn-newlands-executive-2026-06-07-10",
       "courseId": "newlands-executive",
       "time": "2026-06-07T19:22:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3453,7 +3237,7 @@
       "id": "gn-newlands-executive-2026-06-07-11",
       "courseId": "newlands-executive",
       "time": "2026-06-07T19:30:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3462,7 +3246,7 @@
       "id": "gn-newlands-executive-2026-06-07-12",
       "courseId": "newlands-executive",
       "time": "2026-06-07T19:38:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3471,7 +3255,7 @@
       "id": "gn-newlands-executive-2026-06-07-13",
       "courseId": "newlands-executive",
       "time": "2026-06-07T19:46:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3480,7 +3264,7 @@
       "id": "gn-newlands-executive-2026-06-07-14",
       "courseId": "newlands-executive",
       "time": "2026-06-07T19:54:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3489,7 +3273,7 @@
       "id": "gn-newlands-executive-2026-06-07-15",
       "courseId": "newlands-executive",
       "time": "2026-06-07T20:02:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3498,7 +3282,7 @@
       "id": "gn-newlands-executive-2026-06-07-16",
       "courseId": "newlands-executive",
       "time": "2026-06-07T20:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3507,7 +3291,7 @@
       "id": "gn-newlands-executive-2026-06-07-17",
       "courseId": "newlands-executive",
       "time": "2026-06-07T20:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3516,7 +3300,7 @@
       "id": "gn-newlands-executive-2026-06-07-18",
       "courseId": "newlands-executive",
       "time": "2026-06-07T20:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3552,7 +3336,7 @@
       "id": "gn-westfield-2026-06-07-1",
       "courseId": "westfield",
       "time": "2026-06-07T16:16:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3561,7 +3345,7 @@
       "id": "gn-westfield-2026-06-07-2",
       "courseId": "westfield",
       "time": "2026-06-07T16:24:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3570,7 +3354,7 @@
       "id": "gn-westfield-2026-06-07-3",
       "courseId": "westfield",
       "time": "2026-06-07T16:32:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3579,7 +3363,7 @@
       "id": "gn-westfield-2026-06-07-4",
       "courseId": "westfield",
       "time": "2026-06-07T16:40:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3588,7 +3372,7 @@
       "id": "gn-westfield-2026-06-07-5",
       "courseId": "westfield",
       "time": "2026-06-07T16:48:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3597,7 +3381,7 @@
       "id": "gn-westfield-2026-06-07-6",
       "courseId": "westfield",
       "time": "2026-06-07T16:56:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3606,7 +3390,7 @@
       "id": "gn-westfield-2026-06-07-7",
       "courseId": "westfield",
       "time": "2026-06-07T17:04:00",
-      "greenfee": 3000,
+      "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3615,7 +3399,7 @@
       "id": "gn-westfield-2026-06-07-8",
       "courseId": "westfield",
       "time": "2026-06-07T17:12:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3624,7 +3408,7 @@
       "id": "gn-westfield-2026-06-07-9",
       "courseId": "westfield",
       "time": "2026-06-07T17:20:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3633,7 +3417,7 @@
       "id": "gn-westfield-2026-06-07-10",
       "courseId": "westfield",
       "time": "2026-06-07T17:28:00",
-      "greenfee": 3900,
+      "greenfee": 39,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3657,7 +3441,7 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-07-13",
+      "id": "gn-westfield-2026-06-07-15",
       "courseId": "westfield",
       "time": "2026-06-07T12:56:00",
       "greenfee": 27,
@@ -3666,37 +3450,280 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-07-1",
-      "courseId": "golden-eagle-south",
+      "id": "gn-westfield-2026-06-07-21",
+      "courseId": "westfield",
+      "time": "2026-06-07T13:00:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-07-22",
+      "courseId": "westfield",
+      "time": "2026-06-07T15:00:00",
+      "greenfee": 36,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-1",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T16:50:00",
+      "greenfee": 62,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-2",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T16:58:00",
+      "greenfee": 62,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-3",
+      "courseId": "newlands-cc",
       "time": "2026-06-07T17:14:00",
-      "greenfee": 3000,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-07-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-07T17:23:00",
-      "greenfee": 3000,
+      "id": "gn-newlands-cc-2026-06-07-4",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T17:22:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-07-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-07T17:41:00",
-      "greenfee": 3000,
+      "id": "gn-newlands-cc-2026-06-07-5",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T17:38:00",
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-6",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T17:46:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-7",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T17:54:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-8",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T18:02:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-9",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T18:10:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-10",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T18:18:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-11",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T18:26:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-12",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T18:34:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-13",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T18:42:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-14",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T18:50:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-15",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T18:58:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-16",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T19:06:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-17",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T19:14:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-18",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T19:22:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-19",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T19:30:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-20",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T19:38:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-21",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T19:46:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-22",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T19:54:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-23",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T20:02:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-24",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T20:10:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-25",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T20:18:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-26",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T20:26:00",
+      "greenfee": 53,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-27",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T10:02:00",
+      "greenfee": 44,
+      "spaces": 2,
+      "maxPlayers": 2,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-newlands-cc-2026-06-07-29",
+      "courseId": "newlands-cc",
+      "time": "2026-06-07T11:30:00",
+      "greenfee": 62,
+      "spaces": 3,
+      "maxPlayers": 3,
       "source": "golfnow"
     },
     {
       "id": "gn-eighteen-pastures-2026-06-07-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-07T16:20:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3705,7 +3732,7 @@
       "id": "gn-eighteen-pastures-2026-06-07-2",
       "courseId": "eighteen-pastures",
       "time": "2026-06-07T16:30:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3714,7 +3741,7 @@
       "id": "gn-eighteen-pastures-2026-06-07-3",
       "courseId": "eighteen-pastures",
       "time": "2026-06-07T16:40:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3723,7 +3750,7 @@
       "id": "gn-eighteen-pastures-2026-06-07-4",
       "courseId": "eighteen-pastures",
       "time": "2026-06-07T16:50:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3732,7 +3759,7 @@
       "id": "gn-eighteen-pastures-2026-06-07-5",
       "courseId": "eighteen-pastures",
       "time": "2026-06-07T17:00:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3756,10 +3783,37 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-golden-eagle-south-2026-06-07-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-07T17:14:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-07-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-07T17:23:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-07-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-07T17:41:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-golden-eagle-north-2026-06-07-1",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T16:30:00",
-      "greenfee": 5500,
+      "greenfee": 55,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3768,7 +3822,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-2",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T16:50:00",
-      "greenfee": 5500,
+      "greenfee": 55,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3777,7 +3831,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-3",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T17:00:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3786,7 +3840,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-4",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T17:10:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3795,7 +3849,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-5",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T17:20:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3804,7 +3858,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-6",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T17:30:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3813,7 +3867,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-7",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T17:40:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3822,7 +3876,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-8",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T17:50:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3831,7 +3885,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-9",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T18:00:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3840,7 +3894,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-10",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T18:10:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3849,7 +3903,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-11",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T18:20:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3858,7 +3912,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-12",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T18:30:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3867,7 +3921,7 @@
       "id": "gn-golden-eagle-north-2026-06-07-13",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T18:40:00",
-      "greenfee": 4000,
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3876,7 +3930,124 @@
       "id": "gn-golden-eagle-north-2026-06-07-14",
       "courseId": "golden-eagle-north",
       "time": "2026-06-07T18:50:00",
-      "greenfee": 4000,
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-1",
+      "courseId": "westfield",
+      "time": "2026-06-08T16:16:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-2",
+      "courseId": "westfield",
+      "time": "2026-06-08T16:24:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-3",
+      "courseId": "westfield",
+      "time": "2026-06-08T16:32:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-4",
+      "courseId": "westfield",
+      "time": "2026-06-08T16:40:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-5",
+      "courseId": "westfield",
+      "time": "2026-06-08T16:48:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-6",
+      "courseId": "westfield",
+      "time": "2026-06-08T16:56:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-7",
+      "courseId": "westfield",
+      "time": "2026-06-08T17:04:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-8",
+      "courseId": "westfield",
+      "time": "2026-06-08T17:12:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-9",
+      "courseId": "westfield",
+      "time": "2026-06-08T17:20:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-10",
+      "courseId": "westfield",
+      "time": "2026-06-08T17:28:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-11",
+      "courseId": "westfield",
+      "time": "2026-06-08T14:24:00",
+      "greenfee": 23,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-12",
+      "courseId": "westfield",
+      "time": "2026-06-08T14:56:00",
+      "greenfee": 28,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-08-13",
+      "courseId": "westfield",
+      "time": "2026-06-08T12:56:00",
+      "greenfee": 27,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3885,7 +4056,7 @@
       "id": "gn-newlands-executive-2026-06-08-1",
       "courseId": "newlands-executive",
       "time": "2026-06-08T18:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3894,7 +4065,7 @@
       "id": "gn-newlands-executive-2026-06-08-2",
       "courseId": "newlands-executive",
       "time": "2026-06-08T18:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3903,7 +4074,7 @@
       "id": "gn-newlands-executive-2026-06-08-3",
       "courseId": "newlands-executive",
       "time": "2026-06-08T18:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3912,7 +4083,7 @@
       "id": "gn-newlands-executive-2026-06-08-4",
       "courseId": "newlands-executive",
       "time": "2026-06-08T18:34:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3921,7 +4092,7 @@
       "id": "gn-newlands-executive-2026-06-08-5",
       "courseId": "newlands-executive",
       "time": "2026-06-08T18:42:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3930,7 +4101,7 @@
       "id": "gn-newlands-executive-2026-06-08-6",
       "courseId": "newlands-executive",
       "time": "2026-06-08T18:50:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3939,7 +4110,7 @@
       "id": "gn-newlands-executive-2026-06-08-7",
       "courseId": "newlands-executive",
       "time": "2026-06-08T18:58:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3948,7 +4119,7 @@
       "id": "gn-newlands-executive-2026-06-08-8",
       "courseId": "newlands-executive",
       "time": "2026-06-08T19:06:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3957,7 +4128,7 @@
       "id": "gn-newlands-executive-2026-06-08-9",
       "courseId": "newlands-executive",
       "time": "2026-06-08T19:14:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3966,7 +4137,7 @@
       "id": "gn-newlands-executive-2026-06-08-10",
       "courseId": "newlands-executive",
       "time": "2026-06-08T19:22:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3975,7 +4146,7 @@
       "id": "gn-newlands-executive-2026-06-08-11",
       "courseId": "newlands-executive",
       "time": "2026-06-08T19:30:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3984,7 +4155,7 @@
       "id": "gn-newlands-executive-2026-06-08-12",
       "courseId": "newlands-executive",
       "time": "2026-06-08T19:38:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -3993,7 +4164,7 @@
       "id": "gn-newlands-executive-2026-06-08-13",
       "courseId": "newlands-executive",
       "time": "2026-06-08T19:46:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4002,7 +4173,7 @@
       "id": "gn-newlands-executive-2026-06-08-14",
       "courseId": "newlands-executive",
       "time": "2026-06-08T19:54:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4011,7 +4182,7 @@
       "id": "gn-newlands-executive-2026-06-08-15",
       "courseId": "newlands-executive",
       "time": "2026-06-08T20:02:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4020,7 +4191,7 @@
       "id": "gn-newlands-executive-2026-06-08-16",
       "courseId": "newlands-executive",
       "time": "2026-06-08T20:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4029,7 +4200,7 @@
       "id": "gn-newlands-executive-2026-06-08-17",
       "courseId": "newlands-executive",
       "time": "2026-06-08T20:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4038,7 +4209,7 @@
       "id": "gn-newlands-executive-2026-06-08-18",
       "courseId": "newlands-executive",
       "time": "2026-06-08T20:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4071,145 +4242,10 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-08-1",
-      "courseId": "westfield",
-      "time": "2026-06-08T16:16:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-2",
-      "courseId": "westfield",
-      "time": "2026-06-08T16:24:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-3",
-      "courseId": "westfield",
-      "time": "2026-06-08T16:32:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-4",
-      "courseId": "westfield",
-      "time": "2026-06-08T16:40:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-5",
-      "courseId": "westfield",
-      "time": "2026-06-08T16:48:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-6",
-      "courseId": "westfield",
-      "time": "2026-06-08T16:56:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-7",
-      "courseId": "westfield",
-      "time": "2026-06-08T17:04:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-8",
-      "courseId": "westfield",
-      "time": "2026-06-08T17:12:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-9",
-      "courseId": "westfield",
-      "time": "2026-06-08T17:20:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-10",
-      "courseId": "westfield",
-      "time": "2026-06-08T17:28:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-11",
-      "courseId": "westfield",
-      "time": "2026-06-08T14:24:00",
-      "greenfee": 23,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-12",
-      "courseId": "westfield",
-      "time": "2026-06-08T14:56:00",
-      "greenfee": 28,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-15",
-      "courseId": "westfield",
-      "time": "2026-06-08T12:56:00",
-      "greenfee": 27,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-21",
-      "courseId": "westfield",
-      "time": "2026-06-08T13:00:00",
-      "greenfee": 30,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-08-22",
-      "courseId": "westfield",
-      "time": "2026-06-08T15:00:00",
-      "greenfee": 36,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-newlands-cc-2026-06-08-1",
       "courseId": "newlands-cc",
       "time": "2026-06-08T16:50:00",
-      "greenfee": 6232,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4218,7 +4254,7 @@
       "id": "gn-newlands-cc-2026-06-08-2",
       "courseId": "newlands-cc",
       "time": "2026-06-08T16:58:00",
-      "greenfee": 6232,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4227,7 +4263,7 @@
       "id": "gn-newlands-cc-2026-06-08-3",
       "courseId": "newlands-cc",
       "time": "2026-06-08T17:14:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4236,7 +4272,7 @@
       "id": "gn-newlands-cc-2026-06-08-4",
       "courseId": "newlands-cc",
       "time": "2026-06-08T17:22:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4245,7 +4281,7 @@
       "id": "gn-newlands-cc-2026-06-08-5",
       "courseId": "newlands-cc",
       "time": "2026-06-08T17:38:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4254,7 +4290,7 @@
       "id": "gn-newlands-cc-2026-06-08-6",
       "courseId": "newlands-cc",
       "time": "2026-06-08T17:46:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4263,7 +4299,7 @@
       "id": "gn-newlands-cc-2026-06-08-7",
       "courseId": "newlands-cc",
       "time": "2026-06-08T17:54:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4272,7 +4308,7 @@
       "id": "gn-newlands-cc-2026-06-08-8",
       "courseId": "newlands-cc",
       "time": "2026-06-08T18:02:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4281,7 +4317,7 @@
       "id": "gn-newlands-cc-2026-06-08-9",
       "courseId": "newlands-cc",
       "time": "2026-06-08T18:10:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4290,7 +4326,7 @@
       "id": "gn-newlands-cc-2026-06-08-10",
       "courseId": "newlands-cc",
       "time": "2026-06-08T18:18:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4299,7 +4335,7 @@
       "id": "gn-newlands-cc-2026-06-08-11",
       "courseId": "newlands-cc",
       "time": "2026-06-08T18:26:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4308,7 +4344,7 @@
       "id": "gn-newlands-cc-2026-06-08-12",
       "courseId": "newlands-cc",
       "time": "2026-06-08T18:34:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4317,7 +4353,7 @@
       "id": "gn-newlands-cc-2026-06-08-13",
       "courseId": "newlands-cc",
       "time": "2026-06-08T18:42:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4326,7 +4362,7 @@
       "id": "gn-newlands-cc-2026-06-08-14",
       "courseId": "newlands-cc",
       "time": "2026-06-08T18:50:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4335,7 +4371,7 @@
       "id": "gn-newlands-cc-2026-06-08-15",
       "courseId": "newlands-cc",
       "time": "2026-06-08T18:58:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4344,7 +4380,7 @@
       "id": "gn-newlands-cc-2026-06-08-16",
       "courseId": "newlands-cc",
       "time": "2026-06-08T19:06:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4353,7 +4389,7 @@
       "id": "gn-newlands-cc-2026-06-08-17",
       "courseId": "newlands-cc",
       "time": "2026-06-08T19:14:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4362,7 +4398,7 @@
       "id": "gn-newlands-cc-2026-06-08-18",
       "courseId": "newlands-cc",
       "time": "2026-06-08T19:22:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4371,7 +4407,7 @@
       "id": "gn-newlands-cc-2026-06-08-19",
       "courseId": "newlands-cc",
       "time": "2026-06-08T19:30:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4380,7 +4416,7 @@
       "id": "gn-newlands-cc-2026-06-08-20",
       "courseId": "newlands-cc",
       "time": "2026-06-08T19:38:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4389,7 +4425,7 @@
       "id": "gn-newlands-cc-2026-06-08-21",
       "courseId": "newlands-cc",
       "time": "2026-06-08T19:46:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4398,7 +4434,7 @@
       "id": "gn-newlands-cc-2026-06-08-22",
       "courseId": "newlands-cc",
       "time": "2026-06-08T19:54:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4407,7 +4443,7 @@
       "id": "gn-newlands-cc-2026-06-08-23",
       "courseId": "newlands-cc",
       "time": "2026-06-08T20:02:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4416,7 +4452,7 @@
       "id": "gn-newlands-cc-2026-06-08-24",
       "courseId": "newlands-cc",
       "time": "2026-06-08T20:10:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4425,7 +4461,7 @@
       "id": "gn-newlands-cc-2026-06-08-25",
       "courseId": "newlands-cc",
       "time": "2026-06-08T20:18:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4434,7 +4470,7 @@
       "id": "gn-newlands-cc-2026-06-08-26",
       "courseId": "newlands-cc",
       "time": "2026-06-08T20:26:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4458,163 +4494,10 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-golden-eagle-south-2026-06-08-1",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-08T17:14:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-08-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-08T17:23:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-08-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-08T17:41:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-1",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T16:30:00",
-      "greenfee": 5500,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-2",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T16:50:00",
-      "greenfee": 5500,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-3",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T17:00:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-4",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T17:10:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-5",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T17:20:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-6",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T17:30:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-7",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T17:40:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-8",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T17:50:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-9",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T18:00:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-10",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T18:10:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-11",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T18:20:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-12",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T18:30:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-13",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T18:40:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-08-14",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-08T18:50:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
       "id": "gn-eighteen-pastures-2026-06-08-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-08T16:20:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4623,7 +4506,7 @@
       "id": "gn-eighteen-pastures-2026-06-08-2",
       "courseId": "eighteen-pastures",
       "time": "2026-06-08T16:30:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4632,7 +4515,7 @@
       "id": "gn-eighteen-pastures-2026-06-08-3",
       "courseId": "eighteen-pastures",
       "time": "2026-06-08T16:40:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4641,7 +4524,7 @@
       "id": "gn-eighteen-pastures-2026-06-08-4",
       "courseId": "eighteen-pastures",
       "time": "2026-06-08T16:50:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4650,7 +4533,7 @@
       "id": "gn-eighteen-pastures-2026-06-08-5",
       "courseId": "eighteen-pastures",
       "time": "2026-06-08T17:00:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4674,136 +4557,154 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-09-1",
-      "courseId": "westfield",
-      "time": "2026-06-09T16:16:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-2",
-      "courseId": "westfield",
-      "time": "2026-06-09T16:24:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-3",
-      "courseId": "westfield",
-      "time": "2026-06-09T16:32:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-4",
-      "courseId": "westfield",
-      "time": "2026-06-09T16:40:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-5",
-      "courseId": "westfield",
-      "time": "2026-06-09T16:48:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-6",
-      "courseId": "westfield",
-      "time": "2026-06-09T16:56:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-7",
-      "courseId": "westfield",
-      "time": "2026-06-09T17:04:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-8",
-      "courseId": "westfield",
-      "time": "2026-06-09T17:12:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-9",
-      "courseId": "westfield",
-      "time": "2026-06-09T17:20:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-10",
-      "courseId": "westfield",
-      "time": "2026-06-09T17:28:00",
-      "greenfee": 3900,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-11",
-      "courseId": "westfield",
-      "time": "2026-06-09T14:24:00",
-      "greenfee": 23,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-12",
-      "courseId": "westfield",
-      "time": "2026-06-09T14:56:00",
-      "greenfee": 28,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-15",
-      "courseId": "westfield",
-      "time": "2026-06-09T12:56:00",
-      "greenfee": 27,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-westfield-2026-06-09-21",
-      "courseId": "westfield",
-      "time": "2026-06-09T13:00:00",
+      "id": "gn-golden-eagle-south-2026-06-08-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-08T17:14:00",
       "greenfee": 30,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
     },
     {
-      "id": "gn-westfield-2026-06-09-22",
-      "courseId": "westfield",
-      "time": "2026-06-09T15:00:00",
-      "greenfee": 36,
+      "id": "gn-golden-eagle-south-2026-06-08-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-08T17:23:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-08-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-08T17:41:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-1",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T16:30:00",
+      "greenfee": 55,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-2",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T16:50:00",
+      "greenfee": 55,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-3",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T17:00:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-4",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T17:10:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-5",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T17:20:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-6",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T17:30:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-7",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T17:40:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-8",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T17:50:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-9",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T18:00:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-10",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T18:10:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-11",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T18:20:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-12",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T18:30:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-13",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T18:40:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-08-14",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-08T18:50:00",
+      "greenfee": 40,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4812,7 +4713,7 @@
       "id": "gn-newlands-executive-2026-06-09-1",
       "courseId": "newlands-executive",
       "time": "2026-06-09T18:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4821,7 +4722,7 @@
       "id": "gn-newlands-executive-2026-06-09-2",
       "courseId": "newlands-executive",
       "time": "2026-06-09T18:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4830,7 +4731,7 @@
       "id": "gn-newlands-executive-2026-06-09-3",
       "courseId": "newlands-executive",
       "time": "2026-06-09T18:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4839,7 +4740,7 @@
       "id": "gn-newlands-executive-2026-06-09-4",
       "courseId": "newlands-executive",
       "time": "2026-06-09T18:34:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4848,7 +4749,7 @@
       "id": "gn-newlands-executive-2026-06-09-5",
       "courseId": "newlands-executive",
       "time": "2026-06-09T18:42:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4857,7 +4758,7 @@
       "id": "gn-newlands-executive-2026-06-09-6",
       "courseId": "newlands-executive",
       "time": "2026-06-09T18:50:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4866,7 +4767,7 @@
       "id": "gn-newlands-executive-2026-06-09-7",
       "courseId": "newlands-executive",
       "time": "2026-06-09T18:58:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4875,7 +4776,7 @@
       "id": "gn-newlands-executive-2026-06-09-8",
       "courseId": "newlands-executive",
       "time": "2026-06-09T19:06:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4884,7 +4785,7 @@
       "id": "gn-newlands-executive-2026-06-09-9",
       "courseId": "newlands-executive",
       "time": "2026-06-09T19:14:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4893,7 +4794,7 @@
       "id": "gn-newlands-executive-2026-06-09-10",
       "courseId": "newlands-executive",
       "time": "2026-06-09T19:22:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4902,7 +4803,7 @@
       "id": "gn-newlands-executive-2026-06-09-11",
       "courseId": "newlands-executive",
       "time": "2026-06-09T19:30:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4911,7 +4812,7 @@
       "id": "gn-newlands-executive-2026-06-09-12",
       "courseId": "newlands-executive",
       "time": "2026-06-09T19:38:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4920,7 +4821,7 @@
       "id": "gn-newlands-executive-2026-06-09-13",
       "courseId": "newlands-executive",
       "time": "2026-06-09T19:46:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4929,7 +4830,7 @@
       "id": "gn-newlands-executive-2026-06-09-14",
       "courseId": "newlands-executive",
       "time": "2026-06-09T19:54:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4938,7 +4839,7 @@
       "id": "gn-newlands-executive-2026-06-09-15",
       "courseId": "newlands-executive",
       "time": "2026-06-09T20:02:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4947,7 +4848,7 @@
       "id": "gn-newlands-executive-2026-06-09-16",
       "courseId": "newlands-executive",
       "time": "2026-06-09T20:10:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4956,7 +4857,7 @@
       "id": "gn-newlands-executive-2026-06-09-17",
       "courseId": "newlands-executive",
       "time": "2026-06-09T20:18:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4965,7 +4866,7 @@
       "id": "gn-newlands-executive-2026-06-09-18",
       "courseId": "newlands-executive",
       "time": "2026-06-09T20:26:00",
-      "greenfee": 2095,
+      "greenfee": 21,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -4998,10 +4899,127 @@
       "source": "golfnow"
     },
     {
+      "id": "gn-westfield-2026-06-09-1",
+      "courseId": "westfield",
+      "time": "2026-06-09T16:16:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-2",
+      "courseId": "westfield",
+      "time": "2026-06-09T16:24:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-3",
+      "courseId": "westfield",
+      "time": "2026-06-09T16:32:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-4",
+      "courseId": "westfield",
+      "time": "2026-06-09T16:40:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-5",
+      "courseId": "westfield",
+      "time": "2026-06-09T16:48:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-6",
+      "courseId": "westfield",
+      "time": "2026-06-09T16:56:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-7",
+      "courseId": "westfield",
+      "time": "2026-06-09T17:04:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-8",
+      "courseId": "westfield",
+      "time": "2026-06-09T17:12:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-9",
+      "courseId": "westfield",
+      "time": "2026-06-09T17:20:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-10",
+      "courseId": "westfield",
+      "time": "2026-06-09T17:28:00",
+      "greenfee": 39,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-11",
+      "courseId": "westfield",
+      "time": "2026-06-09T14:24:00",
+      "greenfee": 23,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-12",
+      "courseId": "westfield",
+      "time": "2026-06-09T14:56:00",
+      "greenfee": 28,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-westfield-2026-06-09-13",
+      "courseId": "westfield",
+      "time": "2026-06-09T12:56:00",
+      "greenfee": 27,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
       "id": "gn-newlands-cc-2026-06-09-1",
       "courseId": "newlands-cc",
       "time": "2026-06-09T16:50:00",
-      "greenfee": 6232,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5010,7 +5028,7 @@
       "id": "gn-newlands-cc-2026-06-09-2",
       "courseId": "newlands-cc",
       "time": "2026-06-09T16:58:00",
-      "greenfee": 6232,
+      "greenfee": 62,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5019,7 +5037,7 @@
       "id": "gn-newlands-cc-2026-06-09-3",
       "courseId": "newlands-cc",
       "time": "2026-06-09T17:14:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5028,7 +5046,7 @@
       "id": "gn-newlands-cc-2026-06-09-4",
       "courseId": "newlands-cc",
       "time": "2026-06-09T17:22:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5037,7 +5055,7 @@
       "id": "gn-newlands-cc-2026-06-09-5",
       "courseId": "newlands-cc",
       "time": "2026-06-09T17:38:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5046,7 +5064,7 @@
       "id": "gn-newlands-cc-2026-06-09-6",
       "courseId": "newlands-cc",
       "time": "2026-06-09T17:46:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5055,7 +5073,7 @@
       "id": "gn-newlands-cc-2026-06-09-7",
       "courseId": "newlands-cc",
       "time": "2026-06-09T17:54:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5064,7 +5082,7 @@
       "id": "gn-newlands-cc-2026-06-09-8",
       "courseId": "newlands-cc",
       "time": "2026-06-09T18:02:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5073,7 +5091,7 @@
       "id": "gn-newlands-cc-2026-06-09-9",
       "courseId": "newlands-cc",
       "time": "2026-06-09T18:10:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5082,7 +5100,7 @@
       "id": "gn-newlands-cc-2026-06-09-10",
       "courseId": "newlands-cc",
       "time": "2026-06-09T18:18:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5091,7 +5109,7 @@
       "id": "gn-newlands-cc-2026-06-09-11",
       "courseId": "newlands-cc",
       "time": "2026-06-09T18:26:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5100,7 +5118,7 @@
       "id": "gn-newlands-cc-2026-06-09-12",
       "courseId": "newlands-cc",
       "time": "2026-06-09T18:34:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5109,7 +5127,7 @@
       "id": "gn-newlands-cc-2026-06-09-13",
       "courseId": "newlands-cc",
       "time": "2026-06-09T18:42:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5118,7 +5136,7 @@
       "id": "gn-newlands-cc-2026-06-09-14",
       "courseId": "newlands-cc",
       "time": "2026-06-09T18:50:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5127,7 +5145,7 @@
       "id": "gn-newlands-cc-2026-06-09-15",
       "courseId": "newlands-cc",
       "time": "2026-06-09T18:58:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5136,7 +5154,7 @@
       "id": "gn-newlands-cc-2026-06-09-16",
       "courseId": "newlands-cc",
       "time": "2026-06-09T19:06:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5145,7 +5163,7 @@
       "id": "gn-newlands-cc-2026-06-09-17",
       "courseId": "newlands-cc",
       "time": "2026-06-09T19:14:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5154,7 +5172,7 @@
       "id": "gn-newlands-cc-2026-06-09-18",
       "courseId": "newlands-cc",
       "time": "2026-06-09T19:22:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5163,7 +5181,7 @@
       "id": "gn-newlands-cc-2026-06-09-19",
       "courseId": "newlands-cc",
       "time": "2026-06-09T19:30:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5172,7 +5190,7 @@
       "id": "gn-newlands-cc-2026-06-09-20",
       "courseId": "newlands-cc",
       "time": "2026-06-09T19:38:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5181,7 +5199,7 @@
       "id": "gn-newlands-cc-2026-06-09-21",
       "courseId": "newlands-cc",
       "time": "2026-06-09T19:46:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5190,7 +5208,7 @@
       "id": "gn-newlands-cc-2026-06-09-22",
       "courseId": "newlands-cc",
       "time": "2026-06-09T19:54:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5199,7 +5217,7 @@
       "id": "gn-newlands-cc-2026-06-09-23",
       "courseId": "newlands-cc",
       "time": "2026-06-09T20:02:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5208,7 +5226,7 @@
       "id": "gn-newlands-cc-2026-06-09-24",
       "courseId": "newlands-cc",
       "time": "2026-06-09T20:10:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5217,7 +5235,7 @@
       "id": "gn-newlands-cc-2026-06-09-25",
       "courseId": "newlands-cc",
       "time": "2026-06-09T20:18:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5226,7 +5244,7 @@
       "id": "gn-newlands-cc-2026-06-09-26",
       "courseId": "newlands-cc",
       "time": "2026-06-09T20:26:00",
-      "greenfee": 5280,
+      "greenfee": 53,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5241,19 +5259,163 @@
       "source": "golfnow"
     },
     {
-      "id": "gn-newlands-cc-2026-06-09-29",
-      "courseId": "newlands-cc",
-      "time": "2026-06-09T11:30:00",
-      "greenfee": 62,
-      "spaces": 3,
-      "maxPlayers": 3,
+      "id": "gn-golden-eagle-south-2026-06-09-1",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-09T17:14:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-09-2",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-09T17:23:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-south-2026-06-09-3",
+      "courseId": "golden-eagle-south",
+      "time": "2026-06-09T17:41:00",
+      "greenfee": 30,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-1",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T16:30:00",
+      "greenfee": 55,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-2",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T16:50:00",
+      "greenfee": 55,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-3",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T17:00:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-4",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T17:10:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-5",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T17:20:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-6",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T17:30:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-7",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T17:40:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-8",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T17:50:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-9",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T18:00:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-10",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T18:10:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-11",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T18:20:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-12",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T18:30:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-13",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T18:40:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
+      "source": "golfnow"
+    },
+    {
+      "id": "gn-golden-eagle-north-2026-06-09-14",
+      "courseId": "golden-eagle-north",
+      "time": "2026-06-09T18:50:00",
+      "greenfee": 40,
+      "spaces": 4,
+      "maxPlayers": 4,
       "source": "golfnow"
     },
     {
       "id": "gn-eighteen-pastures-2026-06-09-1",
       "courseId": "eighteen-pastures",
       "time": "2026-06-09T16:20:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5262,7 +5424,7 @@
       "id": "gn-eighteen-pastures-2026-06-09-2",
       "courseId": "eighteen-pastures",
       "time": "2026-06-09T16:30:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5271,7 +5433,7 @@
       "id": "gn-eighteen-pastures-2026-06-09-3",
       "courseId": "eighteen-pastures",
       "time": "2026-06-09T16:40:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5280,7 +5442,7 @@
       "id": "gn-eighteen-pastures-2026-06-09-4",
       "courseId": "eighteen-pastures",
       "time": "2026-06-09T16:50:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5289,7 +5451,7 @@
       "id": "gn-eighteen-pastures-2026-06-09-5",
       "courseId": "eighteen-pastures",
       "time": "2026-06-09T17:00:00",
-      "greenfee": 3500,
+      "greenfee": 35,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
@@ -5308,159 +5470,6 @@
       "courseId": "eighteen-pastures",
       "time": "2026-06-09T12:30:00",
       "greenfee": 22,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-1",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T16:30:00",
-      "greenfee": 5500,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-2",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T16:50:00",
-      "greenfee": 5500,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-3",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T17:00:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-4",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T17:10:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-5",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T17:20:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-6",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T17:30:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-7",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T17:40:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-8",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T17:50:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-9",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T18:00:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-10",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T18:10:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-11",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T18:20:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-12",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T18:30:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-13",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T18:40:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-north-2026-06-09-14",
-      "courseId": "golden-eagle-north",
-      "time": "2026-06-09T18:50:00",
-      "greenfee": 4000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-09-1",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-09T17:14:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-09-2",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-09T17:23:00",
-      "greenfee": 3000,
-      "spaces": 4,
-      "maxPlayers": 4,
-      "source": "golfnow"
-    },
-    {
-      "id": "gn-golden-eagle-south-2026-06-09-3",
-      "courseId": "golden-eagle-south",
-      "time": "2026-06-09T17:41:00",
-      "greenfee": 3000,
       "spaces": 4,
       "maxPlayers": 4,
       "source": "golfnow"
