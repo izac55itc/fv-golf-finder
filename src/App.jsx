@@ -4,6 +4,7 @@ import { rankTeetimes, fuelCostDollars } from './utils/ranker.js'
 import { fetchAllDriveTimes } from './utils/distanceMatrix.js'
 import { getCurrentLocation, WALNUT_GROVE } from './utils/geo.js'
 import { getSunsetTime } from './utils/sunset.js'
+import { fetchAllCourseWeather } from './utils/weather.js'
 import TeeTimeTable from './components/TeeTimeTable.jsx'
 import FilterPanel from './components/FilterPanel.jsx'
 
@@ -85,6 +86,9 @@ export default function App() {
   // Drive times (Mapbox or Haversine)
   const [driveTimes,   setDriveTimes]   = useState(null)
 
+  // Weather data
+  const [weatherData, setWeatherData] = useState(null)
+
   // ── GPS location
   useEffect(() => {
     setLocLoading(true)
@@ -102,6 +106,13 @@ export default function App() {
       .then(map => { if (alive) setDriveTimes(map) })
     return () => { alive = false }
   }, [location.lat, location.lng])
+
+  // ── Fetch weather for all courses
+  useEffect(() => {
+    fetchAllCourseWeather(COURSES)
+      .then(setWeatherData)
+      .catch(() => {})
+  }, [])
 
   // ── Fetch tee times from data branch
   const fetchTeetimes = useCallback(() => {
