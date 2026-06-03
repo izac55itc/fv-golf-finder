@@ -28,6 +28,7 @@ async function main() {
           const isoTime = parseTime(raw.time, dateStr)
           if (!isoTime) continue
           if (raw.spaces <= 0) continue
+          if (raw.greenfee <= 0) continue  // skip $0 promo/placeholder entries
           allTeetimes.push({
             id:         `gn-${courseId}-${dateStr}-${seq++}`,
             courseId,
@@ -44,12 +45,9 @@ async function main() {
     golfnow.closeBrowser().catch(() => {})
   }
 
-  // Deduplicate — same course + same time slot appears multiple times
-  // at different rate tiers (walking, cart, promo). Skip $0 entries
-  // (promo/placeholder slots) and keep cheapest non-zero rate per slot.
+  // Deduplicate — keep cheapest non-zero rate per course+time slot
   const dedupMap = new Map()
   for (const tt of allTeetimes) {
-    if (tt.greenfee <= 0) continue  // skip $0 promo/placeholder entries
     const key = `${tt.courseId}|${tt.time}`
     const existing = dedupMap.get(key)
     if (!existing || tt.greenfee < existing.greenfee) {
