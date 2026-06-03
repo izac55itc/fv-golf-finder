@@ -1,12 +1,11 @@
 import './App.css'
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { COURSES } from './data/courses.js'
-import { rankTeetimes, fuelCostDollars } from './utils/ranker.js'
+import { rankTeetimes } from './utils/ranker.js'
 import { fetchAllDriveTimes } from './utils/distanceMatrix.js'
 import { getCurrentLocation, WALNUT_GROVE } from './utils/geo.js'
 import { getSunsetTime } from './utils/sunset.js'
 import { fetchAllCourseWeather } from './utils/weather.js'
-import TeeTimeTable from './components/TeeTimeTable.jsx'
 import FilterPanel from './components/FilterPanel.jsx'
 import CalendarView from './components/CalendarView.jsx'
 
@@ -95,10 +94,8 @@ export default function App() {
   const [maxDriveMin,     setMaxDriveMin]     = useState(60)
   const [playerCount,     setPlayerCount]     = useState(1)
   const [selectedCourses, setSelectedCourses] = useState(null)
-  const [showSkips,       setShowSkips]       = useState(false)
-  const [view,            setView]            = useState('calendar')
 
-  const [driveTimes, setDriveTimes] = useState(null)
+  const [driveTimes,  setDriveTimes]  = useState(null)
   const [weatherData, setWeatherData] = useState(null)
 
   const availableDates = useMemo(() => (
@@ -122,6 +119,7 @@ export default function App() {
       .then(setWeatherData)
       .catch(err => console.warn('Weather fetch error:', err))
   }, [])
+
   const handleLocSearch = useCallback(async () => {
     if (!locInput.trim()) return
     setLocSearching(true)
@@ -168,7 +166,7 @@ export default function App() {
     setTeeError(null)
     fetch(`${DATA_URL}?v=${Date.now()}`)
       .then(r => {
-        if (r.status === 404) throw new Error('No data yet — scraper hasn\'t run. Trigger it manually in the Actions tab.')
+        if (r.status === 404) throw new Error('No data yet — scraper hasn\'t run.')
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
         return r.json()
       })
@@ -230,7 +228,7 @@ export default function App() {
   }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
 
   const baseDate      = useMemo(() => new Date(sessionDate + 'T00:00:00'), [sessionDate])
-  const availableFrom = useMemo(() => fromTimeInput(fromTimeStr, baseDate),   [fromTimeStr, sessionDate])
+  const availableFrom = useMemo(() => fromTimeInput(fromTimeStr, baseDate), [fromTimeStr, sessionDate])
   const mustBeDoneBy  = useMemo(() => fromTimeInput(doneByTimeStr, baseDate), [doneByTimeStr, sessionDate])
 
   const ranked = useMemo(() => {
@@ -242,30 +240,6 @@ export default function App() {
     const ids = new Set(ranked.map(r => r.course.id))
     return COURSES.filter(c => ids.has(c.id))
   }, [ranked])
-
-  const filteredRanked = useMemo(() => {
-    if (!ranked.length) return ranked
-    const [fromH, toH] = timeRange
-    const fromMs = fromH * 3600_000
-    const toMs   = toH   * 3600_000
-    return ranked
-      .filter(row => {
-        if (!showSkips && row.verdict === 'skip') return false
-        const teeH = row.teetime.time.getHours() * 3600_000 +
-                     row.teetime.time.getMinutes() * 60_000
-        if (teeH < fromMs || teeH > toMs) return false
-        if (row.teetime.greenfee > maxGreenfee) return false
-        if (row.driveMinutes > maxDriveMin) return false
-        if ((row.teetime.spaces ?? 4) < playerCount) return false
-        if (selectedCourses !== null && !selectedCourses.has(row.course.id)) return false
-        return true
-      })
-      .sort((a, b) => {
-        const aCost = a.teetime.greenfee + fuelCostDollars(a.driveMinutes)
-        const bCost = b.teetime.greenfee + fuelCostDollars(b.driveMinutes)
-        return aCost - bCost
-      })
-  }, [ranked, timeRange, maxGreenfee, maxDriveMin, playerCount, selectedCourses, showSkips])
 
   const handleApplyQuickTime = (qt) => {
     setFromTimeStr(qt.fromStr)
@@ -285,10 +259,8 @@ export default function App() {
 
   const handleSelectAllCourses = () => setSelectedCourses(null)
 
-  const goCount   = ranked.filter(r => r.verdict === 'go').length
-  const skipCount = ranked.filter(r => r.verdict === 'skip').length
-  const sunset    = getSunsetTime(new Date(sessionDate + 'T12:00:00'))
-  const loading   = teeFetching || !driveTimes
+  const goCount = ranked.filter(r => r.verdict === 'go').length
+  const sunset  = getSunsetTime(new Date(sessionDate + 'T12:00:00'))
 
   return (
     <div className="app">
@@ -314,7 +286,6 @@ export default function App() {
                 className="refresh-btn"
                 onClick={fetchTeetimes}
                 disabled={teeFetching || scrapeStatus === 'waiting'}
-                title="Re-fetch latest tee times from GitHub"
               >
                 {teeFetching ? '⟳ Loading…' : '⟳ Refresh'}
               </button>
@@ -323,16 +294,12 @@ export default function App() {
                   className="refresh-btn scrape-btn"
                   onClick={triggerScraper}
                   disabled={scrapeStatus === 'triggering' || scrapeStatus === 'waiting'}
-                  title="Run the GitHub Actions scraper now (takes ~5 min)"
                 >
                   {scrapeStatus === 'triggering' && '⏳ Triggering…'}
                   {scrapeStatus === 'waiting'    && `⏳ Scraping… ${Math.floor(scrapeSecondsLeft / 60)}:${String(scrapeSecondsLeft % 60).padStart(2,'0')}`}
                   {scrapeStatus === 'error'      && '⚠ Run failed'}
                   {!scrapeStatus                 && '▶ Run Scraper'}
                 </button>
-              )}
-              {scrapeStatus === 'error' && !GH_TOKEN && (
-                <span className="scrape-no-token">VITE_GITHUB_TOKEN not set</span>
               )}
             </div>
           </div>
@@ -355,7 +322,6 @@ export default function App() {
                   className="loc-search-btn"
                   onClick={handleLocSearch}
                   disabled={locLoading || locSearching || !locInput.trim()}
-                  title="Search this location"
                 >
                   {locSearching ? '…' : '🔍'}
                 </button>
@@ -363,7 +329,6 @@ export default function App() {
                   className="loc-gps-btn"
                   onClick={handleLocGps}
                   disabled={locLoading || locSearching}
-                  title="Use my GPS location"
                 >
                   📍
                 </button>
@@ -391,7 +356,9 @@ export default function App() {
               />
             </div>
           </div>
+
           <hr className="filter-divider" />
+
           <FilterPanel
             quickTimes={QUICK_TIMES}
             onQuickTime={handleApplyQuickTime}
@@ -414,53 +381,20 @@ export default function App() {
           <div className="error-banner">⚠️ {teeError}</div>
         )}
 
-        <div className="results-header">
-          <div className="results-summary">
-            <span className="verdict-dot go" /> {goCount} Go
-            <span className="verdict-dot tight" style={{marginLeft:'0.5rem'}} /> 0 Tight
-            <span className="verdict-dot skip" style={{marginLeft:'0.5rem'}} /> {skipCount} Skip
-            <span className="results-count">{filteredRanked.length} tee times</span>
-          </div>
-          {skipCount > 0 && view === 'table' && (
-            <button className="refresh-btn" onClick={() => setShowSkips(s => !s)}>
-              {showSkips ? 'Hide Skips' : `Show ${skipCount} Skips`}
-            </button>
-          )}
-          <div className="view-toggle">
-            <button
-              className={`view-toggle-btn${view === 'calendar' ? ' active' : ''}`}
-              onClick={() => setView('calendar')}
-            >
-              Calendar
-            </button>
-            <button
-              className={`view-toggle-btn${view === 'table' ? ' active' : ''}`}
-              onClick={() => setView('table')}
-            >
-              Table
-            </button>
-          </div>
-        </div>
-
-        {view === 'calendar' ? (
-          <CalendarView
-            teetimes={teetimes}
-            driveTimes={driveTimes}
-            weatherData={weatherData}
-            sessionDate={sessionDate}
-            onDateChange={handleDateChange}
-            availableDates={availableDates}
-            playerCount={playerCount}
-            timeRange={timeRange}
-            maxGreenfee={maxGreenfee}
-            maxDriveMin={maxDriveMin}
-            selectedCourses={selectedCourses}
-          />
-        ) : (
-          <TeeTimeTable rows={filteredRanked} loading={loading} driveTimesReady={!!driveTimes} />
-        )}
+        <CalendarView
+          teetimes={teetimes}
+          driveTimes={driveTimes}
+          weatherData={weatherData}
+          sessionDate={sessionDate}
+          onDateChange={handleDateChange}
+          availableDates={availableDates}
+          playerCount={playerCount}
+          timeRange={timeRange}
+          maxGreenfee={maxGreenfee}
+          maxDriveMin={maxDriveMin}
+          selectedCourses={selectedCourses}
+        />
       </main>
     </div>
   )
 }
-// force deploy 1780470071
