@@ -40,6 +40,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const [activeTime,  setActiveTime]  = useState(null)
   const [goOnly,      setGoOnly]      = useState(false)
   const [playerCount, setPlayerCount] = useState(1)
+  const [holeFilter,  setHoleFilter]  = useState(null)
   const [selected,    setSelected]    = useState(null)
 
   const now = new Date()
@@ -65,6 +66,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     for (const tt of filtered) {
       const course = COURSES.find(c => c.id === tt.courseId)
       if (!course) continue
+      if (holeFilter !== null && course.holes !== holeFilter) continue
       const driveMinutes = driveTimes?.get(course.id) ?? 15
       const teeTime = new Date(tt.time)
       const roundMinutes = course.holes * course.avgHoleMinutes
@@ -98,7 +100,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       entry.maxHoles = Math.max(entry.maxHoles, holesBeforeDusk)
     }
     return [...map.values()]
-  }, [filtered, driveTimes, sessionDate, goOnly, now])
+  }, [filtered, driveTimes, sessionDate, goOnly, holeFilter, now])
 
   const sorted = useMemo(() => {
     return [...grouped].sort((a, b) => {
@@ -169,6 +171,21 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                 key={n}
                 className={`cal-sort-btn${playerCount === n ? ' active' : ''}`}
                 onClick={() => setPlayerCount(n)}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="cal-filter-group">
+          <span className="cal-filter-label">Holes</span>
+          <div className="cal-sort-btns">
+            {[9, 18].map(n => (
+              <button
+                key={n}
+                className={`cal-sort-btn${holeFilter === n ? ' active' : ''}`}
+                onClick={() => setHoleFilter(holeFilter === n ? null : n)}
               >
                 {n}
               </button>
