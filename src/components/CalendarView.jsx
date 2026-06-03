@@ -8,14 +8,6 @@ function fmtTime(date) {
   return date.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
 }
 
-function fmtDur(min) {
-  const h = Math.floor(min / 60)
-  const m = min % 60
-  if (h > 0 && m > 0) return `${h}h ${m}m`
-  if (h > 0) return `${h}h`
-  return `${m}m`
-}
-
 function getTempColorClass(weatherCode) {
   if (weatherCode >= 51 && weatherCode <= 67) return 'weather-temp-rain'
   if ((weatherCode >= 71 && weatherCode <= 77) || (weatherCode >= 85 && weatherCode <= 86)) return 'weather-temp-snow'
@@ -30,10 +22,9 @@ const SORT_OPTIONS = [
 ]
 
 export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, playerCount, timeRange, maxGreenfee, maxDriveMin, selectedCourses }) {
-  const [sortBy,      setSortBy]      = useState('cost')
-  const [goOnly,      setGoOnly]      = useState(false)
-  const [holeFilter,  setHoleFilter]  = useState(null)
-  const [selected,    setSelected]    = useState(null)
+  const [sortBy,     setSortBy]     = useState('cost')
+  const [holeFilter, setHoleFilter] = useState(null)
+  const [selected,   setSelected]   = useState(null)
 
   const now = new Date()
   const today = new Date()
@@ -73,8 +64,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const mustBeDoneBy = new Date(sessionDate + 'T21:05:00')
       const verdict = doneBy > mustBeDoneBy ? 'skip' : holesBeforeDusk >= course.holes ? 'go' : 'tight'
 
-      if (goOnly && verdict !== 'go') continue
-
       const totalCost = tt.greenfee + fuelCostDollars(driveMinutes)
 
       if (!map.has(course.id)) {
@@ -92,7 +81,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       entry.maxHoles = Math.max(entry.maxHoles, holesBeforeDusk)
     }
     return [...map.values()]
-  }, [filtered, driveTimes, sessionDate, goOnly, holeFilter, now, maxDriveMin, selectedCourses])
+  }, [filtered, driveTimes, sessionDate, holeFilter, now, maxDriveMin, selectedCourses])
 
   const sorted = useMemo(() => {
     return [...grouped].sort((a, b) => {
@@ -153,15 +142,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
               </button>
             ))}
           </div>
-        </div>
-
-        <div className="cal-filter-group">
-          <button
-            className={`cal-sort-btn${goOnly ? ' active' : ''}`}
-            onClick={() => setGoOnly(g => !g)}
-          >
-            GO only
-          </button>
         </div>
       </div>
 
