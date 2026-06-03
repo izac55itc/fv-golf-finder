@@ -205,7 +205,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                         className={`cal-chip verdict-chip-${slot.verdict}${selected?.tt.id === slot.tt.id ? ' selected' : ''}`}
                         onClick={() => setSelected(selected?.tt.id === slot.tt.id ? null : { ...slot, course, driveMinutes })}
                       >
-                        {fmtTime(slot.teeTime)} · ${slot.tt.greenfee}{weather && <span className="chip-weather"> · {weather.icon} {weather.temp}°</span>}
+                        {fmtTime(slot.teeTime)} · ${slot.tt.greenfee}{weather && <span className="chip-weather"> · <span className="weather-icon">{weather.icon}</span><span className="weather-temp">{weather.temp}°</span></span>}
                       </button>
                     )
                   })

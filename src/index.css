@@ -626,9 +626,18 @@ tbody td {
 
 /* ── Weather Integration ──────────────────────────────────────────────  */
 .chip-weather {
+  font-weight: 500;
+}
+
+.weather-icon {
   color: #fff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  font-weight: 500;
+  margin-right: 0.25rem;
+}
+
+.weather-temp {
+  color: #1a2e1a;
+  font-weight: 600;
 }
 .sheet-stat-full { grid-column: 1 / -1; }
 
