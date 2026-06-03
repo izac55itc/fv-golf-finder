@@ -246,6 +246,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
           onClose={() => setSelected(null)}
           weatherData={weatherData}
           playerCount={playerCount}
+          sessionDate={sessionDate}
         />
       )}
     </div>

@@ -14,10 +14,10 @@ function getBookingUrl(course, teeTime, playerCount = 1) {
   return `https://www.google.com/search?q=${encodeURIComponent(course.name + ' tee times ' + dateStr)}`
 }
 
-export default function BottomSheet({ slot, onClose, weatherData, playerCount = 1 }) {
+export default function BottomSheet({ slot, onClose, weatherData, playerCount = 1, sessionDate }) {
   const { tt, teeTime, doneBy, holesBeforeDusk, verdict, driveMinutes, course } = slot
   const totalCost = tt.greenfee + fuelCostDollars(driveMinutes)
-  const bookingUrl = getBookingUrl(course, teeTime, playerCount)
+  const bookingUrl = sessionDate ? `https://www.golfnow.com/tee-times/facility/${course.golfnowId}/search?date=${sessionDate}&holes=${course.holes}&players=${playerCount}&time=all` : getBookingUrl(course, teeTime, playerCount)
   const roundWeather = weatherData ? getWeatherForRound(weatherData, course.id, teeTime, course.holes * course.avgHoleMinutes) : null
 
   useEffect(() => {
