@@ -122,7 +122,6 @@ export default function App() {
       .then(setWeatherData)
       .catch(() => {})
   }, [])
-
   const handleLocSearch = useCallback(async () => {
     if (!locInput.trim()) return
     setLocSearching(true)

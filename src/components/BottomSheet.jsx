@@ -15,11 +15,10 @@ function getBookingUrl(course, teeTime) {
 }
 
 export default function BottomSheet({ slot, onClose, weatherData }) {
-  const { tt, teeTime, driveMinutes, course } = slot
+  const { tt, teeTime, doneBy, holesBeforeDusk, verdict, driveMinutes, course } = slot
   const totalCost = tt.greenfee + fuelCostDollars(driveMinutes)
   const bookingUrl = getBookingUrl(course, teeTime)
   const roundWeather = weatherData ? getWeatherForRound(weatherData, course.id, teeTime, course.holes * course.avgHoleMinutes) : null
-  const holesBeforeDusk = 18
 
   useEffect(() => {
     const handleKey = (e) => { if (e.key === 'Escape') onClose() }
@@ -36,6 +35,7 @@ export default function BottomSheet({ slot, onClose, weatherData }) {
             <div className="sheet-time">{fmtTime(teeTime)}</div>
             <div className="sheet-course">{course.name} · {course.holes}-hole</div>
           </div>
+          <span className={`verdict-badge verdict-${verdict}`}>{verdict.toUpperCase()}</span>
         </div>
         <div className="sheet-grid">
           <div className="sheet-stat">
@@ -49,6 +49,12 @@ export default function BottomSheet({ slot, onClose, weatherData }) {
           <div className="sheet-stat">
             <span className="sheet-stat-label">Drive time</span>
             <span className="sheet-stat-val">{driveMinutes} min</span>
+          </div>
+          <div className="sheet-stat">
+            <span className="sheet-stat-label">Holes before dusk</span>
+            <span className={`sheet-stat-val ${holesBeforeDusk >= course.holes ? 'holes-ok' : 'holes-short'}`}>
+              {holesBeforeDusk}/{course.holes} <span className="sheet-stat-sub">(done by {fmtTime(doneBy)})</span>
+            </span>
           </div>
           {roundWeather && (
             <div className="sheet-stat sheet-stat-full">

@@ -30,21 +30,13 @@ jobs:
         run: npx playwright install chromium --with-deps
       - name: Run scraper
         working-directory: scraper
-        timeout-minutes: 5
-        run: timeout --signal=KILL 120 node index.js || true
-      - name: Publish to data branch
+        timeout-minutes: 15
+        run: timeout --signal=KILL 1200 node index.js || true
+      - name: Publish teetimes.json to main
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Save output before any branch switch
-          cp scraper/teetimes.json /tmp/teetimes.json
-          # Switch to data branch (create orphan if first run)
-          git fetch origin data 2>/dev/null \
-            && git checkout -B data origin/data \
-            || { git checkout --orphan data && git rm -rf . --quiet 2>/dev/null; true; }
-          cp /tmp/teetimes.json teetimes.json
-          git add teetimes.json
-          # Only commit if something changed
+          git add -f scraper/teetimes.json
           git diff --cached --quiet \
             || git commit -m "scrape: $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git push origin data
+          git push origin main

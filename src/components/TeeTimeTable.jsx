@@ -13,10 +13,18 @@ function fmtDur(min) {
   return `${m}m`
 }
 
+function getBookingUrl(course, teeTime) {
+  const dateStr = teeTime.toISOString().split('T')[0]
+  if (course.golfnowId) {
+    return `https://www.golfnow.com/tee-times/facility/${course.golfnowId}/search?date=${dateStr}&holes=${course.holes}&players=1&time=all`
+  }
+  return `https://www.google.com/search?q=${encodeURIComponent(course.name + ' tee times ' + dateStr)}`
+}
+
 const VERDICT_ORDER = { go: 0, tight: 1, skip: 2 }
 
 const COLUMNS = [
-  { key: 'course',     label: 'Course'          },
+  { key: 'course',    label: 'Course'           },
   { key: 'teetime',   label: 'Tee Time'         },
   { key: 'greenfee',  label: 'Green Fee'        },
   { key: 'totalCost', label: 'Total Cost'       },
@@ -27,9 +35,9 @@ const COLUMNS = [
   { key: 'spots',     label: 'Spots'            },
   { key: 'doneBy',    label: 'Done By'          },
   { key: 'verdict',   label: 'Verdict'          },
+  { key: 'book',      label: 'Book'             },
 ]
 
-// Skeleton row shown while loading
 function SkeletonRow() {
   return (
     <tr className="skeleton-row">
@@ -44,6 +52,7 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
   const [sort, setSort] = useState({ key: 'totalCost', dir: 'asc' })
 
   function handleSort(key) {
+    if (key === 'book') return
     setSort((prev) =>
       prev.key === key
         ? { key, dir: prev.dir === 'asc' ? 'desc' : 'asc' }
@@ -69,11 +78,10 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
         case 'verdict':
         default:          av = VERDICT_ORDER[a.verdict] ?? 99; bv = VERDICT_ORDER[b.verdict] ?? 99
       }
-      if (av < bv) return -1
-      if (av > bv) return 1
+      if (av < bv) return sort.dir === 'asc' ? -1 : 1
+      if (av > bv) return sort.dir === 'asc' ? 1 : -1
       return 0
     })
-    if (sort.dir === 'desc') copy.reverse()
     return copy
   }, [rows, sort])
 
@@ -82,6 +90,7 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
   const skipCount  = rows.filter((r) => r.verdict === 'skip').length
 
   function arrow(key) {
+    if (key === 'book') return ''
     if (sort.key !== key) return ' ↕'
     return sort.dir === 'asc' ? ' ↑' : ' ↓'
   }
@@ -91,9 +100,8 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
     return `${course.holes}-hole`
   }
 
-  // Empty / loading states
   const showSkeleton = loading
-  const showEmpty = !loading && rows.length === 0
+  const showEmpty    = !loading && rows.length === 0
 
   return (
     <div className="table-wrap">
@@ -139,8 +147,9 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
                   const { teetime, course, driveMinutes, leaveInMinutes,
                           roundMinutes, doneBy, holesBeforeDusk, verdict } = row
 
-                  const holesClass = holesBeforeDusk >= course.holes ? 'holes-ok' : 'holes-short'
+                  const holesClass  = holesBeforeDusk >= course.holes ? 'holes-ok' : 'holes-short'
                   const leaveUrgent = leaveInMinutes <= 30
+                  const bookingUrl  = getBookingUrl(course, teetime.time)
 
                   return (
                     <tr key={teetime.id}>
@@ -159,10 +168,17 @@ export default function TeeTimeTable({ rows, loading, driveTimesReady }) {
                       <td className="est-round">{fmtDur(roundMinutes)}</td>
                       <td><span className={holesClass}>{holesBeforeDusk}/{course.holes}</span></td>
                       <td>
-                        <span className="spots-badge">{teetime.spaces ?? '?'} spot{(teetime.spaces ?? 1) !== 1 ? 's' : ''}</span>
+                        <span className="spots-badge">
+                          {teetime.spaces ?? '?'} spot{(teetime.spaces ?? 1) !== 1 ? 's' : ''}
+                        </span>
                       </td>
                       <td className={verdict !== 'go' ? 'done-by-warn' : ''}>{fmtTime(doneBy)}</td>
-                      <td><span className={`verdict-badge verdict-${verdict}`}>{verdict.toUpperCase()}</span></td>
+                      <td>
+                        <span className={`verdict-badge verdict-${verdict}`}>
+                          {verdict.toUpperCase()}
+                        </span>
+                      </td>
+<td><a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="book-btn">Book</a></td>
                     </tr>
                   )
                 })}
