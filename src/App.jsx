@@ -462,11 +462,9 @@ export default function App() {
             onDateChange={handleDateChange}
             availableDates={availableDates}
             playerCount={playerCount}
-            onPlayerCount={setPlayerCount}
+            timeRange={timeRange}
             maxGreenfee={maxGreenfee}
-            onMaxGreenfee={setMaxGreenfee}
             maxDriveMin={maxDriveMin}
-            onMaxDriveMin={setMaxDriveMin}
           />
         ) : (
           <TeeTimeTable rows={filteredRanked} loading={loading} driveTimesReady={!!driveTimes} />

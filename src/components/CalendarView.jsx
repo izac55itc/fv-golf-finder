@@ -29,15 +29,8 @@ const SORT_OPTIONS = [
   { key: 'holes', label: 'Holes Before Dusk' },
 ]
 
-const QUICK_TIMES = [
-  { label: 'Morning',   fromH: 6,  toH: 12 },
-  { label: 'Afternoon', fromH: 12, toH: 17 },
-  { label: 'Twilight',  fromH: 17, toH: 23 },
-]
-
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, playerCount, onPlayerCount, maxGreenfee, onMaxGreenfee, maxDriveMin, onMaxDriveMin }) {
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, playerCount, timeRange, maxGreenfee, maxDriveMin }) {
   const [sortBy,      setSortBy]      = useState('cost')
-  const [activeTime,  setActiveTime]  = useState(null)
   const [goOnly,      setGoOnly]      = useState(false)
   const [holeFilter,  setHoleFilter]  = useState(null)
   const [selected,    setSelected]    = useState(null)
@@ -51,15 +44,12 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       if (!tt.time.startsWith(sessionDate)) return false
       const t = new Date(tt.time)
       const h = t.getHours()
-      if (activeTime) {
-        const qt = QUICK_TIMES.find(q => q.label === activeTime)
-        if (qt && (h < qt.fromH || h >= qt.toH)) return false
-      }
+      if (h < timeRange[0] || h > timeRange[1]) return false
       if ((tt.maxPlayers ?? 4) < playerCount) return false
       if (tt.greenfee > maxGreenfee) return false
       return true
     })
-  }, [teetimes, sessionDate, activeTime, playerCount, maxGreenfee])
+  }, [teetimes, sessionDate, timeRange, playerCount, maxGreenfee])
 
   const grouped = useMemo(() => {
     const map = new Map()
@@ -144,36 +134,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                 onClick={() => setSortBy(opt.key)}
               >
                 {opt.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="cal-filter-group">
-          <span className="cal-filter-label">Time</span>
-          <div className="cal-sort-btns">
-            {QUICK_TIMES.map(qt => (
-              <button
-                key={qt.label}
-                className={`cal-sort-btn${activeTime === qt.label ? ' active' : ''}`}
-                onClick={() => setActiveTime(activeTime === qt.label ? null : qt.label)}
-              >
-                {qt.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="cal-filter-group">
-          <span className="cal-filter-label">Players</span>
-          <div className="cal-sort-btns">
-            {[1,2,3,4].map(n => (
-              <button
-                key={n}
-                className={`cal-sort-btn${playerCount === n ? ' active' : ''}`}
-                onClick={() => onPlayerCount(n)}
-              >
-                {n}
               </button>
             ))}
           </div>
