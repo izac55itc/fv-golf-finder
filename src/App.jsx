@@ -120,7 +120,7 @@ export default function App() {
   useEffect(() => {
     fetchAllCourseWeather(COURSES)
       .then(setWeatherData)
-      .catch(() => {})
+      .catch(err => console.warn('Weather fetch error:', err))
   }, [])
   const handleLocSearch = useCallback(async () => {
     if (!locInput.trim()) return
