@@ -45,9 +45,11 @@ async function main() {
   }
 
   // Deduplicate — same course + same time slot appears multiple times
-  // at different rate tiers (walking, cart, promo). Keep cheapest per slot.
+  // at different rate tiers (walking, cart, promo). Skip $0 entries
+  // (promo/placeholder slots) and keep cheapest non-zero rate per slot.
   const dedupMap = new Map()
   for (const tt of allTeetimes) {
+    if (tt.greenfee <= 0) continue  // skip $0 promo/placeholder entries
     const key = `${tt.courseId}|${tt.time}`
     const existing = dedupMap.get(key)
     if (!existing || tt.greenfee < existing.greenfee) {
@@ -61,8 +63,8 @@ async function main() {
   const output = {
     generatedAt: new Date().toISOString(),
     dates,
-    count:     deduped.length,
-    teetimes:  deduped,
+    count:    deduped.length,
+    teetimes: deduped,
   }
 
   const outPath = path.join(__dirname, 'teetimes.json')
