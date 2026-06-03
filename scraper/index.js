@@ -29,13 +29,13 @@ async function main() {
           if (!isoTime) continue
           if (raw.spaces <= 0) continue
           allTeetimes.push({
-            id:       `gn-${courseId}-${dateStr}-${seq++}`,
+            id:         `gn-${courseId}-${dateStr}-${seq++}`,
             courseId,
-            time:     isoTime,
-            greenfee: raw.greenfee,
-            spaces:   raw.spaces,
+            time:       isoTime,
+            greenfee:   raw.greenfee,
+            spaces:     raw.spaces,
             maxPlayers: raw.maxPlayers,
-            source:   'golfnow',
+            source:     'golfnow',
           })
         }
       }
@@ -44,26 +44,39 @@ async function main() {
     golfnow.closeBrowser().catch(() => {})
   }
 
+  // Deduplicate — same course + same time slot appears multiple times
+  // at different rate tiers (walking, cart, promo). Keep cheapest per slot.
+  const dedupMap = new Map()
+  for (const tt of allTeetimes) {
+    const key = `${tt.courseId}|${tt.time}`
+    const existing = dedupMap.get(key)
+    if (!existing || tt.greenfee < existing.greenfee) {
+      dedupMap.set(key, tt)
+    }
+  }
+  const deduped = [...dedupMap.values()]
+
+  console.log(`\n✓ Deduped: ${allTeetimes.length} → ${deduped.length} tee times\n`)
+
   const output = {
     generatedAt: new Date().toISOString(),
     dates,
-    count: allTeetimes.length,
-    teetimes: allTeetimes,
+    count:     deduped.length,
+    teetimes:  deduped,
   }
 
   const outPath = path.join(__dirname, 'teetimes.json')
   fs.writeFileSync(outPath, JSON.stringify(output, null, 2))
-  console.log(`\n✓ Wrote ${allTeetimes.length} tee times across ${dates.length} days → teetimes.json\n`)
+  console.log(`✓ Wrote ${deduped.length} tee times across ${dates.length} days → teetimes.json\n`)
 
   process.kill(process.pid, 'SIGTERM')
 }
 
 function parseTime(raw, dateStr) {
   if (!raw) return null
-
   const pad = x => String(x).padStart(2, '0')
 
-// ISO format — extract hours/minutes directly
+  // ISO format — extract hours/minutes directly
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
     const match = raw.match(/T(\d{2}):(\d{2})/)
     if (match) {
