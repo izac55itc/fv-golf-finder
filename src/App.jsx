@@ -179,6 +179,7 @@ export default function App() {
           const key = `${tt.courseId}-${tt.time}-${tt.greenfee}`
           if (seen.has(key)) return false
           seen.add(key)
+          tt.maxPlayers = tt.maxPlayers ?? 4
           return true
         })
         setTeetimes(deduped)
