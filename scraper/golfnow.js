@@ -150,6 +150,12 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
+  // Skip unavailable slots — only keep bookable tee times
+  // available === false means the slot exists but can't be booked
+  // available === undefined means it came from a different response format (DOM scraping)
+  // we keep undefined since those slots don't have availability info
+  if (raw.available === false) return null
+
   let timeStr
 
   if (typeof time === 'object') {
@@ -166,15 +172,13 @@ function normalise(raw) {
     timeStr = String(time)
   }
 
-  // TEMP: log every entry to debug spaces/rounds
-  console.log(`[normalise] rounds: ${raw.rounds}, available: ${raw.available}, timeStr: ${timeStr}`)
-
   let greenfee = 0
   if (raw.formattedPrice) {
     const match = raw.formattedPrice.match(/\d+/)
     greenfee = match ? Number(match[0]) : 0
   }
 
+  // rounds = actual player count available for this slot (1-4)
   const spaces = Number(raw.rounds ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4)
 
   return {
