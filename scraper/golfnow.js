@@ -73,15 +73,20 @@ async function scrapeFacility(facilityId, dateStr) {
         // Extract player ranges from DOM
         domPlayerRanges = await page.evaluate(() => {
           const ranges = {}
-          const cards = Array.from(document.querySelectorAll('[data-test-id*="tee"], [class*="tee"], button[class*="tee"]'))
-          cards.forEach(card => {
-            const text = card.textContent || ''
-            const timeMatch = text.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
-            const playerMatch = text.match(/(\d)-(\d)/i)
-            if (timeMatch && playerMatch) {
+          const allText = document.body.innerText
+          const lines = allText.split('\n')
+
+          lines.forEach((line, idx) => {
+            const timeMatch = line.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
+            if (timeMatch) {
               const time = timeMatch[0].trim()
-              const maxPlayers = parseInt(playerMatch[2], 10)
-              ranges[time] = maxPlayers
+              // Look in this line and next 2 lines for player range
+              const context = [line, lines[idx+1]||'', lines[idx+2]||''].join(' ')
+              const playerMatch = context.match(/(\d)-(\d)/)
+              if (playerMatch) {
+                const maxPlayers = parseInt(playerMatch[2], 10)
+                if (!ranges[time]) ranges[time] = maxPlayers
+              }
             }
           })
           return ranges
