@@ -35,7 +35,9 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const [playerCount, setPlayerCount] = useState(1)
   const [selected,    setSelected]    = useState(null)
 
-  const todayStr = new Date().toISOString().split('T')[0]
+  const now = new Date()
+  const today = new Date()
+  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
 
   const filtered = useMemo(() => {
     return teetimes.filter(tt => {
@@ -60,7 +62,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const teeTime = new Date(tt.time)
       const roundMinutes = course.holes * course.avgHoleMinutes
       const doneBy = new Date(teeTime.getTime() + roundMinutes * 60_000)
-      const now = new Date()
       const isToday = sessionDate === todayStr
       const needToLeaveBy = new Date(teeTime.getTime() - driveMinutes * 60_000)
       if (isToday && needToLeaveBy <= now) continue
@@ -90,7 +91,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       entry.maxHoles = Math.max(entry.maxHoles, holesBeforeDusk)
     }
     return [...map.values()]
-  }, [filtered, driveTimes, sessionDate, goOnly])
+  }, [filtered, driveTimes, sessionDate, goOnly, now])
 
   const sorted = useMemo(() => {
     return [...grouped].sort((a, b) => {
