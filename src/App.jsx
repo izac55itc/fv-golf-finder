@@ -372,8 +372,6 @@ export default function App() {
             </div>
 
             <div className="field">
-
-            <div className="field">
               <label htmlFor="available-from">Available From</label>
               <input
                 id="available-from"
