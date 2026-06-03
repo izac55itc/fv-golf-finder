@@ -28,7 +28,6 @@ async function main() {
           const isoTime = parseTime(raw.time, dateStr)
           if (!isoTime) continue
           if (raw.spaces <= 0) continue
-          if (!raw.available) continue
           allTeetimes.push({
             id:       `gn-${courseId}-${dateStr}-${seq++}`,
             courseId,
