@@ -58,7 +58,7 @@ async function scrapeFacility(facilityId, dateStr) {
     const url = `https://www.golfnow.com/tee-times/facility/${facilityId}/search?date=${dateStr}&holes=18&players=1&time=all`
     console.log(`[${facilityId}] Loading...`)
 
-    let domPlayerRanges = {}
+    let domData = { ranges: {}, prices: {} }
 
     await Promise.race([
       (async () => {
@@ -70,9 +70,10 @@ async function scrapeFacility(facilityId, dateStr) {
         await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
         await page.waitForTimeout(2_000)
 
-        // Extract player ranges from DOM
-        domPlayerRanges = await page.evaluate(() => {
+        // Extract player ranges AND prices from DOM
+        domData = await page.evaluate(() => {
           const ranges = {}
+          const prices = {}
           const allText = document.body.innerText
           const lines = allText.split('\n')
 
@@ -80,19 +81,35 @@ async function scrapeFacility(facilityId, dateStr) {
             const timeMatch = line.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
             if (timeMatch) {
               const time = timeMatch[0].trim()
-              const context = [line, lines[idx+1]||'', lines[idx+2]||''].join(' ')
+              // Look at surrounding lines for context
+              const context = [
+                line,
+                lines[idx+1] || '',
+                lines[idx+2] || '',
+                lines[idx+3] || '',
+              ].join(' ')
+
+              // Extract player range e.g. "1-4"
               const playerMatch = context.match(/(\d)-(\d)/)
-              if (playerMatch) {
-                const maxPlayers = parseInt(playerMatch[2], 10)
-                if (!ranges[time]) ranges[time] = maxPlayers
+              if (playerMatch && !ranges[time]) {
+                ranges[time] = parseInt(playerMatch[2], 10)
+              }
+
+              // Extract price e.g. "$39" or "$44.99"
+              const priceMatch = context.match(/\$(\d+)(?:\.\d+)?/)
+              if (priceMatch && !prices[time]) {
+                prices[time] = Math.round(parseFloat(priceMatch[1]))
               }
             }
           })
-          return ranges
+          return { ranges, prices }
         })
 
-        if (Object.keys(domPlayerRanges).length > 0) {
-          console.log(`[${facilityId}] Extracted player ranges from DOM:`, domPlayerRanges)
+        if (Object.keys(domData.ranges).length > 0) {
+          console.log(`[${facilityId}] DOM ranges: ${JSON.stringify(domData.ranges)}`)
+        }
+        if (Object.keys(domData.prices).length > 0) {
+          console.log(`[${facilityId}] DOM prices: ${JSON.stringify(domData.prices)}`)
         }
       })(),
       new Promise((_, reject) =>
@@ -100,10 +117,15 @@ async function scrapeFacility(facilityId, dateStr) {
       ),
     ])
 
-    // Merge DOM player ranges into captured tee times
+    // Merge DOM data into captured tee times
     captured.forEach(tt => {
       const timeKey = tt.time.replace(/\s+/g, '')
-      tt.maxPlayers = domPlayerRanges[timeKey] ?? tt.maxPlayers ?? 4
+      // Apply player range from DOM
+      tt.maxPlayers = domData.ranges[timeKey] ?? tt.maxPlayers ?? 4
+      // Apply price from DOM if XHR didn't return one
+      if (tt.greenfee === 0 && domData.prices[timeKey]) {
+        tt.greenfee = domData.prices[timeKey]
+      }
     })
 
     console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
@@ -150,10 +172,7 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
-  // Skip unavailable slots — only keep bookable tee times
-  // available === false means the slot exists but can't be booked
-  // available === undefined means it came from a different response format (DOM scraping)
-  // we keep undefined since those slots don't have availability info
+  // Skip unavailable slots
   if (raw.available === false) return null
 
   let timeStr
@@ -172,13 +191,10 @@ function normalise(raw) {
     timeStr = String(time)
   }
 
-let greenfee = 0
+  let greenfee = 0
   if (raw.formattedPrice) {
     const match = raw.formattedPrice.match(/\d+/)
     greenfee = match ? Number(match[0]) : 0
-  }
-  if (greenfee === 0) {
-    console.log(`[price debug] displayFeeRates for ${timeStr}: ${JSON.stringify(raw.displayFeeRates)}`)
   }
 
   // rounds = actual player count available for this slot (1-4)
