@@ -52,7 +52,7 @@ export default function BottomSheet({ slot, onClose, weatherData, playerCount = 
         <div className="sheet-grid">
           <div className="sheet-stat">
             <span className="sheet-stat-label">Green fee</span>
-            <span className="sheet-stat-val">${tt.greenfee} <span className="sheet-stat-sub">({tt.spaces ?? '?'} spots)</span></span>
+            <span className="sheet-stat-val">${tt.greenfee} <span className="sheet-stat-sub">(max {tt.maxPlayers ?? 4} players)</span></span>
           </div>
           <div className="sheet-stat">
             <span className="sheet-stat-label">Total cost</span>
