@@ -97,10 +97,9 @@ async function scrapeFacility(facilityId, dateStr) {
     ])
 
     // Merge DOM player ranges into captured tee times
-    captured = captured.map(tt => ({
-      ...tt,
-      maxPlayers: domPlayerRanges[tt.time] ?? tt.maxPlayers ?? 4
-    }))
+    captured.forEach(tt => {
+      tt.maxPlayers = domPlayerRanges[tt.time] ?? tt.maxPlayers ?? 4
+    })
 
     console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
   } catch (err) {
