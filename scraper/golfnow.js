@@ -168,9 +168,10 @@ function normalise(raw) {
     timeStr = String(time)
   }
 
-  if (!_normaliseLogged && raw) {
+   if (!_normaliseLogged && raw) {
     console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
     console.log(`[normalise] Resolved timeStr: ${timeStr}`)
+    console.log(`[normalise] rounds: ${raw.rounds}, available: ${raw.available}, spaces result: ${Number(raw.rounds ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4)}`)
     _normaliseLogged = true
   }
 
