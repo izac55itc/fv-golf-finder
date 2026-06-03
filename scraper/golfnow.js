@@ -172,10 +172,13 @@ function normalise(raw) {
     timeStr = String(time)
   }
 
-  let greenfee = 0
+let greenfee = 0
   if (raw.formattedPrice) {
     const match = raw.formattedPrice.match(/\d+/)
     greenfee = match ? Number(match[0]) : 0
+  }
+  if (greenfee === 0) {
+    console.log(`[price debug] displayFeeRates for ${timeStr}: ${JSON.stringify(raw.displayFeeRates)}`)
   }
 
   // rounds = actual player count available for this slot (1-4)
