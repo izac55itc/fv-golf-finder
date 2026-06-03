@@ -181,6 +181,7 @@ function normalise(raw) {
     time:     timeStr,
     greenfee,
     spaces:   Number(raw.available ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4),
+    available: raw.available,
     maxPlayers: raw.maxPlayers ?? 4,
   }
 }
