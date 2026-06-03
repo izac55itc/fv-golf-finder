@@ -454,6 +454,7 @@ export default function App() {
             timeRange={timeRange}
             maxGreenfee={maxGreenfee}
             maxDriveMin={maxDriveMin}
+            selectedCourses={selectedCourses}
           />
         ) : (
           <TeeTimeTable rows={filteredRanked} loading={loading} driveTimesReady={!!driveTimes} />

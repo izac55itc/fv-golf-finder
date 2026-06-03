@@ -29,7 +29,7 @@ const SORT_OPTIONS = [
   { key: 'holes', label: 'Holes Before Dusk' },
 ]
 
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, playerCount, timeRange, maxGreenfee, maxDriveMin }) {
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, playerCount, timeRange, maxGreenfee, maxDriveMin, selectedCourses }) {
   const [sortBy,      setSortBy]      = useState('cost')
   const [goOnly,      setGoOnly]      = useState(false)
   const [holeFilter,  setHoleFilter]  = useState(null)
@@ -56,6 +56,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     for (const tt of filtered) {
       const course = COURSES.find(c => c.id === tt.courseId)
       if (!course) continue
+      if (selectedCourses !== null && !selectedCourses.has(course.id)) continue
       if (holeFilter !== null && course.holes !== holeFilter) continue
       const driveMinutes = driveTimes?.get(course.id) ?? 15
       if (driveMinutes > maxDriveMin) continue
@@ -91,7 +92,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       entry.maxHoles = Math.max(entry.maxHoles, holesBeforeDusk)
     }
     return [...map.values()]
-  }, [filtered, driveTimes, sessionDate, goOnly, holeFilter, now, maxDriveMin])
+  }, [filtered, driveTimes, sessionDate, goOnly, holeFilter, now, maxDriveMin, selectedCourses])
 
   const sorted = useMemo(() => {
     return [...grouped].sort((a, b) => {
