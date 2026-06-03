@@ -117,8 +117,6 @@ async function scrapeFacility(facilityId, dateStr) {
   return captured
 }
 
-let _normaliseLogged = false
-
 function extractTeeTimes(json) {
   const candidates = []
 
@@ -168,12 +166,8 @@ function normalise(raw) {
     timeStr = String(time)
   }
 
-   if (!_normaliseLogged && raw) {
-    console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
-    console.log(`[normalise] Resolved timeStr: ${timeStr}`)
-    console.log(`[normalise] rounds: ${raw.rounds}, available: ${raw.available}, spaces result: ${Number(raw.rounds ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4)}`)
-    _normaliseLogged = true
-  }
+  // TEMP: log every entry to debug spaces/rounds
+  console.log(`[normalise] rounds: ${raw.rounds}, available: ${raw.available}, timeStr: ${timeStr}`)
 
   let greenfee = 0
   if (raw.formattedPrice) {
@@ -181,9 +175,6 @@ function normalise(raw) {
     greenfee = match ? Number(match[0]) : 0
   }
 
-  // rounds = max number of players for this tee time (1-4)
-  // available = boolean whether slot is bookable
-  // We use rounds as the spaces count for player filtering
   const spaces = Number(raw.rounds ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4)
 
   return {
