@@ -639,6 +639,21 @@ tbody td {
   color: #1a2e1a;
   font-weight: 600;
 }
+
+.weather-temp-rain {
+  color: #0066cc;
+  font-weight: 600;
+}
+
+.weather-temp-snow {
+  color: #4da6ff;
+  font-weight: 600;
+}
+
+.weather-temp-clear {
+  color: #f59e0b;
+  font-weight: 600;
+}
 .sheet-stat-full { grid-column: 1 / -1; }
 
 .calendar-view {

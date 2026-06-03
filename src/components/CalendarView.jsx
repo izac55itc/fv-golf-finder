@@ -16,6 +16,13 @@ function fmtDur(min) {
   return `${m}m`
 }
 
+function getTempColorClass(weatherCode) {
+  if (weatherCode >= 51 && weatherCode <= 67) return 'weather-temp-rain'
+  if ((weatherCode >= 71 && weatherCode <= 77) || (weatherCode >= 85 && weatherCode <= 86)) return 'weather-temp-snow'
+  if (weatherCode === 0 || weatherCode === 1) return 'weather-temp-clear'
+  return 'weather-temp'
+}
+
 const SORT_OPTIONS = [
   { key: 'cost',  label: 'Total Cost' },
   { key: 'drive', label: 'Drive Time' },
@@ -205,7 +212,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                         className={`cal-chip verdict-chip-${slot.verdict}${selected?.tt.id === slot.tt.id ? ' selected' : ''}`}
                         onClick={() => setSelected(selected?.tt.id === slot.tt.id ? null : { ...slot, course, driveMinutes })}
                       >
-                        {fmtTime(slot.teeTime)} · ${slot.tt.greenfee}{weather && <span className="chip-weather"> · <span className="weather-icon">{weather.icon}</span><span className="weather-temp">{weather.temp}°</span></span>}
+                        {fmtTime(slot.teeTime)} · ${slot.tt.greenfee}{weather && <span className="chip-weather"> · <span className="weather-icon">{weather.icon}</span><span className={getTempColorClass(weather.code)}>{weather.temp}°</span></span>}
                       </button>
                     )
                   })
