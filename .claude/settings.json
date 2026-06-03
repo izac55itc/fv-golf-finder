@@ -14,7 +14,13 @@
       "Bash(cd *)",
       "PowerShell(*)",
       "Skill(update-config)",
-      "Skill(update-config:*)"
+      "Skill(update-config:*)",
+      "Bash(git pull *)",
+      "Bash(git restore *)",
+      "Bash(powershell -Command \"Get-Date -Format 'HH:mm:ss PST'\")",
+      "Bash(git fetch *)",
+      "Bash(git merge *)",
+      "Bash(git checkout *)"
     ]
   }
 }

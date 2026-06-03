@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import './App.css'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { COURSES } from './data/courses.js'
 import { rankTeetimes, fuelCostDollars } from './utils/ranker.js'
 import { fetchAllDriveTimes } from './utils/distanceMatrix.js'
@@ -7,24 +8,20 @@ import { getSunsetTime } from './utils/sunset.js'
 import { fetchAllCourseWeather } from './utils/weather.js'
 import TeeTimeTable from './components/TeeTimeTable.jsx'
 import FilterPanel from './components/FilterPanel.jsx'
+import CalendarView from './components/CalendarView.jsx'
 
-// Raw GitHub URL for the data branch — updated hourly by the scrape.yml Action
-const DATA_URL = 'https://raw.githubusercontent.com/izac55itc/fv-golf-finder/data/teetimes.json'
+const DATA_URL = 'https://raw.githubusercontent.com/izac55itc/fv-golf-finder/main/scraper/teetimes.json'
 
-// GitHub API — trigger the scrape.yml workflow on demand
-const GH_TOKEN   = import.meta.env.VITE_GITHUB_TOKEN
+const GH_TOKEN    = import.meta.env.VITE_GITHUB_TOKEN
 const GH_DISPATCH = 'https://api.github.com/repos/izac55itc/fv-golf-finder/actions/workflows/scrape.yml/dispatches'
 
-// How long to wait after triggering before auto-refreshing data (ms)
 const SCRAPE_WAIT_MS = 5 * 60 * 1000
 
 const QUICK_TIMES = [
-  { label: 'Morning',   fromH: 6,  toH: 12, fromStr: '06:00', toStr: '12:00' },
-  { label: 'Afternoon', fromH: 12, toH: 17, fromStr: '12:00', toStr: '17:00' },
-  { label: 'Twilight',  fromH: 17, toH: 23, fromStr: '17:00', toStr: '23:00' },
+  { label: 'Morning',   fromH: 6,  toH: 12, fromStr: '06:00' },
+  { label: 'Afternoon', fromH: 12, toH: 17, fromStr: '12:00' },
+  { label: 'Twilight',  fromH: 17, toH: 23, fromStr: '17:00' },
 ]
-
-// ── Helpers ───────────────────────────────────────────────────────────────
 
 function pad(n) { return String(n).padStart(2, '0') }
 function toDateInput(d) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` }
@@ -46,59 +43,72 @@ function roundUpQuarter(d) {
 function timeAgo(isoStr) {
   if (!isoStr) return null
   const mins = Math.round((Date.now() - new Date(isoStr)) / 60_000)
-  if (mins < 1)  return 'just now'
+  if (mins < 1)   return 'just now'
   if (mins === 1) return '1 min ago'
-  if (mins < 60) return `${mins} mins ago`
+  if (mins < 60)  return `${mins} mins ago`
   const hrs = Math.floor(mins / 60)
   return `${hrs}h ${mins % 60}m ago`
 }
 
-// ── Component ─────────────────────────────────────────────────────────────
+async function geocodeAddress(query) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=1&countrycodes=ca`
+  const res = await fetch(url, {
+    headers: {
+      'Accept-Language': 'en',
+      'User-Agent': 'FV-Golf-Finder/0.1 (personal project)',
+    },
+  })
+  if (!res.ok) throw new Error('Geocode failed')
+  const data = await res.json()
+  if (!data.length) throw new Error('Location not found')
+  const item = data[0]
+  const a = item.address || {}
+  const neighbourhood = a.neighbourhood || a.suburb || a.hamlet || a.quarter
+  const city = a.city || a.town || a.village || a.municipality || a.county
+  const parts = [neighbourhood, city].filter(Boolean)
+  const name = parts.length ? parts.join(', ') : item.display_name?.split(',')[0]
+  return { lat: parseFloat(item.lat), lng: parseFloat(item.lon), name, source: 'manual' }
+}
 
 export default function App() {
-  // Location
-  const [location, setLocation]     = useState({ ...WALNUT_GROVE, source: 'default' })
-  const [locLoading, setLocLoading] = useState(true)
+  const [location,     setLocation]     = useState({ ...WALNUT_GROVE, source: 'default' })
+  const [locLoading,   setLocLoading]   = useState(false)
+  const [locInput,     setLocInput]     = useState(WALNUT_GROVE.name)
+  const [locSearching, setLocSearching] = useState(false)
+  const [locError,     setLocError]     = useState(null)
+  const locInputRef = useRef(null)
 
-  // Session planner
   const [sessionDate,   setSessionDate]   = useState(() => toDateInput(new Date()))
   const [fromTimeStr,   setFromTimeStr]   = useState(() => toTimeInput(roundUpQuarter(new Date())))
   const [doneByTimeStr, setDoneByTimeStr] = useState(() => toTimeInput(getSunsetTime(new Date())))
 
-  // Tee times from data branch
-  const [teetimes,     setTeetimes]     = useState([])
-  const [dataDate,     setDataDate]     = useState(null)   // date the scraper ran for
-  const [generatedAt,  setGeneratedAt]  = useState(null)   // ISO timestamp
-  const [teeFetching,  setTeeFetching]  = useState(true)
-  const [teeError,     setTeeError]     = useState(null)
+  const [teetimes,    setTeetimes]    = useState([])
+  const [generatedAt, setGeneratedAt] = useState(null)
+  const [teeFetching, setTeeFetching] = useState(true)
+  const [teeError,    setTeeError]    = useState(null)
 
-  // Manual scraper trigger
-  const [scrapeStatus,  setScrapeStatus]  = useState(null)  // null | 'triggering' | 'waiting' | 'error'
+  const [scrapeStatus,      setScrapeStatus]      = useState(null)
   const [scrapeSecondsLeft, setScrapeSecondsLeft] = useState(0)
 
-  // Filters
-  const [timeRange,      setTimeRange]      = useState([6, 23])      // [fromHour, toHour]
-  const [maxGreenfee,    setMaxGreenfee]    = useState(120)
-  const [maxDriveMin,    setMaxDriveMin]    = useState(60)
-  const [playerCount,    setPlayerCount]    = useState(1)
-  const [selectedCourses, setSelectedCourses] = useState(null)        // null = all; Set<courseId> when filtered
+  const [timeRange,       setTimeRange]       = useState([6, 23])
+  const [maxGreenfee,     setMaxGreenfee]     = useState(120)
+  const [maxDriveMin,     setMaxDriveMin]     = useState(60)
+  const [playerCount,     setPlayerCount]     = useState(1)
+  const [selectedCourses, setSelectedCourses] = useState(null)
+  const [showSkips,       setShowSkips]       = useState(false)
+  const [view,            setView]            = useState('calendar')
 
-  // Drive times (Mapbox or Haversine)
-  const [driveTimes,   setDriveTimes]   = useState(null)
-
-  // Weather data
+  const [driveTimes, setDriveTimes] = useState(null)
   const [weatherData, setWeatherData] = useState(null)
 
-  // ── GPS location
-  useEffect(() => {
-    setLocLoading(true)
-    getCurrentLocation().then(loc => {
-      setLocation(loc)
-      setLocLoading(false)
+  const availableDates = useMemo(() => (
+    [...Array(7)].map((_, i) => {
+      const d = new Date()
+      d.setDate(d.getDate() + i)
+      return toDateInput(d)
     })
-  }, [])
+  ), [])
 
-  // ── Drive times — refetch when location changes
   useEffect(() => {
     let alive = true
     setDriveTimes(null)
@@ -107,21 +117,57 @@ export default function App() {
     return () => { alive = false }
   }, [location.lat, location.lng])
 
-  // ── Fetch weather for all courses
   useEffect(() => {
     fetchAllCourseWeather(COURSES)
       .then(setWeatherData)
       .catch(() => {})
   }, [])
 
-  // ── Fetch tee times from data branch
+  const handleLocSearch = useCallback(async () => {
+    if (!locInput.trim()) return
+    setLocSearching(true)
+    setLocError(null)
+    try {
+      const loc = await geocodeAddress(locInput.trim())
+      setLocation(loc)
+      setLocInput(loc.name)
+    } catch {
+      setLocError('Location not found — try a different search')
+    } finally {
+      setLocSearching(false)
+    }
+  }, [locInput])
+
+  const handleLocKeyDown = (e) => {
+    if (e.key === 'Enter') handleLocSearch()
+  }
+
+  const handleLocGps = useCallback(() => {
+    setLocLoading(true)
+    setLocError(null)
+    getCurrentLocation().then(loc => {
+      setLocation(loc)
+      setLocInput(loc.name)
+      setLocLoading(false)
+    })
+  }, [])
+
+  const handleDateChange = (newDate) => {
+    setSessionDate(newDate)
+    const isToday = newDate === toDateInput(new Date())
+    if (isToday) {
+      setFromTimeStr(toTimeInput(roundUpQuarter(new Date())))
+      setDoneByTimeStr(toTimeInput(getSunsetTime(new Date())))
+    } else {
+      setFromTimeStr('06:00')
+      setDoneByTimeStr(toTimeInput(getSunsetTime(new Date(newDate + 'T12:00:00'))))
+    }
+  }
+
   const fetchTeetimes = useCallback(() => {
     setTeeFetching(true)
     setTeeError(null)
-
-    // Cache-bust with current hour so stale CDN copies are skipped
-    const hour = Math.floor(Date.now() / 3_600_000)
-    fetch(`${DATA_URL}?h=${hour}`)
+    fetch(`${DATA_URL}?v=${Date.now()}`)
       .then(r => {
         if (r.status === 404) throw new Error('No data yet — scraper hasn\'t run. Trigger it manually in the Actions tab.')
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
@@ -129,7 +175,6 @@ export default function App() {
       })
       .then(data => {
         setTeetimes(data.teetimes || [])
-        setDataDate(data.date || null)
         setGeneratedAt(data.generatedAt || null)
         setTeeFetching(false)
       })
@@ -141,12 +186,8 @@ export default function App() {
 
   useEffect(() => { fetchTeetimes() }, [fetchTeetimes])
 
-  // Trigger the GitHub Actions scrape.yml workflow on demand
   const triggerScraper = useCallback(async () => {
-    if (!GH_TOKEN) {
-      setScrapeStatus('error')
-      return
-    }
+    if (!GH_TOKEN) { setScrapeStatus('error'); return }
     setScrapeStatus('triggering')
     try {
       const res = await fetch(GH_DISPATCH, {
@@ -169,7 +210,6 @@ export default function App() {
     }
   }, [])
 
-  // Count down after triggering, then auto-refresh
   useEffect(() => {
     if (scrapeStatus !== 'waiting') return
     if (scrapeSecondsLeft <= 0) {
@@ -181,19 +221,15 @@ export default function App() {
     return () => clearTimeout(id)
   }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
 
-  // ── Derive Date objects from time inputs (use selected session date)
-  const baseDate = new Date(sessionDate + 'T00:00:00')
+  const baseDate      = useMemo(() => new Date(sessionDate + 'T00:00:00'), [sessionDate])
+  const availableFrom = useMemo(() => fromTimeInput(fromTimeStr, baseDate),   [fromTimeStr, sessionDate])
+  const mustBeDoneBy  = useMemo(() => fromTimeInput(doneByTimeStr, baseDate), [doneByTimeStr, sessionDate])
 
-  const availableFrom = useMemo(() => fromTimeInput(fromTimeStr, baseDate),   [fromTimeStr, dataDate])
-  const mustBeDoneBy  = useMemo(() => fromTimeInput(doneByTimeStr, baseDate), [doneByTimeStr, dataDate])
-
-  // ── Rank
   const ranked = useMemo(() => {
     if (!driveTimes || !teetimes.length) return []
-    return rankTeetimes({ teetimes, courses: COURSES, driveTimes, availableFrom, mustBeDoneBy })
-  }, [teetimes, driveTimes, availableFrom, mustBeDoneBy])
+    return rankTeetimes({ teetimes, courses: COURSES, driveTimes, availableFrom, mustBeDoneBy, sessionDate })
+  }, [teetimes, driveTimes, availableFrom, mustBeDoneBy, sessionDate])
 
-  // ── Filter
   const courseOptions = useMemo(() => {
     const ids = new Set(ranked.map(r => r.course.id))
     return COURSES.filter(c => ids.has(c.id))
@@ -201,30 +237,19 @@ export default function App() {
 
   const filteredRanked = useMemo(() => {
     if (!ranked.length) return ranked
-
     const [fromH, toH] = timeRange
     const fromMs = fromH * 3600_000
     const toMs   = toH   * 3600_000
-
     return ranked
       .filter(row => {
-        // Time range
+        if (!showSkips && row.verdict === 'skip') return false
         const teeH = row.teetime.time.getHours() * 3600_000 +
                      row.teetime.time.getMinutes() * 60_000
         if (teeH < fromMs || teeH > toMs) return false
-
-        // Green fee cap
         if (row.teetime.greenfee > maxGreenfee) return false
-
-        // Drive time cap
         if (row.driveMinutes > maxDriveMin) return false
-
-        // Player count
         if ((row.teetime.spaces ?? 4) < playerCount) return false
-
-        // Course selector
         if (selectedCourses !== null && !selectedCourses.has(row.course.id)) return false
-
         return true
       })
       .sort((a, b) => {
@@ -232,12 +257,10 @@ export default function App() {
         const bCost = b.teetime.greenfee + fuelCostDollars(b.driveMinutes)
         return aCost - bCost
       })
-  }, [ranked, timeRange, maxGreenfee, maxDriveMin, playerCount, selectedCourses])
+  }, [ranked, timeRange, maxGreenfee, maxDriveMin, playerCount, selectedCourses, showSkips])
 
-  // ── Filter handlers
   const handleApplyQuickTime = (qt) => {
     setFromTimeStr(qt.fromStr)
-    setDoneByTimeStr(qt.toStr)
     setTimeRange([qt.fromH, qt.toH])
   }
 
@@ -252,14 +275,12 @@ export default function App() {
     })
   }
 
-  const handleSelectAllCourses = () => {
-    setSelectedCourses(null)
-  }
+  const handleSelectAllCourses = () => setSelectedCourses(null)
 
-  const goCount = ranked.filter(r => r.verdict === 'go').length
-  const sunset  = getSunsetTime(new Date())
-
-  const loading = teeFetching || !driveTimes
+  const goCount   = ranked.filter(r => r.verdict === 'go').length
+  const skipCount = ranked.filter(r => r.verdict === 'skip').length
+  const sunset    = getSunsetTime(new Date(sessionDate + 'T12:00:00'))
+  const loading   = teeFetching || !driveTimes
 
   return (
     <div className="app">
@@ -281,8 +302,6 @@ export default function App() {
             <h2>Plan Your Session</h2>
             <div className="data-freshness">
               {generatedAt && <span>Updated {timeAgo(generatedAt)}</span>}
-
-              {/* Refresh: re-fetch whatever is already in the data branch */}
               <button
                 className="refresh-btn"
                 onClick={fetchTeetimes}
@@ -291,8 +310,6 @@ export default function App() {
               >
                 {teeFetching ? '⟳ Loading…' : '⟳ Refresh'}
               </button>
-
-              {/* Trigger: fire the GitHub Actions scraper right now */}
               {GH_TOKEN && (
                 <button
                   className="refresh-btn scrape-btn"
@@ -306,7 +323,6 @@ export default function App() {
                   {!scrapeStatus                 && '▶ Run Scraper'}
                 </button>
               )}
-
               {scrapeStatus === 'error' && !GH_TOKEN && (
                 <span className="scrape-no-token">VITE_GITHUB_TOKEN not set</span>
               )}
@@ -316,9 +332,35 @@ export default function App() {
           <div className="planner-fields">
             <div className="field field-location">
               <label>Location</label>
-              <div className="loc-display">
-                {locLoading ? '📍 Detecting…' : `📍 ${location.name}${location.source === 'denied' ? ' (GPS denied)' : ''}`}
+              <div className="loc-input-row">
+                <input
+                  ref={locInputRef}
+                  type="text"
+                  className="loc-input"
+                  value={locLoading ? 'Detecting…' : locInput}
+                  onChange={e => setLocInput(e.target.value)}
+                  onKeyDown={handleLocKeyDown}
+                  disabled={locLoading || locSearching}
+                  placeholder="Enter city or address"
+                />
+                <button
+                  className="loc-search-btn"
+                  onClick={handleLocSearch}
+                  disabled={locLoading || locSearching || !locInput.trim()}
+                  title="Search this location"
+                >
+                  {locSearching ? '…' : '🔍'}
+                </button>
+                <button
+                  className="loc-gps-btn"
+                  onClick={handleLocGps}
+                  disabled={locLoading || locSearching}
+                  title="Use my GPS location"
+                >
+                  📍
+                </button>
               </div>
+              {locError && <div className="loc-error">{locError}</div>}
             </div>
 
             <div className="field">
@@ -327,7 +369,7 @@ export default function App() {
                 id="session-date"
                 type="date"
                 value={sessionDate}
-                onChange={e => setSessionDate(e.target.value)}
+                onChange={e => handleDateChange(e.target.value)}
                 min={toDateInput(new Date())}
               />
             </div>
@@ -375,7 +417,46 @@ export default function App() {
           <div className="error-banner">⚠️ {teeError}</div>
         )}
 
-        <TeeTimeTable rows={filteredRanked} loading={loading} driveTimesReady={!!driveTimes} />
+        <div className="results-header">
+          <div className="results-summary">
+            <span className="verdict-dot go" /> {goCount} Go
+            <span className="verdict-dot tight" style={{marginLeft:'0.5rem'}} /> 0 Tight
+            <span className="verdict-dot skip" style={{marginLeft:'0.5rem'}} /> {skipCount} Skip
+            <span className="results-count">{filteredRanked.length} tee times</span>
+          </div>
+          {skipCount > 0 && view === 'table' && (
+            <button className="refresh-btn" onClick={() => setShowSkips(s => !s)}>
+              {showSkips ? 'Hide Skips' : `Show ${skipCount} Skips`}
+            </button>
+          )}
+          <div className="view-toggle">
+            <button
+              className={`view-toggle-btn${view === 'calendar' ? ' active' : ''}`}
+              onClick={() => setView('calendar')}
+            >
+              Calendar
+            </button>
+            <button
+              className={`view-toggle-btn${view === 'table' ? ' active' : ''}`}
+              onClick={() => setView('table')}
+            >
+              Table
+            </button>
+          </div>
+        </div>
+
+        {view === 'calendar' ? (
+          <CalendarView
+            teetimes={teetimes}
+            driveTimes={driveTimes}
+            weatherData={weatherData}
+            sessionDate={sessionDate}
+            onDateChange={handleDateChange}
+            availableDates={availableDates}
+          />
+        ) : (
+          <TeeTimeTable rows={filteredRanked} loading={loading} driveTimesReady={!!driveTimes} />
+        )}
       </main>
     </div>
   )
