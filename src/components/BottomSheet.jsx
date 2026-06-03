@@ -16,6 +16,14 @@ function fmtGolfNowDate(dateStr) {
   return `${monthStr}+${dayStr}+${year}`
 }
 
+function getGolfNowFacilitySlug(course) {
+  const nameSlug = course.name
+    .toLowerCase()
+    .replace(/[&]/g, '')
+    .replace(/\s+/g, '-')
+  return `${course.golfnowId}-${nameSlug}-${course.holes}-hole`
+}
+
 function getBookingUrl(course, teeTime, playerCount = 1) {
   const dateStr = `${teeTime.getFullYear()}-${String(teeTime.getMonth() + 1).padStart(2, '0')}-${String(teeTime.getDate()).padStart(2, '0')}`
   if (course.golfnowId) {
@@ -28,7 +36,7 @@ export default function BottomSheet({ slot, onClose, weatherData, playerCount = 
   const { tt, teeTime, doneBy, holesBeforeDusk, verdict, driveMinutes, course, date } = slot
   const totalCost = tt.greenfee + fuelCostDollars(driveMinutes)
   const golfnowDate = fmtGolfNowDate(date)
-  const bookingUrl = golfnowDate && course.golfnowId ? `https://www.golfnow.com/tee-times/facility/${course.golfnowId}/search?date=${golfnowDate}&holes=${course.holes}&players=${playerCount}&time=all` : getBookingUrl(course, teeTime, playerCount)
+  const bookingUrl = golfnowDate && course.golfnowId ? `https://www.golfnow.com/tee-times/facility/${getGolfNowFacilitySlug(course)}/search?date=${golfnowDate}&holes=${course.holes}&players=${playerCount}&time=all` : getBookingUrl(course, teeTime, playerCount)
   const roundWeather = weatherData ? getWeatherForRound(weatherData, course.id, teeTime, course.holes * course.avgHoleMinutes) : null
 
   useEffect(() => {
