@@ -139,6 +139,7 @@ function normalise(raw) {
   if (!_normaliseLogged && raw) {
     console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
     console.log(`[normalise] Resolved timeStr: ${timeStr}`)
+    console.log(`[normalise] Full raw object:`, JSON.stringify(raw, null, 2))
     _normaliseLogged = true
   }
 
