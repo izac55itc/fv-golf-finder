@@ -27,8 +27,9 @@ async function main() {
         for (const raw of rawList) {
           const isoTime = parseTime(raw.time, dateStr)
           if (!isoTime) continue
-          if (raw.spaces <= 0) continue
-          if (raw.greenfee <= 0) continue  // skip $0 promo/placeholder entries
+          if (raw.spaces < 1) continue
+          // Note: greenfee may be 0 for DOM-scraped slots — that's ok,
+          // we filter those out in dedup by keeping highest greenfee
           allTeetimes.push({
             id:         `gn-${courseId}-${dateStr}-${seq++}`,
             courseId,
@@ -45,12 +46,17 @@ async function main() {
     golfnow.closeBrowser().catch(() => {})
   }
 
-  // Deduplicate — keep cheapest non-zero rate per course+time slot
+  // Deduplicate — for each course+time slot:
+  // - If any entry has a non-zero greenfee, keep the cheapest non-zero one
+  // - If all entries have greenfee=0, keep one (the first)
   const dedupMap = new Map()
   for (const tt of allTeetimes) {
     const key = `${tt.courseId}|${tt.time}`
     const existing = dedupMap.get(key)
-    if (!existing || tt.greenfee < existing.greenfee) {
+    if (!existing) {
+      dedupMap.set(key, tt)
+    } else if (tt.greenfee > 0 && (existing.greenfee === 0 || tt.greenfee < existing.greenfee)) {
+      // Prefer non-zero price, then cheapest
       dedupMap.set(key, tt)
     }
   }
