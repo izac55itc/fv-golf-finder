@@ -29,7 +29,7 @@ export default function BottomSheet({ slot, onClose, weatherData, playerCount = 
   const { tt, teeTime, doneBy, holesBeforeDusk, verdict, driveMinutes, course, date } = slot
   const totalCost = tt.greenfee + fuelCostDollars(driveMinutes)
   const golfnowDate = fmtGolfNowDate(date)
-  const bookingUrl = golfnowDate && course.golfnowSlug ? `https://www.golfnow.com/tee-times/facility/${course.golfnowSlug}/search?date=${golfnowDate}&holes=${course.holes}&players=${playerCount}&time=all` : getBookingUrl(course, teeTime, playerCount)
+  const bookingUrl = golfnowDate && course.golfnowSlug ? `https://www.golfnow.com/tee-times/facility/${course.golfnowSlug}/search#date=${golfnowDate}&players=${playerCount}` : getBookingUrl(course, teeTime, playerCount)
   const roundWeather = weatherData ? getWeatherForRound(weatherData, course.id, teeTime, course.holes * course.avgHoleMinutes) : null
 
   useEffect(() => {
