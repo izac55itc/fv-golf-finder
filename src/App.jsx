@@ -372,15 +372,6 @@ export default function App() {
             </div>
 
             <div className="field">
-              <label htmlFor="session-date">Date</label>
-              <input
-                id="session-date"
-                type="date"
-                value={sessionDate}
-                onChange={e => handleDateChange(e.target.value)}
-                min={toDateInput(new Date())}
-              />
-            </div>
 
             <div className="field">
               <label htmlFor="available-from">Available From</label>
