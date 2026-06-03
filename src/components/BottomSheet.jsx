@@ -6,18 +6,18 @@ function fmtTime(date) {
   return date.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
 }
 
-function getBookingUrl(course, teeTime) {
-  const dateStr = teeTime.toISOString().split('T')[0]
+function getBookingUrl(course, teeTime, playerCount = 1) {
+  const dateStr = `${teeTime.getFullYear()}-${String(teeTime.getMonth() + 1).padStart(2, '0')}-${String(teeTime.getDate()).padStart(2, '0')}`
   if (course.golfnowId) {
-    return `https://www.golfnow.com/tee-times/facility/${course.golfnowId}/search?date=${dateStr}&holes=${course.holes}&players=1&time=all`
+    return `https://www.golfnow.com/tee-times/facility/${course.golfnowId}/search?date=${dateStr}&holes=${course.holes}&players=${playerCount}&time=all`
   }
   return `https://www.google.com/search?q=${encodeURIComponent(course.name + ' tee times ' + dateStr)}`
 }
 
-export default function BottomSheet({ slot, onClose, weatherData }) {
+export default function BottomSheet({ slot, onClose, weatherData, playerCount = 1 }) {
   const { tt, teeTime, doneBy, holesBeforeDusk, verdict, driveMinutes, course } = slot
   const totalCost = tt.greenfee + fuelCostDollars(driveMinutes)
-  const bookingUrl = getBookingUrl(course, teeTime)
+  const bookingUrl = getBookingUrl(course, teeTime, playerCount)
   const roundWeather = weatherData ? getWeatherForRound(weatherData, course.id, teeTime, course.holes * course.avgHoleMinutes) : null
 
   useEffect(() => {
