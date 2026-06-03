@@ -58,6 +58,8 @@ async function scrapeFacility(facilityId, dateStr) {
     const url = `https://www.golfnow.com/tee-times/facility/${facilityId}/search?date=${dateStr}&holes=18&players=1&time=all`
     console.log(`[${facilityId}] Loading...`)
 
+    let domPlayerRanges = {}
+
     await Promise.race([
       (async () => {
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
@@ -67,11 +69,38 @@ async function scrapeFacility(facilityId, dateStr) {
         await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
         await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
         await page.waitForTimeout(2_000)
+
+        // Extract player ranges from DOM
+        domPlayerRanges = await page.evaluate(() => {
+          const ranges = {}
+          const cards = Array.from(document.querySelectorAll('[data-test-id*="tee"], [class*="tee"], button[class*="tee"]'))
+          cards.forEach(card => {
+            const text = card.textContent || ''
+            const timeMatch = text.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
+            const playerMatch = text.match(/(\d)-(\d)/i)
+            if (timeMatch && playerMatch) {
+              const time = timeMatch[0].trim()
+              const maxPlayers = parseInt(playerMatch[2], 10)
+              ranges[time] = maxPlayers
+            }
+          })
+          return ranges
+        })
+
+        if (Object.keys(domPlayerRanges).length > 0) {
+          console.log(`[${facilityId}] Extracted player ranges from DOM:`, domPlayerRanges)
+        }
       })(),
       new Promise((_, reject) =>
         setTimeout(() => reject(new Error(`Timed out after ${TIMEOUT_MS / 1000}s`)), TIMEOUT_MS)
       ),
     ])
+
+    // Merge DOM player ranges into captured tee times
+    captured = captured.map(tt => ({
+      ...tt,
+      maxPlayers: domPlayerRanges[tt.time] ?? tt.maxPlayers ?? 4
+    }))
 
     console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
   } catch (err) {
@@ -153,6 +182,7 @@ function normalise(raw) {
     time:     timeStr,
     greenfee,
     spaces:   Number(raw.available ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4),
+    maxPlayers: raw.maxPlayers ?? 4,
   }
 }
 

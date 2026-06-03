@@ -20,7 +20,10 @@
       "Bash(powershell -Command \"Get-Date -Format 'HH:mm:ss PST'\")",
       "Bash(git fetch *)",
       "Bash(git merge *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(node -e \"const data = require\\('./scraper/teetimes.json'\\); const first = Object.values\\(data\\)[0][0]; console.log\\(JSON.stringify\\(first, null, 2\\)\\)\")",
+      "Bash(powershell -Command \"Get-Content teetimes.json | ConvertFrom-Json | Get-Member -MemberType NoteProperty | Select-Object -First 10\")",
+      "Bash(powershell -Command \"\\(Get-Content teetimes.json | ConvertFrom-Json\\).teetimes[0] | ConvertTo-Json\")"
     ]
   }
 }
