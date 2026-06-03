@@ -80,7 +80,6 @@ async function scrapeFacility(facilityId, dateStr) {
             const timeMatch = line.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
             if (timeMatch) {
               const time = timeMatch[0].trim()
-              // Look in this line and next 2 lines for player range
               const context = [line, lines[idx+1]||'', lines[idx+2]||''].join(' ')
               const playerMatch = context.match(/(\d)-(\d)/)
               if (playerMatch) {
@@ -157,7 +156,6 @@ function normalise(raw) {
 
   if (typeof time === 'object') {
     if (time.formatted && time.formattedTimeMeridian) {
-      // Use formatted time + meridian — correct local Pacific time
       timeStr = `${time.formatted} ${time.formattedTimeMeridian}`
     } else if (time.date) {
       timeStr = time.date
@@ -173,7 +171,6 @@ function normalise(raw) {
   if (!_normaliseLogged && raw) {
     console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
     console.log(`[normalise] Resolved timeStr: ${timeStr}`)
-    console.log(`[normalise] Full raw object:`, JSON.stringify(raw, null, 2))
     _normaliseLogged = true
   }
 
@@ -183,12 +180,17 @@ function normalise(raw) {
     greenfee = match ? Number(match[0]) : 0
   }
 
+  // rounds = max number of players for this tee time (1-4)
+  // available = boolean whether slot is bookable
+  // We use rounds as the spaces count for player filtering
+  const spaces = Number(raw.rounds ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4)
+
   return {
-    time:     timeStr,
+    time:       timeStr,
     greenfee,
-    spaces:   Number(raw.available ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4),
-    available: raw.available,
-    maxPlayers: raw.maxPlayers ?? 4,
+    spaces,
+    available:  raw.available,
+    maxPlayers: raw.maxPlayers ?? spaces,
   }
 }
 
