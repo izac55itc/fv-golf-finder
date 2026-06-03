@@ -762,3 +762,23 @@ body {
 
   .sheet-panel { max-width: 100%; }
 }
+/* ── Walking toggle ──────────────────────────────────────────── */
+.walking-toggle {
+  margin-left: 0.5rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--green-border);
+  background: white;
+  color: var(--green-label);
+  font-size: 0.65rem;
+  font-weight: 600;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.walking-toggle.active {
+  background: var(--green-badge-bg);
+  border-color: var(--green-mid);
+  color: var(--green-dark);
+}
