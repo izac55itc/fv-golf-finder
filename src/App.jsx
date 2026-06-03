@@ -173,7 +173,15 @@ export default function App() {
         return r.json()
       })
       .then(data => {
-        setTeetimes(data.teetimes || [])
+        const tts = data.teetimes || []
+        const seen = new Set()
+        const deduped = tts.filter(tt => {
+          const key = `${tt.courseId}-${tt.time}-${tt.greenfee}`
+          if (seen.has(key)) return false
+          seen.add(key)
+          return true
+        })
+        setTeetimes(deduped)
         setGeneratedAt(data.generatedAt || null)
         setTeeFetching(false)
       })
