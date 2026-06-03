@@ -9,10 +9,10 @@ function fmtTime(date) {
 function fmtGolfNowDate(dateStr) {
   if (!dateStr) return null
   const [year, month, day] = dateStr.split('-')
-  const date = new Date(`${year}-${month}-${day}`)
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  const monthStr = months[date.getMonth()]
-  const dayStr = String(date.getDate()).padStart(2, '0')
+  const monthIdx = parseInt(month, 10) - 1
+  const monthStr = months[monthIdx]
+  const dayStr = String(parseInt(day, 10)).padStart(2, '0')
   return `${monthStr}+${dayStr}+${year}`
 }
 
