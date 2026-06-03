@@ -81,7 +81,6 @@ async function scrapeFacility(facilityId, dateStr) {
             const timeMatch = line.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
             if (timeMatch) {
               const time = timeMatch[0].trim()
-              // Look at surrounding lines for context
               const context = [
                 line,
                 lines[idx+1] || '',
@@ -95,21 +94,18 @@ async function scrapeFacility(facilityId, dateStr) {
                 ranges[time] = parseInt(playerMatch[2], 10)
               }
 
-              // Extract price e.g. "$39" or "$44.99"
-              const priceMatch = context.match(/\$(\d+)(?:\.\d+)?/)
+              // Extract price — look for $XX.XX or $XX pattern
+              const priceMatch = context.match(/\$(\d+(?:\.\d{1,2})?)/)
               if (priceMatch && !prices[time]) {
-                prices[time] = Math.round(parseFloat(priceMatch[1]))
+                prices[time] = parseFloat(priceMatch[1])
               }
             }
           })
           return { ranges, prices }
         })
 
-        if (Object.keys(domData.ranges).length > 0) {
-          console.log(`[${facilityId}] DOM ranges: ${JSON.stringify(domData.ranges)}`)
-        }
         if (Object.keys(domData.prices).length > 0) {
-          console.log(`[${facilityId}] DOM prices: ${JSON.stringify(domData.prices)}`)
+          console.log(`[${facilityId}] DOM prices (raw): ${JSON.stringify(domData.prices)}`)
         }
       })(),
       new Promise((_, reject) =>
@@ -122,9 +118,14 @@ async function scrapeFacility(facilityId, dateStr) {
       const timeKey = tt.time.replace(/\s+/g, '')
       // Apply player range from DOM
       tt.maxPlayers = domData.ranges[timeKey] ?? tt.maxPlayers ?? 4
+
       // Apply price from DOM if XHR didn't return one
-      if (tt.greenfee === 0 && domData.prices[timeKey]) {
-        tt.greenfee = domData.prices[timeKey]
+      if (tt.greenfee === 0 && domData.prices[timeKey] !== undefined) {
+        let val = domData.prices[timeKey]
+        // GolfNow sometimes renders cents as whole number e.g. 3900 = $39.00
+        // If value > 500 it's likely in cents — divide by 100
+        if (val > 500) val = val / 100
+        tt.greenfee = Math.round(val)
       }
     })
 
