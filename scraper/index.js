@@ -34,6 +34,7 @@ async function main() {
             time:     isoTime,
             greenfee: raw.greenfee,
             spaces:   raw.spaces,
+            maxPlayers: raw.maxPlayers,
             source:   'golfnow',
           })
         }
