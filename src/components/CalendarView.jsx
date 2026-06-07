@@ -6,7 +6,6 @@ import { getWeatherAtTime } from '../utils/weather.js'
 import './CalendarView.css'
 
 const CART_RENTAL = 20
-const AVG_HOLE_MINUTES = 4.5
 
 export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, maxGreenfee, maxDriveMin, selectedCourses }) {
   const [sortBy, setSortBy] = useState('cost')
@@ -42,7 +41,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const totalWithoutCart = avgPrice + gasCost
 
       // Calculate latest tee time to finish before dusk
-      const roundDurationMs = course.holes * AVG_HOLE_MINUTES * 60_000
+      const roundDurationMs = course.holes * course.avgHoleMinutes * 60_000
       const latestStartMs = sunset.getTime() - roundDurationMs
       const latestStart = new Date(latestStartMs)
 
@@ -55,7 +54,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         // Check if partial round fits
         const firstLightMs = new Date(sessionDate + 'T06:00:00').getTime()
         const availableMs = sunset.getTime() - firstLightMs
-        const holesAvailable = Math.floor(availableMs / (AVG_HOLE_MINUTES * 60_000))
+        const holesAvailable = Math.floor(availableMs / (course.avgHoleMinutes * 60_000))
         if (holesAvailable > 0) {
           verdict = 'tight'
         }
