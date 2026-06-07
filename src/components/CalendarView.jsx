@@ -69,9 +69,13 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const sunsetStr = sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
 
   const bookingUrl = (course) => {
-    if (!course.golfnowId) return '#'
-    const date = sessionDate.replace(/-/g, '')
-    return `https://www.golfnow.com/tee-times/results?facility=${course.golfnowId}&date=${date}`
+    if (!course.golfnowSlug) return '#'
+    const d = new Date(sessionDate + 'T12:00:00')
+    const monthName = d.toLocaleString('en-US', { month: 'short' })
+    const day = String(d.getDate()).padStart(2, '0')
+    const year = d.getFullYear()
+    const dateStr = `${monthName}+${day}+${year}`
+    return `https://www.golfnow.com/tee-times/facility/${course.golfnowSlug}/search#date=${dateStr}`
   }
 
   return (
