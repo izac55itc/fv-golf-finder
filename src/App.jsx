@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { COURSES } from './data/courses.js'
 import FilterPanel from './components/FilterPanel.jsx'
