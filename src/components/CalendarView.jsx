@@ -33,7 +33,8 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const filtered = useMemo(() => {
     return teetimes.filter(tt => {
       if (!tt.time.startsWith(sessionDate)) return false
-      const t = new Date(tt.time)
+      const timeStr = typeof tt.time === 'string' && !tt.time.includes('Z') && !tt.time.includes('+') ? tt.time + 'Z' : tt.time
+      const t = new Date(timeStr)
       const h = t.getHours()
       if (h < timeRange[0] || h > timeRange[1]) return false
       if ((tt.spaces ?? 4) < playerCount) return false
@@ -51,7 +52,8 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       if (holeFilter !== null && course.holes !== holeFilter) continue
       const driveMinutes = driveTimes?.get(course.id) ?? 15
       if (driveMinutes > maxDriveMin) continue
-      const teeTime = new Date(tt.time)
+      const timeStr = typeof tt.time === 'string' && !tt.time.includes('Z') && !tt.time.includes('+') ? tt.time + 'Z' : tt.time
+      const teeTime = new Date(timeStr)
       const roundMinutes = course.holes * course.avgHoleMinutes
       const doneBy = new Date(teeTime.getTime() + roundMinutes * 60_000)
       const isToday = sessionDate === todayStr
