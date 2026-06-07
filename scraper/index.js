@@ -1,6 +1,7 @@
 'use strict'
 const fs   = require('fs')
 const path = require('path')
+const ws = require('ws')
 const { createClient } = require('@supabase/supabase-js')
 const golfnow = require('./golfnow')
 
@@ -14,7 +15,9 @@ async function main() {
     throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY env vars')
   }
 
-  const supabase = createClient(supabaseUrl, supabaseKey)
+  const supabase = createClient(supabaseUrl, supabaseKey, {
+    realtime: { transport: ws }
+  })
 
   const today = new Date()
   console.log(`\nFV Golf Finder scraper — ${today.toISOString().split('T')[0]} (${DAYS_AHEAD} days)\n`)
