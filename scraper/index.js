@@ -112,36 +112,53 @@ function parseTime(raw, dateStr) {
 
   const pad = x => String(x).padStart(2, '0')
 
-// ISO format — extract hours/minutes directly
+  function pacificToUTC(h, m) {
+    const date = new Date(dateStr + 'T12:00:00Z')
+    const month = date.getUTCMonth()
+    const offsetHours = (month >= 2 && month <= 9) ? 7 : 8
+
+    let utcH = h + offsetHours
+    let finalDateStr = dateStr
+
+    if (utcH >= 24) {
+      utcH -= 24
+      const d = new Date(dateStr + 'T00:00:00Z')
+      d.setUTCDate(d.getUTCDate() + 1)
+      finalDateStr = d.toISOString().split('T')[0]
+    }
+
+    return `${finalDateStr}T${pad(utcH)}:${pad(m)}:00Z`
+  }
+
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
     const match = raw.match(/T(\d{2}):(\d{2})/)
     if (match) {
-      return `${dateStr}T${match[1]}:${match[2]}:00`
+      return pacificToUTC(parseInt(match[1], 10), parseInt(match[2], 10))
     }
   }
 
-  // "7:30 AM" / "7:30 PM"
   const ampm = raw.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i)
   if (ampm) {
     let h = parseInt(ampm[1], 10)
     const m = parseInt(ampm[2], 10)
     if (ampm[3].toUpperCase() === 'PM' && h !== 12) h += 12
     if (ampm[3].toUpperCase() === 'AM' && h === 12) h = 0
-    return `${dateStr}T${pad(h)}:${pad(m)}:00`
+    return pacificToUTC(h, m)
   }
 
-  // "07:30" (24h)
   if (/^\d{1,2}:\d{2}$/.test(raw)) {
-    return `${dateStr}T${raw.padStart(5,'0')}:00`
+    const parts = raw.split(':')
+    const h = parseInt(parts[0], 10)
+    const m = parseInt(parts[1], 10)
+    return pacificToUTC(h, m)
   }
 
-  // Unix timestamp (ms or seconds) — convert to Pacific time
   const n = Number(raw)
   if (!isNaN(n) && n > 0) {
     const ms = n > 1e10 ? n : n * 1000
     const d = new Date(ms)
     const pacific = new Date(d.toLocaleString('en-US', { timeZone: 'America/Vancouver' }))
-    return `${dateStr}T${pad(pacific.getHours())}:${pad(pacific.getMinutes())}:00`
+    return pacificToUTC(pacific.getHours(), pacific.getMinutes())
   }
 
   return null
