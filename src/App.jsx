@@ -180,7 +180,6 @@ export default function App() {
     supabase
       .from('teetimes')
       .select('*')
-      .gt('time', new Date().toISOString())
       .order('time', { ascending: true })
       .then(({ data, error }) => {
         if (error) {
