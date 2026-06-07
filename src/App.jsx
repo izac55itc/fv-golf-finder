@@ -76,6 +76,7 @@ export default function App() {
   const [scrapeSecondsLeft, setScrapeSecondsLeft] = useState(0)
 
   const [maxGreenfee,     setMaxGreenfee]     = useState(120)
+  const [maxDriveMin,     setMaxDriveMin]     = useState(60)
   const [selectedCourses, setSelectedCourses] = useState(null)
 
   const [driveTimes,  setDriveTimes]  = useState(null)
@@ -312,10 +313,8 @@ export default function App() {
           <FilterPanel
             maxGreenfee={maxGreenfee}
             onMaxGreenfee={setMaxGreenfee}
-            courseOptions={courseOptions}
-            selectedCourses={selectedCourses}
-            onToggleCourse={handleToggleCourse}
-            onSelectAllCourses={handleSelectAllCourses}
+            maxDriveMin={maxDriveMin}
+            onMaxDriveMin={setMaxDriveMin}
           />
         </div>
 
@@ -331,6 +330,7 @@ export default function App() {
           onDateChange={handleDateChange}
           availableDates={availableDates}
           maxGreenfee={maxGreenfee}
+          maxDriveMin={maxDriveMin}
           selectedCourses={selectedCourses}
         />
       </main>

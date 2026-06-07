@@ -105,14 +105,57 @@
 
 .cal-course-card {
   background: white;
-  border: 1px solid #eee;
+  border-left: 4px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.2s;
+  position: relative;
+}
+
+.cal-course-card.verdict-go {
+  border-left-color: #28a745;
+  background: #f0fff4;
+}
+
+.cal-course-card.verdict-tight {
+  border-left-color: #ffc107;
+  background: #fffbf0;
+}
+
+.cal-course-card.verdict-skip {
+  border-left-color: #dc3545;
+  background: #fff5f5;
 }
 
 .cal-course-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cal-verdict-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cal-course-card.verdict-go .cal-verdict-badge {
+  background: #28a745;
+  color: white;
+}
+
+.cal-course-card.verdict-tight .cal-verdict-badge {
+  background: #ffc107;
+  color: #333;
+}
+
+.cal-course-card.verdict-skip .cal-verdict-badge {
+  background: #dc3545;
+  color: white;
 }
 
 .cal-card-header {
@@ -182,13 +225,24 @@
   color: #2d5016;
 }
 
-.cal-weather {
+.cal-card-meta {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   padding: 12px 16px;
   font-size: 13px;
   color: #666;
-  border-bottom: 1px solid #f0f0f0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cal-holes-info {
+  font-weight: 600;
+  color: #2d5016;
+}
+
+.cal-weather {
+  display: flex;
+  gap: 8px;
 }
 
 .cal-card-footer {

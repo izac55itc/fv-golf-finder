@@ -5,8 +5,9 @@ import { getSunsetTime } from '../utils/sunset.js'
 import './CalendarView.css'
 
 const CART_RENTAL = 20
+const AVG_HOLE_MINUTES = 4.5
 
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, maxGreenfee, selectedCourses }) {
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, maxGreenfee, maxDriveMin, selectedCourses }) {
   const [sortBy, setSortBy] = useState('cost')
 
   const now = new Date()
@@ -15,6 +16,8 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
   const summaries = useMemo(() => {
     const map = new Map()
+    const baseDate = new Date(sessionDate + 'T12:00:00')
+    const sunset = getSunsetTime(baseDate)
 
     for (const item of teetimes) {
       if (item.date !== sessionDate) continue
@@ -26,12 +29,27 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       if (selectedCourses !== null && !selectedCourses.has(course.id)) continue
 
       const driveMinutes = driveTimes?.get(course.id) ?? 15
+      if (driveMinutes > maxDriveMin) continue
+
       const weather = weatherData?.get(course.id)
 
       const avgPrice = Math.round((item.minPrice + item.maxPrice) / 2)
       const gasCost = fuelCostDollars(driveMinutes)
       const totalCost = avgPrice + gasCost + CART_RENTAL
       const totalWithoutCart = avgPrice + gasCost
+
+      // Calculate verdict based on holes before dusk
+      const roundMinutes = course.holes * AVG_HOLE_MINUTES
+      const sunset18h = new Date(sessionDate + 'T21:05:00')
+      const minsUntilSunset = (sunset18h - now) / 60_000
+      const holesBeforeDusk = Math.max(0, Math.floor(minsUntilSunset / AVG_HOLE_MINUTES))
+
+      let verdict = 'skip'
+      if (holesBeforeDusk >= course.holes) {
+        verdict = 'go'
+      } else if (holesBeforeDusk > 0) {
+        verdict = 'tight'
+      }
 
       map.set(item.courseId, {
         course,
@@ -45,11 +63,13 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         totalCost,
         totalWithoutCart,
         weather,
+        holesBeforeDusk,
+        verdict,
       })
     }
 
     return Array.from(map.values())
-  }, [teetimes, sessionDate, maxGreenfee, selectedCourses, driveTimes, weatherData])
+  }, [teetimes, sessionDate, maxGreenfee, maxDriveMin, selectedCourses, driveTimes, weatherData, now])
 
   const sorted = useMemo(() => {
     return [...summaries].sort((a, b) => {
@@ -66,6 +86,12 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const bookingUrl = (courseId) => {
     const date = sessionDate.replace(/-/g, '')
     return `https://www.golfnow.com/tee-times/results?course=${courseId}&date=${date}`
+  }
+
+  const verdictColor = (verdict) => {
+    if (verdict === 'go') return 'go'
+    if (verdict === 'tight') return 'tight'
+    return 'skip'
   }
 
   return (
@@ -121,7 +147,9 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
             const temp = item.weather?.temp
             const condition = item.weather?.condition
             return (
-              <div key={item.course.id} className="cal-course-card">
+              <div key={item.course.id} className={`cal-course-card verdict-${verdictColor(item.verdict)}`}>
+                <div className="cal-verdict-badge">{item.verdict.toUpperCase()}</div>
+
                 <div className="cal-card-header">
                   <div className="cal-course-info">
                     <h3 className="cal-course-name">{item.course.name}</h3>
@@ -156,15 +184,18 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                   </div>
                 </div>
 
-                {temp !== undefined && (
-                  <div className="cal-weather">
-                    <span>{temp}°C</span>
-                    {condition && <span>{condition}</span>}
-                  </div>
-                )}
+                <div className="cal-card-meta">
+                  <div className="cal-holes-info">{item.holesBeforeDusk} holes before dusk</div>
+                  {temp !== undefined && (
+                    <div className="cal-weather">
+                      <span>{temp}°C</span>
+                      {condition && <span>{condition}</span>}
+                    </div>
+                  )}
+                </div>
 
                 <div className="cal-card-footer">
-                  <div className="cal-availability">{item.availableCount} slots available</div>
+                  <div className="cal-availability">{item.availableCount} slots</div>
                   <a
                     href={bookingUrl(item.course.id)}
                     target="_blank"

@@ -2,6 +2,7 @@ import RangeSlider from './RangeSlider.jsx'
 
 export default function FilterPanel({
   maxGreenfee, onMaxGreenfee,
+  maxDriveMin, onMaxDriveMin,
 }) {
   return (
     <div className="filter-panel">
@@ -17,6 +18,20 @@ export default function FilterPanel({
               formatLabel={(v) => `$${v}`}
             />
             <div className="price-display">${maxGreenfee}</div>
+          </div>
+        </div>
+
+        <div className="filter-section">
+          <span className="filter-label">Max Drive</span>
+          <div className="price-filter-wrapper">
+            <RangeSlider
+              min={0}
+              max={120}
+              value={[0, maxDriveMin]}
+              onChange={(range) => onMaxDriveMin(range[1])}
+              formatLabel={(v) => `${v}m`}
+            />
+            <div className="price-display">{maxDriveMin}m</div>
           </div>
         </div>
       </div>
