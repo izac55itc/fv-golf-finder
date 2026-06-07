@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { COURSES } from '../data/courses.js'
 import { fuelCostDollars } from '../utils/ranker.js'
 import { getSunsetTime } from '../utils/sunset.js'
+import { getWeatherAtTime } from '../utils/weather.js'
 import './CalendarView.css'
 
 const CART_RENTAL = 20
@@ -31,7 +32,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const driveMinutes = driveTimes?.get(course.id) ?? 15
       if (driveMinutes > maxDriveMin) continue
 
-      const weather = weatherData?.get(course.id)
+      const weather = getWeatherAtTime(weatherData, course.id, sessionDate + 'T08:00:00')
 
       const avgPrice = Math.round((item.minPrice + item.maxPrice) / 2)
       const gasCost = fuelCostDollars(driveMinutes)
@@ -143,10 +144,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         {sorted.length === 0 ? (
           <p className="cal-no-results">No courses available for this date.</p>
         ) : (
-          sorted.map(item => {
-            const temp = item.weather?.temp
-            const condition = item.weather?.condition
-            return (
+          sorted.map(item => (
               <div key={item.course.id} className={`cal-course-card verdict-${verdictColor(item.verdict)}`}>
                 <div className="cal-verdict-badge">{item.verdict.toUpperCase()}</div>
 
@@ -186,10 +184,10 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
                 <div className="cal-card-meta">
                   <div className="cal-holes-info">{item.holesBeforeDusk} holes before dusk</div>
-                  {temp !== undefined && (
+                  {item.weather && (
                     <div className="cal-weather">
-                      <span>{temp}°C</span>
-                      {condition && <span>{condition}</span>}
+                      <span>{item.weather.icon} {item.weather.temp}°C</span>
+                      <span>{item.weather.label}</span>
                     </div>
                   )}
                 </div>
@@ -206,8 +204,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                   </a>
                 </div>
               </div>
-            )
-          })
+            ))
         )}
       </div>
     </div>
