@@ -278,37 +278,35 @@ export default function App() {
             </div>
           </div>
 
-          <div className="planner-fields">
-            <div className="field field-location">
-              <label>Location</label>
-              <div className="loc-input-row">
-                <input
-                  ref={locInputRef}
-                  type="text"
-                  className="loc-input"
-                  value={locLoading ? 'Detecting…' : locInput}
-                  onChange={e => setLocInput(e.target.value)}
-                  onKeyDown={handleLocKeyDown}
-                  disabled={locLoading || locSearching}
-                  placeholder="Enter city or address"
-                />
-                <button
-                  className="loc-search-btn"
-                  onClick={handleLocSearch}
-                  disabled={locLoading || locSearching || !locInput.trim()}
-                >
-                  {locSearching ? '…' : '🔍'}
-                </button>
-                <button
-                  className="loc-gps-btn"
-                  onClick={handleLocGps}
-                  disabled={locLoading || locSearching}
-                >
-                  📍
-                </button>
-              </div>
-              {locError && <div className="loc-error">{locError}</div>}
+          <div className="planner-location">
+            <label>Location</label>
+            <div className="loc-input-row">
+              <input
+                ref={locInputRef}
+                type="text"
+                className="loc-input"
+                value={locLoading ? 'Detecting…' : locInput}
+                onChange={e => setLocInput(e.target.value)}
+                onKeyDown={handleLocKeyDown}
+                disabled={locLoading || locSearching}
+                placeholder="Enter city or address"
+              />
+              <button
+                className="loc-search-btn"
+                onClick={handleLocSearch}
+                disabled={locLoading || locSearching || !locInput.trim()}
+              >
+                {locSearching ? '…' : '🔍'}
+              </button>
+              <button
+                className="loc-gps-btn"
+                onClick={handleLocGps}
+                disabled={locLoading || locSearching}
+              >
+                📍
+              </button>
             </div>
+            {locError && <div className="loc-error">{locError}</div>}
           </div>
 
           <FilterPanel
