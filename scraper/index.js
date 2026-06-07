@@ -52,6 +52,15 @@ async function main() {
       }
     }
 
+    // Deduplicate by (course_id, time, greenfee) key before upsert
+    const seen = new Set()
+    const deduped = allTeetimes.filter(tt => {
+      const key = `${tt.course_id}|${tt.time}|${tt.greenfee}`
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+
     // Delete old tee times (older than today) then insert new batch
     const { error: deleteErr } = await supabase
       .from('teetimes')
@@ -67,7 +76,7 @@ async function main() {
     // Upsert new tee times (on conflict, do nothing to preserve existing data)
     const { data, error } = await supabase
       .from('teetimes')
-      .upsert(allTeetimes, { onConflict: 'course_id,time,greenfee' })
+      .upsert(deduped, { onConflict: 'course_id,time,greenfee' })
 
     if (error) {
       console.error('Error upserting tee times:', JSON.stringify(error, null, 2))
@@ -75,7 +84,7 @@ async function main() {
       return
     }
 
-    console.log(`\n✓ Upserted ${allTeetimes.length} tee times across ${dates.length} days → Supabase\n`)
+    console.log(`\n✓ Upserted ${deduped.length} tee times across ${dates.length} days → Supabase\n`)
   } finally {
     golfnow.closeBrowser().catch(() => {})
   }
