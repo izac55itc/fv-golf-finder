@@ -11,24 +11,32 @@ const FACILITIES = {
   'golden-eagle-south':     15899,
 }
 
-let _browser = null
+let _browsers = []
+const NUM_BROWSERS = 4
+let _nextBrowserIdx = 0
+
+async function initBrowserPool() {
+  _browsers = await Promise.all(
+    Array.from({ length: NUM_BROWSERS }, () =>
+      chromium.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      })
+    )
+  )
+}
 
 async function getBrowser() {
-  if (!_browser || !_browser.isConnected()) {
-    _browser = await chromium.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    })
-  }
-  return _browser
+  if (!_browsers.length) await initBrowserPool()
+  const browser = _browsers[_nextBrowserIdx]
+  _nextBrowserIdx = (_nextBrowserIdx + 1) % NUM_BROWSERS
+  return browser
 }
 
 async function closeBrowser() {
-  if (_browser) {
-    try { await _browser.close() } catch { /* ignore */ }
-    try { _browser.process()?.kill('SIGKILL') } catch { /* ignore */ }
-    _browser = null
-  }
+  await Promise.all(_browsers.map(b => b.close().catch(() => {})))
+  _browsers = []
+  _nextBrowserIdx = 0
 }
 
 async function scrapeFacility(facilityId, dateStr) {
@@ -230,22 +238,19 @@ function normalise(raw) {
 async function scrapeAll(dateStr) {
   const results = new Map()
   const entries = Object.entries(FACILITIES)
-  const BATCH = 3
 
-  for (let i = 0; i < entries.length; i += BATCH) {
-    await Promise.all(
-      entries.slice(i, i + BATCH).map(async ([courseId, facilityId]) => {
-        try {
-          const tts = await scrapeFacility(facilityId, dateStr)
-          results.set(courseId, tts)
-          console.log(`  ${courseId}: ${tts.length} tee times`)
-        } catch (err) {
-          console.error(`  ${courseId} failed: ${err.message}`)
-          results.set(courseId, [])
-        }
-      })
-    )
-  }
+  await Promise.all(
+    entries.map(async ([courseId, facilityId]) => {
+      try {
+        const tts = await scrapeFacility(facilityId, dateStr)
+        results.set(courseId, tts)
+        console.log(`  ${courseId}: ${tts.length} tee times`)
+      } catch (err) {
+        console.error(`  ${courseId} failed: ${err.message}`)
+        results.set(courseId, [])
+      }
+    })
+  )
 
   return results
 }
