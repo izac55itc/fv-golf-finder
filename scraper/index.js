@@ -112,28 +112,17 @@ function parseTime(raw, dateStr) {
 
   const pad = x => String(x).padStart(2, '0')
 
-  function pacificToUTC(h, m) {
+  function pacificTime(h, m) {
     const date = new Date(dateStr + 'T12:00:00Z')
     const month = date.getUTCMonth()
-    const offsetHours = (month >= 2 && month <= 9) ? 7 : 8
-
-    let utcH = h + offsetHours
-    let finalDateStr = dateStr
-
-    if (utcH >= 24) {
-      utcH -= 24
-      const d = new Date(dateStr + 'T00:00:00Z')
-      d.setUTCDate(d.getUTCDate() + 1)
-      finalDateStr = d.toISOString().split('T')[0]
-    }
-
-    return `${finalDateStr}T${pad(utcH)}:${pad(m)}:00Z`
+    const offsetStr = (month >= 2 && month <= 9) ? '-07:00' : '-08:00'
+    return `${dateStr}T${pad(h)}:${pad(m)}:00${offsetStr}`
   }
 
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
     const match = raw.match(/T(\d{2}):(\d{2})/)
     if (match) {
-      return pacificToUTC(parseInt(match[1], 10), parseInt(match[2], 10))
+      return pacificTime(parseInt(match[1], 10), parseInt(match[2], 10))
     }
   }
 
@@ -143,14 +132,14 @@ function parseTime(raw, dateStr) {
     const m = parseInt(ampm[2], 10)
     if (ampm[3].toUpperCase() === 'PM' && h !== 12) h += 12
     if (ampm[3].toUpperCase() === 'AM' && h === 12) h = 0
-    return pacificToUTC(h, m)
+    return pacificTime(h, m)
   }
 
   if (/^\d{1,2}:\d{2}$/.test(raw)) {
     const parts = raw.split(':')
     const h = parseInt(parts[0], 10)
     const m = parseInt(parts[1], 10)
-    return pacificToUTC(h, m)
+    return pacificTime(h, m)
   }
 
   const n = Number(raw)
