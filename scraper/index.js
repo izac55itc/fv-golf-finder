@@ -1,11 +1,21 @@
 'use strict'
 const fs   = require('fs')
 const path = require('path')
+const { createClient } = require('@supabase/supabase-js')
 const golfnow = require('./golfnow')
 
 const DAYS_AHEAD = 7
 
 async function main() {
+  const supabaseUrl = process.env.SUPABASE_URL
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY env vars')
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseKey)
+
   const today = new Date()
   console.log(`\nFV Golf Finder scraper — ${today.toISOString().split('T')[0]} (${DAYS_AHEAD} days)\n`)
 
@@ -23,37 +33,49 @@ async function main() {
       console.log(`\n── Scraping ${dateStr} ──`)
       const scraped = await golfnow.scrapeAll(dateStr)
       for (const [courseId, rawList] of scraped) {
-        let seq = 1
         for (const raw of rawList) {
           const isoTime = parseTime(raw.time, dateStr)
           if (!isoTime) continue
           if (raw.spaces <= 0) continue
           allTeetimes.push({
-            id:       `gn-${courseId}-${dateStr}-${seq++}`,
-            courseId,
-            time:     isoTime,
+            course_id: courseId,
+            time: isoTime,
             greenfee: raw.greenfee,
-            spaces:   raw.spaces,
-            maxPlayers: raw.maxPlayers,
-            source:   'golfnow',
+            spaces: raw.spaces,
+            max_players: raw.maxPlayers,
+            source: 'golfnow',
           })
         }
       }
     }
+
+    // Delete old tee times (older than today) then insert new batch
+    const { error: deleteErr } = await supabase
+      .from('teetimes')
+      .delete()
+      .lt('time', new Date().toISOString())
+
+    if (deleteErr) {
+      console.error('Error deleting old records:', deleteErr.message)
+    } else {
+      console.log(`✓ Deleted expired tee times`)
+    }
+
+    // Upsert new tee times (on conflict, do nothing to preserve existing data)
+    const { data, error } = await supabase
+      .from('teetimes')
+      .upsert(allTeetimes, { onConflict: 'course_id,time,greenfee' })
+
+    if (error) {
+      console.error('Error upserting tee times:', error.message)
+      process.kill(process.pid, 'SIGKILL')
+      return
+    }
+
+    console.log(`\n✓ Upserted ${allTeetimes.length} tee times across ${dates.length} days → Supabase\n`)
   } finally {
     golfnow.closeBrowser().catch(() => {})
   }
-
-  const output = {
-    generatedAt: new Date().toISOString(),
-    dates,
-    count: allTeetimes.length,
-    teetimes: allTeetimes,
-  }
-
-  const outPath = path.join(__dirname, 'teetimes.json')
-  fs.writeFileSync(outPath, JSON.stringify(output, null, 2))
-  console.log(`\n✓ Wrote ${allTeetimes.length} tee times across ${dates.length} days → teetimes.json\n`)
 
   process.kill(process.pid, 'SIGTERM')
 }
