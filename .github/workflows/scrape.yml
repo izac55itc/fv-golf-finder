@@ -1,8 +1,8 @@
 name: Scrape Tee Times
 on:
   schedule:
-    - cron: '0 * * * *'   # every hour at :00
-  workflow_dispatch:        # manual trigger from the Actions tab
+    - cron: '0 8,10,12,14,16,18,20,22 * * *'  # every 2h: 8 AM-10 PM UTC (12 AM-6 PM PST + buffer). Skips midnight-8 AM PST (00-07 UTC)
+  workflow_dispatch:                            # manual trigger from the Actions tab
 permissions:
   contents: write
 jobs:
