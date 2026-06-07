@@ -1,7 +1,12 @@
 import './App.css'
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { COURSES } from './data/courses.js'
+import { fetchAllDriveTimes } from './utils/distanceMatrix.js'
+import { getCurrentLocation, WALNUT_GROVE } from './utils/geo.js'
+import { getSunsetTime } from './utils/sunset.js'
+import { fetchAllCourseWeather } from './utils/weather.js'
+import { fuelCostDollars } from './utils/ranker.js'
 import FilterPanel from './components/FilterPanel.jsx'
 import CalendarView from './components/CalendarView.jsx'
 
@@ -27,11 +32,39 @@ function timeAgo(isoStr) {
   return `${hrs}h ${mins % 60}m ago`
 }
 
+function pad(n) { return String(n).padStart(2, '0') }
+
+async function geocodeAddress(query) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=1&countrycodes=ca`
+  const res = await fetch(url, {
+    headers: {
+      'Accept-Language': 'en',
+      'User-Agent': 'FV-Golf-Finder/0.1 (personal project)',
+    },
+  })
+  if (!res.ok) throw new Error('Geocode failed')
+  const data = await res.json()
+  if (!data.length) throw new Error('Location not found')
+  const item = data[0]
+  const a = item.address || {}
+  const neighbourhood = a.neighbourhood || a.suburb || a.hamlet || a.quarter
+  const city = a.city || a.town || a.village || a.municipality || a.county
+  const parts = [neighbourhood, city].filter(Boolean)
+  const name = parts.length ? parts.join(', ') : item.display_name?.split(',')[0]
+  return { lat: parseFloat(item.lat), lng: parseFloat(item.lon), name, source: 'manual' }
+}
+
 export default function App() {
+  const [location,     setLocation]     = useState({ ...WALNUT_GROVE, source: 'default' })
+  const [locLoading,   setLocLoading]   = useState(false)
+  const [locInput,     setLocInput]     = useState(WALNUT_GROVE.name)
+  const [locSearching, setLocSearching] = useState(false)
+  const [locError,     setLocError]     = useState(null)
+  const locInputRef = useRef(null)
 
   const [sessionDate,   setSessionDate]   = useState(() => {
     const d = new Date()
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
   })
 
   const [teetimes,    setTeetimes]    = useState([])
@@ -45,16 +78,62 @@ export default function App() {
   const [maxGreenfee,     setMaxGreenfee]     = useState(120)
   const [selectedCourses, setSelectedCourses] = useState(null)
 
+  const [driveTimes,  setDriveTimes]  = useState(null)
+  const [weatherData, setWeatherData] = useState(null)
+
   const availableDates = useMemo(() => (
     [...Array(7)].map((_, i) => {
       const d = new Date()
       d.setDate(d.getDate() + i)
       const year = d.getFullYear()
-      const month = String(d.getMonth() + 1).padStart(2, '0')
-      const date = String(d.getDate()).padStart(2, '0')
+      const month = pad(d.getMonth() + 1)
+      const date = pad(d.getDate())
       return `${year}-${month}-${date}`
     })
   ), [])
+
+  useEffect(() => {
+    let alive = true
+    setDriveTimes(null)
+    fetchAllDriveTimes(location.lat, location.lng, COURSES)
+      .then(map => { if (alive) setDriveTimes(map) })
+    return () => { alive = false }
+  }, [location.lat, location.lng])
+
+  useEffect(() => {
+    fetchAllCourseWeather(COURSES)
+      .then(setWeatherData)
+      .catch(err => console.warn('Weather fetch error:', err))
+  }, [])
+
+  const handleLocSearch = useCallback(async () => {
+    if (!locInput.trim()) return
+    setLocSearching(true)
+    setLocError(null)
+    try {
+      const loc = await geocodeAddress(locInput.trim())
+      setLocation(loc)
+      setLocInput(loc.name)
+    } catch {
+      setLocError('Location not found — try a different search')
+    } finally {
+      setLocSearching(false)
+    }
+  }, [locInput])
+
+  const handleLocKeyDown = (e) => {
+    if (e.key === 'Enter') handleLocSearch()
+  }
+
+  const handleLocGps = useCallback(() => {
+    setLocLoading(true)
+    setLocError(null)
+    getCurrentLocation().then(loc => {
+      setLocation(loc)
+      setLocInput(loc.name)
+      setLocLoading(false)
+    })
+  }, [])
 
   const handleDateChange = (newDate) => {
     setSessionDate(newDate)
@@ -199,6 +278,39 @@ export default function App() {
             </div>
           </div>
 
+          <div className="planner-fields">
+            <div className="field field-location">
+              <label>Location</label>
+              <div className="loc-input-row">
+                <input
+                  ref={locInputRef}
+                  type="text"
+                  className="loc-input"
+                  value={locLoading ? 'Detecting…' : locInput}
+                  onChange={e => setLocInput(e.target.value)}
+                  onKeyDown={handleLocKeyDown}
+                  disabled={locLoading || locSearching}
+                  placeholder="Enter city or address"
+                />
+                <button
+                  className="loc-search-btn"
+                  onClick={handleLocSearch}
+                  disabled={locLoading || locSearching || !locInput.trim()}
+                >
+                  {locSearching ? '…' : '🔍'}
+                </button>
+                <button
+                  className="loc-gps-btn"
+                  onClick={handleLocGps}
+                  disabled={locLoading || locSearching}
+                >
+                  📍
+                </button>
+              </div>
+              {locError && <div className="loc-error">{locError}</div>}
+            </div>
+          </div>
+
           <FilterPanel
             maxGreenfee={maxGreenfee}
             onMaxGreenfee={setMaxGreenfee}
@@ -215,6 +327,8 @@ export default function App() {
 
         <CalendarView
           teetimes={teetimes}
+          driveTimes={driveTimes}
+          weatherData={weatherData}
           sessionDate={sessionDate}
           onDateChange={handleDateChange}
           availableDates={availableDates}

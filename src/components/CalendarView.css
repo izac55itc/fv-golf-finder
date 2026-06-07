@@ -33,6 +33,16 @@
   border-color: #2d5016;
 }
 
+.cal-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #666;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
 .cal-filters {
   display: flex;
   gap: 20px;
@@ -83,7 +93,7 @@
 .cal-results {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .cal-no-results {
@@ -93,20 +103,24 @@
   font-size: 16px;
 }
 
-.cal-course-row {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  gap: 16px;
-  align-items: center;
-  padding: 16px;
+.cal-course-card {
   background: white;
   border: 1px solid #eee;
   border-radius: 8px;
+  overflow: hidden;
   transition: all 0.2s;
 }
 
-.cal-course-row:hover {
+.cal-course-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .cal-course-info {
@@ -116,8 +130,9 @@
 }
 
 .cal-course-name {
-  font-weight: 600;
+  margin: 0;
   font-size: 15px;
+  font-weight: 600;
   color: #2d5016;
 }
 
@@ -126,32 +141,65 @@
   color: #999;
 }
 
-.cal-course-pricing {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-end;
-}
-
-.cal-price {
-  font-weight: 700;
-  font-size: 18px;
-  color: #2d5016;
-}
-
 .cal-badge-deals {
   font-size: 12px;
   background: #fff3cd;
   color: #856404;
   padding: 4px 8px;
   border-radius: 3px;
+  white-space: nowrap;
 }
 
-.cal-course-availability {
+.cal-card-pricing {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.cal-price-section {
   text-align: center;
 }
 
-.cal-slots {
+.cal-price-section.total {
+  border-left: 2px solid #2d5016;
+  padding-left: 12px;
+}
+
+.cal-price-label {
+  font-size: 12px;
+  color: #999;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.cal-price-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d5016;
+}
+
+.cal-weather {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #666;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cal-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  gap: 12px;
+}
+
+.cal-availability {
   font-size: 13px;
   color: #666;
 }
@@ -176,23 +224,23 @@
 }
 
 @media (max-width: 768px) {
-  .cal-course-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .cal-card-pricing {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
-  .cal-course-pricing {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .cal-course-availability {
-    order: -1;
+  .cal-card-footer {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .cal-book-btn {
     width: 100%;
     text-align: center;
+  }
+
+  .cal-meta {
+    flex-direction: column;
+    gap: 8px;
   }
 }
