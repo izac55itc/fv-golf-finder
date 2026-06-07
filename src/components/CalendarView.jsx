@@ -41,17 +41,26 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const totalCost = avgPrice + gasCost + CART_RENTAL
       const totalWithoutCart = avgPrice + gasCost
 
-      // Calculate verdict based on holes before dusk
-      const teeTime = new Date(sessionDate + 'T08:00:00')
-      const sunsetTime = getSunsetTime(teeTime)
-      const minsUntilSunset = (sunsetTime - teeTime) / 60_000
-      const holesBeforeDusk = Math.max(0, Math.floor(minsUntilSunset / AVG_HOLE_MINUTES))
+      // Calculate latest tee time to finish before dusk
+      const dummyTeeTime = new Date(sessionDate + 'T12:00:00')
+      const sunsetTime = getSunsetTime(dummyTeeTime)
+      const roundDurationMs = course.holes * AVG_HOLE_MINUTES * 60_000
+      const latestStartMs = sunsetTime.getTime() - roundDurationMs
+      const latestStart = new Date(latestStartMs)
 
+      // Determine verdict based on whether round fits
+      const roundFitsBeforeDusk = latestStartMs >= new Date(sessionDate + 'T06:00:00').getTime()
       let verdict = 'skip'
-      if (holesBeforeDusk >= course.holes) {
+      if (roundFitsBeforeDusk) {
         verdict = 'go'
-      } else if (holesBeforeDusk > 0) {
-        verdict = 'tight'
+      } else {
+        // Check if partial round fits
+        const firstLightMs = new Date(sessionDate + 'T06:00:00').getTime()
+        const availableMs = sunsetTime.getTime() - firstLightMs
+        const holesAvailable = Math.floor(availableMs / (AVG_HOLE_MINUTES * 60_000))
+        if (holesAvailable > 0) {
+          verdict = 'tight'
+        }
       }
 
       map.set(item.courseId, {
@@ -68,7 +77,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         weatherMorning,
         weatherAfternoon,
         weatherTwilight,
-        holesBeforeDusk,
+        latestStart,
         verdict,
       })
     }
@@ -186,7 +195,9 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                 </div>
 
                 <div className="cal-card-meta">
-                  <div className="cal-holes-info">{item.holesBeforeDusk} holes before dusk</div>
+                  <div className="cal-holes-info">
+                    Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
+                  </div>
                   <div className="cal-weather-group">
                     {item.weatherMorning && (
                       <div className="cal-weather-period">
