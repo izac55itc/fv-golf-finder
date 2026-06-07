@@ -7,8 +7,7 @@ import './CalendarView.css'
 
 const CART_RENTAL = 20
 
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, maxGreenfee, maxDriveMin, selectedCourses }) {
-  const [sortBy, setSortBy] = useState('cost')
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates }) {
 
   const now = new Date()
   const today = new Date()
@@ -22,14 +21,11 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     for (const item of teetimes) {
       if (item.date !== sessionDate) continue
       if (item.availableCount === 0) continue
-      if (item.minPrice > maxGreenfee) continue
 
       const course = COURSES.find(c => c.id === item.courseId)
       if (!course) continue
-      if (selectedCourses !== null && !selectedCourses.has(course.id)) continue
 
       const driveMinutes = driveTimes?.get(course.id) ?? 15
-      if (driveMinutes > maxDriveMin) continue
 
       const weatherMorning = getWeatherAtTime(weatherData, course.id, sessionDate + 'T08:00:00')
       const weatherAfternoon = getWeatherAtTime(weatherData, course.id, sessionDate + 'T14:00:00')
@@ -44,21 +40,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const roundDurationMs = course.holes * course.avgHoleMinutes * 60_000
       const latestStartMs = sunset.getTime() - roundDurationMs
       const latestStart = new Date(latestStartMs)
-
-      // Determine verdict based on whether round fits
-      const roundFitsBeforeDusk = latestStartMs >= new Date(sessionDate + 'T06:00:00').getTime()
-      let verdict = 'skip'
-      if (roundFitsBeforeDusk) {
-        verdict = 'go'
-      } else {
-        // Check if partial round fits
-        const firstLightMs = new Date(sessionDate + 'T06:00:00').getTime()
-        const availableMs = sunset.getTime() - firstLightMs
-        const holesAvailable = Math.floor(availableMs / (course.avgHoleMinutes * 60_000))
-        if (holesAvailable > 0) {
-          verdict = 'tight'
-        }
-      }
 
       map.set(item.courseId, {
         course,
@@ -76,20 +57,12 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         weatherTwilight,
         sunset,
         latestStart,
-        verdict,
       })
     }
 
     return Array.from(map.values())
-  }, [teetimes, sessionDate, maxGreenfee, maxDriveMin, selectedCourses, driveTimes, weatherData, now])
+  }, [teetimes, sessionDate, driveTimes, weatherData])
 
-  const sorted = useMemo(() => {
-    return [...summaries].sort((a, b) => {
-      if (sortBy === 'cost') return a.totalCost - b.totalCost
-      if (sortBy === 'deals') return b.hasHotDeals - a.hasHotDeals
-      return a.course.name.localeCompare(b.course.name)
-    })
-  }, [summaries, sortBy])
 
   const baseDate = new Date(sessionDate + 'T12:00:00')
   const sunset = getSunsetTime(baseDate)
@@ -98,12 +71,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const bookingUrl = (courseId) => {
     const date = sessionDate.replace(/-/g, '')
     return `https://www.golfnow.com/tee-times/results?course=${courseId}&date=${date}`
-  }
-
-  const verdictColor = (verdict) => {
-    if (verdict === 'go') return 'go'
-    if (verdict === 'tight') return 'tight'
-    return 'skip'
   }
 
   return (
@@ -130,33 +97,13 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         <span>Total courses: {summaries.length}</span>
       </div>
 
-      <div className="cal-filters">
-        <div className="cal-filter-group">
-          <span className="cal-filter-label">Sort by</span>
-          <div className="cal-sort-btns">
-            {[
-              { key: 'cost', label: 'Best Price' },
-              { key: 'name', label: 'Course Name' },
-            ].map(opt => (
-              <button
-                key={opt.key}
-                className={`cal-sort-btn${sortBy === opt.key ? ' active' : ''}`}
-                onClick={() => setSortBy(opt.key)}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
 
       <div className="cal-results">
-        {sorted.length === 0 ? (
+        {summaries.length === 0 ? (
           <p className="cal-no-results">No courses available for this date.</p>
         ) : (
-          sorted.map(item => (
-              <div key={item.course.id} className={`cal-course-card verdict-${verdictColor(item.verdict)}`}>
-                <div className="cal-verdict-badge">{item.verdict.toUpperCase()}</div>
+          summaries.map(item => (
+              <div key={item.course.id} className="cal-course-card">
 
                 <div className="cal-card-header">
                   <div className="cal-course-info">

@@ -7,7 +7,6 @@ import { getCurrentLocation, WALNUT_GROVE } from './utils/geo.js'
 import { getSunsetTime } from './utils/sunset.js'
 import { fetchAllCourseWeather } from './utils/weather.js'
 import { fuelCostDollars } from './utils/ranker.js'
-import FilterPanel from './components/FilterPanel.jsx'
 import CalendarView from './components/CalendarView.jsx'
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
@@ -74,10 +73,6 @@ export default function App() {
 
   const [scrapeStatus,      setScrapeStatus]      = useState(null)
   const [scrapeSecondsLeft, setScrapeSecondsLeft] = useState(0)
-
-  const [maxGreenfee,     setMaxGreenfee]     = useState(120)
-  const [maxDriveMin,     setMaxDriveMin]     = useState(60)
-  const [selectedCourses, setSelectedCourses] = useState(null)
 
   const [driveTimes,  setDriveTimes]  = useState(null)
   const [weatherData, setWeatherData] = useState(null)
@@ -222,21 +217,7 @@ export default function App() {
     return () => clearTimeout(id)
   }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
 
-  const baseDate      = useMemo(() => new Date(sessionDate + 'T00:00:00'), [sessionDate])
-  const courseOptions = COURSES
-
-  const handleToggleCourse = (id) => {
-    setSelectedCourses(prev => {
-      const base = prev === null
-        ? new Set(courseOptions.map(c => c.id))
-        : new Set(prev)
-      if (base.has(id)) base.delete(id)
-      else base.add(id)
-      return base.size === courseOptions.length ? null : base
-    })
-  }
-
-  const handleSelectAllCourses = () => setSelectedCourses(null)
+  const baseDate = useMemo(() => new Date(sessionDate + 'T00:00:00'), [sessionDate])
 
   return (
     <div className="app">
@@ -310,12 +291,6 @@ export default function App() {
             {locError && <div className="loc-error">{locError}</div>}
           </div>
 
-          <FilterPanel
-            maxGreenfee={maxGreenfee}
-            onMaxGreenfee={setMaxGreenfee}
-            maxDriveMin={maxDriveMin}
-            onMaxDriveMin={setMaxDriveMin}
-          />
         </div>
 
         {teeError && (
@@ -329,9 +304,6 @@ export default function App() {
           sessionDate={sessionDate}
           onDateChange={handleDateChange}
           availableDates={availableDates}
-          maxGreenfee={maxGreenfee}
-          maxDriveMin={maxDriveMin}
-          selectedCourses={selectedCourses}
         />
       </main>
     </div>
