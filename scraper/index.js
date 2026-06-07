@@ -76,11 +76,11 @@ async function main() {
     })
     const deduped = Array.from(bySlot.values())
 
-    // Delete old tee times (older than today)
+    // Delete all tee times and start fresh (timezone fix requires clean slate)
     const { error: deleteErr } = await supabase
       .from('teetimes')
       .delete()
-      .lt('time', new Date().toISOString())
+      .not('id', 'is', null)
 
     if (deleteErr) {
       console.error('Error deleting old records:', JSON.stringify(deleteErr, null, 2))
