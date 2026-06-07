@@ -43,53 +43,6 @@
   border-radius: 8px;
 }
 
-.cal-filters {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 12px;
-  background: #f9f9f9;
-  border-radius: 8px;
-}
-
-.cal-filter-group {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.cal-filter-label {
-  font-weight: 600;
-  font-size: 13px;
-  color: #666;
-}
-
-.cal-sort-btns {
-  display: flex;
-  gap: 6px;
-}
-
-.cal-sort-btn {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: white;
-  cursor: pointer;
-  font-size: 13px;
-  transition: all 0.2s;
-}
-
-.cal-sort-btn:hover {
-  background: #f0f0f0;
-}
-
-.cal-sort-btn.active {
-  background: #2d5016;
-  color: white;
-  border-color: #2d5016;
-}
-
 .cal-results {
   display: flex;
   flex-direction: column;
@@ -105,57 +58,14 @@
 
 .cal-course-card {
   background: white;
-  border-left: 4px solid #ddd;
+  border-left: 4px solid #2d5016;
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.2s;
-  position: relative;
-}
-
-.cal-course-card.verdict-go {
-  border-left-color: #28a745;
-  background: #f0fff4;
-}
-
-.cal-course-card.verdict-tight {
-  border-left-color: #ffc107;
-  background: #fffbf0;
-}
-
-.cal-course-card.verdict-skip {
-  border-left-color: #dc3545;
-  background: #fff5f5;
 }
 
 .cal-course-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.cal-verdict-badge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 3px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.cal-course-card.verdict-go .cal-verdict-badge {
-  background: #28a745;
-  color: white;
-}
-
-.cal-course-card.verdict-tight .cal-verdict-badge {
-  background: #ffc107;
-  color: #333;
-}
-
-.cal-course-card.verdict-skip .cal-verdict-badge {
-  background: #dc3545;
-  color: white;
 }
 
 .cal-card-header {
