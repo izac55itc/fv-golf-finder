@@ -32,7 +32,9 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const driveMinutes = driveTimes?.get(course.id) ?? 15
       if (driveMinutes > maxDriveMin) continue
 
-      const weather = getWeatherAtTime(weatherData, course.id, sessionDate + 'T08:00:00')
+      const weatherMorning = getWeatherAtTime(weatherData, course.id, sessionDate + 'T08:00:00')
+      const weatherAfternoon = getWeatherAtTime(weatherData, course.id, sessionDate + 'T14:00:00')
+      const weatherTwilight = getWeatherAtTime(weatherData, course.id, sessionDate + 'T17:00:00')
 
       const avgPrice = Math.round((item.minPrice + item.maxPrice) / 2)
       const gasCost = fuelCostDollars(driveMinutes)
@@ -63,7 +65,9 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         cartCost: CART_RENTAL,
         totalCost,
         totalWithoutCart,
-        weather,
+        weatherMorning,
+        weatherAfternoon,
+        weatherTwilight,
         holesBeforeDusk,
         verdict,
       })
@@ -184,12 +188,26 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
                 <div className="cal-card-meta">
                   <div className="cal-holes-info">{item.holesBeforeDusk} holes before dusk</div>
-                  {item.weather && (
-                    <div className="cal-weather">
-                      <span>{item.weather.icon} {item.weather.temp}°C</span>
-                      <span>{item.weather.label}</span>
-                    </div>
-                  )}
+                  <div className="cal-weather-group">
+                    {item.weatherMorning && (
+                      <div className="cal-weather-period">
+                        <span className="cal-weather-time">8am</span>
+                        <span>{item.weatherMorning.icon} {item.weatherMorning.temp}°C</span>
+                      </div>
+                    )}
+                    {item.weatherAfternoon && (
+                      <div className="cal-weather-period">
+                        <span className="cal-weather-time">2pm</span>
+                        <span>{item.weatherAfternoon.icon} {item.weatherAfternoon.temp}°C</span>
+                      </div>
+                    )}
+                    {item.weatherTwilight && (
+                      <div className="cal-weather-period">
+                        <span className="cal-weather-time">5pm</span>
+                        <span>{item.weatherTwilight.icon} {item.weatherTwilight.temp}°C</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div className="cal-card-footer">
