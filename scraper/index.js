@@ -52,23 +52,35 @@ async function main() {
       }
     }
 
-    // Deduplicate by (course_id, time) — keep only cheapest non-zero greenfee, exclude $0
+    // Deduplicate by (course_id, time) — keep cheapest non-zero if available, else keep one $0
     const bySlot = new Map()
     allTeetimes.forEach(tt => {
-      if (tt.greenfee === 0) return // skip $0 entries
       const key = `${tt.course_id}|${tt.time}`
       const existing = bySlot.get(key)
-      if (!existing || tt.greenfee < existing.greenfee) {
+      if (!existing) {
         bySlot.set(key, tt)
+      } else {
+        // Prefer non-zero greenfee; if both are zero or both non-zero, prefer cheaper
+        const existingIsZero = existing.greenfee === 0
+        const newIsZero = tt.greenfee === 0
+        if (newIsZero && existingIsZero) {
+          // both $0, keep existing (or could pick by spaces)
+        } else if (!newIsZero && existingIsZero) {
+          // new has price, existing is $0, replace
+          bySlot.set(key, tt)
+        } else if (!newIsZero && !existingIsZero && tt.greenfee < existing.greenfee) {
+          // both have prices, keep cheaper
+          bySlot.set(key, tt)
+        }
       }
     })
     const deduped = Array.from(bySlot.values())
 
-    // Delete old tee times (older than today) and all $0 entries
+    // Delete old tee times (older than today)
     const { error: deleteErr } = await supabase
       .from('teetimes')
       .delete()
-      .or(`time.lt.${new Date().toISOString()},greenfee.eq.0`)
+      .lt('time', new Date().toISOString())
 
     if (deleteErr) {
       console.error('Error deleting old records:', JSON.stringify(deleteErr, null, 2))
