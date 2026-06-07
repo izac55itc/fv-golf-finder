@@ -54,11 +54,13 @@ async function main() {
         const data = await res.json()
 
         data.forEach(item => {
+          const minVal = item.minPrice?.value || 0
+          const maxVal = item.maxPrice?.value || 0
           allSummaries.push({
             course_id: courseId,
             date: item.playDateUtc.split('T')[0],
-            min_price: item.minPrice?.value || 0,
-            max_price: item.maxPrice?.value || 0,
+            min_price: Math.round(parseFloat(minVal)),
+            max_price: Math.round(parseFloat(maxVal)),
             available_count: item.numberOfTeeTimesAvailable || 0,
             has_hot_deals: item.areHotDealsAvailable || false,
           })
