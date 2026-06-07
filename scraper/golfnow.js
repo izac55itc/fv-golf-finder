@@ -58,7 +58,7 @@ async function scrapeFacility(facilityId, dateStr) {
     const url = `https://www.golfnow.com/tee-times/facility/${facilityId}/search?date=${dateStr}&holes=18&players=1&time=all`
     console.log(`[${facilityId}] Loading...`)
 
-    let domPlayerRanges = {}
+    let domData = { ranges: {}, prices: {} }
 
     await Promise.race([
       (async () => {
@@ -70,9 +70,10 @@ async function scrapeFacility(facilityId, dateStr) {
         await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
         await page.waitForTimeout(2_000)
 
-        // Extract player ranges from DOM
-        domPlayerRanges = await page.evaluate(() => {
+        // Extract player ranges AND prices from DOM
+        domData = await page.evaluate(() => {
           const ranges = {}
+          const prices = {}
           const allText = document.body.innerText
           const lines = allText.split('\n')
 
@@ -80,20 +81,31 @@ async function scrapeFacility(facilityId, dateStr) {
             const timeMatch = line.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
             if (timeMatch) {
               const time = timeMatch[0].trim()
-              // Look in this line and next 2 lines for player range
-              const context = [line, lines[idx+1]||'', lines[idx+2]||''].join(' ')
+              const context = [
+                line,
+                lines[idx+1] || '',
+                lines[idx+2] || '',
+                lines[idx+3] || '',
+              ].join(' ')
+
+              // Extract player range e.g. "1-4"
               const playerMatch = context.match(/(\d)-(\d)/)
-              if (playerMatch) {
-                const maxPlayers = parseInt(playerMatch[2], 10)
-                if (!ranges[time]) ranges[time] = maxPlayers
+              if (playerMatch && !ranges[time]) {
+                ranges[time] = parseInt(playerMatch[2], 10)
+              }
+
+              // Extract price — look for $XX.XX or $XX pattern
+              const priceMatch = context.match(/\$(\d+(?:\.\d{1,2})?)/)
+              if (priceMatch && !prices[time]) {
+                prices[time] = parseFloat(priceMatch[1])
               }
             }
           })
-          return ranges
+          return { ranges, prices }
         })
 
-        if (Object.keys(domPlayerRanges).length > 0) {
-          console.log(`[${facilityId}] Extracted player ranges from DOM:`, domPlayerRanges)
+        if (Object.keys(domData.prices).length > 0) {
+          console.log(`[${facilityId}] DOM prices (raw): ${JSON.stringify(domData.prices)}`)
         }
       })(),
       new Promise((_, reject) =>
@@ -101,10 +113,37 @@ async function scrapeFacility(facilityId, dateStr) {
       ),
     ])
 
-    // Merge DOM player ranges into captured tee times
+    // Merge DOM data into captured XHR tee times
     captured.forEach(tt => {
       const timeKey = tt.time.replace(/\s+/g, '')
-      tt.maxPlayers = domPlayerRanges[timeKey] ?? tt.maxPlayers ?? 4
+      // Apply player range from DOM
+      tt.maxPlayers = domData.ranges[timeKey] ?? tt.maxPlayers ?? 4
+      // Apply price from DOM if XHR didn't return one
+      if (tt.greenfee === 0 && domData.prices[timeKey] !== undefined) {
+        let val = domData.prices[timeKey]
+        if (val > 500) val = val / 100
+        tt.greenfee = Math.round(val)
+      }
+    })
+
+    // Add tee times found only in DOM (not captured via XHR)
+    const capturedKeys = new Set(captured.map(tt => tt.time.replace(/\s+/g, '')))
+    Object.entries(domData.prices).forEach(([timeKey, rawPrice]) => {
+      if (capturedKeys.has(timeKey)) return // already have this one from XHR
+      let price = rawPrice
+      if (price > 500) price = price / 100
+      price = Math.round(price)
+      if (price <= 0) return
+      const spaces = domData.ranges[timeKey] ?? 4
+      // Convert "10:26AM" → "10:26 AM"
+      const timeStr = timeKey.replace(/([AP]M)/i, ' $1')
+      captured.push({
+        time:       timeStr,
+        greenfee:   price,
+        spaces,
+        available:  undefined,
+        maxPlayers: spaces,
+      })
     })
 
     console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
@@ -117,8 +156,6 @@ async function scrapeFacility(facilityId, dateStr) {
 
   return captured
 }
-
-let _normaliseLogged = false
 
 function extractTeeTimes(json) {
   const candidates = []
@@ -153,11 +190,13 @@ function normalise(raw) {
   const time = raw.time ?? raw.teetime ?? raw.teeTime ?? raw.startTime ?? raw.displayTime
   if (!time) return null
 
+  // Skip unavailable slots
+  if (raw.available === false) return null
+
   let timeStr
 
   if (typeof time === 'object') {
     if (time.formatted && time.formattedTimeMeridian) {
-      // Use formatted time + meridian — correct local Pacific time
       timeStr = `${time.formatted} ${time.formattedTimeMeridian}`
     } else if (time.date) {
       timeStr = time.date
@@ -170,25 +209,21 @@ function normalise(raw) {
     timeStr = String(time)
   }
 
-  if (!_normaliseLogged && raw) {
-    console.log(`[normalise] Raw object keys: ${Object.keys(raw).join(', ')}`)
-    console.log(`[normalise] Resolved timeStr: ${timeStr}`)
-    console.log(`[normalise] Full raw object:`, JSON.stringify(raw, null, 2))
-    _normaliseLogged = true
-  }
-
   let greenfee = 0
   if (raw.formattedPrice) {
     const match = raw.formattedPrice.match(/\d+/)
     greenfee = match ? Number(match[0]) : 0
   }
 
+  // rounds = actual player count available for this slot (1-4)
+  const spaces = Number(raw.rounds ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4)
+
   return {
-    time:     timeStr,
+    time:       timeStr,
     greenfee,
-    spaces:   Number(raw.available ?? raw.spots ?? raw.openSpots ?? raw.maxPlayers ?? 4),
-    available: raw.available,
-    maxPlayers: raw.maxPlayers ?? 4,
+    spaces,
+    available:  raw.available,
+    maxPlayers: raw.maxPlayers ?? spaces,
   }
 }
 

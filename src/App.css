@@ -139,144 +139,11 @@ body {
   box-shadow: 0 0 0 3px rgba(45, 122, 45, 0.12);
 }
 
-.table-wrap {
-  background: var(--bg-white);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
-}
-
-.results-meta {
-  padding: 0.75rem 1rem;
-  font-size: 0.8rem;
-  color: var(--green-label);
-  border-bottom: 1px solid var(--green-row-border);
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-}
-
-.meta-item {
-  display: flex;
-  flex-direction: row;
-  gap: 0.35rem;
-  align-items: center;
-}
-
-.dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.dot-go    { background: #22c55e; }
-.dot-tight { background: #f59e0b; }
-.dot-skip  { background: #ef4444; }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead th {
-  background: var(--green-dark);
-  color: #ffffff;
-  padding: 0.65rem 0.85rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  text-align: left;
-  cursor: pointer;
-  user-select: none;
-  white-space: nowrap;
-  transition: background 0.12s;
-}
-
-thead th:hover { background: var(--green-dim); }
-thead th.sort-active { background: var(--green-mid); }
-
-tbody tr { border-bottom: 1px solid var(--green-row-border); }
-tbody tr:last-child { border-bottom: none; }
-tbody tr:hover { background: var(--green-row-hover); }
-
-tbody td {
-  padding: 0.65rem 0.85rem;
-  font-size: 0.875rem;
-  vertical-align: middle;
-}
-
-.course-name {
-  font-weight: 600;
-  color: var(--green-darkest);
-}
-
-.course-badge {
-  display: inline-block;
-  margin-left: 0.4rem;
-  font-size: 0.7rem;
-  font-weight: 600;
-  background: var(--green-badge-bg);
-  color: var(--green-badge);
-  border-radius: 999px;
-  padding: 0.1rem 0.45rem;
-  vertical-align: middle;
-  white-space: nowrap;
-}
-
-.greenfee { font-weight: 600; }
-.drive, .est-round { color: var(--green-label); }
-.tee-in-urgent { color: #c05000; font-weight: 600; }
-.holes-ok    { color: #166534; font-weight: 700; }
-.holes-short { color: #dc2626; font-weight: 700; }
-.done-by-warn { color: #92400e; }
-
-.verdict-badge {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 999px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.2rem 0.65rem;
-  white-space: nowrap;
-}
-
-.verdict-go    { background: #dcfce7; color: #166534; }
-.verdict-tight { background: #fef3c7; color: #92400e; }
-.verdict-skip  { background: #fee2e2; color: #991b1b; }
-
 .empty-state {
   text-align: center;
   font-style: italic;
   color: var(--green-label);
   padding: 3rem;
-}
-
-.meta-loading {
-  font-size: 0.82rem;
-  color: var(--green-label);
-  font-style: italic;
-}
-
-@keyframes shimmer {
-  0%   { background-position: -600px 0; }
-  100% { background-position:  600px 0; }
-}
-
-.skeleton-row td { padding: 0.75rem 0.85rem; }
-
-.skeleton-cell {
-  display: block;
-  height: 0.85rem;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #e8f0e8 25%, #d4e8d4 50%, #e8f0e8 75%);
-  background-size: 600px 100%;
-  animation: shimmer 1.4s infinite linear;
 }
 
 .planner-top-row {
@@ -336,18 +203,6 @@ tbody td {
 }
 
 .field-location { flex: 1.5; }
-
-.loc-display {
-  padding: 0.5rem 0.75rem;
-  border: 1.5px solid var(--green-border);
-  border-radius: 0.5rem;
-  font-size: 0.9rem;
-  color: var(--green-darkest);
-  background: #f5f9f5;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 .error-banner {
   background: #fff3cd;
@@ -547,21 +402,6 @@ tbody td {
   padding: 0.1rem 0.45rem;
   white-space: nowrap;
 }
-
-.book-btn {
-  display: inline-block;
-  padding: 4px 12px;
-  background: #2A5070;
-  color: white;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
-
-.book-btn:hover { background: #E8591A; }
 
 /* ── Calendar View ──────────────────────────────────────────── */
 .cal-wrap {
@@ -833,30 +673,7 @@ tbody td {
 
 .sheet-book-btn:hover { background: var(--green-mid); }
 
-/* ── View Toggle ─────────────────────────────────────────────── */
-.view-toggle {
-  display: flex;
-  gap: 0.3rem;
-  margin-left: auto;
-}
-
-.view-toggle-btn {
-  padding: 4px 10px;
-  border-radius: 0.4rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border: 1.5px solid var(--green-border);
-  background: white;
-  color: var(--green-label);
-  cursor: pointer;
-  transition: background 0.12s, border-color 0.12s;
-}
-
-.view-toggle-btn.active {
-  background: var(--green-dark);
-  border-color: var(--green-dark);
-  color: white;
-}
+.sheet-stat-full { grid-column: 1 / -1; }
 
 /* ── Location input ──────────────────────────────────────────── */
 .loc-input-row {
@@ -909,35 +726,13 @@ tbody td {
   margin-top: 4px;
 }
 
-/* ── Results header ──────────────────────────────────────────── */
-.results-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0 0 0.75rem;
-  flex-wrap: wrap;
-}
-
-.results-summary {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--green-label);
-}
-
-.verdict-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.verdict-dot.go    { background: #22c55e; }
-.verdict-dot.tight { background: #f59e0b; }
-.verdict-dot.skip  { background: #ef4444; }
-
-.results-count { margin-left: 0.5rem; }
+/* ── Weather ─────────────────────────────────────────────────── */
+.chip-weather { opacity: 0.85; font-weight: 400; }
+.weather-icon { font-size: 0.9em; }
+.weather-temp { color: inherit; }
+.weather-temp-clear { color: #b45309; }
+.weather-temp-rain  { color: #1d4ed8; }
+.weather-temp-snow  { color: #6b7280; }
 
 /* ── Mobile ──────────────────────────────────────────────────── */
 @media (max-width: 768px) {
@@ -963,9 +758,27 @@ tbody td {
 
   .data-freshness { flex-wrap: wrap; }
 
-  .view-toggle { display: none; }
-
   .cal-filters { gap: 0.5rem 1rem; }
 
   .sheet-panel { max-width: 100%; }
+}
+/* ── Walking toggle ──────────────────────────────────────────── */
+.walking-toggle {
+  margin-left: 0.5rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--green-border);
+  background: white;
+  color: var(--green-label);
+  font-size: 0.65rem;
+  font-weight: 600;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.walking-toggle.active {
+  background: var(--green-badge-bg);
+  border-color: var(--green-mid);
+  color: var(--green-dark);
 }
