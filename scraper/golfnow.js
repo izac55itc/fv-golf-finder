@@ -66,115 +66,17 @@ async function scrapeFacility(facilityId, dateStr) {
     const url = `https://www.golfnow.com/tee-times/facility/${facilityId}/search?date=${dateStr}&holes=18&players=1&time=all`
     console.log(`[${facilityId}] Loading...`)
 
-    let domData = { ranges: {}, prices: {} }
-    let retryCount = 0
-
-    const loadAndExtract = async () => {
-      await Promise.race([
-        (async () => {
-          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
-          console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
-
-          // Scroll to top first to load morning times in DOM
-          await page.evaluate(() => window.scrollTo(0, 0))
-          await page.waitForTimeout(2_000)
-
-          // Scroll to bottom to load evening times in DOM
-          await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
-          await page.waitForTimeout(3_000)
-
-          // Wait for network idle and additional time for all API responses
-          await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
-          await page.waitForTimeout(3_000)
-
-          // Extract player ranges AND prices from DOM
-          domData = await page.evaluate(() => {
-            const ranges = {}
-            const prices = {}
-            const allText = document.body.innerText
-            const lines = allText.split('\n')
-
-            lines.forEach((line, idx) => {
-              const timeMatch = line.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
-              if (timeMatch) {
-                const time = timeMatch[0].trim()
-                const context = [
-                  line,
-                  lines[idx+1] || '',
-                  lines[idx+2] || '',
-                  lines[idx+3] || '',
-                ].join(' ')
-
-                // Extract player range e.g. "1-4"
-                const playerMatch = context.match(/(\d)-(\d)/)
-                if (playerMatch && !ranges[time]) {
-                  ranges[time] = parseInt(playerMatch[2], 10)
-                }
-
-                // Extract price — look for $XX.XX or $XX pattern
-                const priceMatch = context.match(/\$(\d+(?:\.\d{1,2})?)/)
-                if (priceMatch && !prices[time]) {
-                  prices[time] = parseFloat(priceMatch[1])
-                }
-              }
-            })
-            return { ranges, prices }
-          })
-
-          if (Object.keys(domData.prices).length > 0) {
-            console.log(`[${facilityId}] DOM prices (raw): ${JSON.stringify(domData.prices)}`)
-          }
-        })(),
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error(`Timed out after ${TIMEOUT_MS / 1000}s`)), TIMEOUT_MS)
-        ),
-      ])
-    }
-
-    // Load and extract, retry if too few tee times captured
-    await loadAndExtract()
-
-    if (captured.length < 25 && retryCount < 1) {
-      retryCount++
-      console.log(`[${facilityId}] Only ${captured.length} tee times, retrying...`)
-      captured.length = 0 // clear captured array
-      domData = { ranges: {}, prices: {} }
-      await page.reload({ waitUntil: 'domcontentloaded' })
-      await loadAndExtract()
-    }
-
-    // Merge DOM data into captured XHR tee times
-    captured.forEach(tt => {
-      const timeKey = tt.time.replace(/\s+/g, '')
-      // Apply player range from DOM
-      tt.maxPlayers = domData.ranges[timeKey] ?? tt.maxPlayers ?? 4
-      // Apply price from DOM if XHR didn't return one
-      if (tt.greenfee === 0 && domData.prices[timeKey] !== undefined) {
-        let val = domData.prices[timeKey]
-        if (val > 500) val = val / 100
-        tt.greenfee = Math.round(val)
-      }
-    })
-
-    // Add tee times found only in DOM (not captured via XHR)
-    const capturedKeys = new Set(captured.map(tt => tt.time.replace(/\s+/g, '')))
-    Object.entries(domData.prices).forEach(([timeKey, rawPrice]) => {
-      if (capturedKeys.has(timeKey)) return // already have this one from XHR
-      let price = rawPrice
-      if (price > 500) price = price / 100
-      price = Math.round(price)
-      if (price <= 0) return
-      const spaces = domData.ranges[timeKey] ?? 4
-      // Convert "10:26AM" → "10:26 AM"
-      const timeStr = timeKey.replace(/([AP]M)/i, ' $1')
-      captured.push({
-        time:       timeStr,
-        greenfee:   price,
-        spaces,
-        available:  undefined,
-        maxPlayers: spaces,
-      })
-    })
+    await Promise.race([
+      (async () => {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
+        console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
+        await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
+        await page.waitForTimeout(2_000)
+      })(),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error(`Timed out after ${TIMEOUT_MS / 1000}s`)), TIMEOUT_MS)
+      ),
+    ])
 
     console.log(`[${facilityId}] Done, captured ${captured.length} so far`)
   } catch (err) {
