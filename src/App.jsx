@@ -178,9 +178,9 @@ export default function App() {
     }
 
     supabase
-      .from('teetimes')
+      .from('price_summaries')
       .select('*')
-      .order('time', { ascending: true })
+      .order('date,course_id', { ascending: true })
       .then(({ data, error }) => {
         if (error) {
           setTeeError(error.message)
@@ -188,20 +188,17 @@ export default function App() {
           return
         }
 
-        const tts = data || []
-        const seen = new Set()
-        const deduped = tts.map(tt => ({
-          ...tt,
-          courseId: tt.course_id,
-          maxPlayers: tt.max_players ?? 4,
-        })).filter(tt => {
-          const key = `${tt.courseId}-${tt.time}-${tt.greenfee}`
-          if (seen.has(key)) return false
-          seen.add(key)
-          return true
-        })
+        const summaries = data || []
+        const transformed = summaries.map(s => ({
+          courseId: s.course_id,
+          date: s.date,
+          minPrice: s.min_price,
+          maxPrice: s.max_price,
+          availableCount: s.available_count,
+          hasHotDeals: s.has_hot_deals,
+        }))
 
-        setTeetimes(deduped)
+        setTeetimes(transformed)
         setGeneratedAt(new Date().toISOString())
         setTeeFetching(false)
       })
@@ -400,15 +397,10 @@ export default function App() {
 
         <CalendarView
           teetimes={teetimes}
-          driveTimes={driveTimes}
-          weatherData={weatherData}
           sessionDate={sessionDate}
           onDateChange={handleDateChange}
           availableDates={availableDates}
-          playerCount={playerCount}
-          timeRange={timeRange}
           maxGreenfee={maxGreenfee}
-          maxDriveMin={maxDriveMin}
           selectedCourses={selectedCourses}
         />
       </main>

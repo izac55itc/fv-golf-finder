@@ -1,107 +1,50 @@
 import { useState, useMemo } from 'react'
-import { fuelCostDollars } from '../utils/ranker.js'
 import { COURSES } from '../data/courses.js'
-import { getWeatherAtTime } from '../utils/weather.js'
-import BottomSheet from './BottomSheet.jsx'
+import './CalendarView.css'
 
-function fmtTime(date) {
-  return date.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
-}
-
-function getTempColorClass(weatherCode) {
-  if (weatherCode >= 51 && weatherCode <= 67) return 'weather-temp-rain'
-  if ((weatherCode >= 71 && weatherCode <= 77) || (weatherCode >= 85 && weatherCode <= 86)) return 'weather-temp-snow'
-  if (weatherCode === 0 || weatherCode === 1) return 'weather-temp-clear'
-  return 'weather-temp'
-}
-
-const SORT_OPTIONS = [
-  { key: 'cost',  label: 'Total Cost' },
-  { key: 'drive', label: 'Drive Time' },
-  { key: 'holes', label: 'Holes Before Dusk' },
-]
-
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, playerCount, timeRange, maxGreenfee, maxDriveMin, selectedCourses }) {
-  const [sortBy,     setSortBy]     = useState('cost')
-  const [holeFilter, setHoleFilter] = useState(null)
-  const [selected,   setSelected]   = useState(null)
+export default function CalendarView({ teetimes, sessionDate, onDateChange, availableDates, maxGreenfee, selectedCourses }) {
+  const [sortBy, setSortBy] = useState('price')
 
   const now = new Date()
   const today = new Date()
   const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
 
-  const filtered = useMemo(() => {
-    return teetimes.filter(tt => {
-      const hasTimezone = tt.time.includes('Z') || /[+-]\d{2}:\d{2}$/.test(tt.time)
-      const timeStr = !hasTimezone ? tt.time + 'Z' : tt.time
-      const t = new Date(timeStr)
-      const pdtString = t.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
-      const pdt = new Date(pdtString)
-      const pdtDate = `${pdt.getFullYear()}-${String(pdt.getMonth() + 1).padStart(2, '0')}-${String(pdt.getDate()).padStart(2, '0')}`
-      if (pdtDate !== sessionDate) return false
-      const h = pdt.getHours()
-      if (h < timeRange[0] || h > timeRange[1]) return false
-      if ((tt.spaces ?? 4) < playerCount) return false
-      if (tt.greenfee > maxGreenfee) return false
-      return true
-    })
-  }, [teetimes, sessionDate, timeRange, playerCount, maxGreenfee])
-
-  const grouped = useMemo(() => {
+  const summaries = useMemo(() => {
     const map = new Map()
-    for (const tt of filtered) {
-      const course = COURSES.find(c => c.id === tt.courseId)
+
+    for (const item of teetimes) {
+      if (item.date !== sessionDate) continue
+      if (item.availableCount === 0) continue
+      if (item.minPrice > maxGreenfee) continue
+
+      const course = COURSES.find(c => c.id === item.courseId)
       if (!course) continue
       if (selectedCourses !== null && !selectedCourses.has(course.id)) continue
-      if (holeFilter !== null && course.holes !== holeFilter) continue
-      const driveMinutes = driveTimes?.get(course.id) ?? 15
-      if (driveMinutes > maxDriveMin) continue
-      const hasTimezone = tt.time.includes('Z') || /[+-]\d{2}:\d{2}$/.test(tt.time)
-      const timeStr = !hasTimezone ? tt.time + 'Z' : tt.time
-      const t = new Date(timeStr)
-      const pdtString = t.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
-      const teeTime = new Date(pdtString)
-      const roundMinutes = course.holes * course.avgHoleMinutes
-      const doneBy = new Date(teeTime.getTime() + roundMinutes * 60_000)
-      const isToday = sessionDate === todayStr
-      const needToLeaveBy = new Date(teeTime.getTime() - driveMinutes * 60_000)
-      if (isToday && needToLeaveBy <= now) continue
 
-      const sunset = new Date(sessionDate + 'T21:05:00')
-      const minsUntilSunset = (sunset - teeTime) / 60_000
-      const holesBeforeDusk = Math.min(course.holes, Math.max(0, Math.floor(minsUntilSunset / course.avgHoleMinutes)))
-      const mustBeDoneBy = new Date(sessionDate + 'T21:05:00')
-      const verdict = doneBy > mustBeDoneBy ? 'skip' : holesBeforeDusk >= course.holes ? 'go' : 'tight'
-
-      const totalCost = tt.greenfee + fuelCostDollars(driveMinutes)
-
-      if (!map.has(course.id)) {
-        map.set(course.id, {
-          course,
-          driveMinutes,
-          slots: [],
-          minCost: Infinity,
-          maxHoles: 0,
-        })
-      }
-      const entry = map.get(course.id)
-      entry.slots.push({ tt, teeTime, doneBy, holesBeforeDusk, verdict, totalCost, driveMinutes, roundMinutes })
-      entry.minCost = Math.min(entry.minCost, totalCost)
-      entry.maxHoles = Math.max(entry.maxHoles, holesBeforeDusk)
+      map.set(item.courseId, {
+        course,
+        minPrice: item.minPrice,
+        maxPrice: item.maxPrice,
+        availableCount: item.availableCount,
+        hasHotDeals: item.hasHotDeals,
+      })
     }
-    return [...map.values()]
-  }, [filtered, driveTimes, sessionDate, holeFilter, now, maxDriveMin, selectedCourses])
+
+    return Array.from(map.values())
+  }, [teetimes, sessionDate, maxGreenfee, selectedCourses])
 
   const sorted = useMemo(() => {
-    return [...grouped].sort((a, b) => {
-      if (sortBy === 'cost')  return a.minCost - b.minCost
-      if (sortBy === 'drive') return a.driveMinutes - b.driveMinutes
-      if (sortBy === 'holes') return b.maxHoles - a.maxHoles
-      return 0
+    return [...summaries].sort((a, b) => {
+      if (sortBy === 'price') return a.minPrice - b.minPrice
+      if (sortBy === 'deals') return b.hasHotDeals - a.hasHotDeals
+      return a.course.name.localeCompare(b.course.name)
     })
-  }, [grouped, sortBy])
+  }, [summaries, sortBy])
 
-  const totalSlots = sorted.reduce((sum, g) => sum + g.slots.length, 0)
+  const bookingUrl = (courseId) => {
+    const date = sessionDate.replace(/-/g, '')
+    return `https://www.golfnow.com/tee-times/results?course=${courseId}&date=${date}`
+  }
 
   return (
     <div className="cal-wrap">
@@ -126,7 +69,11 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         <div className="cal-filter-group">
           <span className="cal-filter-label">Sort by</span>
           <div className="cal-sort-btns">
-            {SORT_OPTIONS.map(opt => (
+            {[
+              { key: 'price', label: 'Best Price' },
+              { key: 'deals', label: 'Hot Deals' },
+              { key: 'name', label: 'Course Name' },
+            ].map(opt => (
               <button
                 key={opt.key}
                 className={`cal-sort-btn${sortBy === opt.key ? ' active' : ''}`}
@@ -137,68 +84,46 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
             ))}
           </div>
         </div>
+      </div>
 
-        <div className="cal-filter-group">
-          <span className="cal-filter-label">Holes</span>
-          <div className="cal-sort-btns">
-            {[9, 18].map(n => (
-              <button
-                key={n}
-                className={`cal-sort-btn${holeFilter === n ? ' active' : ''}`}
-                onClick={() => setHoleFilter(holeFilter === n ? null : n)}
+      <div className="cal-results">
+        {sorted.length === 0 ? (
+          <p className="cal-no-results">No courses available for this date.</p>
+        ) : (
+          sorted.map(item => (
+            <div key={item.course.id} className="cal-course-row">
+              <div className="cal-course-info">
+                <div className="cal-course-name">{item.course.name}</div>
+                <div className="cal-course-details">
+                  {item.course.location} • {item.course.holes}H
+                </div>
+              </div>
+
+              <div className="cal-course-pricing">
+                <div className="cal-price">
+                  {item.minPrice === item.maxPrice
+                    ? `$${item.minPrice}`
+                    : `$${item.minPrice}–$${item.maxPrice}`}
+                </div>
+                {item.hasHotDeals && <span className="cal-badge-deals">🔥 Hot Deal</span>}
+              </div>
+
+              <div className="cal-course-availability">
+                <div className="cal-slots">{item.availableCount} slots</div>
+              </div>
+
+              <a
+                href={bookingUrl(item.course.id)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cal-book-btn"
               >
-                {n}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="cal-results-meta">
-        <span className="dot dot-go" /> {sorted.filter(g => g.slots.some(s => s.verdict === 'go')).length} courses
-        <span style={{marginLeft: '1rem'}}>{totalSlots} tee times</span>
-      </div>
-
-      {sorted.length === 0 ? (
-        <div className="empty-state">No tee times match your filters for this day.</div>
-      ) : (
-        <div className="cal-groups">
-          {sorted.map(({ course, driveMinutes, slots }) => (
-            <div key={course.id} className="cal-course-group">
-              <div className="cal-course-header">
-                <span className="cal-course-name">{course.name}</span>
-                <span className="cal-course-meta">{driveMinutes}m drive · from ${Math.min(...slots.map(s => s.totalCost)).toFixed(0)}</span>
-              </div>
-              <div className="cal-chips">
-                {slots
-                  .sort((a, b) => a.teeTime - b.teeTime)
-                  .map(slot => {
-                    const weather = weatherData ? getWeatherAtTime(weatherData, course.id, slot.teeTime) : null
-                    return (
-                      <button
-                        key={slot.tt.id}
-                        className={`cal-chip verdict-chip-${slot.verdict}${selected?.tt.id === slot.tt.id ? ' selected' : ''}`}
-                        onClick={() => setSelected(selected?.tt.id === slot.tt.id ? null : { ...slot, course, driveMinutes, date: sessionDate })}
-                      >
-                        {fmtTime(slot.teeTime)} · ${slot.tt.greenfee}{weather && <span className="chip-weather"> · <span className="weather-icon">{weather.icon}</span><span className={getTempColorClass(weather.code)}>{weather.temp}°</span></span>}
-                      </button>
-                    )
-                  })
-                }
-              </div>
+                Book on GolfNow →
+              </a>
             </div>
-          ))}
-        </div>
-      )}
-
-      {selected && (
-        <BottomSheet
-          slot={selected}
-          onClose={() => setSelected(null)}
-          weatherData={weatherData}
-          playerCount={playerCount}
-        />
-      )}
+          ))
+        )}
+      </div>
     </div>
   )
 }

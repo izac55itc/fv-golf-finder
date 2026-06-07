@@ -24,7 +24,27 @@
       "Bash(node -e \"const data = require\\('./scraper/teetimes.json'\\); const first = Object.values\\(data\\)[0][0]; console.log\\(JSON.stringify\\(first, null, 2\\)\\)\")",
       "Bash(powershell -Command \"Get-Content teetimes.json | ConvertFrom-Json | Get-Member -MemberType NoteProperty | Select-Object -First 10\")",
       "Bash(powershell -Command \"\\(Get-Content teetimes.json | ConvertFrom-Json\\).teetimes[0] | ConvertTo-Json\")",
-      "Bash(node -e \"const data = require\\('./teetimes.json'\\); const newlands = data.teetimes.filter\\(t => t.courseId === 'newlands-cc'\\); console.log\\('Newlands G&C tee times:', newlands.length\\); newlands.slice\\(0, 5\\).forEach\\(t => console.log\\(\\\\`  \\\\${t.time} - max \\\\${t.maxPlayers} players\\\\`\\)\\)\")"
+      "Bash(node -e \"const data = require\\('./teetimes.json'\\); const newlands = data.teetimes.filter\\(t => t.courseId === 'newlands-cc'\\); console.log\\('Newlands G&C tee times:', newlands.length\\); newlands.slice\\(0, 5\\).forEach\\(t => console.log\\(\\\\`  \\\\${t.time} - max \\\\${t.maxPlayers} players\\\\`\\)\\)\")",
+      "Bash(node -e \"const data = require\\('./teetimes.json'\\); console.log\\('Newlands G&C:'\\); data.teetimes.filter\\(t => t.courseId === 'newlands-cc'\\).forEach\\(t => console.log\\(\\\\`  \\\\${t.time} - available: \\\\${t.available}, maxPlayers: \\\\${t.maxPlayers}\\\\`\\)\\); console.log\\('\\\\\\\\nGolden Eagle South:'\\); data.teetimes.filter\\(t => t.courseId === 'golden-eagle-south' && t.time.includes\\('12:53'\\)\\).forEach\\(t => console.log\\(\\\\`  \\\\${t.time} - available: \\\\${t.available}, maxPlayers: \\\\${t.maxPlayers}\\\\`\\)\\)\")",
+      "Bash(node -e \"const data = require\\('./teetimes.json'\\); console.log\\('Total tee times:', data.teetimes.length\\); console.log\\('Sample:', data.teetimes.slice\\(0, 3\\).map\\(t => \\({ time: t.time, available: t.available, maxPlayers: t.maxPlayers }\\)\\)\\)\")",
+      "Bash(node -e \"const data = require\\('./teetimes.json'\\); console.log\\('Total tee times:', data.teetimes.length\\); if\\(data.teetimes.length > 0\\) { console.log\\('Sample:', data.teetimes.slice\\(0, 3\\).map\\(t => \\({ courseId: t.courseId, time: t.time, spaces: t.spaces, maxPlayers: t.maxPlayers }\\)\\)\\) } else { console.log\\('Data keys:', Object.keys\\(data\\)\\) }\")",
+      "Bash(node -e \"const data = require\\('./teetimes.json'\\); console.log\\('Total tee times:', data.teetimes.length\\); const sample = data.teetimes.slice\\(0, 5\\); sample.forEach\\(t => console.log\\(\\\\`  \\\\${t.courseId} \\\\${t.time} - maxPlayers: \\\\${t.maxPlayers}\\\\`\\)\\); const withActualMax = data.teetimes.filter\\(t => t.maxPlayers && t.maxPlayers < 4\\); console.log\\('\\\\\\\\nTee times with maxPlayers < 4:', withActualMax.length\\); withActualMax.slice\\(0, 3\\).forEach\\(t => console.log\\(\\\\`  \\\\${t.courseId} - maxPlayers: \\\\${t.maxPlayers}\\\\`\\)\\)\")",
+      "Bash(node -e \"const data = require\\('./teetimes.json'\\); const varied = data.teetimes.filter\\(t => t.maxPlayers && t.maxPlayers < 4\\); console.log\\('Total:', data.teetimes.length, '| With maxPlayers < 4:', varied.length\\); if\\(varied.length > 0\\) { console.log\\('Sample with low maxPlayers:'\\); varied.slice\\(0, 5\\).forEach\\(t => console.log\\(\\\\`  \\\\${t.courseId} \\\\${t.time} - maxPlayers: \\\\${t.maxPlayers}\\\\`\\)\\); } else { console.log\\('NO tee times with maxPlayers < 4 found'\\); }\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/izac55itc/fv-golf-finder/main/scraper/teetimes.json\")",
+      "Bash(node -e \"const data = JSON.parse\\(require\\('fs'\\).readFileSync\\(0, 'utf-8'\\)\\); const varied = data.teetimes.filter\\(t => t.maxPlayers && t.maxPlayers < 4\\); console.log\\('Total:', data.teetimes.length, '| With maxPlayers < 4:', varied.length\\); if\\(varied.length > 0\\) { console.log\\('\\\\\\\\nSample \\(first 5\\):'\\); varied.slice\\(0, 5\\).forEach\\(t => console.log\\(\\\\`  \\\\${t.courseId} \\\\${t.time.slice\\(-5\\)} - maxPlayers: \\\\${t.maxPlayers}\\\\`\\)\\); }\")",
+      "Bash(node -e \"const data = JSON.parse\\(require\\('fs'\\).readFileSync\\(0, 'utf-8'\\)\\); const tt = data.teetimes.find\\(t => t.courseId === 'newlands-executive' && t.time.includes\\('10:58'\\)\\); console.log\\('Sample tee time:', JSON.stringify\\(tt, null, 2\\)\\);\")",
+      "Bash(git revert *)",
+      "Bash(git show *)",
+      "Bash(gh workflow *)",
+      "Bash(ssh -i ~/.ssh/do_key root@your.do.ip \"git config --global user.email 'izac55@gmail.com' && git config --global user.name 'izac5' && cd /root/fv-golf-finder && git add scraper/golfnow.js && git commit -m 'reduce browser pool to 2 for stability' && git push\")",
+      "Bash(timeout 15 node api-get-test.js)",
+      "Bash(timeout 10 node api-post-headers-test.js)",
+      "Bash(timeout 30 node api-summaries-full-test.js)",
+      "Bash(cd \"c:\\\\Users\\\\izac5\\\\source\\\\repos\\\\fv-golf-finder\\\\scraper\" && rm -f golfnow.js api-*.js && ls -la)",
+      "Bash(timeout 30 node index.js)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\izac5\\source\\repos\\fv-golf-finder"
     ]
   }
 }

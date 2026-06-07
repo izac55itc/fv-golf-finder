@@ -1,0 +1,198 @@
+.cal-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.cal-day-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.cal-day-tab {
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.cal-day-tab:hover {
+  background: #f5f5f5;
+}
+
+.cal-day-tab.active {
+  background: #2d5016;
+  color: white;
+  border-color: #2d5016;
+}
+
+.cal-filters {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.cal-filter-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.cal-filter-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #666;
+}
+
+.cal-sort-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.cal-sort-btn {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.cal-sort-btn:hover {
+  background: #f0f0f0;
+}
+
+.cal-sort-btn.active {
+  background: #2d5016;
+  color: white;
+  border-color: #2d5016;
+}
+
+.cal-results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cal-no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 16px;
+}
+
+.cal-course-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.cal-course-row:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cal-course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cal-course-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #2d5016;
+}
+
+.cal-course-details {
+  font-size: 13px;
+  color: #999;
+}
+
+.cal-course-pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.cal-price {
+  font-weight: 700;
+  font-size: 18px;
+  color: #2d5016;
+}
+
+.cal-badge-deals {
+  font-size: 12px;
+  background: #fff3cd;
+  color: #856404;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+
+.cal-course-availability {
+  text-align: center;
+}
+
+.cal-slots {
+  font-size: 13px;
+  color: #666;
+}
+
+.cal-book-btn {
+  padding: 10px 16px;
+  background: #2d5016;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.cal-book-btn:hover {
+  background: #1f3810;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .cal-course-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cal-course-pricing {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cal-course-availability {
+    order: -1;
+  }
+
+  .cal-book-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
