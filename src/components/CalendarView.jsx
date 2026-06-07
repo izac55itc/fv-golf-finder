@@ -32,11 +32,14 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
   const filtered = useMemo(() => {
     return teetimes.filter(tt => {
-      if (!tt.time.startsWith(sessionDate)) return false
       const hasTimezone = tt.time.includes('Z') || /[+-]\d{2}:\d{2}$/.test(tt.time)
       const timeStr = !hasTimezone ? tt.time + 'Z' : tt.time
       const t = new Date(timeStr)
-      const h = t.getHours()
+      const pdtString = t.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+      const pdt = new Date(pdtString)
+      const pdtDate = `${pdt.getFullYear()}-${String(pdt.getMonth() + 1).padStart(2, '0')}-${String(pdt.getDate()).padStart(2, '0')}`
+      if (pdtDate !== sessionDate) return false
+      const h = pdt.getHours()
       if (h < timeRange[0] || h > timeRange[1]) return false
       if ((tt.spaces ?? 4) < playerCount) return false
       if (tt.greenfee > maxGreenfee) return false
@@ -55,7 +58,9 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       if (driveMinutes > maxDriveMin) continue
       const hasTimezone = tt.time.includes('Z') || /[+-]\d{2}:\d{2}$/.test(tt.time)
       const timeStr = !hasTimezone ? tt.time + 'Z' : tt.time
-      const teeTime = new Date(timeStr)
+      const t = new Date(timeStr)
+      const pdtString = t.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+      const teeTime = new Date(pdtString)
       const roundMinutes = course.holes * course.avgHoleMinutes
       const doneBy = new Date(teeTime.getTime() + roundMinutes * 60_000)
       const isToday = sessionDate === todayStr
