@@ -2,11 +2,6 @@ import './App.css'
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { COURSES } from './data/courses.js'
-import { rankTeetimes } from './utils/ranker.js'
-import { fetchAllDriveTimes } from './utils/distanceMatrix.js'
-import { getCurrentLocation, WALNUT_GROVE } from './utils/geo.js'
-import { getSunsetTime } from './utils/sunset.js'
-import { fetchAllCourseWeather } from './utils/weather.js'
 import FilterPanel from './components/FilterPanel.jsx'
 import CalendarView from './components/CalendarView.jsx'
 
@@ -242,23 +237,7 @@ export default function App() {
   }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
 
   const baseDate      = useMemo(() => new Date(sessionDate + 'T00:00:00'), [sessionDate])
-  const availableFrom = useMemo(() => fromTimeInput(fromTimeStr, baseDate), [fromTimeStr, sessionDate])
-  const mustBeDoneBy  = useMemo(() => fromTimeInput(doneByTimeStr, baseDate), [doneByTimeStr, sessionDate])
-
-  const ranked = useMemo(() => {
-    if (!driveTimes || !teetimes.length) return []
-    return rankTeetimes({ teetimes, courses: COURSES, driveTimes, availableFrom, mustBeDoneBy, sessionDate })
-  }, [teetimes, driveTimes, availableFrom, mustBeDoneBy, sessionDate])
-
-  const courseOptions = useMemo(() => {
-    const ids = new Set(ranked.map(r => r.course.id))
-    return COURSES.filter(c => ids.has(c.id))
-  }, [ranked])
-
-  const handleApplyQuickTime = (qt) => {
-    setFromTimeStr(qt.fromStr)
-    setTimeRange([qt.fromH, qt.toH])
-  }
+  const courseOptions = COURSES
 
   const handleToggleCourse = (id) => {
     setSelectedCourses(prev => {
@@ -273,9 +252,6 @@ export default function App() {
 
   const handleSelectAllCourses = () => setSelectedCourses(null)
 
-  const goCount = ranked.filter(r => r.verdict === 'go').length
-  const sunset  = getSunsetTime(new Date(sessionDate + 'T12:00:00'))
-
   return (
     <div className="app">
       <header className="app-header">
@@ -285,8 +261,7 @@ export default function App() {
           <p className="header-subtitle">Fraser Valley Tee Time Session Planner</p>
         </div>
         <div className="header-meta">
-          <div>Sunset {toTimeInput(sunset)} PDT</div>
-          <div>{goCount} GO available</div>
+          <div>{teetimes.length} courses available</div>
         </div>
       </header>
 
@@ -318,72 +293,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="planner-fields">
-            <div className="field field-location">
-              <label>Location</label>
-              <div className="loc-input-row">
-                <input
-                  ref={locInputRef}
-                  type="text"
-                  className="loc-input"
-                  value={locLoading ? 'Detecting…' : locInput}
-                  onChange={e => setLocInput(e.target.value)}
-                  onKeyDown={handleLocKeyDown}
-                  disabled={locLoading || locSearching}
-                  placeholder="Enter city or address"
-                />
-                <button
-                  className="loc-search-btn"
-                  onClick={handleLocSearch}
-                  disabled={locLoading || locSearching || !locInput.trim()}
-                >
-                  {locSearching ? '…' : '🔍'}
-                </button>
-                <button
-                  className="loc-gps-btn"
-                  onClick={handleLocGps}
-                  disabled={locLoading || locSearching}
-                >
-                  📍
-                </button>
-              </div>
-              {locError && <div className="loc-error">{locError}</div>}
-            </div>
-
-            <div className="field">
-              <label htmlFor="available-from">Available From</label>
-              <input
-                id="available-from"
-                type="time"
-                value={fromTimeStr}
-                onChange={e => setFromTimeStr(e.target.value)}
-              />
-            </div>
-
-            <div className="field">
-              <label htmlFor="must-be-done">Must Be Done By</label>
-              <input
-                id="must-be-done"
-                type="time"
-                value={doneByTimeStr}
-                onChange={e => setDoneByTimeStr(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <hr className="filter-divider" />
-
           <FilterPanel
-            quickTimes={QUICK_TIMES}
-            onQuickTime={handleApplyQuickTime}
-            timeRange={timeRange}
-            onTimeRange={setTimeRange}
             maxGreenfee={maxGreenfee}
             onMaxGreenfee={setMaxGreenfee}
-            maxDriveMin={maxDriveMin}
-            onMaxDriveMin={setMaxDriveMin}
-            playerCount={playerCount}
-            onPlayerCount={setPlayerCount}
             courseOptions={courseOptions}
             selectedCourses={selectedCourses}
             onToggleCourse={handleToggleCourse}
