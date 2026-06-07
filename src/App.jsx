@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import { COURSES } from './data/courses.js'
 import FilterPanel from './components/FilterPanel.jsx'
@@ -17,29 +17,6 @@ const GH_DISPATCH = 'https://api.github.com/repos/izac55itc/fv-golf-finder/actio
 
 const SCRAPE_WAIT_MS = 5 * 60 * 1000
 
-const QUICK_TIMES = [
-  { label: 'Morning',   fromH: 6,  toH: 12, fromStr: '06:00' },
-  { label: 'Afternoon', fromH: 12, toH: 17, fromStr: '12:00' },
-  { label: 'Twilight',  fromH: 17, toH: 23, fromStr: '17:00' },
-]
-
-function pad(n) { return String(n).padStart(2, '0') }
-function toDateInput(d) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` }
-function toTimeInput(d) { return `${pad(d.getHours())}:${pad(d.getMinutes())}` }
-
-function fromTimeInput(str, ref) {
-  const [h, m] = str.split(':').map(Number)
-  const d = new Date(ref)
-  d.setHours(h, m, 0, 0)
-  return d
-}
-
-function roundUpQuarter(d) {
-  const ms = d.getTime(), q = 15 * 60_000
-  const rem = ms % q
-  return rem === 0 ? new Date(ms) : new Date(ms + (q - rem))
-}
-
 function timeAgo(isoStr) {
   if (!isoStr) return null
   const mins = Math.round((Date.now() - new Date(isoStr)) / 60_000)
@@ -50,37 +27,12 @@ function timeAgo(isoStr) {
   return `${hrs}h ${mins % 60}m ago`
 }
 
-async function geocodeAddress(query) {
-  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&addressdetails=1&limit=1&countrycodes=ca`
-  const res = await fetch(url, {
-    headers: {
-      'Accept-Language': 'en',
-      'User-Agent': 'FV-Golf-Finder/0.1 (personal project)',
-    },
-  })
-  if (!res.ok) throw new Error('Geocode failed')
-  const data = await res.json()
-  if (!data.length) throw new Error('Location not found')
-  const item = data[0]
-  const a = item.address || {}
-  const neighbourhood = a.neighbourhood || a.suburb || a.hamlet || a.quarter
-  const city = a.city || a.town || a.village || a.municipality || a.county
-  const parts = [neighbourhood, city].filter(Boolean)
-  const name = parts.length ? parts.join(', ') : item.display_name?.split(',')[0]
-  return { lat: parseFloat(item.lat), lng: parseFloat(item.lon), name, source: 'manual' }
-}
-
 export default function App() {
-  const [location,     setLocation]     = useState({ ...WALNUT_GROVE, source: 'default' })
-  const [locLoading,   setLocLoading]   = useState(false)
-  const [locInput,     setLocInput]     = useState(WALNUT_GROVE.name)
-  const [locSearching, setLocSearching] = useState(false)
-  const [locError,     setLocError]     = useState(null)
-  const locInputRef = useRef(null)
 
-  const [sessionDate,   setSessionDate]   = useState(() => toDateInput(new Date()))
-  const [fromTimeStr,   setFromTimeStr]   = useState(() => toTimeInput(roundUpQuarter(new Date())))
-  const [doneByTimeStr, setDoneByTimeStr] = useState(() => toTimeInput(getSunsetTime(new Date())))
+  const [sessionDate,   setSessionDate]   = useState(() => {
+    const d = new Date()
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+  })
 
   const [teetimes,    setTeetimes]    = useState([])
   const [generatedAt, setGeneratedAt] = useState(null)
@@ -90,65 +42,19 @@ export default function App() {
   const [scrapeStatus,      setScrapeStatus]      = useState(null)
   const [scrapeSecondsLeft, setScrapeSecondsLeft] = useState(0)
 
-  const [timeRange,       setTimeRange]       = useState([6, 23])
   const [maxGreenfee,     setMaxGreenfee]     = useState(120)
-  const [maxDriveMin,     setMaxDriveMin]     = useState(60)
-  const [playerCount,     setPlayerCount]     = useState(1)
   const [selectedCourses, setSelectedCourses] = useState(null)
-
-  const [driveTimes,  setDriveTimes]  = useState(null)
-  const [weatherData, setWeatherData] = useState(null)
 
   const availableDates = useMemo(() => (
     [...Array(7)].map((_, i) => {
       const d = new Date()
       d.setDate(d.getDate() + i)
-      return toDateInput(d)
+      const year = d.getFullYear()
+      const month = String(d.getMonth() + 1).padStart(2, '0')
+      const date = String(d.getDate()).padStart(2, '0')
+      return `${year}-${month}-${date}`
     })
   ), [])
-
-  useEffect(() => {
-    let alive = true
-    setDriveTimes(null)
-    fetchAllDriveTimes(location.lat, location.lng, COURSES)
-      .then(map => { if (alive) setDriveTimes(map) })
-    return () => { alive = false }
-  }, [location.lat, location.lng])
-
-  useEffect(() => {
-    fetchAllCourseWeather(COURSES)
-      .then(setWeatherData)
-      .catch(err => console.warn('Weather fetch error:', err))
-  }, [])
-
-  const handleLocSearch = useCallback(async () => {
-    if (!locInput.trim()) return
-    setLocSearching(true)
-    setLocError(null)
-    try {
-      const loc = await geocodeAddress(locInput.trim())
-      setLocation(loc)
-      setLocInput(loc.name)
-    } catch {
-      setLocError('Location not found — try a different search')
-    } finally {
-      setLocSearching(false)
-    }
-  }, [locInput])
-
-  const handleLocKeyDown = (e) => {
-    if (e.key === 'Enter') handleLocSearch()
-  }
-
-  const handleLocGps = useCallback(() => {
-    setLocLoading(true)
-    setLocError(null)
-    getCurrentLocation().then(loc => {
-      setLocation(loc)
-      setLocInput(loc.name)
-      setLocLoading(false)
-    })
-  }, [])
 
   const handleDateChange = (newDate) => {
     setSessionDate(newDate)
