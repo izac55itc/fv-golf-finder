@@ -42,9 +42,9 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const totalWithoutCart = avgPrice + gasCost
 
       // Calculate verdict based on holes before dusk
-      const roundMinutes = course.holes * AVG_HOLE_MINUTES
-      const sunset18h = new Date(sessionDate + 'T21:05:00')
-      const minsUntilSunset = (sunset18h - now) / 60_000
+      const teeTime = new Date(sessionDate + 'T08:00:00')
+      const sunsetTime = getSunsetTime(teeTime)
+      const minsUntilSunset = (sunsetTime - teeTime) / 60_000
       const holesBeforeDusk = Math.max(0, Math.floor(minsUntilSunset / AVG_HOLE_MINUTES))
 
       let verdict = 'skip'
@@ -129,7 +129,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
           <div className="cal-sort-btns">
             {[
               { key: 'cost', label: 'Best Price' },
-              { key: 'deals', label: 'Hot Deals' },
               { key: 'name', label: 'Course Name' },
             ].map(opt => (
               <button
