@@ -68,9 +68,10 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const sunset = getSunsetTime(baseDate)
   const sunsetStr = sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
 
-  const bookingUrl = (courseId) => {
+  const bookingUrl = (course) => {
+    if (!course.golfnowId) return '#'
     const date = sessionDate.replace(/-/g, '')
-    return `https://www.golfnow.com/tee-times/results?course=${courseId}&date=${date}`
+    return `https://www.golfnow.com/tee-times/results?course=${course.golfnowId}&date=${date}`
   }
 
   return (
@@ -168,7 +169,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                 <div className="cal-card-footer">
                   <div className="cal-availability">{item.availableCount} slots</div>
                   <a
-                    href={bookingUrl(item.course.id)}
+                    href={bookingUrl(item.course)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cal-book-btn"
