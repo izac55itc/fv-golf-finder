@@ -1,5 +1,6 @@
 import './App.css'
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
+import { createClient } from '@supabase/supabase-js'
 import { COURSES } from './data/courses.js'
 import { rankTeetimes, fuelCostDollars } from './utils/ranker.js'
 import { fetchAllDriveTimes } from './utils/distanceMatrix.js'
@@ -10,7 +11,12 @@ import TeeTimeTable from './components/TeeTimeTable.jsx'
 import FilterPanel from './components/FilterPanel.jsx'
 import CalendarView from './components/CalendarView.jsx'
 
-const DATA_URL = 'https://raw.githubusercontent.com/izac55itc/fv-golf-finder/main/scraper/teetimes.json'
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+const supabase = SUPABASE_URL && SUPABASE_ANON_KEY
+  ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null
 
 const GH_TOKEN    = import.meta.env.VITE_GITHUB_TOKEN
 const GH_DISPATCH = 'https://api.github.com/repos/izac55itc/fv-golf-finder/actions/workflows/scrape.yml/dispatches'
@@ -166,31 +172,43 @@ export default function App() {
   const fetchTeetimes = useCallback(() => {
     setTeeFetching(true)
     setTeeError(null)
-    fetch(`${DATA_URL}?v=${Date.now()}`)
-      .then(r => {
-        if (r.status === 404) throw new Error('No data yet — scraper hasn\'t run. Trigger it manually in the Actions tab.')
-        if (!r.ok) throw new Error(`HTTP ${r.status}`)
-        return r.json()
-      })
-      .then(data => {
-        const tts = data.teetimes || []
+
+    if (!supabase) {
+      setTeeError('Supabase not configured')
+      setTeeFetching(false)
+      return
+    }
+
+    supabase
+      .from('teetimes')
+      .select('*')
+      .gt('time', new Date().toISOString())
+      .order('time', { ascending: true })
+      .then(({ data, error }) => {
+        if (error) {
+          setTeeError(error.message)
+          setTeeFetching(false)
+          return
+        }
+
+        const tts = data || []
         const seen = new Set()
-        const deduped = tts.filter(tt => {
+        const deduped = tts.map(tt => ({
+          ...tt,
+          courseId: tt.course_id,
+          maxPlayers: tt.max_players ?? 4,
+        })).filter(tt => {
           const key = `${tt.courseId}-${tt.time}-${tt.greenfee}`
           if (seen.has(key)) return false
           seen.add(key)
-          tt.maxPlayers = tt.maxPlayers ?? 4
           return true
         })
+
         setTeetimes(deduped)
-        setGeneratedAt(data.generatedAt || null)
+        setGeneratedAt(new Date().toISOString())
         setTeeFetching(false)
       })
-      .catch(err => {
-        setTeeError(err.message)
-        setTeeFetching(false)
-      })
-  }, [])
+  }, [supabase])
 
   useEffect(() => { fetchTeetimes() }, [fetchTeetimes])
 
