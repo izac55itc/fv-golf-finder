@@ -42,10 +42,8 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const totalWithoutCart = avgPrice + gasCost
 
       // Calculate latest tee time to finish before dusk
-      const dummyTeeTime = new Date(sessionDate + 'T12:00:00')
-      const sunsetTime = getSunsetTime(dummyTeeTime)
       const roundDurationMs = course.holes * AVG_HOLE_MINUTES * 60_000
-      const latestStartMs = sunsetTime.getTime() - roundDurationMs
+      const latestStartMs = sunset.getTime() - roundDurationMs
       const latestStart = new Date(latestStartMs)
 
       // Determine verdict based on whether round fits
@@ -56,7 +54,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       } else {
         // Check if partial round fits
         const firstLightMs = new Date(sessionDate + 'T06:00:00').getTime()
-        const availableMs = sunsetTime.getTime() - firstLightMs
+        const availableMs = sunset.getTime() - firstLightMs
         const holesAvailable = Math.floor(availableMs / (AVG_HOLE_MINUTES * 60_000))
         if (holesAvailable > 0) {
           verdict = 'tight'
@@ -77,6 +75,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         weatherMorning,
         weatherAfternoon,
         weatherTwilight,
+        sunset,
         latestStart,
         verdict,
       })
@@ -196,7 +195,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
                 <div className="cal-card-meta">
                   <div className="cal-holes-info">
-                    Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
+                    Sunset {item.sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} • Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
                   </div>
                   <div className="cal-weather-group">
                     {item.weatherMorning && (
