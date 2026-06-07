@@ -41,7 +41,8 @@
       "Bash(timeout 10 node api-post-headers-test.js)",
       "Bash(timeout 30 node api-summaries-full-test.js)",
       "Bash(cd \"c:\\\\Users\\\\izac5\\\\source\\\\repos\\\\fv-golf-finder\\\\scraper\" && rm -f golfnow.js api-*.js && ls -la)",
-      "Bash(timeout 30 node index.js)"
+      "Bash(timeout 30 node index.js)",
+      "Bash(git log *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\izac5\\source\\repos\\fv-golf-finder"
