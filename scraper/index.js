@@ -52,14 +52,16 @@ async function main() {
       }
     }
 
-    // Deduplicate by (course_id, time, greenfee) key before upsert
-    const seen = new Set()
-    const deduped = allTeetimes.filter(tt => {
-      const key = `${tt.course_id}|${tt.time}|${tt.greenfee}`
-      if (seen.has(key)) return false
-      seen.add(key)
-      return true
+    // Deduplicate by (course_id, time) — keep only cheapest non-zero greenfee
+    const bySlot = new Map()
+    allTeetimes.forEach(tt => {
+      const key = `${tt.course_id}|${tt.time}`
+      const existing = bySlot.get(key)
+      if (!existing || (tt.greenfee > 0 && tt.greenfee < existing.greenfee)) {
+        bySlot.set(key, tt)
+      }
     })
+    const deduped = Array.from(bySlot.values())
 
     // Delete old tee times (older than today) then insert new batch
     const { error: deleteErr } = await supabase
