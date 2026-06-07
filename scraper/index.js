@@ -59,7 +59,7 @@ async function main() {
       .lt('time', new Date().toISOString())
 
     if (deleteErr) {
-      console.error('Error deleting old records:', deleteErr.message)
+      console.error('Error deleting old records:', JSON.stringify(deleteErr, null, 2))
     } else {
       console.log(`✓ Deleted expired tee times`)
     }
@@ -70,7 +70,7 @@ async function main() {
       .upsert(allTeetimes, { onConflict: 'course_id,time,greenfee' })
 
     if (error) {
-      console.error('Error upserting tee times:', error.message)
+      console.error('Error upserting tee times:', JSON.stringify(error, null, 2))
       process.kill(process.pid, 'SIGKILL')
       return
     }
