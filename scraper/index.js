@@ -133,7 +133,7 @@ function parseTime(raw, dateStr) {
   if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) {
     const match = raw.match(/T(\d{2}):(\d{2})/)
     if (match) {
-      return pacificTime(parseInt(match[1], 10), parseInt(match[2], 10))
+      return pacificToUTC(parseInt(match[1], 10), parseInt(match[2], 10))
     }
   }
 
