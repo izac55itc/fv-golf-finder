@@ -64,11 +64,11 @@ async function main() {
     })
     const deduped = Array.from(bySlot.values())
 
-    // Delete old tee times (older than today) then insert new batch
+    // Delete old tee times (older than today) and all $0 entries
     const { error: deleteErr } = await supabase
       .from('teetimes')
       .delete()
-      .lt('time', new Date().toISOString())
+      .or(`time.lt.${new Date().toISOString()},greenfee.eq.0`)
 
     if (deleteErr) {
       console.error('Error deleting old records:', JSON.stringify(deleteErr, null, 2))
