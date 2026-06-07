@@ -36,7 +36,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const t = new Date(tt.time)
       const h = t.getHours()
       if (h < timeRange[0] || h > timeRange[1]) return false
-      if ((tt.max_players ?? 4) < playerCount) return false
+      if ((tt.spaces ?? 4) < playerCount) return false
       if (tt.greenfee > maxGreenfee) return false
       return true
     })

@@ -52,12 +52,13 @@ async function main() {
       }
     }
 
-    // Deduplicate by (course_id, time) — keep only cheapest non-zero greenfee
+    // Deduplicate by (course_id, time) — keep only cheapest non-zero greenfee, exclude $0
     const bySlot = new Map()
     allTeetimes.forEach(tt => {
+      if (tt.greenfee === 0) return // skip $0 entries
       const key = `${tt.course_id}|${tt.time}`
       const existing = bySlot.get(key)
-      if (!existing || (tt.greenfee > 0 && tt.greenfee < existing.greenfee)) {
+      if (!existing || tt.greenfee < existing.greenfee) {
         bySlot.set(key, tt)
       }
     })
