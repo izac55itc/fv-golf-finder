@@ -67,59 +67,81 @@ async function scrapeFacility(facilityId, dateStr) {
     console.log(`[${facilityId}] Loading...`)
 
     let domData = { ranges: {}, prices: {} }
+    let retryCount = 0
 
-    await Promise.race([
-      (async () => {
-        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
-        console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
-        await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
-        await page.waitForTimeout(2_000)
-        await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
-        await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
-        await page.waitForTimeout(2_000)
+    const loadAndExtract = async () => {
+      await Promise.race([
+        (async () => {
+          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 })
+          console.log(`[${facilityId}] DOM loaded, waiting for XHR...`)
 
-        // Extract player ranges AND prices from DOM
-        domData = await page.evaluate(() => {
-          const ranges = {}
-          const prices = {}
-          const allText = document.body.innerText
-          const lines = allText.split('\n')
+          // Scroll to top first to load morning times in DOM
+          await page.evaluate(() => window.scrollTo(0, 0))
+          await page.waitForTimeout(2_000)
 
-          lines.forEach((line, idx) => {
-            const timeMatch = line.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
-            if (timeMatch) {
-              const time = timeMatch[0].trim()
-              const context = [
-                line,
-                lines[idx+1] || '',
-                lines[idx+2] || '',
-                lines[idx+3] || '',
-              ].join(' ')
+          // Scroll to bottom to load evening times in DOM
+          await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
+          await page.waitForTimeout(3_000)
 
-              // Extract player range e.g. "1-4"
-              const playerMatch = context.match(/(\d)-(\d)/)
-              if (playerMatch && !ranges[time]) {
-                ranges[time] = parseInt(playerMatch[2], 10)
+          // Wait for network idle and additional time for all API responses
+          await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {})
+          await page.waitForTimeout(3_000)
+
+          // Extract player ranges AND prices from DOM
+          domData = await page.evaluate(() => {
+            const ranges = {}
+            const prices = {}
+            const allText = document.body.innerText
+            const lines = allText.split('\n')
+
+            lines.forEach((line, idx) => {
+              const timeMatch = line.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i)
+              if (timeMatch) {
+                const time = timeMatch[0].trim()
+                const context = [
+                  line,
+                  lines[idx+1] || '',
+                  lines[idx+2] || '',
+                  lines[idx+3] || '',
+                ].join(' ')
+
+                // Extract player range e.g. "1-4"
+                const playerMatch = context.match(/(\d)-(\d)/)
+                if (playerMatch && !ranges[time]) {
+                  ranges[time] = parseInt(playerMatch[2], 10)
+                }
+
+                // Extract price — look for $XX.XX or $XX pattern
+                const priceMatch = context.match(/\$(\d+(?:\.\d{1,2})?)/)
+                if (priceMatch && !prices[time]) {
+                  prices[time] = parseFloat(priceMatch[1])
+                }
               }
-
-              // Extract price — look for $XX.XX or $XX pattern
-              const priceMatch = context.match(/\$(\d+(?:\.\d{1,2})?)/)
-              if (priceMatch && !prices[time]) {
-                prices[time] = parseFloat(priceMatch[1])
-              }
-            }
+            })
+            return { ranges, prices }
           })
-          return { ranges, prices }
-        })
 
-        if (Object.keys(domData.prices).length > 0) {
-          console.log(`[${facilityId}] DOM prices (raw): ${JSON.stringify(domData.prices)}`)
-        }
-      })(),
-      new Promise((_, reject) =>
-        setTimeout(() => reject(new Error(`Timed out after ${TIMEOUT_MS / 1000}s`)), TIMEOUT_MS)
-      ),
-    ])
+          if (Object.keys(domData.prices).length > 0) {
+            console.log(`[${facilityId}] DOM prices (raw): ${JSON.stringify(domData.prices)}`)
+          }
+        })(),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error(`Timed out after ${TIMEOUT_MS / 1000}s`)), TIMEOUT_MS)
+        ),
+      ])
+    }
+
+    // Load and extract, retry if too few tee times captured
+    await loadAndExtract()
+
+    if (captured.length < 25 && retryCount < 1) {
+      retryCount++
+      console.log(`[${facilityId}] Only ${captured.length} tee times, retrying...`)
+      captured.length = 0 // clear captured array
+      domData = { ranges: {}, prices: {} }
+      await page.reload({ waitUntil: 'domcontentloaded' })
+      await loadAndExtract()
+    }
 
     // Merge DOM data into captured XHR tee times
     captured.forEach(tt => {
