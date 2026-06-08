@@ -1,0 +1,4 @@
+Create 192x192 PNG with:
+- Dark green background (#2d5016)
+- White golf ball in center
+- Gold golf club below
