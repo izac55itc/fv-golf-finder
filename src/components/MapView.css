@@ -122,33 +122,21 @@
   margin-bottom: 12px;
 }
 
-.details-grid .cost-row {
+.cost-summary {
   grid-column: 1 / -1;
   display: flex;
-  gap: 12px;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.details-grid .cost-row > div {
-  display: flex;
-  flex-direction: column;
   gap: 4px;
-  flex: 1;
-}
-
-.details-grid .total-row {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 8px;
-  background: #f9f9f9;
-  border-radius: 4px;
+  justify-content: center;
+  font-size: 12px;
+  margin-top: 4px;
+  color: #2d5016;
+  font-weight: 600;
 }
 
-.details-grid .total-row .value {
-  font-size: 18px;
+.cost-summary .highlight {
+  font-size: 14px;
+  margin-left: 4px;
 }
 
 .detail-item.clickable {

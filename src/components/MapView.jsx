@@ -143,23 +143,14 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
               <span className="label">Latest Start</span>
               <span className="value">{selectedCourse.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })}</span>
             </div>
-            <div className="detail-item cost-row">
-              <div>
-                <span className="label">Green Fee</span>
-                <span className="value">${selectedCourse.minPrice.toFixed(0)}–${selectedCourse.maxPrice.toFixed(0)}</span>
-              </div>
-              <div>
-                <span className="label">Gas</span>
-                <span className="value">${selectedCourse.gasCost.toFixed(2)}</span>
-              </div>
-              <div>
-                <span className="label">Cart</span>
-                <span className="value">$20.00</span>
-              </div>
-            </div>
-            <div className="detail-item total-row">
-              <span className="label">Total Cost</span>
-              <span className="value highlight">${selectedCourse.totalCost.toFixed(2)}</span>
+            <div className="cost-summary">
+              <span>${selectedCourse.minPrice.toFixed(0)}–${selectedCourse.maxPrice.toFixed(0)}</span>
+              <span>+</span>
+              <span>${selectedCourse.gasCost.toFixed(2)}</span>
+              <span>+</span>
+              <span>$20</span>
+              <span>=</span>
+              <span className="highlight">${selectedCourse.totalCost.toFixed(2)}</span>
             </div>
           </div>
 
