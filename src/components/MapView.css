@@ -125,18 +125,25 @@
 .cost-summary {
   grid-column: 1 / -1;
   display: flex;
-  gap: 4px;
+  gap: 6px;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   font-size: 12px;
   margin-top: 4px;
   color: #2d5016;
   font-weight: 600;
+  line-height: 1.4;
+}
+
+.cost-summary .separator {
+  color: #ccc;
+  margin: 0 2px;
 }
 
 .cost-summary .highlight {
-  font-size: 14px;
-  margin-left: 4px;
+  font-weight: 700;
+  color: #2d5016;
 }
 
 .detail-item.clickable {
