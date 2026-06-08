@@ -53,10 +53,8 @@ async function geocodeAddress(query) {
   return { lat: parseFloat(item.lat), lng: parseFloat(item.lon), name, source: 'manual' }
 }
 
-let deferredPrompt = null
-
 export default function App() {
-  const [showInstall, setShowInstall] = useState(false)
+  const [canInstall, setCanInstall] = useState(!!window.__installPrompt)
   const [location,     setLocation]     = useState({ ...WALNUT_GROVE, source: 'default' })
   const [locLoading,   setLocLoading]   = useState(false)
   const [locInput,     setLocInput]     = useState(WALNUT_GROVE.name)
@@ -106,18 +104,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    if (window.deferredPrompt) {
-      setShowInstall(true)
-      deferredPrompt = window.deferredPrompt
-      console.log('Install prompt already captured')
-    }
-    const handleInstallReady = () => {
-      setShowInstall(true)
-      deferredPrompt = window.deferredPrompt
-      console.log('Install prompt ready')
-    }
-    window.addEventListener('install-ready', handleInstallReady)
-    return () => window.removeEventListener('install-ready', handleInstallReady)
+    if (window.__installPrompt) setCanInstall(true)
   }, [])
 
   const handleLocSearch = useCallback(async () => {
@@ -201,13 +188,10 @@ export default function App() {
   useEffect(() => { fetchTeetimes() }, [fetchTeetimes])
 
   const handleInstall = useCallback(async () => {
-    if (!deferredPrompt) return
-    deferredPrompt.prompt()
-    const { outcome } = await deferredPrompt.userChoice
-    if (outcome === 'accepted') {
-      setShowInstall(false)
-      deferredPrompt = null
-    }
+    if (!window.__installPrompt) return
+    window.__installPrompt.prompt()
+    await window.__installPrompt.userChoice
+    setCanInstall(false)
   }, [])
 
   const triggerScraper = useCallback(async () => {
@@ -266,7 +250,7 @@ export default function App() {
             <h2>Plan Your Session</h2>
             <div className="data-freshness">
               {generatedAt && <span>Updated {timeAgo(generatedAt)}</span>}
-              {showInstall && (
+              {canInstall && (
                 <button
                   className="refresh-btn"
                   onClick={handleInstall}

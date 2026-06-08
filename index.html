@@ -8,18 +8,14 @@
 <body><div id="root"></div>
 <script type="module" src="/src/main.jsx"></script>
 <script>
-window.deferredPrompt = null;
-
 if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./service-worker.js')
-    .then(reg => console.log('SW registered:', reg.scope))
-    .catch(err => console.error('SW registration failed:', err));
+  navigator.serviceWorker.register('./service-worker.js');
 }
 
+let installPrompt = null;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
-  window.deferredPrompt = e;
-  window.dispatchEvent(new CustomEvent('install-ready'));
-  console.log('Install prompt captured');
+  installPrompt = e;
+  window.__installPrompt = installPrompt;
 });
 </script></body></html>
