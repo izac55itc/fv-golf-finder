@@ -135,7 +135,12 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           <p className="course-location">{selectedCourse.course.location}</p>
 
           <div className="details-grid">
-            <div className="detail-item clickable" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedCourse.course.lat},${selectedCourse.course.lng}`, '_blank')}>
+            <div className="detail-item clickable" onClick={() => {
+              const origin = `${location.lat},${location.lng}`
+              const destination = `${selectedCourse.course.lat},${selectedCourse.course.lng}`
+              const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`
+              window.location.href = mapsUrl
+            }}>
               <span className="label">Drive Time</span>
               <span className="value">{selectedCourse.driveMinutes}m 🗺️</span>
             </div>
@@ -159,21 +164,24 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
               <div className="weather-box">
                 <span className="weather-time">8am</span>
                 <span className="weather-icon">{selectedCourse.weatherMorning.icon}</span>
-                <span>{selectedCourse.weatherMorning.temp}°C</span>
+                <span className="weather-temp">{selectedCourse.weatherMorning.temp}°C</span>
+                <span className="weather-wind">💨 {selectedCourse.weatherMorning.windspeed}km/h</span>
               </div>
             )}
             {selectedCourse.weatherAfternoon && (
               <div className="weather-box">
                 <span className="weather-time">2pm</span>
                 <span className="weather-icon">{selectedCourse.weatherAfternoon.icon}</span>
-                <span>{selectedCourse.weatherAfternoon.temp}°C</span>
+                <span className="weather-temp">{selectedCourse.weatherAfternoon.temp}°C</span>
+                <span className="weather-wind">💨 {selectedCourse.weatherAfternoon.windspeed}km/h</span>
               </div>
             )}
             {selectedCourse.weatherTwilight && (
               <div className="weather-box">
                 <span className="weather-time">5pm</span>
                 <span className="weather-icon">{selectedCourse.weatherTwilight.icon}</span>
-                <span>{selectedCourse.weatherTwilight.temp}°C</span>
+                <span className="weather-temp">{selectedCourse.weatherTwilight.temp}°C</span>
+                <span className="weather-wind">💨 {selectedCourse.weatherTwilight.windspeed}km/h</span>
               </div>
             )}
           </div>

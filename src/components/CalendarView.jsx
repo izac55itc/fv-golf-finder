@@ -184,19 +184,19 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                     {item.weatherMorning && (
                       <div className="cal-weather-period">
                         <span className="cal-weather-time">8am</span>
-                        <span>{item.weatherMorning.icon} {item.weatherMorning.temp}°C</span>
+                        <span>{item.weatherMorning.icon} {item.weatherMorning.temp}°C 💨{item.weatherMorning.windspeed}km/h</span>
                       </div>
                     )}
                     {item.weatherAfternoon && (
                       <div className="cal-weather-period">
                         <span className="cal-weather-time">2pm</span>
-                        <span>{item.weatherAfternoon.icon} {item.weatherAfternoon.temp}°C</span>
+                        <span>{item.weatherAfternoon.icon} {item.weatherAfternoon.temp}°C 💨{item.weatherAfternoon.windspeed}km/h</span>
                       </div>
                     )}
                     {item.weatherTwilight && (
                       <div className="cal-weather-period">
                         <span className="cal-weather-time">5pm</span>
-                        <span>{item.weatherTwilight.icon} {item.weatherTwilight.temp}°C</span>
+                        <span>{item.weatherTwilight.icon} {item.weatherTwilight.temp}°C 💨{item.weatherTwilight.windspeed}km/h</span>
                       </div>
                     )}
                   </div>
