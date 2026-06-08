@@ -76,6 +76,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           maxPrice: item.maxPrice,
           avgPrice,
           totalCost,
+          cartCost: CART_RENTAL,
           availableCount: item.availableCount,
           hasHotDeals: item.hasHotDeals,
           weatherMorning,
