@@ -131,8 +131,8 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
       {selectedCourse && (
         <div className="map-details-modal">
           <button className="modal-close" onClick={() => setSelectedCourse(null)}>✕</button>
-          <h3>{selectedCourse.course.name}</h3>
-          <p className="course-location">{selectedCourse.course.location} • {selectedCourse.course.holes} Holes</p>
+          <h3>{selectedCourse.course.name} • {selectedCourse.course.holes} Holes</h3>
+          <p className="course-location">{selectedCourse.course.location}</p>
 
           <div className="details-grid">
             <div className="detail-item clickable" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedCourse.course.lat},${selectedCourse.course.lng}`, '_blank')}>
