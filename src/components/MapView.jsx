@@ -6,6 +6,7 @@ import { fuelCostDollars } from '../utils/ranker.js'
 import { getSunsetTime } from '../utils/sunset.js'
 import { getWeatherAtTime } from '../utils/weather.js'
 import { getCourseRating } from '../utils/placesApi.js'
+import CourseCard from './CourseCard.jsx'
 import './MapView.css'
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -100,6 +101,8 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
     return `https://www.golfnow.com/tee-times/facility/${course.golfnowSlug}/search#date=${dateStr}`
   }
 
+  const mapBookingUrl = (course) => bookingUrl(course)
+
   if (!isLoaded) return <div className="map-loading">Loading map…</div>
 
   if (loadError) {
@@ -151,85 +154,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
       {selectedCourse && (
         <div className="map-details-modal">
           <button className="modal-close" onClick={() => setSelectedCourse(null)}>✕</button>
-          <div className="modal-header">
-            <div>
-              <h3>{selectedCourse.course.name} • {selectedCourse.course.holes} holes</h3>
-              <p className="course-location">{selectedCourse.course.location}</p>
-            </div>
-            <div className="modal-badges">
-              {selectedCourse.availableCount < 10 && <span className="badge-busy">⏰ Busy</span>}
-              {selectedCourse.availableCount >= 20 && <span className="badge-open">✓ Open</span>}
-              {selectedCourse.hasHotDeals && <span className="badge-deals">🔥 Deal</span>}
-            </div>
-          </div>
-
-          <div className="details-grid">
-            <div
-              className="detail-item clickable"
-              onClick={() => {
-                const url = `https://maps.google.com/?q=${selectedCourse.course.lat},${selectedCourse.course.lng}`
-                window.open(url, '_blank')
-              }}
-            >
-              <span className="label">Drive Time</span>
-              <span className="value">{selectedCourse.driveMinutes}m 🗺️</span>
-            </div>
-            <div className="detail-item">
-              <span className="label">Latest Start</span>
-              <span className="value">{selectedCourse.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })}</span>
-            </div>
-            <div className="cost-summary">
-              <span className="cost-item fee">⛳ ${selectedCourse.minPrice.toFixed(0)}–${selectedCourse.maxPrice.toFixed(0)}</span>
-              <span className="separator">|</span>
-              <span className="cost-item gas">⛽ ${selectedCourse.gasCost.toFixed(2)}</span>
-              <span className="separator">|</span>
-              <span className="cost-item cart">🚗 $20</span>
-              <span className="separator">|</span>
-              <span className="cost-item total">💰 ${selectedCourse.totalCost.toFixed(2)}</span>
-            </div>
-          </div>
-
-          {ratingLoading && <div className="rating-loading">Loading rating…</div>}
-          {!ratingLoading && courseRating && (
-            <div className="course-rating">
-              <span className="rating-stars">⭐ {courseRating.rating.toFixed(1)}</span>
-              <span className="rating-count">({courseRating.reviewCount} reviews)</span>
-            </div>
-          )}
-
-          <div className="details-weather">
-            {selectedCourse.weatherMorning && (
-              <div className="weather-box">
-                <span className="weather-time">8am</span>
-                <span className="weather-icon">{selectedCourse.weatherMorning.icon}</span>
-                <span className="weather-temp">{selectedCourse.weatherMorning.temp}°C</span>
-              </div>
-            )}
-            {selectedCourse.weatherAfternoon && (
-              <div className="weather-box">
-                <span className="weather-time">2pm</span>
-                <span className="weather-icon">{selectedCourse.weatherAfternoon.icon}</span>
-                <span className="weather-temp">{selectedCourse.weatherAfternoon.temp}°C</span>
-              </div>
-            )}
-            {selectedCourse.weatherTwilight && (
-              <div className="weather-box">
-                <span className="weather-time">5pm</span>
-                <span className="weather-icon">{selectedCourse.weatherTwilight.icon}</span>
-                <span className="weather-temp">{selectedCourse.weatherTwilight.temp}°C</span>
-              </div>
-            )}
-          </div>
-
-          {(selectedCourse.weatherMorning?.windspeed > 20 ||
-            selectedCourse.weatherAfternoon?.windspeed > 20 ||
-            selectedCourse.weatherTwilight?.windspeed > 20) && (
-            <div className="wind-warning">⚠️ Windy conditions expected</div>
-          )}
-
-          <a href={bookingUrl(selectedCourse.course)} target="_blank" rel="noopener noreferrer" className="book-btn">
-            Book on GolfNow →
-          </a>
+          <CourseCard item={selectedCourse} bookingUrl={mapBookingUrl} />
         </div>
       )}
     </div>
