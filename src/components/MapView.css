@@ -133,17 +133,39 @@
   margin-top: 4px;
   color: #2d5016;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .cost-summary .separator {
-  color: #ccc;
+  color: #ddd;
   margin: 0 2px;
 }
 
-.cost-summary .highlight {
+.cost-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cost-item.fee {
+  color: #228B22;
   font-weight: 700;
+}
+
+.cost-item.gas {
+  color: #FF8C00;
+}
+
+.cost-item.cart {
+  color: #1E90FF;
+}
+
+.cost-item.total {
   color: #2d5016;
+  font-weight: 700;
+  background: #f0fff4;
+  padding: 2px 6px;
+  border-radius: 3px;
 }
 
 .detail-item.clickable {
