@@ -54,6 +54,7 @@ async function geocodeAddress(query) {
 }
 
 export default function App() {
+  const [installPrompt, setInstallPrompt] = useState(null)
   const [location,     setLocation]     = useState({ ...WALNUT_GROVE, source: 'default' })
   const [locLoading,   setLocLoading]   = useState(false)
   const [locInput,     setLocInput]     = useState(WALNUT_GROVE.name)
@@ -100,6 +101,15 @@ export default function App() {
     fetchAllCourseWeather(COURSES)
       .then(setWeatherData)
       .catch(err => console.warn('Weather fetch error:', err))
+  }, [])
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault()
+      setInstallPrompt(e)
+    }
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
   }, [])
 
   const handleLocSearch = useCallback(async () => {
@@ -182,6 +192,15 @@ export default function App() {
 
   useEffect(() => { fetchTeetimes() }, [fetchTeetimes])
 
+  const handleInstall = useCallback(async () => {
+    if (!installPrompt) return
+    installPrompt.prompt()
+    const { outcome } = await installPrompt.userChoice
+    if (outcome === 'accepted') {
+      setInstallPrompt(null)
+    }
+  }, [installPrompt])
+
   const triggerScraper = useCallback(async () => {
     if (!GH_TOKEN) { setScrapeStatus('error'); return }
     setScrapeStatus('triggering')
@@ -238,6 +257,14 @@ export default function App() {
             <h2>Plan Your Session</h2>
             <div className="data-freshness">
               {generatedAt && <span>Updated {timeAgo(generatedAt)}</span>}
+              {installPrompt && (
+                <button
+                  className="refresh-btn"
+                  onClick={handleInstall}
+                >
+                  📲 Install App
+                </button>
+              )}
               <button
                 className="refresh-btn"
                 onClick={fetchTeetimes}
