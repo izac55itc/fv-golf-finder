@@ -70,7 +70,7 @@
   background: #f0fff4;
   border-left: 4px solid #2d5016;
   border-radius: 8px;
-  overflow: visible;
+  overflow: hidden;
   transition: all 0.2s;
 }
 
@@ -155,7 +155,7 @@
 
 .cal-card-pricing {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   padding: 16px;
   border-bottom: 1px solid #f0f0f0;
@@ -302,5 +302,11 @@
 @media (max-width: 480px) {
   .cal-results {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1400px) {
+  .cal-card-pricing {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
