@@ -2,15 +2,15 @@
   "name": "Golf Finder - Fraser Valley Tee Times",
   "short_name": "Golf Finder",
   "description": "Find the best golf tee times and deals in the Fraser Valley",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "theme_color": "#2d5016",
   "background_color": "#ffffff",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "./favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
