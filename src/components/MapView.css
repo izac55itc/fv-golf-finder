@@ -71,6 +71,13 @@
   animation: slideUp 0.3s ease-out;
   overflow-y: auto;
   max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-details-modal .cal-course-card {
+  flex: 1;
+  margin: 0;
 }
 
 @keyframes slideUp {
