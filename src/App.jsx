@@ -234,6 +234,10 @@ export default function App() {
   }, [scrapeStatus, scrapeSecondsLeft, fetchTeetimes])
 
   const baseDate = useMemo(() => new Date(sessionDate + 'T00:00:00'), [sessionDate])
+  const sunsetTime = useMemo(() => {
+    const d = new Date(sessionDate + 'T12:00:00')
+    return getSunsetTime(d)
+  }, [sessionDate])
 
   return (
     <div className="app">
@@ -248,6 +252,9 @@ export default function App() {
       <main>
         <div className="planner-card">
           <div className="date-tabs-row">
+            <div className="sunset-display">
+              🌅 {sunsetTime.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
+            </div>
             <div className="date-tabs">
               {availableDates.map(d => {
                 const date = new Date(d + 'T12:00:00')

@@ -168,6 +168,14 @@ body {
   border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
 
+.sunset-display {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-label);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .date-tabs {
   display: flex;
   gap: 0.4rem;

@@ -156,7 +156,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
                 <div className="cal-card-meta">
                   <div className="cal-holes-info">
-                    🌅 Sunset {item.sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} • Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
+                    🌅 {item.sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} • Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
                   </div>
                   <div className="cal-weather-group">
                     {item.weatherMorning && (
