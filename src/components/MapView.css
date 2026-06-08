@@ -118,11 +118,32 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
-.details-grid .detail-item:last-child {
+.details-grid .cost-row {
   grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.details-grid .cost-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.detail-item.clickable {
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.detail-item.clickable:hover {
+  background: #f0f0f0;
 }
 
 .detail-item {
