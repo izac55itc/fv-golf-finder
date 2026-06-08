@@ -164,15 +164,26 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           </div>
 
           <div className="details-grid">
-            <a
+            <div
               className="detail-item clickable"
-              href={`https://maps.google.com/maps/dir/${location.lat},${location.lng}/${selectedCourse.course.lat},${selectedCourse.course.lng}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => {
+                const origin = `${location.lat},${location.lng}`
+                const dest = `${selectedCourse.course.lat},${selectedCourse.course.lng}`
+                const webUrl = `https://maps.google.com/maps/dir/${origin}/${dest}`
+                const appUrl = `comgooglemaps://maps.google.com/maps?saddr=${origin}&daddr=${dest}&directionsmode=driving`
+
+                // Try app first (Android)
+                window.location.href = appUrl
+
+                // Fallback to web if app doesn't open
+                setTimeout(() => {
+                  window.location.href = webUrl
+                }, 1500)
+              }}
             >
               <span className="label">Drive Time</span>
               <span className="value">{selectedCourse.driveMinutes}m 🗺️</span>
-            </a>
+            </div>
             <div className="detail-item">
               <span className="label">Latest Start</span>
               <span className="value">{selectedCourse.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })}</span>
