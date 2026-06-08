@@ -164,13 +164,16 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           </div>
 
           <div className="details-grid">
-            <a
+            <div
               className="detail-item clickable"
-              href={`http://maps.google.com/maps?q=${selectedCourse.course.lat},${selectedCourse.course.lng}`}
+              onClick={() => {
+                const url = `https://maps.google.com/?q=${selectedCourse.course.lat},${selectedCourse.course.lng}`
+                window.open(url, '_blank')
+              }}
             >
               <span className="label">Drive Time</span>
               <span className="value">{selectedCourse.driveMinutes}m 🗺️</span>
-            </a>
+            </div>
             <div className="detail-item">
               <span className="label">Latest Start</span>
               <span className="value">{selectedCourse.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })}</span>
