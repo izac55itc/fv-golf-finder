@@ -13,54 +13,42 @@ function haversineMinutes(fromLat, fromLng, toLat, toLng) {
   return Math.max(3, Math.round((km * 1.3) / 40 * 60) + 3)
 }
 
-// Google Maps Distance Matrix API — real-time traffic-aware driving duration
-// Includes live traffic data for accurate last-minute decision-making
-async function googleMapsMinutes(fromLat, fromLng, toLat, toLng, apiKey) {
-  const origins = `${fromLat},${fromLng}`
-  const destinations = `${toLat},${toLng}`
-  const now = Math.floor(Date.now() / 1000)
-
-  const url = new URL('https://maps.googleapis.com/maps/api/distancematrix/json')
-  url.searchParams.append('origins', origins)
-  url.searchParams.append('destinations', destinations)
-  url.searchParams.append('mode', 'driving')
-  url.searchParams.append('departure_time', now)
-  url.searchParams.append('traffic_model', 'best_guess')
-  url.searchParams.append('key', apiKey)
+// Mapbox Directions API — traffic-aware driving duration
+// Docs: https://docs.mapbox.com/api/navigation/directions/
+// Free tier: 100,000 requests/month, no credit card required
+async function mapboxMinutes(fromLat, fromLng, toLat, toLng, token) {
+  const coords = `${fromLng},${fromLat};${toLng},${toLat}`
+  const url =
+    `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coords}` +
+    `?access_token=${token}&overview=false`
 
   const res = await fetch(url)
-  if (!res.ok) throw new Error(`Google Maps ${res.status}`)
+  if (!res.ok) throw new Error(`Mapbox ${res.status}`)
   const data = await res.json()
-
-  if (data.status !== 'OK') throw new Error(`Google Maps: ${data.status}`)
-  const element = data.rows?.[0]?.elements?.[0]
-  if (!element || element.status !== 'OK') throw new Error('No route found')
-
-  const seconds = element.duration_in_traffic?.value || element.duration?.value
-  if (!seconds) throw new Error('No duration data')
-
+  const seconds = data.routes?.[0]?.duration
+  if (!seconds) throw new Error('No route returned')
   return Math.ceil(seconds / 60)
 }
 
-// Fetch drive times for all courses in one pass using Google Maps real-time traffic.
+// Fetch drive times for all courses in one pass.
 // Returns Map<courseId, minutes>.
-// Falls back to Haversine if API fails.
+// Falls back to Haversine per-course if Mapbox fails.
 export async function fetchAllDriveTimes(fromLat, fromLng, courses) {
-  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+  const token = import.meta.env.VITE_MAPBOX_TOKEN
+
   const results = new Map()
 
   await Promise.all(
     courses.map(async (course) => {
       try {
-        if (apiKey) {
-          const mins = await googleMapsMinutes(fromLat, fromLng, course.lat, course.lng, apiKey)
+        if (token) {
+          const mins = await mapboxMinutes(fromLat, fromLng, course.lat, course.lng, token)
           results.set(course.id, mins)
         } else {
           results.set(course.id, haversineMinutes(fromLat, fromLng, course.lat, course.lng))
         }
-      } catch (err) {
-        // Google Maps failed — use Haversine fallback
-        console.warn(`Drive time fallback for course ${course.id}:`, err.message)
+      } catch {
+        // Mapbox failed for this course — use Haversine
         results.set(course.id, haversineMinutes(fromLat, fromLng, course.lat, course.lng))
       }
     })
