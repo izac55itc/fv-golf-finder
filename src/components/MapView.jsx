@@ -153,9 +153,13 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
                 <span className="value">${selectedCourse.gasCost.toFixed(2)}</span>
               </div>
               <div>
-                <span className="label">Total</span>
-                <span className="value highlight">${selectedCourse.totalCost.toFixed(2)}</span>
+                <span className="label">Cart</span>
+                <span className="value">$20.00</span>
               </div>
+            </div>
+            <div className="detail-item total-row">
+              <span className="label">Total Cost</span>
+              <span className="value highlight">${selectedCourse.totalCost.toFixed(2)}</span>
             </div>
           </div>
 

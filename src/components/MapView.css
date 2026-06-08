@@ -127,6 +127,7 @@
   display: flex;
   gap: 12px;
   justify-content: space-between;
+  margin-bottom: 8px;
 }
 
 .details-grid .cost-row > div {
@@ -134,6 +135,20 @@
   flex-direction: column;
   gap: 4px;
   flex: 1;
+}
+
+.details-grid .total-row {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.details-grid .total-row .value {
+  font-size: 18px;
 }
 
 .detail-item.clickable {
