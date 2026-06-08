@@ -1,18 +1,24 @@
 import { GoogleMap, MarkerF, InfoWindowF } from '@react-google-maps/api'
 import { useJsApiLoader } from '@react-google-maps/api'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { COURSES } from '../data/courses.js'
 import './MapView.css'
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
 
 export default function MapView({ location, driveTimes, teetimes, sessionDate, onCourseSelect }) {
-  const { isLoaded } = useJsApiLoader({
+  const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   })
 
   const [selectedCourse, setSelectedCourse] = useState(null)
+
+  useEffect(() => {
+    if (loadError) {
+      console.error('Google Maps load error:', loadError)
+    }
+  }, [loadError])
 
   const courseMarkers = useMemo(() => {
     const map = new Map()
@@ -36,6 +42,28 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, o
   const mapCenter = { lat: location.lat, lng: location.lng }
 
   if (!isLoaded) return <div className="map-loading">Loading map…</div>
+
+  if (loadError) {
+    return (
+      <div className="map-error">
+        <p>Map failed to load. Please try the list view instead.</p>
+        <button onClick={() => onCourseSelect(null)} className="map-error-btn">
+          ← Back to List
+        </button>
+      </div>
+    )
+  }
+
+  if (!GOOGLE_MAPS_API_KEY) {
+    return (
+      <div className="map-error">
+        <p>Google Maps API key not configured. Please try again in a moment.</p>
+        <button onClick={() => onCourseSelect(null)} className="map-error-btn">
+          ← Back to List
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="map-container">

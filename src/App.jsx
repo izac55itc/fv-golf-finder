@@ -343,9 +343,7 @@ export default function App() {
             driveTimes={driveTimes}
             teetimes={teetimes}
             sessionDate={sessionDate}
-            onCourseSelect={(courseId) => {
-              setViewMode('list')
-            }}
+            onCourseSelect={() => setViewMode('list')}
           />
         )}
 
