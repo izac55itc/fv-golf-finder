@@ -101,6 +101,46 @@
   background: #e0e0e0;
 }
 
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  padding-right: 28px;
+}
+
+.modal-badges {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.badge-busy,
+.badge-open,
+.badge-deals {
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.badge-busy {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.badge-open {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badge-deals {
+  background: #fff3cd;
+  color: #856404;
+}
+
 .map-details-modal h3 {
   margin: 0 0 2px 0;
   font-size: 15px;

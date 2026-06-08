@@ -104,13 +104,41 @@
   color: #999;
 }
 
+.cal-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .cal-badge-deals {
-  font-size: 12px;
+  font-size: 11px;
   background: #fff3cd;
   color: #856404;
   padding: 4px 8px;
   border-radius: 3px;
   white-space: nowrap;
+  font-weight: 600;
+}
+
+.cal-badge-busy {
+  font-size: 11px;
+  background: #f8d7da;
+  color: #721c24;
+  padding: 4px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.cal-badge-open {
+  font-size: 11px;
+  background: #d4edda;
+  color: #155724;
+  padding: 4px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  font-weight: 600;
 }
 
 .cal-card-pricing {

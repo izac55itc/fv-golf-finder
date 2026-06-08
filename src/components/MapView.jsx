@@ -131,8 +131,17 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
       {selectedCourse && (
         <div className="map-details-modal">
           <button className="modal-close" onClick={() => setSelectedCourse(null)}>✕</button>
-          <h3>{selectedCourse.course.name} • {selectedCourse.course.holes} Holes</h3>
-          <p className="course-location">{selectedCourse.course.location}</p>
+          <div className="modal-header">
+            <div>
+              <h3>{selectedCourse.course.name} • {selectedCourse.course.holes} Holes</h3>
+              <p className="course-location">{selectedCourse.course.location}</p>
+            </div>
+            <div className="modal-badges">
+              {selectedCourse.availableCount < 10 && <span className="badge-busy">⏰ Busy</span>}
+              {selectedCourse.availableCount >= 20 && <span className="badge-open">✓ Open</span>}
+              {selectedCourse.hasHotDeals && <span className="badge-deals">🔥 Deal</span>}
+            </div>
+          </div>
 
           <div className="details-grid">
             <div className="detail-item clickable" onClick={() => {

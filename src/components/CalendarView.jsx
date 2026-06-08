@@ -149,7 +149,11 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                       {item.course.location} • {item.course.holes}H • {item.driveMinutes}m drive
                     </div>
                   </div>
-                  {item.hasHotDeals && <span className="cal-badge-deals">🔥 Hot Deal</span>}
+                  <div className="cal-badges">
+                    {item.hasHotDeals && <span className="cal-badge-deals">🔥 Deal</span>}
+                    {item.availableCount < 10 && <span className="cal-badge-busy">⏰ Busy</span>}
+                    {item.availableCount >= 20 && <span className="cal-badge-open">✓ Open</span>}
+                  </div>
                 </div>
 
                 <div className="cal-card-pricing">
