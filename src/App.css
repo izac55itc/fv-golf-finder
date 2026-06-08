@@ -212,18 +212,24 @@ body {
 
 .planner-top-row h2 { margin-bottom: 0; }
 
+.view-toggle-row {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
 .view-toggle {
   display: flex;
   gap: 0.4rem;
 }
 
 .view-btn {
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.8rem;
   border: 1.5px solid var(--green-border);
   border-radius: 0.4rem;
   background: white;
   color: var(--green-label);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s, color 0.15s;
@@ -764,7 +770,6 @@ body {
   display: flex;
   gap: 0.4rem;
   align-items: center;
-  justify-content: space-between;
 }
 
 .loc-input {

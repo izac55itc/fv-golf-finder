@@ -295,22 +295,25 @@ export default function App() {
               >
                 📍
               </button>
-              <div className="view-toggle">
-                <button
-                  className={`view-btn${viewMode === 'list' ? ' active' : ''}`}
-                  onClick={() => setViewMode('list')}
-                >
-                  📋 List
-                </button>
-                <button
-                  className={`view-btn${viewMode === 'map' ? ' active' : ''}`}
-                  onClick={() => setViewMode('map')}
-                >
-                  🗺️ Map
-                </button>
-              </div>
             </div>
             {locError && <div className="loc-error">{locError}</div>}
+          </div>
+
+          <div className="view-toggle-row">
+            <div className="view-toggle">
+              <button
+                className={`view-btn${viewMode === 'list' ? ' active' : ''}`}
+                onClick={() => setViewMode('list')}
+              >
+                📋 List
+              </button>
+              <button
+                className={`view-btn${viewMode === 'map' ? ' active' : ''}`}
+                onClick={() => setViewMode('map')}
+              >
+                🗺️ Map
+              </button>
+            </div>
           </div>
 
         </div>
