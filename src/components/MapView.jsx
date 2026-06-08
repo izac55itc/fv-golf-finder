@@ -166,7 +166,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           <div className="details-grid">
             <a
               className="detail-item clickable"
-              href={`https://www.google.com/maps/dir/?api=1&origin=${location.lat},${location.lng}&destination=${selectedCourse.course.lat},${selectedCourse.course.lng}&travelmode=driving`}
+              href={`https://maps.google.com/maps/dir/${location.lat},${location.lng}/${selectedCourse.course.lat},${selectedCourse.course.lng}`}
               target="_blank"
               rel="noopener noreferrer"
             >
