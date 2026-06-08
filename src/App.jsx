@@ -343,6 +343,7 @@ export default function App() {
             driveTimes={driveTimes}
             teetimes={teetimes}
             sessionDate={sessionDate}
+            weatherData={weatherData}
             onCourseSelect={() => setViewMode('list')}
           />
         )}
