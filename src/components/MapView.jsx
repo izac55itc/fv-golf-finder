@@ -5,6 +5,7 @@ import { COURSES } from '../data/courses.js'
 import { fuelCostDollars } from '../utils/ranker.js'
 import { getSunsetTime } from '../utils/sunset.js'
 import { getWeatherAtTime } from '../utils/weather.js'
+import { getCourseRating } from '../utils/placesApi.js'
 import './MapView.css'
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -18,12 +19,31 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
   })
 
   const [selectedCourse, setSelectedCourse] = useState(null)
+  const [courseRating, setCourseRating] = useState(null)
+  const [ratingLoading, setRatingLoading] = useState(false)
 
   useEffect(() => {
     if (loadError) {
       console.error('Google Maps load error:', loadError)
     }
   }, [loadError])
+
+  useEffect(() => {
+    if (!selectedCourse) {
+      setCourseRating(null)
+      return
+    }
+    setRatingLoading(true)
+    getCourseRating(selectedCourse.course)
+      .then(rating => {
+        setCourseRating(rating)
+        setRatingLoading(false)
+      })
+      .catch(() => {
+        setCourseRating(null)
+        setRatingLoading(false)
+      })
+  }, [selectedCourse])
 
   const courseMarkers = useMemo(() => {
     const map = new Map()
@@ -167,6 +187,14 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
               <span className="cost-item total">💰 ${selectedCourse.totalCost.toFixed(2)}</span>
             </div>
           </div>
+
+          {ratingLoading && <div className="rating-loading">Loading rating…</div>}
+          {!ratingLoading && courseRating && (
+            <div className="course-rating">
+              <span className="rating-stars">⭐ {courseRating.rating.toFixed(1)}</span>
+              <span className="rating-count">({courseRating.reviewCount} reviews)</span>
+            </div>
+          )}
 
           <div className="details-weather">
             {selectedCourse.weatherMorning && (
