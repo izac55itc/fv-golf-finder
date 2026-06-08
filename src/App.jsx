@@ -106,14 +106,18 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e) => {
-      e.preventDefault()
-      deferredPrompt = e
+    if (window.deferredPrompt) {
       setShowInstall(true)
-      console.log('Install button should show')
+      deferredPrompt = window.deferredPrompt
+      console.log('Install prompt already captured')
     }
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    const handleInstallReady = () => {
+      setShowInstall(true)
+      deferredPrompt = window.deferredPrompt
+      console.log('Install prompt ready')
+    }
+    window.addEventListener('install-ready', handleInstallReady)
+    return () => window.removeEventListener('install-ready', handleInstallReady)
   }, [])
 
   const handleLocSearch = useCallback(async () => {
