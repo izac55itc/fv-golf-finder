@@ -1,8 +1,8 @@
-const CACHE_NAME = 'golf-finder-v2'
+const CACHE_NAME = 'golf-finder-v3'
 const STATIC_ASSETS = [
-  '/fv-golf-finder/',
-  '/fv-golf-finder/index.html',
-  '/fv-golf-finder/manifest.json',
+  '/',
+  '/index.html',
+  '/manifest.json',
 ]
 
 self.addEventListener('install', (event) => {
