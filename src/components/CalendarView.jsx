@@ -170,25 +170,25 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                 </div>
 
                 <div className="cal-card-pricing">
-                  <div className="cal-price-section">
-                    <div className="cal-price-label">Green Fee</div>
+                  <div className="cal-price-section fee">
+                    <div className="cal-price-label">⛳ Green Fee</div>
                     <div className="cal-price-value">
                       ${item.minPrice.toFixed(2)}–${item.maxPrice.toFixed(2)}
                     </div>
                   </div>
 
-                  <div className="cal-price-section">
-                    <div className="cal-price-label">Gas</div>
+                  <div className="cal-price-section gas">
+                    <div className="cal-price-label">⛽ Gas</div>
                     <div className="cal-price-value">${item.gasCost.toFixed(2)}</div>
                   </div>
 
-                  <div className="cal-price-section">
-                    <div className="cal-price-label">Cart</div>
+                  <div className="cal-price-section cart">
+                    <div className="cal-price-label">🚗 Cart</div>
                     <div className="cal-price-value">${item.cartCost.toFixed(2)}</div>
                   </div>
 
                   <div className="cal-price-section total">
-                    <div className="cal-price-label">Total</div>
+                    <div className="cal-price-label">💰 Total</div>
                     <div className="cal-price-value">${item.totalCost.toFixed(2)}</div>
                   </div>
                 </div>

@@ -144,11 +144,11 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
               <span className="value">{selectedCourse.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })}</span>
             </div>
             <div className="cost-summary">
-              <span className="cost-item fee">💚 ${selectedCourse.minPrice.toFixed(0)}–${selectedCourse.maxPrice.toFixed(0)}</span>
+              <span className="cost-item fee">⛳ ${selectedCourse.minPrice.toFixed(0)}–${selectedCourse.maxPrice.toFixed(0)}</span>
               <span className="separator">|</span>
               <span className="cost-item gas">⛽ ${selectedCourse.gasCost.toFixed(2)}</span>
               <span className="separator">|</span>
-              <span className="cost-item cart">🛒 $20</span>
+              <span className="cost-item cart">🚗 $20</span>
               <span className="separator">|</span>
               <span className="cost-item total">💰 ${selectedCourse.totalCost.toFixed(2)}</span>
             </div>

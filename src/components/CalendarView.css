@@ -173,6 +173,26 @@
   color: #2d5016;
 }
 
+.cal-price-section.fee .cal-price-label {
+  color: #228B22;
+  font-weight: 700;
+}
+
+.cal-price-section.gas .cal-price-label {
+  color: #FF8C00;
+  font-weight: 700;
+}
+
+.cal-price-section.cart .cal-price-label {
+  color: #1E90FF;
+  font-weight: 700;
+}
+
+.cal-price-section.total .cal-price-label {
+  color: #2d5016;
+  font-weight: 700;
+}
+
 .cal-card-meta {
   display: flex;
   gap: 16px;
