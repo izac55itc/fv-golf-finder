@@ -152,10 +152,6 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
               <span className="value highlight">${selectedCourse.totalCost.toFixed(2)}</span>
             </div>
             <div className="detail-item">
-              <span className="label">Available</span>
-              <span className="value">{selectedCourse.availableCount} slots</span>
-            </div>
-            <div className="detail-item">
               <span className="label">Latest Start</span>
               <span className="value">{selectedCourse.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })}</span>
             </div>

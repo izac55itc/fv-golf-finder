@@ -118,7 +118,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.details-grid .detail-item:last-child {
+  grid-column: 1 / -1;
 }
 
 .detail-item {
