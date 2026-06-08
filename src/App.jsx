@@ -252,9 +252,6 @@ export default function App() {
       <main>
         <div className="planner-card">
           <div className="date-tabs-row">
-            <div className="sunset-display">
-              🌅 {sunsetTime.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
-            </div>
             <div className="date-tabs">
               {availableDates.map(d => {
                 const date = new Date(d + 'T12:00:00')
@@ -318,6 +315,9 @@ export default function App() {
               >
                 🗺️ Map
               </button>
+            </div>
+            <div className="sunset-display">
+              🌅 {sunsetTime.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
             </div>
           </div>
 

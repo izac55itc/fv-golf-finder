@@ -75,7 +75,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
   const baseDate = new Date(sessionDate + 'T12:00:00')
   const sunset = getSunsetTime(baseDate)
-  const sunsetStr = sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })
 
   const bookingUrl = (course) => {
     if (!course.golfnowSlug) return '#'
@@ -92,7 +91,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   return (
     <div className="cal-wrap">
       <div className="cal-meta">
-        <span>Sunset {sunsetStr} PDT</span>
         <span>Showing {sorted.length} courses</span>
       </div>
 
