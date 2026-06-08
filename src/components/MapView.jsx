@@ -153,7 +153,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           <button className="modal-close" onClick={() => setSelectedCourse(null)}>✕</button>
           <div className="modal-header">
             <div>
-              <h3>{selectedCourse.course.name} • {selectedCourse.course.holes} Holes</h3>
+              <h3>{selectedCourse.course.name} • {selectedCourse.course.holes} holes</h3>
               <p className="course-location">{selectedCourse.course.location}</p>
             </div>
             <div className="modal-badges">

@@ -7,7 +7,7 @@ import './CalendarView.css'
 
 const CART_RENTAL = 20
 
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, maxPrice, onMaxPrice, maxDriveTime, onMaxDriveTime, sortBy, onSortBy, hidden }) {
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, sortBy, onSortBy, hidden }) {
 
   const now = new Date()
   const today = new Date()
@@ -36,10 +36,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const totalCost = avgPrice + gasCost + CART_RENTAL
       const totalWithoutCart = avgPrice + gasCost
 
-      // Apply filters
-      if (totalCost > maxPrice) continue
-      if (driveMinutes > maxDriveTime) continue
-
       // Calculate latest tee time to finish before dusk
       const roundDurationMs = course.holes * course.avgHoleMinutes * 60_000
       const latestStartMs = sunset.getTime() - roundDurationMs
@@ -65,7 +61,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     }
 
     return Array.from(map.values())
-  }, [teetimes, sessionDate, driveTimes, weatherData, maxPrice, maxDriveTime])
+  }, [teetimes, sessionDate, driveTimes, weatherData])
 
   const sorted = useMemo(() => {
     const arr = [...summaries]
@@ -102,28 +98,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
       <div className="cal-filters">
         <div className="cal-filter-group">
-          <label>Max Total: ${maxPrice}</label>
-          <input
-            type="range"
-            min="0"
-            max="300"
-            value={maxPrice}
-            onChange={(e) => onMaxPrice(Number(e.target.value))}
-            className="cal-filter-slider"
-          />
-        </div>
-        <div className="cal-filter-group">
-          <label>Max Drive: {maxDriveTime}m</label>
-          <input
-            type="range"
-            min="0"
-            max="120"
-            value={maxDriveTime}
-            onChange={(e) => onMaxDriveTime(Number(e.target.value))}
-            className="cal-filter-slider"
-          />
-        </div>
-        <div className="cal-filter-group">
           <label>Sort By</label>
           <select value={sortBy} onChange={(e) => onSortBy(e.target.value)} className="cal-filter-select">
             <option value="totalCost">Total Cost</option>
@@ -146,7 +120,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                   <div className="cal-course-info">
                     <h3 className="cal-course-name">{item.course.name}</h3>
                     <div className="cal-course-details">
-                      {item.course.location} • {item.course.holes}H • {item.driveMinutes}m drive
+                      {item.course.location} • {item.course.holes} holes • {item.driveMinutes}m drive
                     </div>
                   </div>
                   <div className="cal-badges">
@@ -182,7 +156,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
                 <div className="cal-card-meta">
                   <div className="cal-holes-info">
-                    Sunset {item.sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} • Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
+                    🌅 {item.sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} • Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
                   </div>
                   <div className="cal-weather-group">
                     {item.weatherMorning && (

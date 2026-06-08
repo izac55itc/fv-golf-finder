@@ -79,9 +79,7 @@ export default function App() {
   const [driveTimes,  setDriveTimes]  = useState(null)
   const [weatherData, setWeatherData] = useState(null)
 
-  const [maxPrice,     setMaxPrice]     = useState(200)
-  const [maxDriveTime, setMaxDriveTime] = useState(60)
-  const [sortBy,       setSortBy]       = useState('totalCost')
+  const [sortBy, setSortBy] = useState('totalCost')
   const [viewMode,     setViewMode]     = useState('list')
 
   const availableDates = useMemo(() => (
@@ -340,10 +338,6 @@ export default function App() {
           sessionDate={sessionDate}
           onDateChange={handleDateChange}
           availableDates={availableDates}
-          maxPrice={maxPrice}
-          onMaxPrice={setMaxPrice}
-          maxDriveTime={maxDriveTime}
-          onMaxDriveTime={setMaxDriveTime}
           sortBy={sortBy}
           onSortBy={setSortBy}
           hidden={viewMode === 'map'}
