@@ -29,7 +29,7 @@ jobs:
         run: npm ci
       - name: Set base path for GitHub Pages
         run: |-
-          sed -i 's@base: "/"@base: "/fv-golf-finder/"@' vite.config.js
+          sed -i "s@base: '/'@base: '/fv-golf-finder/'@" vite.config.js
       - name: Build
         run: npm run build
         env:
