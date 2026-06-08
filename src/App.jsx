@@ -252,7 +252,7 @@ export default function App() {
 
       <main>
         <div className="planner-card">
-          <div className="planner-date-row">
+          <div className="date-tabs-row">
             <div className="date-tabs">
               {availableDates.map(d => {
                 const date = new Date(d + 'T12:00:00')
@@ -268,20 +268,6 @@ export default function App() {
                   </button>
                 )
               })}
-            </div>
-            <div className="view-toggle">
-              <button
-                className={`view-btn${viewMode === 'list' ? ' active' : ''}`}
-                onClick={() => setViewMode('list')}
-              >
-                📋 List
-              </button>
-              <button
-                className={`view-btn${viewMode === 'map' ? ' active' : ''}`}
-                onClick={() => setViewMode('map')}
-              >
-                🗺️ Map
-              </button>
             </div>
           </div>
 
@@ -312,6 +298,20 @@ export default function App() {
               >
                 📍
               </button>
+              <div className="view-toggle">
+                <button
+                  className={`view-btn${viewMode === 'list' ? ' active' : ''}`}
+                  onClick={() => setViewMode('list')}
+                >
+                  📋 List
+                </button>
+                <button
+                  className={`view-btn${viewMode === 'map' ? ' active' : ''}`}
+                  onClick={() => setViewMode('map')}
+                >
+                  🗺️ Map
+                </button>
+              </div>
             </div>
             {locError && <div className="loc-error">{locError}</div>}
           </div>

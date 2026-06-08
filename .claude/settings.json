@@ -45,7 +45,8 @@
       "Bash(git log *)",
       "Bash(git reset *)",
       "Bash(magick -size 192x192 'xc:#2d5016' -fill white -draw 'circle 96,60 120,60' -fill '#2d5016' -draw 'circle 92,54 94,54' -draw 'circle 100,56 102,56' -draw 'circle 96,66 98,66' -draw 'circle 104,70 106,70' -fill '#c9a961' -draw 'polygon 96,88 85,140 107,140' 'c:\\\\Users\\\\izac5\\\\source\\\\repos\\\\fv-golf-finder\\\\public\\\\icon-192.png')",
-      "Bash(curl -s http://localhost:5173)"
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(pkill -f \"npm run dev\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\izac5\\source\\repos\\fv-golf-finder"
