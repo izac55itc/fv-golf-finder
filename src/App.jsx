@@ -241,12 +241,9 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <div className="header-icon">⛳</div>
-        <div>
-          <h1>FV Golf Finder</h1>
-          <p className="header-subtitle">Fraser Valley Tee Time Session Planner</p>
-        </div>
+        <h1>Golf Finder</h1>
         <div className="header-meta">
-          <div>{teetimes.length} courses available</div>
+          <div>{teetimes.length} courses</div>
         </div>
       </header>
 
