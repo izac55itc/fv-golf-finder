@@ -271,7 +271,6 @@ export default function App() {
           </div>
 
           <div className="planner-location">
-            <label>Location</label>
             <div className="loc-input-row">
               <input
                 ref={locInputRef}

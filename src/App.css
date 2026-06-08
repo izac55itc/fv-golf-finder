@@ -149,13 +149,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.planner-location label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--green-label);
-  letter-spacing: 0.06em;
-}
 
 .date-tabs-row {
   display: flex;
