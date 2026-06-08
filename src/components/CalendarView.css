@@ -55,7 +55,7 @@
 
 .cal-results {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
@@ -155,7 +155,7 @@
 
 .cal-card-pricing {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 12px;
   padding: 16px;
   border-bottom: 1px solid #f0f0f0;
@@ -302,11 +302,5 @@
 @media (max-width: 480px) {
   .cal-results {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 1400px) {
-  .cal-card-pricing {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
