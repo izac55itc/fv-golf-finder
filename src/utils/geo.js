@@ -1,6 +1,6 @@
 export const WALNUT_GROVE = {
-  lat: 49.1658,
-  lng: -122.5910,
+  lat: 49.1648,
+  lng: -122.5903,
   name: '21510 95A Ave, Langley BC V1M 2C6',
 }
 
