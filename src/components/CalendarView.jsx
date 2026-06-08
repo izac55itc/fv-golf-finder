@@ -7,7 +7,7 @@ import './CalendarView.css'
 
 const CART_RENTAL = 20
 
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, maxPrice, onMaxPrice, maxDriveTime, onMaxDriveTime, sortBy, onSortBy }) {
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, maxPrice, onMaxPrice, maxDriveTime, onMaxDriveTime, sortBy, onSortBy, hidden }) {
 
   const now = new Date()
   const today = new Date()
@@ -90,6 +90,8 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     const dateStr = `${monthName}+${day}+${year}`
     return `https://www.golfnow.com/tee-times/facility/${course.golfnowSlug}/search#date=${dateStr}`
   }
+
+  if (hidden) return null
 
   return (
     <div className="cal-wrap">

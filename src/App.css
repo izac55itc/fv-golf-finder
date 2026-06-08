@@ -173,6 +173,35 @@ body {
 
 .planner-top-row h2 { margin-bottom: 0; }
 
+.view-toggle {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.view-btn {
+  padding: 0.3rem 0.7rem;
+  border: 1.5px solid var(--green-border);
+  border-radius: 0.4rem;
+  background: white;
+  color: var(--green-label);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.view-btn:hover {
+  background: var(--green-badge-bg);
+  border-color: var(--green-mid);
+}
+
+.view-btn.active {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+  color: white;
+}
+
 .data-freshness {
   display: flex;
   align-items: center;

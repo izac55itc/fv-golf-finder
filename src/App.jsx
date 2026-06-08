@@ -8,6 +8,7 @@ import { getSunsetTime } from './utils/sunset.js'
 import { fetchAllCourseWeather } from './utils/weather.js'
 import { fuelCostDollars } from './utils/ranker.js'
 import CalendarView from './components/CalendarView.jsx'
+import MapView from './components/MapView.jsx'
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -81,6 +82,7 @@ export default function App() {
   const [maxPrice,     setMaxPrice]     = useState(200)
   const [maxDriveTime, setMaxDriveTime] = useState(60)
   const [sortBy,       setSortBy]       = useState('totalCost')
+  const [viewMode,     setViewMode]     = useState('list')
 
   const availableDates = useMemo(() => (
     [...Array(7)].map((_, i) => {
@@ -252,6 +254,20 @@ export default function App() {
         <div className="planner-card">
           <div className="planner-top-row">
             <h2>Plan Your Session</h2>
+            <div className="view-toggle">
+              <button
+                className={`view-btn${viewMode === 'list' ? ' active' : ''}`}
+                onClick={() => setViewMode('list')}
+              >
+                📋 List
+              </button>
+              <button
+                className={`view-btn${viewMode === 'map' ? ' active' : ''}`}
+                onClick={() => setViewMode('map')}
+              >
+                🗺️ Map
+              </button>
+            </div>
             <div className="data-freshness">
               {generatedAt && <span>Updated {timeAgo(generatedAt)}</span>}
               {canInstall && (
@@ -321,6 +337,18 @@ export default function App() {
           <div className="error-banner">⚠️ {teeError}</div>
         )}
 
+        {viewMode === 'map' && (
+          <MapView
+            location={location}
+            driveTimes={driveTimes}
+            teetimes={teetimes}
+            sessionDate={sessionDate}
+            onCourseSelect={(courseId) => {
+              setViewMode('list')
+            }}
+          />
+        )}
+
         <CalendarView
           teetimes={teetimes}
           driveTimes={driveTimes}
@@ -334,6 +362,7 @@ export default function App() {
           onMaxDriveTime={setMaxDriveTime}
           sortBy={sortBy}
           onSortBy={setSortBy}
+          hidden={viewMode === 'map'}
         />
       </main>
     </div>
