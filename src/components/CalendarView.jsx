@@ -8,7 +8,7 @@ import './CalendarView.css'
 
 const CART_RENTAL = 20
 
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, sortBy, onSortBy, hidden }) {
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, sortBy, onSortBy, hidden, location }) {
 
   const now = new Date()
   const today = new Date()
@@ -113,7 +113,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
           <p className="cal-no-results">No courses available for this date.</p>
         ) : (
           sorted.map(item => (
-            <CourseCard key={item.course.id} item={item} bookingUrl={bookingUrl} />
+            <CourseCard key={item.course.id} item={item} bookingUrl={bookingUrl} userLocation={location} />
           ))
         )}
       </div>

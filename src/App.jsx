@@ -347,6 +347,7 @@ export default function App() {
           sortBy={sortBy}
           onSortBy={setSortBy}
           hidden={viewMode === 'map'}
+          location={location}
         />
       </main>
     </div>
