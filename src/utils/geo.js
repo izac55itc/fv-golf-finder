@@ -1,7 +1,7 @@
 export const WALNUT_GROVE = {
-  lat: 49.1666,
-  lng: -122.5884,
-  name: 'Walnut Grove, Langley BC',
+  lat: 49.1658,
+  lng: -122.5910,
+  name: '21510 95A Ave, Langley BC V1M 2C6',
 }
 
 // Reverse-geocode coordinates to a human-readable name via Nominatim (OpenStreetMap, free, no key)
