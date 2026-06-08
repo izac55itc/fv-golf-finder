@@ -7,7 +7,7 @@ import './CalendarView.css'
 
 const CART_RENTAL = 20
 
-export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates }) {
+export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, maxPrice, onMaxPrice, maxDriveTime, onMaxDriveTime, sortBy, onSortBy }) {
 
   const now = new Date()
   const today = new Date()
@@ -36,6 +36,10 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const totalCost = avgPrice + gasCost + CART_RENTAL
       const totalWithoutCart = avgPrice + gasCost
 
+      // Apply filters
+      if (totalCost > maxPrice) continue
+      if (driveMinutes > maxDriveTime) continue
+
       // Calculate latest tee time to finish before dusk
       const roundDurationMs = course.holes * course.avgHoleMinutes * 60_000
       const latestStartMs = sunset.getTime() - roundDurationMs
@@ -61,8 +65,17 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     }
 
     return Array.from(map.values())
-  }, [teetimes, sessionDate, driveTimes, weatherData])
+  }, [teetimes, sessionDate, driveTimes, weatherData, maxPrice, maxDriveTime])
 
+  const sorted = useMemo(() => {
+    const arr = [...summaries]
+    if (sortBy === 'totalCost') arr.sort((a, b) => a.totalCost - b.totalCost)
+    else if (sortBy === 'greenFee') arr.sort((a, b) => a.minPrice - b.minPrice)
+    else if (sortBy === 'driveTime') arr.sort((a, b) => a.driveMinutes - b.driveMinutes)
+    else if (sortBy === 'deals') arr.sort((a, b) => (b.hasHotDeals ? 1 : 0) - (a.hasHotDeals ? 1 : 0))
+    else arr.sort((a, b) => a.course.name.localeCompare(b.course.name))
+    return arr
+  }, [summaries, sortBy])
 
   const baseDate = new Date(sessionDate + 'T12:00:00')
   const sunset = getSunsetTime(baseDate)
@@ -99,15 +112,49 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
       <div className="cal-meta">
         <span>Sunset {sunsetStr} PDT</span>
-        <span>Total courses: {summaries.length}</span>
+        <span>Showing {sorted.length} courses</span>
       </div>
 
+      <div className="cal-filters">
+        <div className="cal-filter-group">
+          <label>Max Total: ${maxPrice}</label>
+          <input
+            type="range"
+            min="0"
+            max="300"
+            value={maxPrice}
+            onChange={(e) => onMaxPrice(Number(e.target.value))}
+            className="cal-filter-slider"
+          />
+        </div>
+        <div className="cal-filter-group">
+          <label>Max Drive: {maxDriveTime}m</label>
+          <input
+            type="range"
+            min="0"
+            max="120"
+            value={maxDriveTime}
+            onChange={(e) => onMaxDriveTime(Number(e.target.value))}
+            className="cal-filter-slider"
+          />
+        </div>
+        <div className="cal-filter-group">
+          <label>Sort By</label>
+          <select value={sortBy} onChange={(e) => onSortBy(e.target.value)} className="cal-filter-select">
+            <option value="totalCost">Total Cost</option>
+            <option value="greenFee">Green Fee</option>
+            <option value="driveTime">Drive Time</option>
+            <option value="deals">Hot Deals</option>
+            <option value="name">Course Name</option>
+          </select>
+        </div>
+      </div>
 
       <div className="cal-results">
-        {summaries.length === 0 ? (
+        {sorted.length === 0 ? (
           <p className="cal-no-results">No courses available for this date.</p>
         ) : (
-          summaries.map(item => (
+          sorted.map(item => (
               <div key={item.course.id} className="cal-course-card">
 
                 <div className="cal-card-header">

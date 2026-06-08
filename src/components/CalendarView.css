@@ -43,6 +43,44 @@
   border-radius: 8px;
 }
 
+.cal-filters {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.cal-filter-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cal-filter-group label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #666;
+  min-width: 90px;
+}
+
+.cal-filter-slider {
+  width: 120px;
+  cursor: pointer;
+}
+
+.cal-filter-select {
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  background: white;
+}
+
 .cal-results {
   display: flex;
   flex-direction: column;
