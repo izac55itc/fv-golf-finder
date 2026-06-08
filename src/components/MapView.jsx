@@ -202,7 +202,6 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
                 <span className="weather-time">8am</span>
                 <span className="weather-icon">{selectedCourse.weatherMorning.icon}</span>
                 <span className="weather-temp">{selectedCourse.weatherMorning.temp}°C</span>
-                <span className="weather-wind">💨 {selectedCourse.weatherMorning.windspeed}km/h</span>
               </div>
             )}
             {selectedCourse.weatherAfternoon && (
@@ -210,7 +209,6 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
                 <span className="weather-time">2pm</span>
                 <span className="weather-icon">{selectedCourse.weatherAfternoon.icon}</span>
                 <span className="weather-temp">{selectedCourse.weatherAfternoon.temp}°C</span>
-                <span className="weather-wind">💨 {selectedCourse.weatherAfternoon.windspeed}km/h</span>
               </div>
             )}
             {selectedCourse.weatherTwilight && (
@@ -218,10 +216,15 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
                 <span className="weather-time">5pm</span>
                 <span className="weather-icon">{selectedCourse.weatherTwilight.icon}</span>
                 <span className="weather-temp">{selectedCourse.weatherTwilight.temp}°C</span>
-                <span className="weather-wind">💨 {selectedCourse.weatherTwilight.windspeed}km/h</span>
               </div>
             )}
           </div>
+
+          {(selectedCourse.weatherMorning?.windspeed > 20 ||
+            selectedCourse.weatherAfternoon?.windspeed > 20 ||
+            selectedCourse.weatherTwilight?.windspeed > 20) && (
+            <div className="wind-warning">⚠️ Windy conditions expected</div>
+          )}
 
           <a href={bookingUrl(selectedCourse.course)} target="_blank" rel="noopener noreferrer" className="book-btn">
             Book on GolfNow →

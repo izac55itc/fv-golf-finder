@@ -141,6 +141,18 @@
   font-weight: 600;
 }
 
+.cal-wind-warning {
+  display: block;
+  font-size: 11px;
+  background: #fff3cd;
+  color: #856404;
+  padding: 4px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
 .cal-card-pricing {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

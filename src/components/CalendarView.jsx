@@ -188,20 +188,25 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                     {item.weatherMorning && (
                       <div className="cal-weather-period">
                         <span className="cal-weather-time">8am</span>
-                        <span>{item.weatherMorning.icon} {item.weatherMorning.temp}°C 💨{item.weatherMorning.windspeed}km/h</span>
+                        <span>{item.weatherMorning.icon} {item.weatherMorning.temp}°C</span>
                       </div>
                     )}
                     {item.weatherAfternoon && (
                       <div className="cal-weather-period">
                         <span className="cal-weather-time">2pm</span>
-                        <span>{item.weatherAfternoon.icon} {item.weatherAfternoon.temp}°C 💨{item.weatherAfternoon.windspeed}km/h</span>
+                        <span>{item.weatherAfternoon.icon} {item.weatherAfternoon.temp}°C</span>
                       </div>
                     )}
                     {item.weatherTwilight && (
                       <div className="cal-weather-period">
                         <span className="cal-weather-time">5pm</span>
-                        <span>{item.weatherTwilight.icon} {item.weatherTwilight.temp}°C 💨{item.weatherTwilight.windspeed}km/h</span>
+                        <span>{item.weatherTwilight.icon} {item.weatherTwilight.temp}°C</span>
                       </div>
+                    )}
+                    {(item.weatherMorning?.windspeed > 20 ||
+                      item.weatherAfternoon?.windspeed > 20 ||
+                      item.weatherTwilight?.windspeed > 20) && (
+                      <span className="cal-wind-warning">⚠️ Windy</span>
                     )}
                   </div>
                 </div>

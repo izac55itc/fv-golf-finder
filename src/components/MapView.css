@@ -271,6 +271,18 @@
   font-size: 12px;
 }
 
+.wind-warning {
+  display: block;
+  padding: 8px;
+  background: #fff3cd;
+  color: #856404;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
 .details-weather {
   display: flex;
   gap: 8px;
