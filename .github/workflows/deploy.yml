@@ -1,12 +1,12 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (Staging)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -27,6 +27,9 @@ jobs:
           cache: "npm"
       - name: Install
         run: npm ci
+      - name: Set base path for GitHub Pages
+        run: |-
+          sed -i 's@base: "/"@base: "/fv-golf-finder/"@' vite.config.js
       - name: Build
         run: npm run build
         env:
