@@ -155,7 +155,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
       {selectedCourse && (
         <div className="map-details-modal">
           <button className="modal-close" onClick={() => setSelectedCourse(null)}>✕</button>
-          <CourseCard item={selectedCourse} bookingUrl={mapBookingUrl} />
+          <CourseCard item={selectedCourse} bookingUrl={mapBookingUrl} userLocation={location} />
         </div>
       )}
     </div>

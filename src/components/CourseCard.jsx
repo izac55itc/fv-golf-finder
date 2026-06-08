@@ -1,11 +1,24 @@
-export default function CourseCard({ item, bookingUrl }) {
+export default function CourseCard({ item, bookingUrl, userLocation }) {
+  const handleDirections = () => {
+    if (userLocation) {
+      const url = `https://maps.google.com/maps?dir=${userLocation.lat},${userLocation.lng}/${item.course.lat},${item.course.lng}`
+      window.open(url, '_blank')
+    }
+  }
+
   return (
     <div className="cal-course-card">
       <div className="cal-card-header">
         <div className="cal-course-info">
           <h3 className="cal-course-name">{item.course.name}</h3>
           <div className="cal-course-details">
-            {item.course.location} • {item.course.holes} holes • {item.driveMinutes}m drive
+            {item.course.location} • {item.course.holes} holes •
+            <span
+              onClick={handleDirections}
+              style={{ cursor: userLocation ? 'pointer' : 'default', textDecoration: userLocation ? 'underline' : 'none' }}
+            >
+              {item.driveMinutes}m drive
+            </span>
           </div>
         </div>
         <div className="cal-badges">
