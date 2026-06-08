@@ -162,6 +162,48 @@ body {
   letter-spacing: 0.06em;
 }
 
+.planner-date-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.date-tabs {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  flex: 1;
+  min-width: 0;
+}
+
+.date-tab {
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--green-border);
+  border-radius: 0.4rem;
+  background: white;
+  color: var(--green-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.date-tab:hover {
+  background: var(--green-badge-bg);
+  border-color: var(--green-mid);
+}
+
+.date-tab.active {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+  color: white;
+}
+
 .planner-top-row {
   display: flex;
   align-items: center;

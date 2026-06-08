@@ -95,23 +95,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
   return (
     <div className="cal-wrap">
-      <div className="cal-day-tabs">
-        {availableDates.map(d => {
-          const date = new Date(d + 'T12:00:00')
-          const isToday = d === todayStr
-          const label = isToday ? 'Today' : date.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' })
-          return (
-            <button
-              key={d}
-              className={`cal-day-tab${sessionDate === d ? ' active' : ''}`}
-              onClick={() => onDateChange(d)}
-            >
-              {label}
-            </button>
-          )
-        })}
-      </div>
-
       <div className="cal-meta">
         <span>Sunset {sunsetStr} PDT</span>
         <span>Showing {sorted.length} courses</span>

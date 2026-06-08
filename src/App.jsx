@@ -252,8 +252,23 @@ export default function App() {
 
       <main>
         <div className="planner-card">
-          <div className="planner-top-row">
-            <h2>Plan Your Session</h2>
+          <div className="planner-date-row">
+            <div className="date-tabs">
+              {availableDates.map(d => {
+                const date = new Date(d + 'T12:00:00')
+                const isToday = d === `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`
+                const label = isToday ? 'Today' : date.toLocaleDateString('en-CA', { weekday: 'short', month: 'short', day: 'numeric' })
+                return (
+                  <button
+                    key={d}
+                    className={`date-tab${sessionDate === d ? ' active' : ''}`}
+                    onClick={() => setSessionDate(d)}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
             <div className="view-toggle">
               <button
                 className={`view-btn${viewMode === 'list' ? ' active' : ''}`}
@@ -267,36 +282,6 @@ export default function App() {
               >
                 🗺️ Map
               </button>
-            </div>
-            <div className="data-freshness">
-              {generatedAt && <span>Updated {timeAgo(generatedAt)}</span>}
-              {canInstall && (
-                <button
-                  className="refresh-btn"
-                  onClick={handleInstall}
-                >
-                  📲 Install App
-                </button>
-              )}
-              <button
-                className="refresh-btn"
-                onClick={fetchTeetimes}
-                disabled={teeFetching || scrapeStatus === 'waiting'}
-              >
-                {teeFetching ? '⟳ Loading…' : '⟳ Refresh'}
-              </button>
-              {GH_TOKEN && (
-                <button
-                  className="refresh-btn scrape-btn"
-                  onClick={triggerScraper}
-                  disabled={scrapeStatus === 'triggering' || scrapeStatus === 'waiting'}
-                >
-                  {scrapeStatus === 'triggering' && '⏳ Triggering…'}
-                  {scrapeStatus === 'waiting'    && `⏳ Scraping… ${Math.floor(scrapeSecondsLeft / 60)}:${String(scrapeSecondsLeft % 60).padStart(2,'0')}`}
-                  {scrapeStatus === 'error'      && '⚠ Run failed'}
-                  {!scrapeStatus                 && '▶ Run Scraper'}
-                </button>
-              )}
             </div>
           </div>
 
