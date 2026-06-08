@@ -170,14 +170,18 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
                 const origin = `${location.lat},${location.lng}`
                 const dest = `${selectedCourse.course.lat},${selectedCourse.course.lng}`
                 const webUrl = `https://maps.google.com/maps/dir/${origin}/${dest}`
-                const appUrl = `comgooglemaps://maps.google.com/maps?saddr=${origin}&daddr=${dest}&directionsmode=driving`
 
-                // Try app first (Android)
-                window.location.href = appUrl
+                // Try app URL using anchor element click
+                const appUrl = `comgooglemaps://maps.google.com/maps?saddr=${origin}&daddr=${dest}`
+                const a = document.createElement('a')
+                a.href = appUrl
+                document.body.appendChild(a)
+                a.click()
+                document.body.removeChild(a)
 
                 // Fallback to web if app doesn't open
                 setTimeout(() => {
-                  window.location.href = webUrl
+                  window.open(webUrl, '_blank')
                 }, 1500)
               }}
             >
