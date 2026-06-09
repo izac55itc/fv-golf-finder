@@ -99,6 +99,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
   }
 
   const bookingUrl = (course) => {
+    if (course.bookingUrl) return course.bookingUrl
     if (!course.golfnowSlug) return '#'
     const d = new Date(sessionDate + 'T12:00:00')
     const monthName = d.toLocaleString('en-US', { month: 'short' })
