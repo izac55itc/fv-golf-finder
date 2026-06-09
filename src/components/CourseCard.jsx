@@ -42,8 +42,6 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
         </div>
         <div className="cal-badges">
           {item.hasHotDeals && <span className="cal-badge-deals">🔥 Deal</span>}
-          {item.availableCount < 10 && <span className="cal-badge-busy">⏰ Busy</span>}
-          {item.availableCount >= 20 && <span className="cal-badge-open">✓ Open</span>}
         </div>
       </div>
 
