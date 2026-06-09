@@ -73,11 +73,14 @@
   max-height: 85vh;
   display: flex;
   flex-direction: column;
+  padding-top: 44px;
+  position: relative;
 }
 
 .map-details-modal .cal-course-card {
   flex: 1;
   margin: 0;
+  padding-top: 0;
 }
 
 @keyframes slideUp {
