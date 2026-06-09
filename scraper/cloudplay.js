@@ -95,6 +95,25 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
         // Load base page on first iteration
         if (dayOffset === 0) {
           await page.goto(course.url, { waitUntil: 'networkidle2', timeout: 30000 })
+
+          // Close any popups/modals that might be blocking content
+          try {
+            await page.evaluate(() => {
+              // Look for close buttons (X, close, dismiss, etc)
+              const closeButtons = Array.from(document.querySelectorAll('button, [role="button"]'))
+                .filter(b => b.textContent.includes('×') || b.textContent.includes('X') ||
+                            b.getAttribute('aria-label')?.includes('close') ||
+                            b.getAttribute('class')?.includes('close'))
+
+              // Click the first close button found
+              if (closeButtons.length > 0) {
+                closeButtons[0].click()
+              }
+            })
+            await new Promise(resolve => setTimeout(resolve, 1000))
+          } catch (err) {
+            // Popup might not exist, that's ok
+          }
         } else {
           // Click on the calendar date (e.g., click "10" for June 10)
           try {
