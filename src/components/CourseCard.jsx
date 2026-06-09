@@ -1,10 +1,22 @@
+import { useState } from 'react'
+
 export default function CourseCard({ item, bookingUrl, userLocation }) {
+  const [cartIncluded, setCartIncluded] = useState(item.course.cartRequired ?? false)
+
   const handleDirections = () => {
     if (userLocation) {
       const url = `https://maps.google.com/maps?dir=${userLocation.lat},${userLocation.lng}/${item.course.lat},${item.course.lng}`
       window.open(url, '_blank')
     }
   }
+
+  const handleCartToggle = () => {
+    if (item.cartCost !== null && item.cartCost > 0) {
+      setCartIncluded(!cartIncluded)
+    }
+  }
+
+  const displayTotal = cartIncluded ? item.totalCost : (item.totalCost - (item.cartCost || 0))
 
   return (
     <div className="cal-course-card">
@@ -43,12 +55,21 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
 
         <div className="cal-price-section cart">
           <div className="cal-price-label">🚙 Cart</div>
-          <div className="cal-price-value">{item.cartCost === null ? 'NA' : `$${item.cartCost.toFixed(2)}`}</div>
+          {item.cartCost === null ? (
+            <div className="cal-price-value">NA</div>
+          ) : (
+            <div
+              className={`cal-price-value cal-cart-toggle ${cartIncluded ? 'cal-cart-active' : 'cal-cart-inactive'}`}
+              onClick={handleCartToggle}
+            >
+              ${item.cartCost.toFixed(2)}
+            </div>
+          )}
         </div>
 
         <div className="cal-price-section total">
           <div className="cal-price-label">💰 Total</div>
-          <div className="cal-price-value">${item.totalCost.toFixed(2)}</div>
+          <div className="cal-price-value">${displayTotal.toFixed(2)}</div>
         </div>
       </div>
 

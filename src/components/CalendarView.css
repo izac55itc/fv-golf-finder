@@ -133,6 +133,35 @@
   box-shadow: 0 1px 3px rgba(45, 80, 22, 0.2);
 }
 
+.cal-cart-toggle {
+  cursor: pointer !important;
+  padding: 4px 8px !important;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.cal-cart-active {
+  background: rgba(45, 80, 22, 0.1);
+  color: #2d5016 !important;
+}
+
+.cal-cart-active:hover {
+  background: rgba(45, 80, 22, 0.15);
+  box-shadow: 0 1px 3px rgba(45, 80, 22, 0.2);
+}
+
+.cal-cart-inactive {
+  background: rgba(153, 153, 153, 0.1);
+  color: #999 !important;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.cal-cart-inactive:hover {
+  background: rgba(153, 153, 153, 0.15);
+  box-shadow: 0 1px 3px rgba(153, 153, 153, 0.2);
+}
+
 .cal-badges {
   display: flex;
   gap: 6px;
