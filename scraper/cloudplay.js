@@ -31,6 +31,7 @@ async function scrapeCloudPlayCourse(courseId, course) {
     // Extract price range for all available slots on the current date view
     const priceData = await page.evaluate(() => {
       const prices = []
+      const allFoundPrices = [] // Debug: track all found prices
 
       // Look for tee time buttons/slots - CloudPlay typically uses divs or buttons for time slots
       const slots = document.querySelectorAll('button, div[class*="slot"], div[class*="time"]')
@@ -42,6 +43,7 @@ async function scrapeCloudPlayCourse(courseId, course) {
         if (match) {
           match.forEach(priceStr => {
             const price = parseFloat(priceStr.replace('$', ''))
+            allFoundPrices.push(price)
             if (price > 0 && price < 500) prices.push(price)
           })
         }
@@ -53,16 +55,20 @@ async function scrapeCloudPlayCourse(courseId, course) {
         const matches = pageText.match(/\$(\d+(?:\.\d{2})?)/g) || []
         matches.forEach(priceStr => {
           const price = parseFloat(priceStr.replace('$', ''))
+          allFoundPrices.push(price)
           if (price > 0 && price < 500) prices.push(price)
         })
       }
 
       return {
-        prices: [...new Set(prices.filter(p => p >= 15))], // Filter unrealistic golf prices (< $15)
+        prices: [...new Set(prices.filter(p => p >= 15))],
+        allFoundPrices: [...new Set(allFoundPrices)], // Debug: all prices found
         slotCount: slots.length,
         pageLoaded: document.body.textContent.length > 100
       }
     })
+
+    console.log(`    All prices found on page: ${priceData.allFoundPrices.sort((a,b) => a-b).join(', ')}`)
 
     // Calculate min/max from extracted prices
     let minPrice = 0
