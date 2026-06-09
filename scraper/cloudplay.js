@@ -88,21 +88,38 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
     for (let dayOffset = 0; dayOffset < daysAhead; dayOffset++) {
       const dateStr = getDateString(dayOffset)
 
-      // Try different date parameter names that Club Prophet might use
-      const dateParams = [
-        `${course.url}?date=${dateStr}`,
-        `${course.url}?selectedDate=${dateStr}`,
-        `${course.url}?d=${dateStr}`,
-        `${course.url}#date=${dateStr}`,
-        course.url // Fall back to default if day 0
-      ]
-
-      const urlToTry = dateParams[dayOffset === 0 ? 4 : 0] // Use base URL for day 0, then try params
-
       console.log(`    [Day ${dayOffset + 1}/${daysAhead}] Loading ${dateStr}...`)
 
       try {
-        await page.goto(urlToTry, { waitUntil: 'networkidle2', timeout: 30000 })
+        // Load base page on first iteration
+        if (dayOffset === 0) {
+          await page.goto(course.url, { waitUntil: 'networkidle2', timeout: 30000 })
+        } else {
+          // Try to click next day button to navigate
+          try {
+            const nextBtn = await page.evaluate(() => {
+              // Look for next/arrow buttons
+              const buttons = Array.from(document.querySelectorAll('button, a[role="button"]'))
+              return buttons.find(b =>
+                b.textContent.includes('Next') ||
+                b.textContent.includes('>') ||
+                b.getAttribute('aria-label')?.includes('next') ||
+                b.className.includes('next')
+              )?.getAttribute('data-test-id') || null
+            })
+
+            if (nextBtn) {
+              await page.click(`[data-test-id="${nextBtn}"]`)
+            } else {
+              // Try generic next button click
+              await page.click('button:nth-of-type(n+3)')
+            }
+
+            await new Promise(resolve => setTimeout(resolve, 1500))
+          } catch (err) {
+            console.log(`      Could not click next button, skipping day ${dayOffset + 1}`)
+          }
+        }
 
         // Wait for prices to load
         await page.waitForFunction(
