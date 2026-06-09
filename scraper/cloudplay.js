@@ -117,21 +117,34 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
         } else {
           // Click on the calendar date (e.g., click "10" for June 10)
           try {
-            await page.evaluate((day) => {
-              // Find all calendar date elements
-              const dateElements = Array.from(document.querySelectorAll('[role="button"], button, div[class*="date"], td'))
-              const targetElement = dateElements.find(el => el.textContent.trim() === String(day))
-              if (targetElement) {
-                targetElement.click()
-              } else {
-                throw new Error(`Could not find date ${day} in calendar`)
+            const clicked = await page.evaluate((day) => {
+              // Look for calendar cells/buttons with just the date number
+              const allElements = document.querySelectorAll('*')
+              let found = false
+
+              for (let el of allElements) {
+                // Check if element contains exactly the day number and is clickable
+                if (el.textContent.trim() === String(day) &&
+                    (el.tagName === 'TD' || el.tagName === 'BUTTON' ||
+                     el.getAttribute('role') === 'button' ||
+                     el.className.includes('date') || el.className.includes('day'))) {
+                  el.click()
+                  found = true
+                  break
+                }
               }
+              return found
             }, targetDate)
 
+            if (!clicked) {
+              console.log(`      Could not find clickable date ${targetDate}, skipping day ${dayOffset + 1}`)
+              continue
+            }
+
             // Wait for page to update with new date's tee times
-            await new Promise(resolve => setTimeout(resolve, 2000))
+            await new Promise(resolve => setTimeout(resolve, 2500))
           } catch (err) {
-            console.log(`      Could not click date ${targetDate}, skipping day ${dayOffset + 1}`)
+            console.log(`      Error clicking date ${targetDate}: ${err.message}`)
             continue
           }
         }
