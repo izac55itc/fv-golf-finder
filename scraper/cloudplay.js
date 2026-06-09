@@ -115,36 +115,46 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
             // Popup might not exist, that's ok
           }
         } else {
-          // Click on the calendar date (e.g., click "10" for June 10)
+          // Navigate to next date (different methods for different courses)
           try {
-            const clicked = await page.evaluate((day) => {
-              // Look for calendar cells/buttons with just the date number
+            // Try Fort Langley method: click calendar date number
+            let clicked = await page.evaluate((day) => {
               const allElements = document.querySelectorAll('*')
-              let found = false
-
               for (let el of allElements) {
-                // Check if element contains exactly the day number and is clickable
                 if (el.textContent.trim() === String(day) &&
                     (el.tagName === 'TD' || el.tagName === 'BUTTON' ||
                      el.getAttribute('role') === 'button' ||
                      el.className.includes('date') || el.className.includes('day'))) {
                   el.click()
-                  found = true
-                  break
+                  return true
                 }
               }
-              return found
+              return false
             }, targetDate)
 
+            // If that didn't work, try Redwoods method: click next arrow button (>)
             if (!clicked) {
-              console.log(`      Could not find clickable date ${targetDate}, skipping day ${dayOffset + 1}`)
+              const nextArrowClicked = await page.evaluate(() => {
+                const buttons = Array.from(document.querySelectorAll('button, [role="button"]'))
+                const nextBtn = buttons.find(b => b.textContent.trim() === '>' || b.textContent.includes('next'))
+                if (nextBtn) {
+                  nextBtn.click()
+                  return true
+                }
+                return false
+              })
+              clicked = nextArrowClicked
+            }
+
+            if (!clicked) {
+              console.log(`      Could not navigate to date ${targetDate}, skipping day ${dayOffset + 1}`)
               continue
             }
 
             // Wait for page to update with new date's tee times
             await new Promise(resolve => setTimeout(resolve, 2500))
           } catch (err) {
-            console.log(`      Error clicking date ${targetDate}: ${err.message}`)
+            console.log(`      Error navigating to date ${targetDate}: ${err.message}`)
             continue
           }
         }
