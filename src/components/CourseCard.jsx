@@ -22,7 +22,14 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
     <div className="cal-course-card">
       <div className="cal-card-header">
         <div className="cal-course-info">
-          <h3 className="cal-course-name">{item.course.name}</h3>
+          <a
+            href={`https://www.google.com/maps/search/${encodeURIComponent(item.course.name + ' golf course')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cal-course-name-link"
+          >
+            <h3 className="cal-course-name">{item.course.name}</h3>
+          </a>
           <div className="cal-course-details">
             {item.course.location} • {item.course.holes} holes •
             <span
@@ -105,14 +112,7 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
       </div>
 
       <div className="cal-card-footer">
-        <a
-          href={`https://www.google.com/maps/search/${encodeURIComponent(item.course.name + ' golf course')}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cal-popular-times-btn"
-        >
-          ⏰ Popular Times
-        </a>
+        <div className="cal-availability">{item.availableCount} slots</div>
         <a
           href={bookingUrl(item.course)}
           target="_blank"

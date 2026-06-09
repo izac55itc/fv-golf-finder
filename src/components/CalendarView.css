@@ -102,6 +102,16 @@
   gap: 4px;
 }
 
+.cal-course-name-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.cal-course-name-link:hover {
+  opacity: 0.7;
+}
+
 .cal-course-name {
   margin: 0;
   font-size: 15px;
@@ -301,37 +311,15 @@
 
 .cal-card-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 16px;
-  gap: 8px;
+  gap: 12px;
 }
 
 .cal-availability {
   font-size: 13px;
   color: #666;
-  margin-right: auto;
-}
-
-.cal-popular-times-btn {
-  padding: 10px 16px;
-  background: #f0f4f8;
-  color: #4a7c59;
-  border: 1px solid #d0dae6;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
-  white-space: nowrap;
-  text-align: center;
-}
-
-.cal-popular-times-btn:hover {
-  background: #e8f0f6;
-  border-color: #b0c4de;
-  text-decoration: none;
 }
 
 .cal-book-btn {
