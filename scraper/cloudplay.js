@@ -32,38 +32,34 @@ async function scrapeCloudPlayCourse(courseId, course) {
     const priceData = await page.evaluate(() => {
       const prices = []
 
-      // Look for price elements - try multiple selectors for CloudPlay Golf pages
-      const priceElements = document.querySelectorAll(
-        'div:has-text("\\$"), span:contains("\\$"), [class*="price"], [class*="cost"]'
-      )
+      // Look for tee time buttons/slots - CloudPlay typically uses divs or buttons for time slots
+      const slots = document.querySelectorAll('button, div[class*="slot"], div[class*="time"]')
 
-      // Alternative: look for tee time slots and extract prices
-      const slots = document.querySelectorAll('.teetime-slot, [class*="slot"], button[class*="time"]')
-
+      // Try to extract prices from visible slots
       slots.forEach(slot => {
-        const text = slot.textContent || ''
+        const text = slot.textContent || slot.innerText || ''
         const match = text.match(/\$(\d+(?:\.\d{2})?)/g)
         if (match) {
           match.forEach(priceStr => {
             const price = parseFloat(priceStr.replace('$', ''))
-            if (price > 0) prices.push(price)
+            if (price > 0 && price < 500) prices.push(price)
           })
         }
       })
 
       // Fallback: extract all dollar amounts from page text
       if (prices.length === 0) {
-        const pageText = document.body.innerText
+        const pageText = document.body.innerText || ''
         const matches = pageText.match(/\$(\d+(?:\.\d{2})?)/g) || []
         matches.forEach(priceStr => {
           const price = parseFloat(priceStr.replace('$', ''))
-          if (price > 0 && price < 500) prices.push(price) // Sanity check
+          if (price > 0 && price < 500) prices.push(price)
         })
       }
 
       return {
-        prices,
-        slotCount: document.querySelectorAll('.teetime-slot, [class*="slot"], button[class*="time"]').length,
+        prices: [...new Set(prices)], // Remove duplicates
+        slotCount: slots.length,
         pageLoaded: document.body.textContent.length > 100
       }
     })
