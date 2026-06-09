@@ -128,7 +128,7 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
           rel="noopener noreferrer"
           className="cal-book-btn"
         >
-          Book on GolfNow →
+          Book Now →
         </a>
       </div>
     </div>
