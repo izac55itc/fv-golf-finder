@@ -58,7 +58,8 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
         const driveMinutes = driveTimes?.get(course.id) ?? 15
         const gasCost = fuelCostDollars(driveMinutes)
         const avgPrice = Math.round((item.minPrice + item.maxPrice) / 2)
-        const totalCost = avgPrice + gasCost + CART_RENTAL
+        const cartCost = course.cartRequired ? (course.cartFee ?? CART_RENTAL) : 0
+        const totalCost = avgPrice + gasCost + cartCost
 
         const weatherMorning = getWeatherAtTime(weatherData, course.id, sessionDate + 'T08:00:00')
         const weatherAfternoon = getWeatherAtTime(weatherData, course.id, sessionDate + 'T14:00:00')
@@ -76,7 +77,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           maxPrice: item.maxPrice,
           avgPrice,
           totalCost,
-          cartCost: CART_RENTAL,
+          cartCost,
           availableCount: item.availableCount,
           hasHotDeals: item.hasHotDeals,
           weatherMorning,
