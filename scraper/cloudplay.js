@@ -58,7 +58,7 @@ async function scrapeCloudPlayCourse(courseId, course) {
       }
 
       return {
-        prices: [...new Set(prices)], // Remove duplicates
+        prices: [...new Set(prices.filter(p => p >= 15))], // Filter unrealistic golf prices (< $15)
         slotCount: slots.length,
         pageLoaded: document.body.textContent.length > 100
       }
