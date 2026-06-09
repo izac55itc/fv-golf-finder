@@ -13,8 +13,8 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
         // iOS: Use comgooglemaps scheme to open native Google Maps app
         url = `comgooglemaps://?saddr=${userLocation.lat},${userLocation.lng}&daddr=${item.course.lat},${item.course.lng}&directionsmode=driving`
       } else {
-        // Android & Desktop: Use api=1 format
-        url = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${item.course.lat},${item.course.lng}&travelmode=driving`
+        // Android: Use geo: protocol to open native Google Maps app with directions
+        url = `geo:0,0?q=${item.course.lat},${item.course.lng}`
       }
 
       window.open(url, '_blank')
