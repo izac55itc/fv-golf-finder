@@ -9,6 +9,8 @@ const FACILITIES = {
   'eighteen-pastures':      3530,
   'golden-eagle-north':     3515,
   'golden-eagle-south':     15899,
+  'belmont':                358,
+  'swaneset-links':         301,
 }
 
 const DAYS_AHEAD = 7
