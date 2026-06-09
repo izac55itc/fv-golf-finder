@@ -105,7 +105,14 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
       </div>
 
       <div className="cal-card-footer">
-        <div className="cal-availability">{item.availableCount} slots</div>
+        <a
+          href={`https://www.google.com/maps/search/${encodeURIComponent(item.course.name + ' golf course')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cal-popular-times-btn"
+        >
+          ⏰ Popular Times
+        </a>
         <a
           href={bookingUrl(item.course)}
           target="_blank"

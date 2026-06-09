@@ -94,6 +94,10 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
 
   const mapCenter = { lat: location.lat, lng: location.lng }
 
+  const getCourseInitials = (name) => {
+    return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 3)
+  }
+
   const bookingUrl = (course) => {
     if (!course.golfnowSlug) return '#'
     const d = new Date(sessionDate + 'T12:00:00')
@@ -148,6 +152,12 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
               key={item.course.id}
               position={{ lat: item.course.lat, lng: item.course.lng }}
               title={item.course.name}
+              label={{
+                text: getCourseInitials(item.course.name),
+                color: 'white',
+                fontSize: '12px',
+                fontWeight: 'bold',
+              }}
               onClick={() => setSelectedCourse(item)}
             />
           ))}
