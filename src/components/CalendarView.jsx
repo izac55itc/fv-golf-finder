@@ -9,6 +9,8 @@ import './CalendarView.css'
 const CART_RENTAL = 20
 
 export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, sortBy, onSortBy, hidden, location }) {
+  const [excludedCourses, setExcludedCourses] = useState(new Set())
+  const [courseDropdownOpen, setCourseDropdownOpen] = useState(false)
 
   const now = new Date()
   const today = new Date()
@@ -74,6 +76,10 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     return arr
   }, [summaries, sortBy])
 
+  const filtered = useMemo(() => {
+    return sorted.filter(item => !excludedCourses.has(item.course.id))
+  }, [sorted, excludedCourses])
+
   const baseDate = new Date(sessionDate + 'T12:00:00')
   const sunset = getSunsetTime(baseDate)
 
@@ -89,10 +95,57 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
   if (hidden) return null
 
+  const handleCourseToggle = (courseId) => {
+    const newExcluded = new Set(excludedCourses)
+    if (newExcluded.has(courseId)) {
+      newExcluded.delete(courseId)
+    } else {
+      newExcluded.add(courseId)
+    }
+    setExcludedCourses(newExcluded)
+  }
+
+  const handleSelectAll = () => {
+    setExcludedCourses(new Set())
+  }
+
+  const handleClearAll = () => {
+    const allIds = new Set(sorted.map(item => item.course.id))
+    setExcludedCourses(allIds)
+  }
+
   return (
     <div className="cal-wrap">
       <div className="cal-meta">
-        <span>Showing {sorted.length} courses</span>
+        <div className="cal-filter-group cal-course-filter">
+          <button
+            className="cal-course-btn"
+            onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
+          >
+            Courses: {sorted.length - excludedCourses.size}/{sorted.length} ▼
+          </button>
+          {courseDropdownOpen && (
+            <div className="cal-course-dropdown">
+              <div className="cal-course-buttons">
+                <button onClick={handleSelectAll} className="cal-quick-btn">Select All</button>
+                <button onClick={handleClearAll} className="cal-quick-btn">Clear All</button>
+              </div>
+              <div className="cal-course-list">
+                {sorted.map(item => (
+                  <label key={item.course.id} className="cal-course-item">
+                    <input
+                      type="checkbox"
+                      checked={!excludedCourses.has(item.course.id)}
+                      onChange={() => handleCourseToggle(item.course.id)}
+                    />
+                    <span>{item.course.name}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+        <span className="cal-count">Showing {filtered.length} courses</span>
       </div>
 
       <div className="cal-filters">
@@ -109,10 +162,10 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       </div>
 
       <div className="cal-results">
-        {sorted.length === 0 ? (
+        {filtered.length === 0 ? (
           <p className="cal-no-results">No courses available for this date.</p>
         ) : (
-          sorted.map(item => (
+          filtered.map(item => (
             <CourseCard key={item.course.id} item={item} bookingUrl={bookingUrl} userLocation={location} />
           ))
         )}
