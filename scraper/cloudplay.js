@@ -5,6 +5,10 @@ const CLOUDPLAY_COURSES = {
   'fort-langley': {
     url: 'https://fortlangley.cps.golf/onlineresweb/search-teetime',
     id: 'fort-langley'
+  },
+  'redwoods': {
+    url: 'https://www.redwoods-golf.com/online-booking',
+    id: 'redwoods'
   }
 }
 
