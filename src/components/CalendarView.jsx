@@ -129,13 +129,13 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
   return (
     <div className="cal-wrap">
-      <div className="cal-meta">
+      <div className="cal-controls">
         <div className="cal-filter-group cal-course-filter" ref={dropdownRef}>
           <button
             className="cal-course-btn"
             onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
           >
-            Courses: {sorted.length - excludedCourses.size}/{sorted.length} ▼
+            🏌️ Courses: {sorted.length - excludedCourses.size}/{sorted.length}
           </button>
           {courseDropdownOpen && (
             <div className="cal-course-dropdown">
@@ -158,20 +158,18 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
             </div>
           )}
         </div>
-        <span className="cal-count">Showing {filtered.length} courses</span>
-      </div>
 
-      <div className="cal-filters">
         <div className="cal-filter-group">
-          <label>Sort By</label>
           <select value={sortBy} onChange={(e) => onSortBy(e.target.value)} className="cal-filter-select">
-            <option value="totalCost">Total Cost</option>
-            <option value="greenFee">Green Fee</option>
-            <option value="driveTime">Drive Time</option>
-            <option value="deals">Hot Deals</option>
-            <option value="name">Course Name</option>
+            <option value="totalCost">💰 Total Cost</option>
+            <option value="greenFee">🍃 Green Fee</option>
+            <option value="driveTime">🚗 Drive Time</option>
+            <option value="deals">🔥 Hot Deals</option>
+            <option value="name">📝 Course Name</option>
           </select>
         </div>
+
+        <span className="cal-count">Showing {filtered.length}</span>
       </div>
 
       <div className="cal-results">

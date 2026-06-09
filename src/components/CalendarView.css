@@ -5,31 +5,23 @@
   padding: 20px;
 }
 
-.cal-meta {
+.cal-controls {
   display: flex;
-  gap: 20px;
-  font-size: 14px;
-  color: #666;
-  padding: 12px;
-  background: #f9f9f9;
-  border-radius: 8px;
-}
-
-.cal-filters {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 16px;
   align-items: center;
-  padding: 12px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  margin: 0;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #f8fafb 0%, #f0f4f8 100%);
+  border-radius: 12px;
+  border: 1px solid #e0e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  flex-wrap: wrap;
 }
 
 .cal-filter-group {
   display: flex;
   gap: 8px;
   align-items: center;
+  position: relative;
 }
 
 .cal-filter-group label {
@@ -45,12 +37,27 @@
 }
 
 .cal-filter-select {
-  padding: 6px 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 10px 14px;
+  border: 1px solid #d0dae6;
+  border-radius: 6px;
   font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
   background: white;
+  color: #333;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.cal-filter-select:hover {
+  border-color: #b0c4de;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.cal-filter-select:focus {
+  outline: none;
+  border-color: #4a7c59;
+  box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
 }
 
 .cal-results {
@@ -293,9 +300,14 @@
     text-align: center;
   }
 
-  .cal-meta {
-    flex-direction: column;
-    gap: 8px;
+  .cal-controls {
+    flex-wrap: wrap;
+  }
+
+  .cal-count {
+    margin-left: 0;
+    margin-top: 8px;
+    width: 100%;
   }
 }
 
@@ -311,21 +323,23 @@
 }
 
 .cal-course-btn {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 10px 14px;
+  border: 1px solid #d0dae6;
+  border-radius: 6px;
   background: white;
   cursor: pointer;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   color: #333;
   transition: all 0.2s;
   white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .cal-course-btn:hover {
-  border-color: #999;
-  background: #f5f5f5;
+  border-color: #b0c4de;
+  background: #fafbfc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .cal-course-dropdown {
@@ -392,8 +406,12 @@
 }
 
 .cal-count {
-  font-size: 14px;
-  font-weight: 500;
-  color: #666;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a7c59;
   white-space: nowrap;
+  margin-left: auto;
+  padding: 4px 12px;
+  background: rgba(74, 124, 89, 0.08);
+  border-radius: 20px;
 }
