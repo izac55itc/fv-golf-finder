@@ -14,7 +14,6 @@
   border-radius: 12px;
   border: 1px solid #e0e8f0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  flex-wrap: wrap;
 }
 
 .cal-filter-group {
@@ -302,12 +301,12 @@
 
   .cal-controls {
     flex-wrap: wrap;
+    gap: 12px;
   }
 
-  .cal-count {
-    margin-left: 0;
-    margin-top: 8px;
-    width: 100%;
+  .cal-filter-group {
+    flex: 1;
+    min-width: 200px;
   }
 }
 
@@ -403,15 +402,4 @@
 
 .cal-course-item input[type="checkbox"] {
   cursor: pointer;
-}
-
-.cal-count {
-  font-size: 13px;
-  font-weight: 600;
-  color: #4a7c59;
-  white-space: nowrap;
-  margin-left: auto;
-  padding: 4px 12px;
-  background: rgba(74, 124, 89, 0.08);
-  border-radius: 20px;
 }

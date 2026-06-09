@@ -168,8 +168,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
             <option value="name">📝 Course Name</option>
           </select>
         </div>
-
-        <span className="cal-count">Showing {filtered.length}</span>
       </div>
 
       <div className="cal-results">
