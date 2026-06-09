@@ -29,15 +29,20 @@ async function main() {
     realtime: { transport: ws }
   })
 
-  const today = new Date()
-  console.log(`\nFV Golf Finder price summaries scraper — ${today.toISOString().split('T')[0]} (${DAYS_AHEAD} days)\n`)
+  // Get today's date in PDT (not UTC, which GitHub Actions uses)
+  const now = new Date()
+  const pdtToday = now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+  const today = new Date(pdtToday)
+  const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
+  console.log(`\nFV Golf Finder price summaries scraper — ${todayStr} (${DAYS_AHEAD} days)\n`)
 
-  // Generate date range
+  // Generate date range in PDT
   const dates = []
   for (let i = 0; i < DAYS_AHEAD; i++) {
-    const d = new Date(today)
+    const d = new Date(pdtToday)
     d.setDate(d.getDate() + i)
-    dates.push(d.toISOString().split('T')[0])
+    const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+    dates.push(dateStr)
   }
 
   const startDate = dates[0]

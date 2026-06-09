@@ -13,9 +13,12 @@ const CLOUDPLAY_COURSES = {
 }
 
 function getDateString(daysFromNow) {
-  const d = new Date()
+  // Get today's date in PDT (not UTC, which GitHub Actions uses)
+  const now = new Date()
+  const pdtToday = now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+  const d = new Date(pdtToday)
   d.setDate(d.getDate() + daysFromNow)
-  return d.toISOString().split('T')[0]
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
 async function extractPriceData(page) {
