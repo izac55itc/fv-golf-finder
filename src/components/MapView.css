@@ -80,6 +80,10 @@
   margin: 0;
 }
 
+.map-details-modal .cal-card-header {
+  padding-right: 48px;
+}
+
 @keyframes slideUp {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
