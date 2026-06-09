@@ -42,7 +42,7 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
         </div>
 
         <div className="cal-price-section cart">
-          <div className="cal-price-label">🛞 Cart</div>
+          <div className="cal-price-label">🚙 Cart</div>
           <div className="cal-price-value">${item.cartCost.toFixed(2)}</div>
         </div>
 
