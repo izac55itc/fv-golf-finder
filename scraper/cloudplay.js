@@ -35,7 +35,7 @@ async function scrapeCloudPlayCourse(courseId, course) {
     })
 
     // Give extra time for async rendering to complete
-    await page.waitForTimeout(2000)
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
     // Extract price range for all available slots on the current date view
     const priceData = await page.evaluate(() => {
