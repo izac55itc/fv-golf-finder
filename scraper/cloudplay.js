@@ -20,8 +20,23 @@ async function scrapeCloudPlayCourse(courseId, course) {
     await page.setDefaultNavigationTimeout(30000)
     await page.setDefaultTimeout(30000)
 
+    // Spoof user agent to avoid detection
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+
+    // Override webdriver property to hide headless detection
+    await page.evaluateOnNewDocument(() => {
+      Object.defineProperty(navigator, 'webdriver', {
+        get: () => false,
+      })
+    })
+
     console.log(`  Loading ${course.url}...`)
     await page.goto(course.url, { waitUntil: 'networkidle2' })
+
+    // Debug: check page title and content
+    const title = await page.title()
+    const initialContent = await page.evaluate(() => document.body.innerText.substring(0, 200))
+    console.log(`  Page title: "${title}" | First 200 chars: "${initialContent.substring(0, 100)}"...`)
 
     // Wait for prices to load (they're rendered by JavaScript after initial load)
     await page.waitForFunction(
