@@ -33,11 +33,6 @@ async function scrapeCloudPlayCourse(courseId, course) {
     console.log(`  Loading ${course.url}...`)
     await page.goto(course.url, { waitUntil: 'networkidle2' })
 
-    // Debug: check page title and content
-    const title = await page.title()
-    const initialContent = await page.evaluate(() => document.body.innerText.substring(0, 200))
-    console.log(`  Page title: "${title}" | First 200 chars: "${initialContent.substring(0, 100)}"...`)
-
     // Wait for prices to load (they're rendered by JavaScript after initial load)
     await page.waitForFunction(
       () => {
@@ -92,7 +87,6 @@ async function scrapeCloudPlayCourse(courseId, course) {
       }
     })
 
-    console.log(`    All prices found on page: ${priceData.allFoundPrices.sort((a,b) => a-b).join(', ')}`)
 
     // Calculate min/max from extracted prices
     let minPrice = 0
