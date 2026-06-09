@@ -11,6 +11,7 @@ const FACILITIES = {
   'golden-eagle-south':     15899,
   'belmont':                358,
   'swaneset-links':         301,
+  'swaneset-resort':        19887,
 }
 
 const DAYS_AHEAD = 7
