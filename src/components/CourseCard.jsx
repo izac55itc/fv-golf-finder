@@ -10,11 +10,11 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
 
       let url
       if (isIOS) {
-        // iOS: Use comgooglemaps scheme to open native Google Maps app
+        // iOS: Use comgooglemaps scheme with origin & destination
         url = `comgooglemaps://?saddr=${userLocation.lat},${userLocation.lng}&daddr=${item.course.lat},${item.course.lng}&directionsmode=driving`
       } else {
-        // Android: Use geo: protocol to open native Google Maps app with directions
-        url = `geo:0,0?q=${item.course.lat},${item.course.lng}`
+        // Android: Use google.navigation scheme for full turn-by-turn directions
+        url = `google.navigation:q=${item.course.lat},${item.course.lng}&origin=${userLocation.lat},${userLocation.lng}`
       }
 
       window.open(url, '_blank')
