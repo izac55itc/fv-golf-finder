@@ -23,10 +23,19 @@ async function scrapeCloudPlayCourse(courseId, course) {
     console.log(`  Loading ${course.url}...`)
     await page.goto(course.url, { waitUntil: 'networkidle2' })
 
-    // Wait for tee time buttons to load
-    await page.waitForSelector('.teetime-slot', { timeout: 10000 }).catch(() => {
-      console.log(`  No tee time slots found, checking page...`)
+    // Wait for prices to load (they're rendered by JavaScript after initial load)
+    await page.waitForFunction(
+      () => {
+        const text = document.body.innerText
+        return text.includes('$') && text.length > 500
+      },
+      { timeout: 15000 }
+    ).catch(() => {
+      console.log(`  Price data not found after wait, proceeding anyway...`)
     })
+
+    // Give extra time for async rendering to complete
+    await page.waitForTimeout(2000)
 
     // Extract price range for all available slots on the current date view
     const priceData = await page.evaluate(() => {
