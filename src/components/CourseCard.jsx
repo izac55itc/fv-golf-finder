@@ -5,7 +5,8 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
 
   const handleDirections = () => {
     if (userLocation) {
-      const url = `https://maps.google.com/maps?dir=${userLocation.lat},${userLocation.lng}/${item.course.lat},${item.course.lng}`
+      // App-aware URL that opens native Google Maps app on mobile if installed
+      const url = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${item.course.lat},${item.course.lng}&travelmode=driving`
       window.open(url, '_blank')
     }
   }
