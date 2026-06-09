@@ -1,6 +1,7 @@
 'use strict'
 const ws = require('ws')
 const { createClient } = require('@supabase/supabase-js')
+const { fetchCloudPlaySummaries } = require('./cloudplay')
 
 const FACILITIES = {
   'newlands-cc':            3525,
@@ -45,6 +46,7 @@ async function main() {
   const allSummaries = []
 
   try {
+    // Fetch GolfNow summaries
     for (const [courseId, facilityId] of Object.entries(FACILITIES)) {
       console.log(`[${courseId}] Fetching ${startDate} to ${endDate}...`)
 
@@ -74,6 +76,11 @@ async function main() {
         console.error(`  ✗ Error: ${err.message}`)
       }
     }
+
+    // Fetch CloudPlay summaries (Fort Langley, etc.)
+    console.log('\nFetching CloudPlay courses...')
+    const cloudplaySummaries = await fetchCloudPlaySummaries(DAYS_AHEAD)
+    allSummaries.push(...cloudplaySummaries)
 
     console.log(`\n✓ Collected ${allSummaries.length} price summaries`)
 
