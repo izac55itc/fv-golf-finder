@@ -87,37 +87,33 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
     // Scrape 7 days of data
     for (let dayOffset = 0; dayOffset < daysAhead; dayOffset++) {
       const dateStr = getDateString(dayOffset)
+      const targetDate = parseInt(dateStr.split('-')[2]) // Extract day (e.g., "09" → 9)
 
-      console.log(`    [Day ${dayOffset + 1}/${daysAhead}] Loading ${dateStr}...`)
+      console.log(`    [Day ${dayOffset + 1}/${daysAhead}] Loading ${dateStr} (day ${targetDate})...`)
 
       try {
         // Load base page on first iteration
         if (dayOffset === 0) {
           await page.goto(course.url, { waitUntil: 'networkidle2', timeout: 30000 })
         } else {
-          // Try to click next day button to navigate
+          // Click on the calendar date (e.g., click "10" for June 10)
           try {
-            const nextBtn = await page.evaluate(() => {
-              // Look for next/arrow buttons
-              const buttons = Array.from(document.querySelectorAll('button, a[role="button"]'))
-              return buttons.find(b =>
-                b.textContent.includes('Next') ||
-                b.textContent.includes('>') ||
-                b.getAttribute('aria-label')?.includes('next') ||
-                b.className.includes('next')
-              )?.getAttribute('data-test-id') || null
-            })
+            await page.evaluate((day) => {
+              // Find all calendar date elements
+              const dateElements = Array.from(document.querySelectorAll('[role="button"], button, div[class*="date"], td'))
+              const targetElement = dateElements.find(el => el.textContent.trim() === String(day))
+              if (targetElement) {
+                targetElement.click()
+              } else {
+                throw new Error(`Could not find date ${day} in calendar`)
+              }
+            }, targetDate)
 
-            if (nextBtn) {
-              await page.click(`[data-test-id="${nextBtn}"]`)
-            } else {
-              // Try generic next button click
-              await page.click('button:nth-of-type(n+3)')
-            }
-
-            await new Promise(resolve => setTimeout(resolve, 1500))
+            // Wait for page to update with new date's tee times
+            await new Promise(resolve => setTimeout(resolve, 2000))
           } catch (err) {
-            console.log(`      Could not click next button, skipping day ${dayOffset + 1}`)
+            console.log(`      Could not click date ${targetDate}, skipping day ${dayOffset + 1}`)
+            continue
           }
         }
 
