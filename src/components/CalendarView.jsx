@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { COURSES } from '../data/courses.js'
 import { fuelCostDollars } from '../utils/ranker.js'
 import { getSunsetTime } from '../utils/sunset.js'
@@ -11,6 +11,19 @@ const CART_RENTAL = 20
 export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, sortBy, onSortBy, hidden, location }) {
   const [excludedCourses, setExcludedCourses] = useState(new Set())
   const [courseDropdownOpen, setCourseDropdownOpen] = useState(false)
+  const dropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setCourseDropdownOpen(false)
+      }
+    }
+    if (courseDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [courseDropdownOpen])
 
   const now = new Date()
   const today = new Date()
@@ -117,7 +130,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   return (
     <div className="cal-wrap">
       <div className="cal-meta">
-        <div className="cal-filter-group cal-course-filter">
+        <div className="cal-filter-group cal-course-filter" ref={dropdownRef}>
           <button
             className="cal-course-btn"
             onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
