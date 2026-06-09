@@ -15,9 +15,9 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
             {item.course.location} • {item.course.holes} holes •
             <span
               onClick={handleDirections}
-              style={{ cursor: userLocation ? 'pointer' : 'default', textDecoration: userLocation ? 'underline' : 'none' }}
+              className={`cal-drive-time ${userLocation ? 'cal-drive-clickable' : ''}`}
             >
-              {item.driveMinutes}m drive
+              🚗 {item.driveMinutes}m
             </span>
           </div>
         </div>
@@ -42,7 +42,7 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
         </div>
 
         <div className="cal-price-section cart">
-          <div className="cal-price-label">🚗 Cart</div>
+          <div className="cal-price-label">🛞 Cart</div>
           <div className="cal-price-value">${item.cartCost.toFixed(2)}</div>
         </div>
 
