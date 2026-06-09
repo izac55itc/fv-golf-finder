@@ -49,8 +49,9 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
       const avgPrice = Math.round((item.minPrice + item.maxPrice) / 2)
       const gasCost = fuelCostDollars(driveMinutes)
-      const cartCost = course.cartRequired ? (course.cartFee ?? CART_RENTAL) : 0
-      const totalCost = avgPrice + gasCost + cartCost
+      const cartCost = course.cartFee !== null ? course.cartFee : (course.cartRequired ? CART_RENTAL : 0)
+      const totalCostWithCart = avgPrice + gasCost + cartCost
+      const totalCost = course.cartRequired ? totalCostWithCart : avgPrice + gasCost
       const totalWithoutCart = avgPrice + gasCost
 
       // Calculate latest tee time to finish before dusk
