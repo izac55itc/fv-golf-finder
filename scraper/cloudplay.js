@@ -23,40 +23,74 @@ async function scrapeCloudPlayCourse(courseId, course) {
     console.log(`  Loading ${course.url}...`)
     await page.goto(course.url, { waitUntil: 'networkidle2' })
 
-    // Wait for tee time data to be loaded
-    await page.waitForSelector('[data-price]', { timeout: 10000 }).catch(() => {
-      console.log(`  No [data-price] elements found, trying alternate selector...`)
+    // Wait for tee time buttons to load
+    await page.waitForSelector('.teetime-slot', { timeout: 10000 }).catch(() => {
+      console.log(`  No tee time slots found, checking page...`)
     })
 
-    // Extract tee time pricing data from the page
-    const summaries = await page.evaluate(() => {
-      const results = []
-      const dateElements = document.querySelectorAll('[data-date]')
+    // Extract price range for all available slots on the current date view
+    const priceData = await page.evaluate(() => {
+      const prices = []
 
-      dateElements.forEach(dateEl => {
-        const date = dateEl.getAttribute('data-date')
-        const priceText = dateEl.getAttribute('data-price') || dateEl.textContent.match(/\$(\d+)/)?.[1] || '0'
-        const minPrice = parseInt(priceText) || 0
-        const maxPrice = minPrice + 20 // Estimate range
-        const availableText = dateEl.getAttribute('data-available') || dateEl.textContent.match(/(\d+)\s*slot/)?.[1] || '0'
-        const availableCount = parseInt(availableText) || 0
+      // Look for price elements - try multiple selectors for CloudPlay Golf pages
+      const priceElements = document.querySelectorAll(
+        'div:has-text("\\$"), span:contains("\\$"), [class*="price"], [class*="cost"]'
+      )
 
-        if (date && minPrice > 0) {
-          results.push({
-            date,
-            minPrice,
-            maxPrice,
-            availableCount,
-            hasHotDeals: false
+      // Alternative: look for tee time slots and extract prices
+      const slots = document.querySelectorAll('.teetime-slot, [class*="slot"], button[class*="time"]')
+
+      slots.forEach(slot => {
+        const text = slot.textContent || ''
+        const match = text.match(/\$(\d+(?:\.\d{2})?)/g)
+        if (match) {
+          match.forEach(priceStr => {
+            const price = parseFloat(priceStr.replace('$', ''))
+            if (price > 0) prices.push(price)
           })
         }
       })
 
-      return results
+      // Fallback: extract all dollar amounts from page text
+      if (prices.length === 0) {
+        const pageText = document.body.innerText
+        const matches = pageText.match(/\$(\d+(?:\.\d{2})?)/g) || []
+        matches.forEach(priceStr => {
+          const price = parseFloat(priceStr.replace('$', ''))
+          if (price > 0 && price < 500) prices.push(price) // Sanity check
+        })
+      }
+
+      return {
+        prices,
+        slotCount: document.querySelectorAll('.teetime-slot, [class*="slot"], button[class*="time"]').length,
+        pageLoaded: document.body.textContent.length > 100
+      }
     })
 
+    // Calculate min/max from extracted prices
+    let minPrice = 0
+    let maxPrice = 0
+    let availableCount = 0
+
+    if (priceData.prices.length > 0) {
+      minPrice = Math.min(...priceData.prices)
+      maxPrice = Math.max(...priceData.prices)
+      availableCount = priceData.slotCount || priceData.prices.length
+    }
+
+    console.log(`    Found ${priceData.prices.length} prices: $${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)} (${availableCount} slots)`)
+
     await browser.close()
-    return summaries
+
+    // Return summary for the current date (we can enhance this to scrape multiple dates)
+    return [{
+      date: new Date().toISOString().split('T')[0],
+      minPrice,
+      maxPrice,
+      availableCount,
+      hasHotDeals: false
+    }]
   } catch (err) {
     if (browser) await browser.close()
     throw err
