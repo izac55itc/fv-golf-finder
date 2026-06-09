@@ -5,8 +5,18 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
 
   const handleDirections = () => {
     if (userLocation) {
-      // App-aware URL that opens native Google Maps app on mobile if installed
-      const url = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${item.course.lat},${item.course.lng}&travelmode=driving`
+      // Detect iOS vs Android for proper native app URL scheme
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+
+      let url
+      if (isIOS) {
+        // iOS: Use comgooglemaps scheme to open native Google Maps app
+        url = `comgooglemaps://?saddr=${userLocation.lat},${userLocation.lng}&daddr=${item.course.lat},${item.course.lng}&directionsmode=driving`
+      } else {
+        // Android & Desktop: Use api=1 format
+        url = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${item.course.lat},${item.course.lng}&travelmode=driving`
+      }
+
       window.open(url, '_blank')
     }
   }
