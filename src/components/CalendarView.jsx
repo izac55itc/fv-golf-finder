@@ -99,7 +99,15 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const sunset = getSunsetTime(baseDate)
 
   const bookingUrl = (course) => {
-    if (course.bookingUrl) return course.bookingUrl
+    // Club Prophet courses (with direct bookingUrl)
+    if (course.bookingUrl) {
+      // Try adding date parameter to Club Prophet URL
+      const d = new Date(sessionDate + 'T12:00:00')
+      const month = String(d.getMonth() + 1).padStart(2, '0')
+      const day = String(d.getDate()).padStart(2, '0')
+      const year = d.getFullYear()
+      return `${course.bookingUrl}?date=${month}/${day}/${year}`
+    }
     if (!course.golfnowSlug) return '#'
     const d = new Date(sessionDate + 'T12:00:00')
     const monthName = d.toLocaleString('en-US', { month: 'short' })
