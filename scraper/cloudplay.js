@@ -1,17 +1,11 @@
 'use strict'
 const puppeteer = require('puppeteer')
-const { extractTeeTimesFromScreenshot, parseTeeTimes } = require('./ocr')
 
 const CLOUDPLAY_COURSES = {
   'fort-langley': {
     url: 'https://fortlangley.cps.golf/onlineresweb/search-teetime',
     id: 'fort-langley',
     multiDay: true
-  },
-  'redwoods': {
-    url: 'https://www.redwoods-golf.com/online-booking',
-    id: 'redwoods',
-    multiDay: false  // Only scrape today until we figure out date navigation
   }
 }
 
@@ -200,26 +194,6 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
           minPrice = Math.min(...priceData.prices)
           maxPrice = Math.max(...priceData.prices)
           availableCount = priceData.slotCount || priceData.prices.length
-        }
-
-        // If no prices found with DOM extraction, try OCR (for Redwoods)
-        if (minPrice === 0 && courseId === 'redwoods') {
-          try {
-            console.log(`      Trying OCR extraction...`)
-            const screenshotPath = `/tmp/redwoods-${dateStr}.png`
-            await page.screenshot({ path: screenshotPath })
-            const ocrText = await extractTeeTimesFromScreenshot(screenshotPath)
-            const parsed = parseTeeTimes(ocrText)
-
-            if (parsed.minPrice > 0) {
-              minPrice = parsed.minPrice
-              maxPrice = parsed.maxPrice
-              availableCount = parsed.teeTimes
-              console.log(`      ✓ OCR found: $${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)} (${availableCount} times)`)
-            }
-          } catch (ocrErr) {
-            console.log(`      OCR failed: ${ocrErr.message}`)
-          }
         }
 
         if (minPrice > 0) {

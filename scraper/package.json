@@ -9,7 +9,6 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.107.0",
     "puppeteer": "^22.0.0",
-    "tesseract.js": "^5.0.0",
     "ws": "^8.21.0"
   }
 }
