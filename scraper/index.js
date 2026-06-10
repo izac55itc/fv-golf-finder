@@ -2,6 +2,7 @@
 const ws = require('ws')
 const { createClient } = require('@supabase/supabase-js')
 const { fetchCloudPlaySummaries } = require('./cloudplay')
+const { scrapeRedwoodsRates } = require('./redwoods')
 
 const FACILITIES = {
   'newlands-cc':            3525,
@@ -86,6 +87,11 @@ async function main() {
     console.log('\nFetching CloudPlay courses...')
     const cloudplaySummaries = await fetchCloudPlaySummaries(DAYS_AHEAD)
     allSummaries.push(...cloudplaySummaries)
+
+    // Fetch Redwoods rates (static table)
+    console.log('\nFetching Redwoods rates...')
+    const redwoodsSummaries = await scrapeRedwoodsRates()
+    allSummaries.push(...redwoodsSummaries)
 
     console.log(`\n✓ Collected ${allSummaries.length} price summaries`)
 
