@@ -53,7 +53,7 @@ async function extractPriceData(page) {
   return priceData
 }
 
-async function scrapeTeeOnCourse(courseId, course) {
+async function scrapeTeeOnCourse(courseId, course, daysAhead = 7) {
   let browser
   try {
     browser = await puppeteer.launch({
@@ -70,53 +70,79 @@ async function scrapeTeeOnCourse(courseId, course) {
     console.log(`    Loading ${courseId}...`)
     await page.goto(course.url, { waitUntil: 'networkidle2', timeout: 30000 })
 
-    // Wait for content to load
-    try {
-      await page.waitForFunction(
-        () => {
-          const text = document.body.innerText
-          return text.includes('$') && text.length > 500
-        },
-        { timeout: 10000 }
-      )
-    } catch (err) {
-      // Try scrolling to trigger lazy loading
-      await page.evaluate(() => {
-        window.scrollTo(0, document.body.scrollHeight)
-      })
-      await new Promise(resolve => setTimeout(resolve, 2000))
-    }
+    const results = []
 
-    const priceData = await extractPriceData(page)
+    // Scrape each day
+    for (let dayOffset = 0; dayOffset < daysAhead; dayOffset++) {
+      const dateStr = getDateString(dayOffset)
 
-    let minPrice = 0
-    let maxPrice = 0
-    let availableCount = 0
+      // Wait for content to load
+      try {
+        await page.waitForFunction(
+          () => {
+            const text = document.body.innerText
+            return text.includes('$') && text.length > 500
+          },
+          { timeout: 10000 }
+        )
+      } catch (err) {
+        // Try scrolling to trigger lazy loading
+        await page.evaluate(() => {
+          window.scrollTo(0, document.body.scrollHeight)
+        })
+        await new Promise(resolve => setTimeout(resolve, 2000))
+      }
 
-    if (priceData.prices.length > 0) {
-      minPrice = Math.min(...priceData.prices)
-      maxPrice = Math.max(...priceData.prices)
-      availableCount = priceData.slotCount || priceData.prices.length
-    }
+      const priceData = await extractPriceData(page)
 
-    const dateStr = getDateString(0)
+      let minPrice = 0
+      let maxPrice = 0
+      let availableCount = 0
 
-    const result = minPrice > 0 ? [{
-      date: dateStr,
-      minPrice,
-      maxPrice,
-      availableCount,
-      hasHotDeals: false
-    }] : []
+      if (priceData.prices.length > 0) {
+        minPrice = Math.min(...priceData.prices)
+        maxPrice = Math.max(...priceData.prices)
+        availableCount = priceData.slotCount || priceData.prices.length
+      }
 
-    if (minPrice > 0) {
-      console.log(`      ✓ Found prices: $${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`)
-    } else {
-      console.log(`      ✗ No prices found`)
+      if (minPrice > 0) {
+        results.push({
+          date: dateStr,
+          minPrice,
+          maxPrice,
+          availableCount,
+          hasHotDeals: false
+        })
+        console.log(`      [Day ${dayOffset + 1}] $${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`)
+      }
+
+      // Try to navigate to next day (click next arrow or date button)
+      if (dayOffset < daysAhead - 1) {
+        const nextClicked = await page.evaluate(() => {
+          const buttons = Array.from(document.querySelectorAll('button, [role="button"]'))
+          const nextBtn = buttons.find(b =>
+            b.textContent.includes('>') ||
+            b.textContent.includes('Next') ||
+            b.getAttribute('aria-label')?.includes('next')
+          )
+          if (nextBtn) {
+            nextBtn.click()
+            return true
+          }
+          return false
+        })
+
+        if (nextClicked) {
+          await new Promise(resolve => setTimeout(resolve, 1500))
+        } else {
+          console.log(`      [Day ${dayOffset + 2}] Could not navigate to next day`)
+          break
+        }
+      }
     }
 
     await browser.close()
-    return result
+    return results
   } catch (err) {
     if (browser) await browser.close()
     console.log(`      ✗ Error: ${err.message}`)
