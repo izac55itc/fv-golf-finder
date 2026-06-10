@@ -170,14 +170,22 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
           }
         }
 
-        // Wait for prices to load
-        await page.waitForFunction(
-          () => {
-            const text = document.body.innerText
-            return text.includes('$') && text.length > 500
-          },
-          { timeout: 10000 }
-        ).catch(() => null)
+        // Wait for prices to load (or scroll to trigger lazy loading)
+        try {
+          await page.waitForFunction(
+            () => {
+              const text = document.body.innerText
+              return text.includes('$') && text.includes('AM') && text.length > 1000
+            },
+            { timeout: 10000 }
+          )
+        } catch (err) {
+          // Scroll down to trigger lazy loading
+          await page.evaluate(() => {
+            window.scrollTo(0, document.body.scrollHeight)
+          })
+          await new Promise(resolve => setTimeout(resolve, 3000))
+        }
 
         await new Promise(resolve => setTimeout(resolve, 1000))
 
