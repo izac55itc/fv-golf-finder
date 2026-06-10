@@ -445,8 +445,10 @@
   z-index: 100;
   min-width: 220px;
   margin-top: 4px;
-  max-height: 500px;
-  overflow-y: auto;
+  max-height: 80vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 .cal-course-buttons {
