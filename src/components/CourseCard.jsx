@@ -5,16 +5,19 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
 
   const handleDirections = () => {
     if (userLocation) {
-      // Detect iOS vs Android for proper native app URL scheme
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+      const isAndroid = /Android/.test(navigator.userAgent)
 
       let url
       if (isIOS) {
         // iOS: Use comgooglemaps scheme with origin & destination
         url = `comgooglemaps://?saddr=${userLocation.lat},${userLocation.lng}&daddr=${item.course.lat},${item.course.lng}&directionsmode=driving`
-      } else {
+      } else if (isAndroid) {
         // Android: Use google.navigation scheme for full turn-by-turn directions
         url = `google.navigation:q=${item.course.lat},${item.course.lng}&origin=${userLocation.lat},${userLocation.lng}`
+      } else {
+        // Desktop: Use Google Maps web URL with directions API
+        url = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${item.course.lat},${item.course.lng}&travelmode=driving`
       }
 
       window.open(url, '_blank')
