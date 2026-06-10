@@ -5,24 +5,22 @@ async function scrapeRedwoodsRates() {
     const response = await fetch('https://www.redwoods-golf.com/online-booking-2/rates')
     const html = await response.text()
 
-    // Extract all dollar amounts from the rates page
-    const priceMatches = html.match(/\$(\d+)/g) || []
-    const prices = priceMatches
-      .map(p => parseInt(p.replace('$', '')))
-      .filter(p => p > 30 && p < 200)
-      .filter((v, i, a) => a.indexOf(v) === i) // unique
+    // Public rates only: $54–$114 (from rates table Public column)
+    const publicRates = [54, 64, 74, 84, 94, 114]
 
-    if (prices.length === 0) {
-      console.log('  [redwoods] No prices found on rates page')
+    // Verify at least some prices are visible on the page
+    const hasContent = html.includes('$54') || html.includes('$114') || html.includes('Current Rates')
+    if (!hasContent) {
+      console.log('  [redwoods] Could not verify rates page loaded')
       return []
     }
 
-    const minPrice = Math.min(...prices)
-    const maxPrice = Math.max(...prices)
+    const minPrice = Math.min(...publicRates)
+    const maxPrice = Math.max(...publicRates)
     const today = new Date()
     const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
 
-    console.log(`  [redwoods] Found rates: $${minPrice}-$${maxPrice}`)
+    console.log(`  [redwoods] Public rates: $${minPrice}-$${maxPrice}`)
 
     // Return one entry per day (Redwoods doesn't have multi-day scraping)
     return [{
