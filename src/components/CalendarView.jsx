@@ -146,7 +146,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
             className="cal-course-btn"
             onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
           >
-            🏌️ Courses: {sorted.length - excludedCourses.size}/{sorted.length}
+            🏌️ Courses: {sorted.length - excludedCourses.size}/{COURSES.length}
           </button>
           {courseDropdownOpen && (
             <div className="cal-course-dropdown">
@@ -155,14 +155,14 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
                 <button onClick={handleClearAll} className="cal-quick-btn">Clear All</button>
               </div>
               <div className="cal-course-list">
-                {sorted.map(item => (
-                  <label key={item.course.id} className="cal-course-item">
+                {COURSES.map(course => (
+                  <label key={course.id} className="cal-course-item">
                     <input
                       type="checkbox"
-                      checked={!excludedCourses.has(item.course.id)}
-                      onChange={() => handleCourseToggle(item.course.id)}
+                      checked={!excludedCourses.has(course.id)}
+                      onChange={() => handleCourseToggle(course.id)}
                     />
-                    <span>{item.course.name}</span>
+                    <span>{course.name}</span>
                   </label>
                 ))}
               </div>
