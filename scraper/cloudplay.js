@@ -119,6 +119,12 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
           } catch (err) {
             // Popup might not exist, that's ok
           }
+
+          // Debug: Check what's on the page
+          if (courseId === 'redwoods') {
+            const pageContent = await page.evaluate(() => document.body.innerText.substring(0, 500))
+            console.log(`    [DEBUG] Page content sample: ${pageContent.substring(0, 200)}...`)
+          }
         } else {
           // Navigate to next date (different methods for different courses)
           try {
