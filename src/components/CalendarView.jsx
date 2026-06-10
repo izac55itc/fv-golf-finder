@@ -146,7 +146,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
             className="cal-course-btn"
             onClick={() => setCourseDropdownOpen(!courseDropdownOpen)}
           >
-            🏌️ Courses: {sorted.length - excludedCourses.size}/11
+            🏌️ Courses: {sorted.length - excludedCourses.size}/12
           </button>
           {courseDropdownOpen && (
             <div className="cal-course-dropdown">
