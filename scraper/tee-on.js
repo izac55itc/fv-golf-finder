@@ -137,8 +137,8 @@ async function fetchTeeOnSummaries() {
         allSummaries.push({
           course_id: courseId,
           date: item.date,
-          min_price: Math.round(item.minPrice * 100) / 100,
-          max_price: Math.round(item.maxPrice * 100) / 100,
+          min_price: Math.round(item.minPrice),
+          max_price: Math.round(item.maxPrice),
           available_count: item.availableCount,
           has_hot_deals: item.hasHotDeals,
         })
