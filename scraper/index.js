@@ -124,11 +124,11 @@ async function main() {
   }
 }
 
-// Hard timeout: 2 minutes
+// Hard timeout: 4 minutes
 setTimeout(() => {
   console.error('Hard timeout: force killing process')
   process.kill(process.pid, 'SIGKILL')
-}, 120_000)
+}, 240_000)
 
 main()
   .then(() => { process.exit(0) })
