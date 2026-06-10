@@ -116,10 +116,25 @@ async function scrapeTeeOnCourse(courseId, course, daysAhead = 7) {
         console.log(`      [Day ${dayOffset + 1}] $${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`)
       }
 
-      // Try to navigate to next day (click next arrow or date button)
+      // Try to navigate to next day (click date button or next arrow)
       if (dayOffset < daysAhead - 1) {
-        const nextClicked = await page.evaluate(() => {
-          const buttons = Array.from(document.querySelectorAll('button, [role="button"]'))
+        const nextDate = getDateString(dayOffset + 1)
+        const nextDay = parseInt(nextDate.split('-')[2]) // Extract day number
+
+        const nextClicked = await page.evaluate((targetDay) => {
+          // Try clicking date button with day number
+          const buttons = Array.from(document.querySelectorAll('button, [role="button"], [class*="date"], [class*="day"]'))
+          const dateBtn = buttons.find(b => {
+            const text = b.textContent.trim()
+            return text.match(new RegExp(`^\\D*${targetDay}\\D*$`))
+          })
+
+          if (dateBtn) {
+            dateBtn.click()
+            return true
+          }
+
+          // Fallback: try next arrow
           const nextBtn = buttons.find(b =>
             b.textContent.includes('>') ||
             b.textContent.includes('Next') ||
@@ -129,8 +144,9 @@ async function scrapeTeeOnCourse(courseId, course, daysAhead = 7) {
             nextBtn.click()
             return true
           }
+
           return false
-        })
+        }, nextDay)
 
         if (nextClicked) {
           await new Promise(resolve => setTimeout(resolve, 1500))
