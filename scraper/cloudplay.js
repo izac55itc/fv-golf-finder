@@ -4,11 +4,13 @@ const puppeteer = require('puppeteer')
 const CLOUDPLAY_COURSES = {
   'fort-langley': {
     url: 'https://fortlangley.cps.golf/onlineresweb/search-teetime',
-    id: 'fort-langley'
+    id: 'fort-langley',
+    multiDay: true
   },
   'redwoods': {
     url: 'https://www.redwoods-golf.com/online-booking',
-    id: 'redwoods'
+    id: 'redwoods',
+    multiDay: false  // Only scrape today until we figure out date navigation
   }
 }
 
@@ -84,12 +86,15 @@ async function scrapeCloudPlayCourse(courseId, course, daysAhead = 7) {
 
     const results = []
 
-    // Scrape 7 days of data
-    for (let dayOffset = 0; dayOffset < daysAhead; dayOffset++) {
+    // Limit days based on course config (some courses we only scrape today until we solve date nav)
+    const daysToScrape = course.multiDay ? daysAhead : 1
+
+    // Scrape data (1 or 7 days depending on course)
+    for (let dayOffset = 0; dayOffset < daysToScrape; dayOffset++) {
       const dateStr = getDateString(dayOffset)
       const targetDate = parseInt(dateStr.split('-')[2]) // Extract day (e.g., "09" → 9)
 
-      console.log(`    [Day ${dayOffset + 1}/${daysAhead}] Loading ${dateStr} (day ${targetDate})...`)
+      console.log(`    [Day ${dayOffset + 1}/${daysToScrape}] Loading ${dateStr} (day ${targetDate})...`)
 
       try {
         // Load base page on first iteration

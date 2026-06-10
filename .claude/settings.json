@@ -96,7 +96,8 @@
       "Bash(curl -s \"https://api.github.com/search/code?q=fortlangley.cps.golf\")"
     ],
     "additionalDirectories": [
-      "c:\\Users\\izac5\\source\\repos\\fv-golf-finder"
+      "c:\\Users\\izac5\\source\\repos\\fv-golf-finder",
+      "c:\\Users\\izac5\\.claude\\projects\\c--Users-izac5-source-repos-fv-golf-finder\\memory"
     ]
   }
 }

@@ -9,6 +9,7 @@ export const COURSES = [
   { id: 'golden-eagle-south',  name: 'Golden Eagle Golf Club - South',  holes: 18, type: 'regulation', par: 70, lat: 49.2930, lng: -122.6165, avgHoleMinutes: 14, baseGreenfee: 55,  cartFee: 27,  cartNote: null,              cartRequired: false, golfnowId: 15899, golfnowSlug: '15899-golden-eagle-south' },
   { id: 'swaneset-resort',     name: 'Swaneset Bay Resort Course',      holes: 18, type: 'regulation', par: 72, lat: 49.2734, lng: -122.6423, avgHoleMinutes: 14, baseGreenfee: 85,  cartFee: 20,  cartNote: null,              cartRequired: false, golfnowId: 19887, golfnowSlug: '19887-swaneset-bay-resort-country-club-resort-course' },
   { id: 'swaneset-links',      name: 'Swaneset Bay Links Course',       holes: 18, type: 'regulation', par: 72, lat: 49.2730, lng: -122.6420, avgHoleMinutes: 14, baseGreenfee: 72,  cartFee: 20,  cartNote: null,              cartRequired: false, golfnowId: 301,   golfnowSlug: '301-swaneset-bay-resort-country-club-links-course' },
+  { id: 'redwoods',            name: 'The Redwoods Golf Course',        holes: 18, type: 'regulation', par: 72, lat: 49.0234, lng: -122.5456, avgHoleMinutes: 14, baseGreenfee: 55,  cartFee: 15,  cartNote: null,              cartRequired: false, golfnowId: null, bookingUrl: 'https://www.redwoods-golf.com/online-booking' },
 ]
 
 // Courses with known GolfNow facility IDs — scraped by the scraper
