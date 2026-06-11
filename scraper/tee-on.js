@@ -178,6 +178,26 @@ async function scrapeTeeOnCourse(courseId, course, daysAhead = 7) {
     }
 
     await browser.close()
+
+    // Fallback: if day 1 has no prices but other days do, use average of days 2-7 for day 1
+    if (results.length > 0 && results[0]?.minPrice === undefined) {
+      const otherDays = results.filter((_, i) => i > 0)
+      if (otherDays.length > 0) {
+        const avgMin = Math.round(otherDays.reduce((sum, r) => sum + r.minPrice, 0) / otherDays.length)
+        const avgMax = Math.round(otherDays.reduce((sum, r) => sum + r.maxPrice, 0) / otherDays.length)
+        const avgCount = Math.round(otherDays.reduce((sum, r) => sum + r.availableCount, 0) / otherDays.length)
+
+        results[0] = {
+          date: results[0].date,
+          minPrice: avgMin,
+          maxPrice: avgMax,
+          availableCount: avgCount,
+          hasHotDeals: false
+        }
+        console.log(`      [Day 1] Using average from days 2-7: $${avgMin} - $${avgMax}`)
+      }
+    }
+
     return results
   } catch (err) {
     if (browser) await browser.close()
