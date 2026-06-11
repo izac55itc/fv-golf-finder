@@ -63,37 +63,6 @@
   box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
 }
 
-.cal-holes-filter {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.cal-holes-btn {
-  padding: 8px 12px;
-  border: 1px solid #d0dae6;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  background: white;
-  color: #666;
-  transition: all 0.2s;
-  height: 40px;
-  min-width: 45px;
-}
-
-.cal-holes-btn:hover {
-  border-color: #4a7c59;
-  color: #333;
-}
-
-.cal-holes-btn-active {
-  background: #2d5016;
-  color: white;
-  border-color: #1b5e20;
-}
-
 .cal-results {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -505,6 +474,12 @@
 .cal-quick-btn:hover {
   background: #f0f0f0;
   border-color: #999;
+}
+
+.cal-quick-btn-active {
+  background: #2d5016;
+  color: white;
+  border-color: #1b5e20;
 }
 
 .cal-course-list {

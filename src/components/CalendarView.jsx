@@ -197,13 +197,12 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     setExcludedCourses(newExcluded)
   }
 
-  const handleSelectAll = () => {
-    setExcludedCourses(new Set())
-  }
-
-  const handleClearAll = () => {
-    const allIds = new Set(sorted.map(item => item.course.id))
-    setExcludedCourses(allIds)
+  const handleFilterHoles = (holes) => {
+    if (holesFilter === holes) {
+      setHolesFilter(null) // Toggle off if already selected
+    } else {
+      setHolesFilter(holes)
+    }
   }
 
   return (
@@ -219,8 +218,24 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
           {courseDropdownOpen && (
             <div className="cal-course-dropdown">
               <div className="cal-course-buttons">
-                <button onClick={handleSelectAll} className="cal-quick-btn">Select All</button>
-                <button onClick={handleClearAll} className="cal-quick-btn">Clear All</button>
+                <button
+                  onClick={() => handleFilterHoles(9)}
+                  className={`cal-quick-btn ${holesFilter === 9 ? 'cal-quick-btn-active' : ''}`}
+                >
+                  9 Holes
+                </button>
+                <button
+                  onClick={() => handleFilterHoles(18)}
+                  className={`cal-quick-btn ${holesFilter === 18 ? 'cal-quick-btn-active' : ''}`}
+                >
+                  18 Holes
+                </button>
+                <button
+                  onClick={() => setHolesFilter(null)}
+                  className={`cal-quick-btn ${holesFilter === null ? 'cal-quick-btn-active' : ''}`}
+                >
+                  All
+                </button>
               </div>
               <div className="cal-course-list">
                 {COURSES.map(course => (
@@ -246,27 +261,6 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
             <option value="deals">🔥 Hot Deals</option>
             <option value="name">📝 Course Name</option>
           </select>
-
-          <div className="cal-holes-filter">
-            <button
-              className={`cal-holes-btn ${holesFilter === null ? 'cal-holes-btn-active' : ''}`}
-              onClick={() => setHolesFilter(null)}
-            >
-              All
-            </button>
-            <button
-              className={`cal-holes-btn ${holesFilter === 9 ? 'cal-holes-btn-active' : ''}`}
-              onClick={() => setHolesFilter(9)}
-            >
-              9
-            </button>
-            <button
-              className={`cal-holes-btn ${holesFilter === 18 ? 'cal-holes-btn-active' : ''}`}
-              onClick={() => setHolesFilter(18)}
-            >
-              18
-            </button>
-          </div>
         </div>
       </div>
 
