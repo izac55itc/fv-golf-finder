@@ -92,7 +92,7 @@ async function main() {
 
     // Fetch Redwoods rates (static table)
     console.log('\nFetching Redwoods rates...')
-    const redwoodsSummaries = await scrapeRedwoodsRates()
+    const redwoodsSummaries = await scrapeRedwoodsRates(DAYS_AHEAD)
     allSummaries.push(...redwoodsSummaries)
 
     // Fetch Tee-On summaries (Poppy Estate, etc.)
