@@ -76,6 +76,11 @@ async function scrapeTeeOnCourse(courseId, course, daysAhead = 7) {
     for (let dayOffset = 0; dayOffset < daysAhead; dayOffset++) {
       const dateStr = getDateString(dayOffset)
 
+      // Extra wait on first day for full page render
+      if (dayOffset === 0) {
+        await new Promise(resolve => setTimeout(resolve, 2000))
+      }
+
       // Wait for content to load
       try {
         await page.waitForFunction(
@@ -90,7 +95,7 @@ async function scrapeTeeOnCourse(courseId, course, daysAhead = 7) {
         await page.evaluate(() => {
           window.scrollTo(0, document.body.scrollHeight)
         })
-        await new Promise(resolve => setTimeout(resolve, 2000))
+        await new Promise(resolve => setTimeout(resolve, 3000))
       }
 
       const priceData = await extractPriceData(page)
@@ -114,6 +119,8 @@ async function scrapeTeeOnCourse(courseId, course, daysAhead = 7) {
           hasHotDeals: false
         })
         console.log(`      [Day ${dayOffset + 1}] $${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`)
+      } else {
+        console.log(`      [Day ${dayOffset + 1}] ✗ No prices found`)
       }
 
       // Try to navigate to next day (click date button or next arrow)
