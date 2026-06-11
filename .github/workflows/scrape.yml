@@ -1,7 +1,7 @@
 name: Scrape Tee Times
 on:
   schedule:
-    - cron: '0 14,20,1 * * *'  # 2 PM, 8 PM, 1 AM UTC = 6 AM, 12 PM, 5 PM PST
+    - cron: '0 13,19,0 * * *'  # 1 PM, 7 PM, 12 AM UTC = 6 AM, 12 PM, 5 PM PDT
   workflow_dispatch:           # manual trigger from the Actions tab
 permissions:
   contents: write
@@ -34,4 +34,4 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: timeout --signal=KILL 1200 node index.js || true
+        run: timeout --signal=KILL 1200 node index.js
