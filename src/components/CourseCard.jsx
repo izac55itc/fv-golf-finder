@@ -103,7 +103,7 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
       {item.availableCount > 0 && (
         <div className="cal-card-meta">
           <div className="cal-holes-info">
-            🌅 {item.sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} • Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
+            Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
           </div>
         <div className="cal-weather-group">
           {item.weatherMorning && (
