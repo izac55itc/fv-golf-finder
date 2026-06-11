@@ -2,7 +2,7 @@ name: Run Golf Scraper
 
 on:
   schedule:
-    - cron: '0 11 * * *'  # 11 AM UTC = 4 AM PDT daily
+    - cron: '13 8 * * *'  # 8:13 AM UTC = 12:13 AM PST daily
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
