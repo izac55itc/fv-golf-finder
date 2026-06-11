@@ -79,6 +79,10 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       const totalCost = course.cartRequired ? totalCostWithCart : avgPrice + gasCost
       const totalWithoutCart = avgPrice + gasCost
 
+      // Min/max total for sorting (includes cart if required)
+      const minTotal = item.minPrice + gasCost + (course.cartRequired ? cartCost : 0)
+      const maxTotal = item.maxPrice + gasCost + (course.cartRequired ? cartCost : 0)
+
       // Calculate latest tee time to finish before dusk
       const roundDurationMs = course.holes * course.avgHoleMinutes * 60_000
       const latestStartMs = sunset.getTime() - roundDurationMs
@@ -95,6 +99,8 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         cartCost,
         totalCost,
         totalWithoutCart,
+        minTotal,
+        maxTotal,
         weatherMorning,
         weatherAfternoon,
         weatherTwilight,
@@ -114,7 +120,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
       arr.sort((a, b) => {
         if (a.availableCount === 0 && b.availableCount > 0) return 1
         if (a.availableCount > 0 && b.availableCount === 0) return -1
-        return a.totalCost - b.totalCost
+        return a.minTotal - b.minTotal
       })
     } else if (sortBy === 'greenFee') {
       arr.sort((a, b) => {
