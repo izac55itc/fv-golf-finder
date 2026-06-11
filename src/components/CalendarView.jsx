@@ -10,6 +10,7 @@ const CART_RENTAL = 20
 
 export default function CalendarView({ teetimes, driveTimes, weatherData, sessionDate, onDateChange, availableDates, sortBy, onSortBy, hidden, location }) {
   const [excludedCourses, setExcludedCourses] = useState(new Set())
+  const [holesFilter, setHolesFilter] = useState(null) // null = all, 9, or 18
   const [courseDropdownOpen, setCourseDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -151,8 +152,12 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   }, [summaries, sortBy])
 
   const filtered = useMemo(() => {
-    return sorted.filter(item => !excludedCourses.has(item.course.id))
-  }, [sorted, excludedCourses])
+    return sorted.filter(item => {
+      if (excludedCourses.has(item.course.id)) return false
+      if (holesFilter && item.course.holes !== holesFilter) return false
+      return true
+    })
+  }, [sorted, excludedCourses, holesFilter])
 
   const baseDate = new Date(sessionDate + 'T12:00:00')
   const sunset = getSunsetTime(baseDate)
@@ -241,6 +246,27 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
             <option value="deals">🔥 Hot Deals</option>
             <option value="name">📝 Course Name</option>
           </select>
+
+          <div className="cal-holes-filter">
+            <button
+              className={`cal-holes-btn ${holesFilter === null ? 'cal-holes-btn-active' : ''}`}
+              onClick={() => setHolesFilter(null)}
+            >
+              All
+            </button>
+            <button
+              className={`cal-holes-btn ${holesFilter === 9 ? 'cal-holes-btn-active' : ''}`}
+              onClick={() => setHolesFilter(9)}
+            >
+              9
+            </button>
+            <button
+              className={`cal-holes-btn ${holesFilter === 18 ? 'cal-holes-btn-active' : ''}`}
+              onClick={() => setHolesFilter(18)}
+            >
+              18
+            </button>
+          </div>
         </div>
       </div>
 
