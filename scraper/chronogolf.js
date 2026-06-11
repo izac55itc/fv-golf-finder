@@ -138,14 +138,15 @@ async function scrapeChronogolfCourse(courseId, course, daysAhead = 7) {
         }
 
         if (minPrice > 0) {
+          // For GTC Westwood: use lowest price only (ignore higher prices from other courses)
           results.push({
             date: dateStr,
             minPrice,
-            maxPrice,
+            maxPrice: minPrice, // Use minimum as both min and max
             availableCount,
             hasHotDeals: false
           })
-          console.log(`        ✓ Found prices: $${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`)
+          console.log(`        ✓ Found lowest price: $${minPrice.toFixed(2)}`)
         } else {
           console.log(`        ✗ No prices found`)
         }
