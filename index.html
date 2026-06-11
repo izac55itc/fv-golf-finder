@@ -3,13 +3,17 @@
 <meta name="theme-color" content="#2d5016"/>
 <meta name="description" content="Fraser Valley Tee Time Session Planner - Find the best golf deals today"/>
 <title>Golf Finder</title>
-<link rel="manifest" href="/manifest.json"/>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml"/></head>
+<link rel="manifest" href="/fv-golf-finder/manifest.json"/>
+<link rel="icon" href="/fv-golf-finder/favicon.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="/fv-golf-finder/apple-touch-icon.png"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Golf Finder"/></head>
 <body><div id="root"></div>
-<script type="module" src="/src/main.jsx"></script>
+<script type="module" src="/fv-golf-finder/src/main.jsx"></script>
 <script>
 if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
+  navigator.serviceWorker.register('/fv-golf-finder/service-worker.js');
 }
 
 let installPrompt = null;
