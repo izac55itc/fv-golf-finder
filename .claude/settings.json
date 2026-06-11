@@ -95,7 +95,8 @@
       "Bash(curl -s \"https://api.github.com/search/repositories?q=golf+booking+system\")",
       "Bash(curl -s \"https://api.github.com/search/code?q=fortlangley.cps.golf\")",
       "WebFetch(domain:www.gtccwestwoodplateau.com)",
-      "WebFetch(domain:nominatim.openstreetmap.org)"
+      "WebFetch(domain:nominatim.openstreetmap.org)",
+      "WebFetch(domain:booking.chronogolf.com)"
     ],
     "additionalDirectories": [
       "c:\\Users\\izac5\\source\\repos\\fv-golf-finder",
