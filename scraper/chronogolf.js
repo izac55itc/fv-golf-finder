@@ -88,6 +88,26 @@ async function scrapeChronogolfCourse(courseId, course, daysAhead = 7) {
       try {
         await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 })
 
+        // Ensure only "Fine Course" is selected, uncheck others
+        try {
+          await page.evaluate(() => {
+            const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'))
+            checkboxes.forEach(cb => {
+              const label = cb.closest('label')?.textContent || ''
+              if (label.includes('Fine Course')) {
+                cb.checked = true
+              } else if (label.includes('Green Room') || label.includes('Tee Room')) {
+                cb.checked = false
+              }
+            })
+            // Trigger change events if needed
+            checkboxes.forEach(cb => cb.dispatchEvent(new Event('change', { bubbles: true })))
+          })
+          await new Promise(resolve => setTimeout(resolve, 1500))
+        } catch (err) {
+          // Checkbox filtering might not be available
+        }
+
         // Wait for content to load
         try {
           await page.waitForFunction(
