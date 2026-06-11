@@ -108,11 +108,39 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
   const sorted = useMemo(() => {
     const arr = [...summaries]
-    if (sortBy === 'totalCost') arr.sort((a, b) => a.totalCost - b.totalCost)
-    else if (sortBy === 'greenFee') arr.sort((a, b) => a.minPrice - b.minPrice)
-    else if (sortBy === 'driveTime') arr.sort((a, b) => a.driveMinutes - b.driveMinutes)
-    else if (sortBy === 'deals') arr.sort((a, b) => (b.hasHotDeals ? 1 : 0) - (a.hasHotDeals ? 1 : 0))
-    else arr.sort((a, b) => a.course.name.localeCompare(b.course.name))
+    // Primary sort: available courses first, unavailable at bottom
+    // Secondary sort: by selected sort criteria
+    if (sortBy === 'totalCost') {
+      arr.sort((a, b) => {
+        if (a.availableCount === 0 && b.availableCount > 0) return 1
+        if (a.availableCount > 0 && b.availableCount === 0) return -1
+        return a.totalCost - b.totalCost
+      })
+    } else if (sortBy === 'greenFee') {
+      arr.sort((a, b) => {
+        if (a.availableCount === 0 && b.availableCount > 0) return 1
+        if (a.availableCount > 0 && b.availableCount === 0) return -1
+        return a.minPrice - b.minPrice
+      })
+    } else if (sortBy === 'driveTime') {
+      arr.sort((a, b) => {
+        if (a.availableCount === 0 && b.availableCount > 0) return 1
+        if (a.availableCount > 0 && b.availableCount === 0) return -1
+        return a.driveMinutes - b.driveMinutes
+      })
+    } else if (sortBy === 'deals') {
+      arr.sort((a, b) => {
+        if (a.availableCount === 0 && b.availableCount > 0) return 1
+        if (a.availableCount > 0 && b.availableCount === 0) return -1
+        return (b.hasHotDeals ? 1 : 0) - (a.hasHotDeals ? 1 : 0)
+      })
+    } else {
+      arr.sort((a, b) => {
+        if (a.availableCount === 0 && b.availableCount > 0) return 1
+        if (a.availableCount > 0 && b.availableCount === 0) return -1
+        return a.course.name.localeCompare(b.course.name)
+      })
+    }
     return arr
   }, [summaries, sortBy])
 
