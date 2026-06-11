@@ -30,7 +30,9 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
     }
   }
 
-  const displayTotal = cartIncluded ? item.totalCost : (item.totalCost - (item.cartCost || 0))
+  const cartCostToUse = (cartIncluded && item.cartCost > 0) ? item.cartCost : 0
+  const minTotal = item.minPrice + item.gasCost + cartCostToUse
+  const maxTotal = item.maxPrice + item.gasCost + cartCostToUse
 
   return (
     <div className="cal-course-card">
@@ -94,7 +96,7 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
 
             <div className="cal-price-section total">
               <div className="cal-price-label">💰 Total</div>
-              <div className="cal-price-value">${displayTotal.toFixed(2)}</div>
+              <div className="cal-price-value">${minTotal.toFixed(2)}–${maxTotal.toFixed(2)}</div>
             </div>
           </>
         )}
