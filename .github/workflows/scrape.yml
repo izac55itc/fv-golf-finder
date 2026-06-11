@@ -1,8 +1,8 @@
 name: Scrape Tee Times
 on:
   schedule:
-    - cron: '23 8 * * *'  # 8:23 AM UTC = 12:23 AM PST (TEST)
-  workflow_dispatch:      # manual trigger from the Actions tab
+    - cron: '0 14,20,1 * * *'  # 2 PM, 8 PM, 1 AM UTC = 6 AM, 12 PM, 5 PM PST
+  workflow_dispatch:           # manual trigger from the Actions tab
 permissions:
   contents: write
 jobs:
