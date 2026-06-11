@@ -99,6 +99,10 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
   const sunset = getSunsetTime(baseDate)
 
   const bookingUrl = (course) => {
+    // Chronogolf courses (with date parameter support)
+    if (course.bookingUrl && course.bookingUrl.includes('chronogolf')) {
+      return `${course.bookingUrl}?date=${sessionDate}`
+    }
     // Club Prophet courses (with direct bookingUrl)
     if (course.bookingUrl) {
       // Try adding date parameter to Club Prophet URL
