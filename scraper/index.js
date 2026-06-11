@@ -107,6 +107,47 @@ async function main() {
 
     console.log(`\n✓ Collected ${allSummaries.length} price summaries`)
 
+    // Fallback: If a course has 0 results, use last known good data
+    console.log('\nApplying fallback for courses with no data...')
+    const courseIds = ['fort-langley', 'poppy-estate'] // Courses prone to scraping issues
+    const summariesByDate = new Map()
+    allSummaries.forEach(s => {
+      const key = `${s.course_id}|${s.date}`
+      summariesByDate.set(key, s)
+    })
+
+    for (const courseId of courseIds) {
+      const courseSummaries = allSummaries.filter(s => s.course_id === courseId)
+      if (courseSummaries.length === 0) {
+        console.log(`  [${courseId}] No data found, fetching last known good pricing...`)
+        const { data: lastData, error } = await supabase
+          .from('price_summaries')
+          .select('min_price, max_price, available_count, has_hot_deals')
+          .eq('course_id', courseId)
+          .order('date', { ascending: false })
+          .limit(1)
+
+        if (!error && lastData && lastData.length > 0) {
+          const lastEntry = lastData[0]
+          // Generate 7 days of data using last known prices
+          for (let i = 0; i < DAYS_AHEAD; i++) {
+            const d = new Date(pdtToday)
+            d.setDate(d.getDate() + i)
+            const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+            allSummaries.push({
+              course_id: courseId,
+              date: dateStr,
+              min_price: lastEntry.min_price,
+              max_price: lastEntry.max_price,
+              available_count: lastEntry.available_count,
+              has_hot_deals: lastEntry.has_hot_deals,
+            })
+          }
+          console.log(`  ✓ Using fallback: $${lastEntry.min_price}-$${lastEntry.max_price}`)
+        }
+      }
+    }
+
     // Delete old summaries and upsert new ones
     const { error: deleteErr } = await supabase
       .from('price_summaries')
