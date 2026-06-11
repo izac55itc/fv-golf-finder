@@ -71,13 +71,13 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
             <div className="cal-price-section fee">
               <div className="cal-price-label">⛳ Green Fee</div>
               <div className="cal-price-value">
-                ${item.minPrice.toFixed(2)}–${item.maxPrice.toFixed(2)}
+                ${Math.ceil(item.minPrice)}–${Math.ceil(item.maxPrice)}
               </div>
             </div>
 
         <div className="cal-price-section gas">
           <div className="cal-price-label">⛽ Gas</div>
-          <div className="cal-price-value">${item.gasCost.toFixed(2)}</div>
+          <div className="cal-price-value">${Math.ceil(item.gasCost)}</div>
         </div>
 
         <div className="cal-price-section cart">
@@ -89,14 +89,14 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
               className={`cal-price-value cal-cart-toggle ${cartIncluded ? 'cal-cart-active' : 'cal-cart-inactive'}`}
               onClick={handleCartToggle}
             >
-              ${item.cartCost.toFixed(2)}
+              ${Math.ceil(item.cartCost)}
             </div>
           )}
         </div>
 
             <div className="cal-price-section total">
               <div className="cal-price-label">💰 Total</div>
-              <div className="cal-price-value">${minTotal.toFixed(2)}–${maxTotal.toFixed(2)}</div>
+              <div className="cal-price-value">${Math.ceil(minTotal)}–${Math.ceil(maxTotal)}</div>
             </div>
           </>
         )}
