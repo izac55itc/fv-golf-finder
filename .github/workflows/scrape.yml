@@ -1,0 +1,37 @@
+name: Scrape Tee Times
+on:
+  schedule:
+    - cron: '0 8,10,12,14,16,18,20,22 * * *'  # every 2h: 8 AM-10 PM UTC (12 AM-6 PM PST + buffer). Skips midnight-8 AM PST (00-07 UTC)
+  workflow_dispatch:                            # manual trigger from the Actions tab
+permissions:
+  contents: write
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 59
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Cache Playwright browsers
+        id: pw-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-chromium-${{ runner.os }}-${{ hashFiles('scraper/package-lock.json') }}
+      - name: Install scraper dependencies
+        working-directory: scraper
+        run: npm ci
+      - name: Install Chromium (first run or cache miss)
+        working-directory: scraper
+        run: npx playwright install chromium --with-deps
+      - name: Run scraper
+        working-directory: scraper
+        timeout-minutes: 15
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: timeout --signal=KILL 1200 node index.js || true
