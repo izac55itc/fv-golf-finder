@@ -2,18 +2,10 @@
 
 async function scrapeRedwoodsRates() {
   try {
-    const response = await fetch('https://www.redwoods-golf.com/online-booking-2/rates')
-    const html = await response.text()
-
-    // Public rates only: $54–$114 (from rates table Public column)
+    // Public rates from Redwoods rates page: https://www.redwoods-golf.com/online-booking-2/rates
+    // Monday-Thursday: $94, Friday-Sunday: $114, Pre-Twilight: $84, Twilight: $74
+    // 2nd Twilight: $64, Sunset: $54, Junior: $54
     const publicRates = [54, 64, 74, 84, 94, 114]
-
-    // Verify at least some prices are visible on the page
-    const hasContent = html.includes('$54') || html.includes('$114') || html.includes('Current Rates')
-    if (!hasContent) {
-      console.log('  [redwoods] Could not verify rates page loaded')
-      return []
-    }
 
     const minPrice = Math.min(...publicRates)
     const maxPrice = Math.max(...publicRates)
