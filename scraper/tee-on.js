@@ -75,10 +75,23 @@ async function scrapeTeeOnCourse(courseId, course, daysAhead = 7) {
     // Scrape each day
     for (let dayOffset = 0; dayOffset < daysAhead; dayOffset++) {
       const dateStr = getDateString(dayOffset)
+      const targetDay = parseInt(dateStr.split('-')[2]) // Extract day number
 
-      // Extra wait on first day for full page render
+      // On first day, click the date button to ensure prices load
       if (dayOffset === 0) {
         await new Promise(resolve => setTimeout(resolve, 2000))
+
+        // Try clicking day 1's button to trigger price display
+        await page.evaluate((day) => {
+          const buttons = Array.from(document.querySelectorAll('button, [role="button"], [class*="date"], [class*="day"]'))
+          const dateBtn = buttons.find(b => {
+            const text = b.textContent.trim()
+            return text.match(new RegExp(`^\\D*${day}\\D*$`))
+          })
+          if (dateBtn) dateBtn.click()
+        }, targetDay)
+
+        await new Promise(resolve => setTimeout(resolve, 1500))
       }
 
       // Wait for content to load
