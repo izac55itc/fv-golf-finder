@@ -34,12 +34,37 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
     const baseDate = new Date(sessionDate + 'T12:00:00')
     const sunset = getSunsetTime(baseDate)
 
+    // Build map of available tee times by course
+    const teeTimesByDate = new Map()
     for (const item of teetimes) {
       if (item.date !== sessionDate) continue
-      if (item.availableCount === 0) continue
+      teeTimesByDate.set(item.courseId, item)
+    }
 
-      const course = COURSES.find(c => c.id === item.courseId)
-      if (!course) continue
+    // Show all courses, even if no data
+    for (const course of COURSES) {
+      const item = teeTimesByDate.get(course.id)
+      if (!item) {
+        // No data for this course on this date - show as unavailable
+        map.set(course.id, {
+          course,
+          minPrice: 0,
+          maxPrice: 0,
+          availableCount: 0,
+          hasHotDeals: false,
+          driveMinutes: driveTimes?.get(course.id) ?? 15,
+          gasCost: fuelCostDollars(driveTimes?.get(course.id) ?? 15),
+          cartCost: course.cartFee !== null ? course.cartFee : (course.cartRequired ? CART_RENTAL : 0),
+          totalCost: 0,
+          totalWithoutCart: 0,
+          weatherMorning: null,
+          weatherAfternoon: null,
+          weatherTwilight: null,
+          sunset: getSunsetTime(baseDate),
+          latestStart: null,
+        })
+        continue
+      }
 
       const driveMinutes = driveTimes?.get(course.id) ?? 15
 

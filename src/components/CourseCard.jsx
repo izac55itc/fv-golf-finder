@@ -60,12 +60,18 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
       </div>
 
       <div className="cal-card-pricing">
-        <div className="cal-price-section fee">
-          <div className="cal-price-label">⛳ Green Fee</div>
-          <div className="cal-price-value">
-            ${item.minPrice.toFixed(2)}–${item.maxPrice.toFixed(2)}
+        {item.availableCount === 0 ? (
+          <div style={{ padding: '1rem', textAlign: 'center', color: '#999' }}>
+            No tee times available
           </div>
-        </div>
+        ) : (
+          <>
+            <div className="cal-price-section fee">
+              <div className="cal-price-label">⛳ Green Fee</div>
+              <div className="cal-price-value">
+                ${item.minPrice.toFixed(2)}–${item.maxPrice.toFixed(2)}
+              </div>
+            </div>
 
         <div className="cal-price-section gas">
           <div className="cal-price-label">⛽ Gas</div>
@@ -86,16 +92,19 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
           )}
         </div>
 
-        <div className="cal-price-section total">
-          <div className="cal-price-label">💰 Total</div>
-          <div className="cal-price-value">${displayTotal.toFixed(2)}</div>
-        </div>
+            <div className="cal-price-section total">
+              <div className="cal-price-label">💰 Total</div>
+              <div className="cal-price-value">${displayTotal.toFixed(2)}</div>
+            </div>
+          </>
+        )}
       </div>
 
-      <div className="cal-card-meta">
-        <div className="cal-holes-info">
-          🌅 {item.sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} • Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
-        </div>
+      {item.availableCount > 0 && (
+        <div className="cal-card-meta">
+          <div className="cal-holes-info">
+            🌅 {item.sunset.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} • Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })} PDT
+          </div>
         <div className="cal-weather-group">
           {item.weatherMorning && (
             <div className="cal-weather-period">
@@ -122,6 +131,7 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
           )}
         </div>
       </div>
+      )}
 
       <div className="cal-card-footer">
         <div className="cal-availability">{item.availableCount} slots</div>
