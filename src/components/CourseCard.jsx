@@ -1,8 +1,4 @@
-import { useState } from 'react'
-
 export default function CourseCard({ item, bookingUrl, userLocation }) {
-  const [cartIncluded, setCartIncluded] = useState(item.course.cartRequired ?? false)
-
   const handleDirections = () => {
     if (userLocation) {
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
@@ -24,15 +20,8 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
     }
   }
 
-  const handleCartToggle = () => {
-    if (item.cartCost !== null && item.cartCost > 0) {
-      setCartIncluded(!cartIncluded)
-    }
-  }
-
-  const cartCostToUse = (cartIncluded && item.cartCost > 0) ? item.cartCost : 0
-  const minTotal = item.minPrice + item.gasCost + cartCostToUse
-  const maxTotal = item.maxPrice + item.gasCost + cartCostToUse
+  const minTotal = item.minPrice + item.gasCost
+  const maxTotal = item.maxPrice + item.gasCost
 
   return (
     <div className="cal-course-card">
@@ -73,25 +62,12 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
               <div className="cal-price-value">
                 ${Math.ceil(item.minPrice)}–${Math.ceil(item.maxPrice)}
               </div>
+              <div className="cal-price-note">Cart included • Walking rates available at booking</div>
             </div>
 
         <div className="cal-price-section gas">
           <div className="cal-price-label">⛽ Gas</div>
           <div className="cal-price-value">${Math.ceil(item.gasCost)}</div>
-        </div>
-
-        <div className="cal-price-section cart">
-          <div className="cal-price-label">🚙 Cart</div>
-          {item.cartCost === null ? (
-            <div className="cal-price-value">NA</div>
-          ) : (
-            <div
-              className={`cal-price-value cal-cart-toggle ${cartIncluded ? 'cal-cart-active' : 'cal-cart-inactive'}`}
-              onClick={handleCartToggle}
-            >
-              ${Math.ceil(item.cartCost)}
-            </div>
-          )}
         </div>
 
             <div className="cal-price-section total">
