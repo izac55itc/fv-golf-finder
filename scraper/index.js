@@ -54,32 +54,59 @@ async function main() {
   const allSummaries = []
 
   try {
-    // Fetch GolfNow summaries
+    // Fetch GolfNow detailed tee times to extract walking-only rates
     for (const [courseId, facilityId] of Object.entries(FACILITIES)) {
       console.log(`[${courseId}] Fetching ${startDate} to ${endDate}...`)
 
-      const url = `https://www.golfnow.com/api/tee-times/tee-times/facility/${facilityId}/summaries/from/${startDate}/to/${endDate}`
+      const url = `https://www.golfnow.com/api/tee-times/tee-times/facility/${facilityId}/tee-times/from/${startDate}/to/${endDate}`
 
       try {
         const res = await fetch(url)
         if (!res.ok) throw new Error(`${res.status}`)
 
-        const data = await res.json()
+        const teeTimes = await res.json()
 
-        data.forEach(item => {
-          const minVal = item.minPrice?.value || 0
-          const maxVal = item.maxPrice?.value || 0
-          allSummaries.push({
-            course_id: courseId,
-            date: item.playDateUtc.split('T')[0],
-            min_price: Math.round(parseFloat(minVal)),
-            max_price: Math.round(parseFloat(maxVal)),
-            available_count: item.numberOfTeeTimesAvailable || 0,
-            has_hot_deals: item.areHotDealsAvailable || false,
-          })
+        // Group tee times by date and extract walking-only rates
+        const byDate = new Map()
+
+        teeTimes.forEach(teeTime => {
+          const dateStr = teeTime.playDateUtc.split('T')[0]
+          if (!byDate.has(dateStr)) {
+            byDate.set(dateStr, [])
+          }
+          byDate.get(dateStr).push(teeTime)
         })
 
-        console.log(`  ✓ ${data.length} dates fetched`)
+        // For each date, find min/max walking-only prices
+        byDate.forEach((timesForDate, dateStr) => {
+          // Filter for walking-only rates (rateType === 'WALKING' or includes 'walking')
+          const walkingRates = timesForDate
+            .filter(t => t.rateType && t.rateType.toUpperCase().includes('WALKING'))
+            .map(t => t.rate?.value || 0)
+            .filter(r => r > 0)
+
+          // If no walking rates found, use all rates as fallback
+          const ratesToUse = walkingRates.length > 0
+            ? walkingRates
+            : timesForDate.map(t => t.rate?.value || 0).filter(r => r > 0)
+
+          if (ratesToUse.length > 0) {
+            const minPrice = Math.min(...ratesToUse)
+            const maxPrice = Math.max(...ratesToUse)
+            const availableCount = timesForDate.length
+
+            allSummaries.push({
+              course_id: courseId,
+              date: dateStr,
+              min_price: Math.round(parseFloat(minPrice)),
+              max_price: Math.round(parseFloat(maxPrice)),
+              available_count: availableCount,
+              has_hot_deals: false,
+            })
+          }
+        })
+
+        console.log(`  ✓ ${teeTimes.length} tee times fetched, ${byDate.size} dates`)
       } catch (err) {
         console.error(`  ✗ Error: ${err.message}`)
       }
