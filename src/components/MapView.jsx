@@ -81,6 +81,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           cartCost,
           availableCount: item.availableCount,
           postedRates: item.postedRates ?? false,
+          twilightStart: item.twilightStart ?? null,
           hasHotDeals: item.hasHotDeals,
           weatherMorning,
           weatherAfternoon,

@@ -139,7 +139,9 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
 
       <div className="cal-card-footer">
         <div className="cal-availability">
-          {item.postedRates ? 'Posted rates (walking, 18)' : `${item.availableCount} slots`}
+          {item.postedRates
+            ? `Posted walking rates${item.twilightStart ? ' · twilight from 2pm' : ''}`
+            : `${item.availableCount} slots`}
         </div>
         <a
           href={bookingUrl(item.course)}

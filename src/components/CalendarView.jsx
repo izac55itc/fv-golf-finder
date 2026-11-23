@@ -95,6 +95,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         maxPrice: item.maxPrice,
         availableCount: item.availableCount,
         postedRates: item.postedRates ?? false,
+        twilightStart: item.twilightStart ?? null,
         hasHotDeals: item.hasHotDeals,
         driveMinutes,
         gasCost,

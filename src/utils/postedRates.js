@@ -16,7 +16,9 @@ export function postedRateFor(course, dateStr) {
   let walk = tier.walk18
   // Tuesday special applies to walking 18 only
   if (dow === 2 && r.tuesdayWalk18 != null) walk = r.tuesdayWalk18
-  return { walk, ride: tier.ride18 }
+  // Twilight (from twilightStart) is charged at the 9-hole rate
+  const twilightWalk = r.twilightAtNineHoleRate ? tier.walk9 : null
+  return { walk, ride: tier.ride18, twilightWalk }
 }
 
 // Build price_summaries-shaped rows for courses with posted rates on dates
@@ -32,8 +34,10 @@ export function postedRateRows(courses, dates, scrapedRows) {
       rows.push({
         courseId: course.id,
         date,
-        minPrice: rate.walk,
+        // Range: cheapest of twilight / daytime walking rate up to daytime walking rate
+        minPrice: rate.twilightWalk != null ? Math.min(rate.twilightWalk, rate.walk) : rate.walk,
         maxPrice: rate.walk,
+        twilightStart: course.postedRates.twilightStart ?? null,
         // Cart cost = riding rate minus walking rate (half power cart per player)
         cartCost: rate.ride - rate.walk,
         availableCount: null, // unknown: tee sheet not available

@@ -12,6 +12,7 @@ export const COURSES = [
       seniorsWeekday: { walk18: 28, ride18: 45, walk9: 22, ride9: 32 },
       tuesdayWalk18: 20,
       twilightStart: '14:00',
+      twilightAtNineHoleRate: true, // twilight is charged the 9-hole rate (Nov 2026)
       extras: { fullCart: 50, pullCart: 4, clubs: 12, juniorsFreeWalkingWithPayingAdult: true },
     } },
   { id: 'westfield',           name: 'Westfield Country Club',          holes: 9,  type: 'executive',  par: 31, lat: 49.1389, lng: -122.7544, avgHoleMinutes: 11, baseGreenfee: 30,  cartFee: null, cartNote: 'walk only', cartRequired: false, golfnowId: 6629,  golfnowSlug: '6629-westfield-country-club' },
