@@ -114,18 +114,21 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
             <div className="cal-weather-period">
               <span className="cal-weather-time">8am</span>
               <span>{item.weatherMorning.icon} {item.weatherMorning.temp}°C</span>
+              {item.weatherMorning.precipProb >= 20 && <span className="cal-weather-rain">💧{item.weatherMorning.precipProb}%</span>}
             </div>
           )}
           {item.weatherAfternoon && (
             <div className="cal-weather-period">
               <span className="cal-weather-time">2pm</span>
               <span>{item.weatherAfternoon.icon} {item.weatherAfternoon.temp}°C</span>
+              {item.weatherAfternoon.precipProb >= 20 && <span className="cal-weather-rain">💧{item.weatherAfternoon.precipProb}%</span>}
             </div>
           )}
           {item.weatherTwilight && (
             <div className="cal-weather-period">
               <span className="cal-weather-time">5pm</span>
               <span>{item.weatherTwilight.icon} {item.weatherTwilight.temp}°C</span>
+              {item.weatherTwilight.precipProb >= 20 && <span className="cal-weather-rain">💧{item.weatherTwilight.precipProb}%</span>}
             </div>
           )}
           {(item.weatherMorning?.windspeed > 20 ||

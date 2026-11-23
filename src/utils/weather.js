@@ -46,8 +46,11 @@ async function fetchHourlyForecast(lat, lng) {
     precipProb: data.hourly.precipitation_probability[i],
     windspeed:  Math.round(data.hourly.windspeed_10m[i]),
     code:       data.hourly.weathercode[i],
-    icon:       WMO_ICON(data.hourly.weathercode[i]),
-    label:      WMO_LABEL(data.hourly.weathercode[i]),
+    // Overcast/cloudy codes can hide a high chance of rain; show rain if likely
+    icon:       (data.hourly.precipitation_probability[i] ?? 0) >= 50 && data.hourly.weathercode[i] < 51
+                  ? '🌧' : WMO_ICON(data.hourly.weathercode[i]),
+    label:      (data.hourly.precipitation_probability[i] ?? 0) >= 50 && data.hourly.weathercode[i] < 51
+                  ? 'Rain likely' : WMO_LABEL(data.hourly.weathercode[i]),
   }))
   const index = new Map()
   for (const h of hours) index.set(h.time, h)
