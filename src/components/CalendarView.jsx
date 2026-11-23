@@ -75,7 +75,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
 
       const avgPrice = Math.round((item.minPrice + item.maxPrice) / 2)
       const gasCost = fuelCostDollars(driveMinutes)
-      const cartCost = course.cartFee !== null ? course.cartFee : (course.cartRequired ? CART_RENTAL : 0)
+      const cartCost = item.cartCost != null ? item.cartCost : course.cartFee !== null ? course.cartFee : (course.cartRequired ? CART_RENTAL : 0)
       const totalCostWithCart = avgPrice + gasCost + cartCost
       const totalCost = course.cartRequired ? totalCostWithCart : avgPrice + gasCost
       const totalWithoutCart = avgPrice + gasCost
@@ -94,6 +94,7 @@ export default function CalendarView({ teetimes, driveTimes, weatherData, sessio
         minPrice: item.minPrice,
         maxPrice: item.maxPrice,
         availableCount: item.availableCount,
+        postedRates: item.postedRates ?? false,
         hasHotDeals: item.hasHotDeals,
         driveMinutes,
         gasCost,

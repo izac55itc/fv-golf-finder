@@ -3,7 +3,17 @@ export const COURSES = [
   { id: 'belmont',             name: 'Belmont Golf Course',             holes: 18, type: 'regulation', par: 71, lat: 49.150718, lng: -122.596986, avgHoleMinutes: 14, baseGreenfee: 45,  cartFee: 15,  cartNote: null,              cartRequired: false, golfnowId: 358,   golfnowSlug: '358-belmont-golf-course' },
   { id: 'newlands-cc',         name: 'Newlands Golf & CC',              holes: 18, type: 'regulation', par: 71, lat: 49.0943782, lng: -122.6392203, avgHoleMinutes: 14, baseGreenfee: 33,  cartFee: 22,  cartNote: null,              cartRequired: false, golfnowId: 3525,  golfnowSlug: '3525-newlands-golf-country-club' },
   { id: 'newlands-executive',  name: 'Newlands Executive',              holes: 9,  type: 'executive',  par: 31, lat: 49.0943782, lng: -122.6392203, avgHoleMinutes: 12, baseGreenfee: 35,  cartFee: null, cartNote: 'walking only',    cartRequired: false, golfnowId: 11039, golfnowSlug: '11039-newlands-golf-country-club-executive-11-hole' },
-  { id: 'eighteen-pastures',   name: 'Eighteen Pastures Golf Course',   holes: 18, type: 'regulation', par: 72, lat: 49.1977361, lng: -122.4214855, avgHoleMinutes: 14, baseGreenfee: 45,  cartFee: 24,  cartNote: null,              cartRequired: true, golfnowId: 3530,  golfnowSlug: '3530-eighteen-pastures-golf-course' },
+  { id: 'eighteen-pastures',   name: 'Eighteen Pastures Golf Course',   holes: 18, type: 'regulation', par: 72, lat: 49.1977361, lng: -122.4214855, avgHoleMinutes: 14, baseGreenfee: 42,  cartFee: 23,  cartNote: null,              cartRequired: false, golfnowId: 3530,  golfnowSlug: '3530-eighteen-pastures-golf-course',
+    // Posted rate board (photo, Nov 2026) - used when GolfNow/website has no data. Regulars 19-54, tax included.
+    postedRates: {
+      weekend: { walk18: 42, ride18: 65, walk9: 28, ride9: 43 },
+      weekday: { walk18: 35, ride18: 55, walk9: 27, ride9: 38 },
+      seniorsWeekend: { walk18: 31, ride18: 57, walk9: 24, ride9: 39 },
+      seniorsWeekday: { walk18: 28, ride18: 45, walk9: 22, ride9: 32 },
+      tuesdayWalk18: 20,
+      twilightStart: '14:00',
+      extras: { fullCart: 50, pullCart: 4, clubs: 12, juniorsFreeWalkingWithPayingAdult: true },
+    } },
   { id: 'westfield',           name: 'Westfield Country Club',          holes: 9,  type: 'executive',  par: 31, lat: 49.1389, lng: -122.7544, avgHoleMinutes: 11, baseGreenfee: 30,  cartFee: null, cartNote: 'walk only', cartRequired: false, golfnowId: 6629,  golfnowSlug: '6629-westfield-country-club' },
   { id: 'golden-eagle-north',  name: 'Golden Eagle Golf Club - North',  holes: 18, type: 'regulation', par: 72, lat: 49.2935, lng: -122.6168, avgHoleMinutes: 14, baseGreenfee: 65,  cartFee: 27,  cartNote: null,              cartRequired: false, golfnowId: 3515,  golfnowSlug: '3515-golden-eagle-north' },
   { id: 'golden-eagle-south',  name: 'Golden Eagle Golf Club - South',  holes: 18, type: 'regulation', par: 70, lat: 49.2930, lng: -122.6165, avgHoleMinutes: 14, baseGreenfee: 55,  cartFee: 27,  cartNote: null,              cartRequired: false, golfnowId: 15899, golfnowSlug: '15899-golden-eagle-south' },
