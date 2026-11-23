@@ -71,7 +71,9 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
             <div className="cal-price-section fee">
               <div className="cal-price-label">⛳ Green Fee</div>
               <div className="cal-price-value">
-                ${Math.ceil(item.minPrice)}–${Math.ceil(item.maxPrice)}
+                {item.minPrice === item.maxPrice
+                  ? `$${Math.ceil(item.minPrice)}`
+                  : `$${Math.ceil(item.minPrice)}–$${Math.ceil(item.maxPrice)}`}
               </div>
             </div>
 
@@ -102,7 +104,7 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
         )}
       </div>
 
-      {item.availableCount > 0 && (
+      {(item.availableCount > 0 || item.postedRates) && (
         <div className="cal-card-meta">
           <div className="cal-holes-info">
             Start by {item.latestStart.toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit', hour12: true })}
@@ -136,7 +138,11 @@ export default function CourseCard({ item, bookingUrl, userLocation }) {
       )}
 
       <div className="cal-card-footer">
-        <div className="cal-availability">{item.availableCount} slots</div>
+        <div className="cal-availability">
+          {item.postedRates
+            ? `Posted walking rates${item.twilightStart ? ' · twilight from 2pm' : ''}`
+            : `${item.availableCount} slots`}
+        </div>
         <a
           href={bookingUrl(item.course)}
           target="_blank"

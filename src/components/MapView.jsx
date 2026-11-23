@@ -58,7 +58,7 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
         const driveMinutes = driveTimes?.get(course.id) ?? 15
         const gasCost = fuelCostDollars(driveMinutes)
         const avgPrice = Math.round((item.minPrice + item.maxPrice) / 2)
-        const cartCost = course.cartFee !== null ? course.cartFee : (course.cartRequired ? CART_RENTAL : 0)
+        const cartCost = item.cartCost != null ? item.cartCost : course.cartFee !== null ? course.cartFee : (course.cartRequired ? CART_RENTAL : 0)
         const totalCostWithCart = avgPrice + gasCost + cartCost
         const totalCost = course.cartRequired ? totalCostWithCart : avgPrice + gasCost
 
@@ -80,6 +80,8 @@ export default function MapView({ location, driveTimes, teetimes, sessionDate, w
           totalCost,
           cartCost,
           availableCount: item.availableCount,
+          postedRates: item.postedRates ?? false,
+          twilightStart: item.twilightStart ?? null,
           hasHotDeals: item.hasHotDeals,
           weatherMorning,
           weatherAfternoon,
