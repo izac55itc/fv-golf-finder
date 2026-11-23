@@ -48,3 +48,22 @@ export function postedRateRows(courses, dates, scrapedRows) {
   }
   return rows
 }
+
+// Merge scraped rows with posted rates: on days with scraped data, widen the
+// price range so the cheapest of (GolfNow, posted) is the low end and the
+// highest is the top. Days with no scraped data get posted-rate rows.
+export function withPostedRates(courses, dates, scrapedRows) {
+  const byId = new Map(courses.map(c => [c.id, c]))
+  const merged = scrapedRows.map(row => {
+    const course = byId.get(row.courseId)
+    if (!course?.postedRates) return row
+    const rate = postedRateFor(course, row.date)
+    const postedMin = rate.twilightWalk != null ? Math.min(rate.twilightWalk, rate.walk) : rate.walk
+    return {
+      ...row,
+      minPrice: Math.min(row.minPrice, postedMin),
+      maxPrice: Math.max(row.maxPrice, rate.walk),
+    }
+  })
+  return [...merged, ...postedRateRows(courses, dates, scrapedRows)]
+}
