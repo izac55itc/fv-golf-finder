@@ -506,3 +506,9 @@
 .cal-course-item input[type="checkbox"] {
   cursor: pointer;
 }
+
+.cal-weather-rain {
+  font-size: 11px;
+  color: #2563eb;
+  font-weight: 600;
+}
