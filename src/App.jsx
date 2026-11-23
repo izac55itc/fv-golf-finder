@@ -7,7 +7,7 @@ import { getCurrentLocation, WALNUT_GROVE } from './utils/geo.js'
 import { getSunsetTime } from './utils/sunset.js'
 import { fetchAllCourseWeather } from './utils/weather.js'
 import { fuelCostDollars } from './utils/ranker.js'
-import { postedRateRows } from './utils/postedRates.js'
+import { withPostedRates } from './utils/postedRates.js'
 import CalendarView from './components/CalendarView.jsx'
 import MapView from './components/MapView.jsx'
 
@@ -184,7 +184,7 @@ export default function App() {
           hasHotDeals: s.has_hot_deals,
         }))
 
-        setTeetimes([...transformed, ...postedRateRows(COURSES, availableDates, transformed)])
+        setTeetimes(withPostedRates(COURSES, availableDates, transformed))
         setGeneratedAt(new Date().toISOString())
         setTeeFetching(false)
       })
